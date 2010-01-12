@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration", "Integration\Integration.csproj", "{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matching", "Matching\Matching.csproj", "{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvest", "Harvest\Harvest.csproj", "{AD12A009-F611-4B01-BD0A-EB41200D9D91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{5DC2D3A3-AB31-4055-9BC3-81200C89B915}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "NZOR_DB", "NZOR_DB\NZOR_DB.dbp", "{08764081-C750-4E46-A150-D7462C2BD16E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7FBEDD12-C39C-4455-B143-28F0CA1CBE79}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		NZOR.vsmdi = NZOR.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTest", "NZORTest\NZORTest.csproj", "{09F8627F-FBDA-4F65-8060-278C1535B515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTestClient", "TestNZOR\NZORTestClient.csproj", "{2F10BA53-EDFE-4C1C-A528-831658F04FA0}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NZOR.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD12A009-F611-4B01-BD0A-EB41200D9D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD12A009-F611-4B01-BD0A-EB41200D9D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD12A009-F611-4B01-BD0A-EB41200D9D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD12A009-F611-4B01-BD0A-EB41200D9D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F8627F-FBDA-4F65-8060-278C1535B515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F8627F-FBDA-4F65-8060-278C1535B515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F8627F-FBDA-4F65-8060-278C1535B515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F8627F-FBDA-4F65-8060-278C1535B515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F10BA53-EDFE-4C1C-A528-831658F04FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F10BA53-EDFE-4C1C-A528-831658F04FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F10BA53-EDFE-4C1C-A528-831658F04FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F10BA53-EDFE-4C1C-A528-831658F04FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

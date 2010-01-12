@@ -1,0 +1,20 @@
+# Microsoft Developer Studio Project File - Database Project
+Begin DataProject = "NZOR_DB"
+   MSDTVersion = "80"
+   DefDBRef = "devserver04\sql2005.NZOR_Strawman.dbo"
+   Begin Folder = "Change Scripts"
+   End
+   Begin Folder = "Create Scripts"
+      Script = "sprSelect_NamesWithConcept.sql"
+      Script = "sprSelect_ProvNameMatchingData.sql"
+   End
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "devserver04\sql2005.NZOR_Strawman.dbo"
+         ConnectStr = "Data Source=DEVSERVER04\SQL2005;Initial Catalog=NZOR_Strawman;Integrated Security=True"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+   Begin Folder = "Queries"
+   End
+End

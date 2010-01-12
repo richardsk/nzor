@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NZOR_Provider.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="NZOR_ProviderStoreContainer">
+          <EntitySet Name="ConceptPropertyType" EntityType="NZOR_Provider.Store.ConceptPropertyType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ConceptRelationshipType" EntityType="NZOR_Provider.Store.ConceptRelationshipType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NameClassProperty" EntityType="NZOR_Provider.Store.NameClassProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Provider" EntityType="NZOR_Provider.Store.Provider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaxonRank" EntityType="NZOR_Provider.Store.TaxonRank" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Biostatus" EntityType="NZOR_Provider.Store.Biostatus" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="BiostatusValue" EntityType="NZOR_Provider.Store.BiostatusValue" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="Concept" EntityType="NZOR_Provider.Store.Concept" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="ConceptProperty" EntityType="NZOR_Provider.Store.ConceptProperty" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="ConceptRelationship" EntityType="NZOR_Provider.Store.ConceptRelationship" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="GeoRegion" EntityType="NZOR_Provider.Store.GeoRegion" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="Name" EntityType="NZOR_Provider.Store.Name" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="NameProperty" EntityType="NZOR_Provider.Store.NameProperty" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="Reference" EntityType="NZOR_Provider.Store.Reference" store:Type="Tables" Schema="prov" />
+          <EntitySet Name="ReferenceField" EntityType="NZOR_Provider.Store.ReferenceField" store:Type="Tables" Schema="prov" />
+          <AssociationSet Name="FK_Biostatus_Concept" Association="NZOR_Provider.Store.FK_Biostatus_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biostatus_Name" Association="NZOR_Provider.Store.FK_Biostatus_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biostatus_Provider" Association="NZOR_Provider.Store.FK_Biostatus_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concept_Name" Association="NZOR_Provider.Store.FK_Concept_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concept_Provider" Association="NZOR_Provider.Store.FK_Concept_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptProperty_Concept" Association="NZOR_Provider.Store.FK_ConceptProperty_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptProperty" EntitySet="ConceptProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept" Association="NZOR_Provider.Store.FK_ConceptRelationship_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept1" Association="NZOR_Provider.Store.FK_ConceptRelationship_Concept1">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_ConceptRelationshipType" Association="NZOR_Provider.Store.FK_ConceptRelationship_ConceptRelationshipType">
+            <End Role="ConceptRelationshipType" EntitySet="ConceptRelationshipType" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeoRegion_Provider" Association="NZOR_Provider.Store.FK_GeoRegion_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="GeoRegion" EntitySet="GeoRegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_Provider" Association="NZOR_Provider.Store.FK_Name_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_Name" Association="NZOR_Provider.Store.FK_NameProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_NameClassProperty" Association="NZOR_Provider.Store.FK_NameProperty_NameClassProperty">
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceField_Reference" Association="NZOR_Provider.Store.FK_ReferenceField_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="ReferenceField" EntitySet="ReferenceField" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ConceptPropertyType">
+          <Key>
+            <PropertyRef Name="ConceptPropertyTypeID" />
+          </Key>
+          <Property Name="ConceptPropertyTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="PropertyDataType" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Relationship" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MinOccurences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+        </EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" />
+          </Key>
+          <Property Name="NameClassPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PropertyType" Type="nchar" MaxLength="10" />
+          <Property Name="MinOccurrences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Name="ProviderID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="KnownAbbreviations" Type="nvarchar" MaxLength="200" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="IncludeInFullName" Type="bit" />
+          <Property Name="AncestorRankID" Type="uniqueidentifier" />
+          <Property Name="MatchRuleSetID" Type="int" />
+          <Property Name="AddedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Biostatus">
+          <Key>
+            <PropertyRef Name="Biostatus" />
+          </Key>
+          <Property Name="Biostatus" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GeoRegionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceID" Type="uniqueidentifier" />
+          <Property Name="ConceptID" Type="uniqueidentifier" />
+          <Property Name="NameID" Type="uniqueidentifier" />
+          <Property Name="ProviderID" Type="uniqueidentifier" />
+          <Property Name="ProviderRecordId" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProviderUpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BiostatusValue">
+          <Key>
+            <PropertyRef Name="BiostatusValueID" />
+          </Key>
+          <Property Name="BiostatusValueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BiostatusValueTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Concept">
+          <Key>
+            <PropertyRef Name="ConceptID" />
+          </Key>
+          <Property Name="ConceptID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConsensusConceptID" Type="uniqueidentifier" />
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccordingToReferenceID" Type="uniqueidentifier" />
+          <Property Name="Orthography" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProviderID" Type="uniqueidentifier" />
+          <Property Name="ProviderRecordID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProviderUpdatedDate" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConceptProperty">
+          <Key>
+            <PropertyRef Name="ConceptPropertyID" />
+          </Key>
+          <Property Name="ConceptPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConceptID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyValue" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConceptRelationship">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipID" />
+          </Key>
+          <Property Name="ConceptRelationshipID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FromConceptID" Type="uniqueidentifier" />
+          <Property Name="ToConceptID" Type="uniqueidentifier" />
+          <Property Name="RelationshipTypeID" Type="uniqueidentifier" />
+          <Property Name="Sequence" Type="int" />
+        </EntityType>
+        <EntityType Name="GeoRegion">
+          <Key>
+            <PropertyRef Name="GeoRegionID" />
+          </Key>
+          <Property Name="GeoRegionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" />
+          <Property Name="GeoRegionSchemaID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CorrectRegionID" Type="uniqueidentifier" />
+          <Property Name="ParentRegionID" Type="uniqueidentifier" />
+          <Property Name="ProviderID" Type="uniqueidentifier" />
+          <Property Name="ProviderRecordID" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Name">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConsensusNameID" Type="uniqueidentifier" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="TaxonRankID" Type="uniqueidentifier" />
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OriginalOrthography" Type="nvarchar" MaxLength="500" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="5" />
+          <Property Name="ProviderID" Type="uniqueidentifier" />
+          <Property Name="ProviderRecordID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProviderUpdatedDate" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NameProperty">
+          <Key>
+            <PropertyRef Name="NamePropertyID" />
+          </Key>
+          <Property Name="NamePropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameClassPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="RelatedID" Type="uniqueidentifier" />
+          <Property Name="ProviderRelatedID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Sequence" Type="int" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="ReferenceID" />
+          </Key>
+          <Property Name="ReferenceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConsensusReferenceID" Type="uniqueidentifier" />
+          <Property Name="ProviderID" Type="uniqueidentifier" />
+          <Property Name="ProviderRecordID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProviderUpdatedDate" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ReferenceField">
+          <Key>
+            <PropertyRef Name="ReferenceFieldID" />
+          </Key>
+          <Property Name="ReferenceFieldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceFieldTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Biostatus_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Store.Biostatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="Biostatus">
+              <PropertyRef Name="ConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Biostatus_Name">
+          <End Role="Name" Type="NZOR_Provider.Store.Name" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Store.Biostatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="Biostatus">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Biostatus_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Store.Provider" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Store.Biostatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="ProviderID" />
+            </Principal>
+            <Dependent Role="Biostatus">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Concept_Name">
+          <End Role="Name" Type="NZOR_Provider.Store.Name" Multiplicity="1" />
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="Concept">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Concept_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Store.Provider" Multiplicity="0..1" />
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="ProviderID" />
+            </Principal>
+            <Dependent Role="Concept">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptProperty_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="1" />
+          <End Role="ConceptProperty" Type="NZOR_Provider.Store.ConceptProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="ConceptProperty">
+              <PropertyRef Name="ConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="FromConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept1">
+          <End Role="Concept" Type="NZOR_Provider.Store.Concept" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="ToConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_ConceptRelationshipType">
+          <End Role="ConceptRelationshipType" Type="NZOR_Provider.Store.ConceptRelationshipType" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConceptRelationshipType">
+              <PropertyRef Name="ConceptRelationshipTypeID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="RelationshipTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeoRegion_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Store.Provider" Multiplicity="0..1" />
+          <End Role="GeoRegion" Type="NZOR_Provider.Store.GeoRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="ProviderID" />
+            </Principal>
+            <Dependent Role="GeoRegion">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Name_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Store.Provider" Multiplicity="0..1" />
+          <End Role="Name" Type="NZOR_Provider.Store.Name" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="ProviderID" />
+            </Principal>
+            <Dependent Role="Name">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NameProperty_Name">
+          <End Role="Name" Type="NZOR_Provider.Store.Name" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Provider.Store.NameProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="NameProperty">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NameProperty_NameClassProperty">
+          <End Role="NameClassProperty" Type="NZOR_Provider.Store.NameClassProperty" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Provider.Store.NameProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NameClassProperty">
+              <PropertyRef Name="NameClassPropertyID" />
+            </Principal>
+            <Dependent Role="NameProperty">
+              <PropertyRef Name="NameClassPropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenceField_Reference">
+          <End Role="Reference" Type="NZOR_Provider.Store.Reference" Multiplicity="1" />
+          <End Role="ReferenceField" Type="NZOR_Provider.Store.ReferenceField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reference">
+              <PropertyRef Name="ReferenceID" />
+            </Principal>
+            <Dependent Role="ReferenceField">
+              <PropertyRef Name="ReferenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NZOR_Provider" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="ConceptPropertyType" EntityType="NZOR_Provider.ConceptPropertyType" />
+          <EntitySet Name="ConceptRelationshipType" EntityType="NZOR_Provider.ConceptRelationshipType" />
+          <EntitySet Name="NameClassProperty" EntityType="NZOR_Provider.NameClassProperty" />
+          <EntitySet Name="Provider" EntityType="NZOR_Provider.Provider" />
+          <EntitySet Name="TaxonRank" EntityType="NZOR_Provider.TaxonRank" />
+          <EntitySet Name="Biostatus" EntityType="NZOR_Provider.Biostatus" />
+          <EntitySet Name="BiostatusValue" EntityType="NZOR_Provider.BiostatusValue" />
+          <EntitySet Name="Concept" EntityType="NZOR_Provider.Concept" />
+          <EntitySet Name="ConceptProperty" EntityType="NZOR_Provider.ConceptProperty" />
+          <EntitySet Name="ConceptRelationship" EntityType="NZOR_Provider.ConceptRelationship" />
+          <EntitySet Name="GeoRegion" EntityType="NZOR_Provider.GeoRegion" />
+          <EntitySet Name="Name" EntityType="NZOR_Provider.Name" />
+          <EntitySet Name="NameProperty" EntityType="NZOR_Provider.NameProperty" />
+          <EntitySet Name="Reference" EntityType="NZOR_Provider.Reference" />
+          <EntitySet Name="ReferenceField" EntityType="NZOR_Provider.ReferenceField" />
+          <AssociationSet Name="FK_ConceptRelationship_ConceptRelationshipType" Association="NZOR_Provider.FK_ConceptRelationship_ConceptRelationshipType">
+            <End Role="ConceptRelationshipType" EntitySet="ConceptRelationshipType" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_NameClassProperty" Association="NZOR_Provider.FK_NameProperty_NameClassProperty">
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biostatus_Provider" Association="NZOR_Provider.FK_Biostatus_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concept_Provider" Association="NZOR_Provider.FK_Concept_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeoRegion_Provider" Association="NZOR_Provider.FK_GeoRegion_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="GeoRegion" EntitySet="GeoRegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_Provider" Association="NZOR_Provider.FK_Name_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biostatus_Concept" Association="NZOR_Provider.FK_Biostatus_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biostatus_Name" Association="NZOR_Provider.FK_Biostatus_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Biostatus" EntitySet="Biostatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concept_Name" Association="NZOR_Provider.FK_Concept_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptProperty_Concept" Association="NZOR_Provider.FK_ConceptProperty_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptProperty" EntitySet="ConceptProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept" Association="NZOR_Provider.FK_ConceptRelationship_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept1" Association="NZOR_Provider.FK_ConceptRelationship_Concept1">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_Name" Association="NZOR_Provider.FK_NameProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceField_Reference" Association="NZOR_Provider.FK_ReferenceField_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="ReferenceField" EntitySet="ReferenceField" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ConceptPropertyType">
+          <Key>
+            <PropertyRef Name="ConceptPropertyTypeID" />
+          </Key>
+          <Property Name="ConceptPropertyTypeID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyDataType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Relationship" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MinOccurences" Type="Int32" />
+          <Property Name="MaxOccurrences" Type="Int32" />
+          <NavigationProperty Name="ConceptRelationship" Relationship="NZOR_Provider.FK_ConceptRelationship_ConceptRelationshipType" FromRole="ConceptRelationshipType" ToRole="ConceptRelationship" />
+        </EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" />
+          </Key>
+          <Property Name="NameClassPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="NameClassID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="MinOccurrences" Type="Int32" />
+          <Property Name="MaxOccurrences" Type="Int32" />
+          <Property Name="GoverningCode" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="NameProperty" Relationship="NZOR_Provider.FK_NameProperty_NameClassProperty" FromRole="NameClassProperty" ToRole="NameProperty" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Name="ProviderID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Biostatus" Relationship="NZOR_Provider.FK_Biostatus_Provider" FromRole="Provider" ToRole="Biostatus" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_Concept_Provider" FromRole="Provider" ToRole="Concept" />
+          <NavigationProperty Name="GeoRegion" Relationship="NZOR_Provider.FK_GeoRegion_Provider" FromRole="Provider" ToRole="GeoRegion" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Provider.FK_Name_Provider" FromRole="Provider" ToRole="Name" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="KnownAbbreviations" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="IncludeInFullName" Type="Boolean" />
+          <Property Name="AncestorRankID" Type="Guid" />
+          <Property Name="MatchRuleSetID" Type="Int32" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Biostatus">
+          <Key>
+            <PropertyRef Name="Biostatus1" />
+          </Key>
+          <Property Name="Biostatus1" Type="Guid" Nullable="false" />
+          <Property Name="GeoRegionID" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceID" Type="Guid" />
+          <Property Name="ProviderRecordId" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Provider" Relationship="NZOR_Provider.FK_Biostatus_Provider" FromRole="Biostatus" ToRole="Provider" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_Biostatus_Concept" FromRole="Biostatus" ToRole="Concept" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Provider.FK_Biostatus_Name" FromRole="Biostatus" ToRole="Name" />
+        </EntityType>
+        <EntityType Name="BiostatusValue">
+          <Key>
+            <PropertyRef Name="BiostatusValueID" />
+          </Key>
+          <Property Name="BiostatusValueID" Type="Guid" Nullable="false" />
+          <Property Name="BiostatusValueTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Concept">
+          <Key>
+            <PropertyRef Name="ConceptID" />
+          </Key>
+          <Property Name="ConceptID" Type="Guid" Nullable="false" />
+          <Property Name="ConsensusConceptID" Type="Guid" />
+          <Property Name="AccordingToReferenceID" Type="Guid" />
+          <Property Name="Orthography" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderRecordID" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUpdatedDate" Type="DateTime" />
+          <Property Name="AddedDate" Type="DateTime" />
+          <NavigationProperty Name="Provider" Relationship="NZOR_Provider.FK_Concept_Provider" FromRole="Concept" ToRole="Provider" />
+          <NavigationProperty Name="Biostatus" Relationship="NZOR_Provider.FK_Biostatus_Concept" FromRole="Concept" ToRole="Biostatus" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Provider.FK_Concept_Name" FromRole="Concept" ToRole="Name" />
+          <NavigationProperty Name="ConceptProperty" Relationship="NZOR_Provider.FK_ConceptProperty_Concept" FromRole="Concept" ToRole="ConceptProperty" />
+          <NavigationProperty Name="ConceptRelationship" Relationship="NZOR_Provider.FK_ConceptRelationship_Concept" FromRole="Concept" ToRole="ConceptRelationship" />
+          <NavigationProperty Name="ConceptRelationship1" Relationship="NZOR_Provider.FK_ConceptRelationship_Concept1" FromRole="Concept" ToRole="ConceptRelationship" />
+        </EntityType>
+        <EntityType Name="ConceptProperty">
+          <Key>
+            <PropertyRef Name="ConceptPropertyID" />
+          </Key>
+          <Property Name="ConceptPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyValue" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_ConceptProperty_Concept" FromRole="ConceptProperty" ToRole="Concept" />
+        </EntityType>
+        <EntityType Name="ConceptRelationship">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipID" />
+          </Key>
+          <Property Name="ConceptRelationshipID" Type="Guid" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" />
+          <NavigationProperty Name="ConceptRelationshipType" Relationship="NZOR_Provider.FK_ConceptRelationship_ConceptRelationshipType" FromRole="ConceptRelationship" ToRole="ConceptRelationshipType" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_ConceptRelationship_Concept" FromRole="ConceptRelationship" ToRole="Concept" />
+          <NavigationProperty Name="Concept1" Relationship="NZOR_Provider.FK_ConceptRelationship_Concept1" FromRole="ConceptRelationship" ToRole="Concept" />
+        </EntityType>
+        <EntityType Name="GeoRegion">
+          <Key>
+            <PropertyRef Name="GeoRegionID" />
+          </Key>
+          <Property Name="GeoRegionID" Type="Guid" Nullable="false" />
+          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Language" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GeoRegionSchemaID" Type="Guid" Nullable="false" />
+          <Property Name="CorrectRegionID" Type="Guid" />
+          <Property Name="ParentRegionID" Type="Guid" />
+          <Property Name="ProviderRecordID" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Provider" Relationship="NZOR_Provider.FK_GeoRegion_Provider" FromRole="GeoRegion" ToRole="Provider" />
+        </EntityType>
+        <EntityType Name="Name">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="Guid" Nullable="false" />
+          <Property Name="ConsensusNameID" Type="Guid" />
+          <Property Name="FullName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="TaxonRankID" Type="Guid" />
+          <Property Name="NameClassID" Type="Guid" Nullable="false" />
+          <Property Name="OriginalOrthography" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="GoverningCode" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="ProviderRecordID" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUpdatedDate" Type="DateTime" />
+          <Property Name="AddedDate" Type="DateTime" />
+          <NavigationProperty Name="Provider" Relationship="NZOR_Provider.FK_Name_Provider" FromRole="Name" ToRole="Provider" />
+          <NavigationProperty Name="Biostatus" Relationship="NZOR_Provider.FK_Biostatus_Name" FromRole="Name" ToRole="Biostatus" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_Concept_Name" FromRole="Name" ToRole="Concept" />
+          <NavigationProperty Name="NameProperty" Relationship="NZOR_Provider.FK_NameProperty_Name" FromRole="Name" ToRole="NameProperty" />
+        </EntityType>
+        <EntityType Name="NameProperty">
+          <Key>
+            <PropertyRef Name="NamePropertyID" />
+          </Key>
+          <Property Name="NamePropertyID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RelatedID" Type="Guid" />
+          <Property Name="ProviderRelatedID" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Sequence" Type="Int32" />
+          <NavigationProperty Name="NameClassProperty" Relationship="NZOR_Provider.FK_NameProperty_NameClassProperty" FromRole="NameProperty" ToRole="NameClassProperty" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Provider.FK_NameProperty_Name" FromRole="NameProperty" ToRole="Name" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="ReferenceID" />
+          </Key>
+          <Property Name="ReferenceID" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceTypeID" Type="Guid" Nullable="false" />
+          <Property Name="ConsensusReferenceID" Type="Guid" />
+          <Property Name="ProviderID" Type="Guid" />
+          <Property Name="ProviderRecordID" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="ProviderUpdatedDate" Type="DateTime" />
+          <Property Name="AddedDate" Type="DateTime" />
+          <NavigationProperty Name="ReferenceField" Relationship="NZOR_Provider.FK_ReferenceField_Reference" FromRole="Reference" ToRole="ReferenceField" />
+        </EntityType>
+        <EntityType Name="ReferenceField">
+          <Key>
+            <PropertyRef Name="ReferenceFieldID" />
+          </Key>
+          <Property Name="ReferenceFieldID" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceFieldTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Reference" Relationship="NZOR_Provider.FK_ReferenceField_Reference" FromRole="ReferenceField" ToRole="Reference" />
+        </EntityType>
+        <Association Name="FK_ConceptRelationship_ConceptRelationshipType">
+          <End Role="ConceptRelationshipType" Type="NZOR_Provider.ConceptRelationshipType" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_NameProperty_NameClassProperty">
+          <End Role="NameClassProperty" Type="NZOR_Provider.NameClassProperty" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Provider.NameProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Biostatus_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Provider" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Biostatus" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Concept_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Provider" Multiplicity="0..1" />
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_GeoRegion_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Provider" Multiplicity="0..1" />
+          <End Role="GeoRegion" Type="NZOR_Provider.GeoRegion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Name_Provider">
+          <End Role="Provider" Type="NZOR_Provider.Provider" Multiplicity="0..1" />
+          <End Role="Name" Type="NZOR_Provider.Name" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Biostatus_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Biostatus" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Biostatus_Name">
+          <End Role="Name" Type="NZOR_Provider.Name" Multiplicity="0..1" />
+          <End Role="Biostatus" Type="NZOR_Provider.Biostatus" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Concept_Name">
+          <End Role="Name" Type="NZOR_Provider.Name" Multiplicity="1" />
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptProperty_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="1" />
+          <End Role="ConceptProperty" Type="NZOR_Provider.ConceptProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept">
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept1">
+          <End Role="Concept" Type="NZOR_Provider.Concept" Multiplicity="0..1" />
+          <End Role="ConceptRelationship" Type="NZOR_Provider.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_NameProperty_Name">
+          <End Role="Name" Type="NZOR_Provider.Name" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Provider.NameProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ReferenceField_Reference">
+          <End Role="Reference" Type="NZOR_Provider.Reference" Multiplicity="1" />
+          <End Role="ReferenceField" Type="NZOR_Provider.ReferenceField" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="NZOR_ProviderStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ConceptPropertyType">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.ConceptPropertyType)">
+              <MappingFragment StoreEntitySet="ConceptPropertyType">
+                <ScalarProperty Name="ConceptPropertyTypeID" ColumnName="ConceptPropertyTypeID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyDataType" ColumnName="PropertyDataType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConceptRelationshipType">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.ConceptRelationshipType)">
+              <MappingFragment StoreEntitySet="ConceptRelationshipType">
+                <ScalarProperty Name="ConceptRelationshipTypeID" ColumnName="ConceptRelationshipTypeID" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="MinOccurences" ColumnName="MinOccurences" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameClassProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.NameClassProperty)">
+              <MappingFragment StoreEntitySet="NameClassProperty">
+                <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="MinOccurrences" ColumnName="MinOccurrences" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provider">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Provider)">
+              <MappingFragment StoreEntitySet="Provider">
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonRank">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.TaxonRank)">
+              <MappingFragment StoreEntitySet="TaxonRank">
+                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KnownAbbreviations" ColumnName="KnownAbbreviations" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IncludeInFullName" ColumnName="IncludeInFullName" />
+                <ScalarProperty Name="AncestorRankID" ColumnName="AncestorRankID" />
+                <ScalarProperty Name="MatchRuleSetID" ColumnName="MatchRuleSetID" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Biostatus">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Biostatus)">
+              <MappingFragment StoreEntitySet="Biostatus">
+                <ScalarProperty Name="Biostatus1" ColumnName="Biostatus" />
+                <ScalarProperty Name="GeoRegionID" ColumnName="GeoRegionID" />
+                <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+                <ScalarProperty Name="ProviderRecordId" ColumnName="ProviderRecordId" />
+                <ScalarProperty Name="ProviderUpdatedDate" ColumnName="ProviderUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BiostatusValue">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.BiostatusValue)">
+              <MappingFragment StoreEntitySet="BiostatusValue">
+                <ScalarProperty Name="BiostatusValueID" ColumnName="BiostatusValueID" />
+                <ScalarProperty Name="BiostatusValueTypeID" ColumnName="BiostatusValueTypeID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Concept">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Concept)">
+              <MappingFragment StoreEntitySet="Concept">
+                <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+                <ScalarProperty Name="ConsensusConceptID" ColumnName="ConsensusConceptID" />
+                <ScalarProperty Name="AccordingToReferenceID" ColumnName="AccordingToReferenceID" />
+                <ScalarProperty Name="Orthography" ColumnName="Orthography" />
+                <ScalarProperty Name="ProviderRecordID" ColumnName="ProviderRecordID" />
+                <ScalarProperty Name="ProviderUpdatedDate" ColumnName="ProviderUpdatedDate" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConceptProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.ConceptProperty)">
+              <MappingFragment StoreEntitySet="ConceptProperty">
+                <ScalarProperty Name="ConceptPropertyID" ColumnName="ConceptPropertyID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyValue" ColumnName="PropertyValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConceptRelationship">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.ConceptRelationship)">
+              <MappingFragment StoreEntitySet="ConceptRelationship">
+                <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeoRegion">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.GeoRegion)">
+              <MappingFragment StoreEntitySet="GeoRegion">
+                <ScalarProperty Name="GeoRegionID" ColumnName="GeoRegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="GeoRegionSchemaID" ColumnName="GeoRegionSchemaID" />
+                <ScalarProperty Name="CorrectRegionID" ColumnName="CorrectRegionID" />
+                <ScalarProperty Name="ParentRegionID" ColumnName="ParentRegionID" />
+                <ScalarProperty Name="ProviderRecordID" ColumnName="ProviderRecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Name">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Name)">
+              <MappingFragment StoreEntitySet="Name">
+                <ScalarProperty Name="NameID" ColumnName="NameID" />
+                <ScalarProperty Name="ConsensusNameID" ColumnName="ConsensusNameID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+                <ScalarProperty Name="OriginalOrthography" ColumnName="OriginalOrthography" />
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+                <ScalarProperty Name="ProviderRecordID" ColumnName="ProviderRecordID" />
+                <ScalarProperty Name="ProviderUpdatedDate" ColumnName="ProviderUpdatedDate" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.NameProperty)">
+              <MappingFragment StoreEntitySet="NameProperty">
+                <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+                <ScalarProperty Name="ProviderRelatedID" ColumnName="ProviderRelatedID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reference">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Reference)">
+              <MappingFragment StoreEntitySet="Reference">
+                <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+                <ScalarProperty Name="ReferenceTypeID" ColumnName="ReferenceTypeID" />
+                <ScalarProperty Name="ConsensusReferenceID" ColumnName="ConsensusReferenceID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="ProviderRecordID" ColumnName="ProviderRecordID" />
+                <ScalarProperty Name="ProviderUpdatedDate" ColumnName="ProviderUpdatedDate" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenceField">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.ReferenceField)">
+              <MappingFragment StoreEntitySet="ReferenceField">
+                <ScalarProperty Name="ReferenceFieldID" ColumnName="ReferenceFieldID" />
+                <ScalarProperty Name="ReferenceFieldTypeID" ColumnName="ReferenceFieldTypeID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_ConceptRelationshipType" TypeName="NZOR_Provider.FK_ConceptRelationship_ConceptRelationshipType" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="ConceptRelationshipType">
+              <ScalarProperty Name="ConceptRelationshipTypeID" ColumnName="RelationshipTypeID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+            <Condition ColumnName="RelationshipTypeID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_NameProperty_NameClassProperty" TypeName="NZOR_Provider.FK_NameProperty_NameClassProperty" StoreEntitySet="NameProperty">
+            <EndProperty Name="NameClassProperty">
+              <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+            </EndProperty>
+            <EndProperty Name="NameProperty">
+              <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Biostatus_Provider" TypeName="NZOR_Provider.FK_Biostatus_Provider" StoreEntitySet="Biostatus">
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+            </EndProperty>
+            <EndProperty Name="Biostatus">
+              <ScalarProperty Name="Biostatus1" ColumnName="Biostatus" />
+            </EndProperty>
+            <Condition ColumnName="ProviderID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Concept_Provider" TypeName="NZOR_Provider.FK_Concept_Provider" StoreEntitySet="Concept">
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+            </EndProperty>
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+            </EndProperty>
+            <Condition ColumnName="ProviderID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_GeoRegion_Provider" TypeName="NZOR_Provider.FK_GeoRegion_Provider" StoreEntitySet="GeoRegion">
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+            </EndProperty>
+            <EndProperty Name="GeoRegion">
+              <ScalarProperty Name="GeoRegionID" ColumnName="GeoRegionID" />
+            </EndProperty>
+            <Condition ColumnName="ProviderID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Name_Provider" TypeName="NZOR_Provider.FK_Name_Provider" StoreEntitySet="Name">
+            <EndProperty Name="Provider">
+              <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+            </EndProperty>
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <Condition ColumnName="ProviderID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Biostatus_Concept" TypeName="NZOR_Provider.FK_Biostatus_Concept" StoreEntitySet="Biostatus">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+            </EndProperty>
+            <EndProperty Name="Biostatus">
+              <ScalarProperty Name="Biostatus1" ColumnName="Biostatus" />
+            </EndProperty>
+            <Condition ColumnName="ConceptID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Biostatus_Name" TypeName="NZOR_Provider.FK_Biostatus_Name" StoreEntitySet="Biostatus">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="Biostatus">
+              <ScalarProperty Name="Biostatus1" ColumnName="Biostatus" />
+            </EndProperty>
+            <Condition ColumnName="NameID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Concept_Name" TypeName="NZOR_Provider.FK_Concept_Name" StoreEntitySet="Concept">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptProperty_Concept" TypeName="NZOR_Provider.FK_ConceptProperty_Concept" StoreEntitySet="ConceptProperty">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+            </EndProperty>
+            <EndProperty Name="ConceptProperty">
+              <ScalarProperty Name="ConceptPropertyID" ColumnName="ConceptPropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_Concept" TypeName="NZOR_Provider.FK_ConceptRelationship_Concept" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="FromConceptID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+            <Condition ColumnName="FromConceptID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_Concept1" TypeName="NZOR_Provider.FK_ConceptRelationship_Concept1" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ToConceptID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+            <Condition ColumnName="ToConceptID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_NameProperty_Name" TypeName="NZOR_Provider.FK_NameProperty_Name" StoreEntitySet="NameProperty">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="NameProperty">
+              <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ReferenceField_Reference" TypeName="NZOR_Provider.FK_ReferenceField_Reference" StoreEntitySet="ReferenceField">
+            <EndProperty Name="Reference">
+              <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+            </EndProperty>
+            <EndProperty Name="ReferenceField">
+              <ScalarProperty Name="ReferenceFieldID" ColumnName="ReferenceFieldID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="NZOR">
+        <EntityTypeShape EntityType="NZOR_Provider.ConceptPropertyType" Width="1.5" PointX="2.75" PointY="3.75" Height="1.592306315104167" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.ConceptRelationshipType" Width="1.5" PointX="8.25" PointY="8.125" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.NameClassProperty" Width="1.5" PointX="3" PointY="11.75" Height="2.2496956380208353" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.Provider" Width="1.5" PointX="0.75" PointY="7.625" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.TaxonRank" Width="1.5" PointX="4.75" PointY="3.75" Height="2.7427376302083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.Biostatus" Width="1.5" PointX="5.25" PointY="11.875" Height="2.2496956380208317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.BiostatusValue" Width="1.5" PointX="5.75" PointY="0.75" Height="1.4279589843749998" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.Concept" Width="1.5" PointX="8.25" PointY="11.5" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.ConceptProperty" Width="1.5" PointX="10.5" PointY="12.25" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.ConceptRelationship" Width="1.5" PointX="10.5" PointY="9.125" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.GeoRegion" Width="1.5" PointX="3" PointY="8.5" Height="2.2496956380208353" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.Name" Width="1.5" PointX="3" PointY="15.25" Height="3.2357796223958317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.NameProperty" Width="1.5" PointX="5.25" PointY="15.875" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.Reference" Width="1.5" PointX="0.75" PointY="0.875" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Provider.ReferenceField" Width="1.5" PointX="3" PointY="1.25" Height="1.5923063151041672" IsExpanded="true" />
+        <AssociationConnector Association="NZOR_Provider.FK_ConceptRelationship_ConceptRelationshipType" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="9.5033268229166659" />
+          <ConnectorPoint PointX="10.5" PointY="9.5033268229166659" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_NameProperty_NameClassProperty" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="12.874847819010418" />
+          <ConnectorPoint PointX="4.875" PointY="12.874847819010418" />
+          <ConnectorPoint PointX="4.875" PointY="16.917674153645834" />
+          <ConnectorPoint PointX="5.25" PointY="16.917674153645834" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Biostatus_Provider" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="9.5460009765625" />
+          <ConnectorPoint PointX="1.5" PointY="14.093445638020834" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="14.093445638020834" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="14.093445638020834" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.093445638020832" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="14.093445638020834" />
+          <ConnectorPoint PointX="5.25" PointY="14.093445638020834" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Concept_Provider" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="9.5460009765625" />
+          <ConnectorPoint PointX="1.9062525" PointY="14.37931396484375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.379313964843748" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="14.37931396484375" />
+          <ConnectorPoint PointX="8.25" PointY="14.37931396484375" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_GeoRegion_Provider" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.02300048828125" />
+          <ConnectorPoint PointX="3" PointY="9.02300048828125" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Name_Provider" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.0937475" PointY="9.5460009765625" />
+          <ConnectorPoint PointX="1.0937475" PointY="16.867889811197916" />
+          <ConnectorPoint PointX="3" PointY="16.867889811197916" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Biostatus_Concept" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.25" PointY="12.999847819010416" />
+          <ConnectorPoint PointX="6.75" PointY="12.999847819010416" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Biostatus_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="16.083837576822916" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="16.083837576822916" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="16.083837576822916" />
+          <ConnectorPoint PointX="5" PointY="16.083837576822916" />
+          <ConnectorPoint PointX="5" PointY="13.452894228515625" />
+          <ConnectorPoint PointX="5.25" PointY="13.452894228515625" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_Concept_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="15.53125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.531249999999998" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="15.53125" />
+          <ConnectorPoint PointX="9" PointY="15.53125" />
+          <ConnectorPoint PointX="9" PointY="14.571432291666667" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_ConceptProperty_Concept" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="13.046153157552084" />
+          <ConnectorPoint PointX="10.5" PointY="13.046153157552084" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_ConceptRelationship_Concept" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="11.5" />
+          <ConnectorPoint PointX="9" PointY="10.131653645833332" />
+          <ConnectorPoint PointX="9.3229186666666664" PointY="10.131653645833332" />
+          <ConnectorPoint PointX="9.4895853333333342" PointY="10.131653645833332" />
+          <ConnectorPoint PointX="10" PointY="10.131653645833332" />
+          <ConnectorPoint PointX="10" PointY="10.223742234374999" />
+          <ConnectorPoint PointX="10.166666666666666" PointY="10.223742234374999" />
+          <ConnectorPoint PointX="10.333333333333334" PointY="10.223742234374999" />
+          <ConnectorPoint PointX="10.5" PointY="10.223742234374999" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_ConceptRelationship_Concept1" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.406252" PointY="11.5" />
+          <ConnectorPoint PointX="9.406252" PointY="10.006653645833332" />
+          <ConnectorPoint PointX="10.25" PointY="10.006653645833332" />
+          <ConnectorPoint PointX="10.25" PointY="10.583949940104166" />
+          <ConnectorPoint PointX="10.5" PointY="10.583949940104166" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_NameProperty_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="17.501511230468751" />
+          <ConnectorPoint PointX="5.25" PointY="17.501511230468751" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Provider.FK_ReferenceField_Reference" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.0461531575520837" />
+          <ConnectorPoint PointX="3" PointY="2.0461531575520837" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
