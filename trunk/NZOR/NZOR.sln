@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTest", "NZORTest\NZORTest.csproj", "{09F8627F-FBDA-4F65-8060-278C1535B515}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTestClient", "TestNZOR\NZORTestClient.csproj", "{2F10BA53-EDFE-4C1C-A528-831658F04FA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTestClient", "NZORTestClient\NZORTestClient.csproj", "{2F10BA53-EDFE-4C1C-A528-831658F04FA0}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
