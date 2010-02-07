@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AD12A009-F611-4B01-BD0A-EB41200D9D91}</ProjectGuid>
+    <ProjectGuid>{2A86AE78-7B89-4B5D-8070-9265A735D4F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NZOR.Harvest</RootNamespace>
-    <AssemblyName>NZOR.Harvest</AssemblyName>
+    <RootNamespace>NZOR.Import</RootNamespace>
+    <AssemblyName>NZOR.Import</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,9 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HarvestController.cs" />
-    <Compile Include="Hervesters\OAIPMHHarvester.cs" />
-    <Compile Include="IHarvester.cs" />
+    <Compile Include="Importer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
