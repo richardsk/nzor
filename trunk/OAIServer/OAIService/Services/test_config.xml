@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Services>
+  <Service name="test">
+    <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
+
+    <MetadataFormats>
+      <MetadataFormat prefix="nzor" uri="http://infofile.landcareresearch.co.nz/all/projects/main/00042/Project%20Team/NZOR%20provider%20for%20test.xsd"/>      
+    </MetadataFormats>
+
+    <Sets>
+      <Set name="test_set"/>
+      <Set name="test_set_2"/>
+    </Sets>
+
+    <DBConnectionString>Provider=SQLOLEDB;data source=devserver05;integrated security=SSPI;initial catalog=PlantNames_Dev;persist security info=true</DBConnectionString>
+    <Table name="tblName" alias="" pk="NameGuid">
+      <TableJoin name="tblNameBiostatus" alias="" pk="NameBiostatusCounterPk" type="left" fkFrom="NameGuid" fkTo="NameBiostatusNameFk">        
+      </TableJoin>
+      <TableJoin name="tblName" alias="pn" pk="NameGuid" type="inner" fkFrom="NameParentFk" fkTo="NameGuid">
+      </TableJoin>
+    </Table>
+
+    <Mappings>
+
+      <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="tblName" tableAlias="" column="NameUpdatedDate" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="tblName" tableAlias="" column="NameGuid" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" tableAlias="" column="" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '')" datatype="" />
+      <Mapping type="DatabaseMapping" field="[ParentName]" table="tblName" tableAlias="pn" column="NameGuid" sql="" datatype="" />
+      
+    </Mappings>
+  </Service>
+  
+</Services>
