@@ -30,7 +30,6 @@ namespace OAIServer
 
 
         protected String _field = "";
-        protected String _fieldKey = "";
 
         public String Field
         {
@@ -44,11 +43,6 @@ namespace OAIServer
             }
         }
 
-        public virtual String FieldKey()
-        {
-            return _fieldKey;
-        }
-
         public override string ToString()
         {
             return _field;
@@ -59,12 +53,12 @@ namespace OAIServer
             this.Field = node.Attributes["field"].InnerText;
         }
 
-        public virtual String GetValueSQL()
+        public virtual String GetValueSQL(RepositoryConfig config)
         {
             return "";
         }
 
-        public virtual Object GetValue()
+        public virtual Object GetValue(RepositoryConfig config)
         {
             return null;
         }
@@ -72,50 +66,48 @@ namespace OAIServer
 
     public class DatabaseMapping : FieldMapping
     {
-        public String Table = "";
-        public String TableAlias = "";
+        public String TableId = "";
         public String Column = "";
+        public String ColumnAlias = "";
         public String SQL = "";
 
         public override void Load(XmlNode node)
         {
             base.Load(node);
-            this.Table = node.Attributes["table"].InnerText;
-            this.TableAlias = node.Attributes["tableAlias"].InnerText;
+            this.TableId = node.Attributes["table"].InnerText;
             this.Column = node.Attributes["column"].InnerText;
+            this.ColumnAlias = node.Attributes["columnAlias"].InnerText;
             this.SQL = node.Attributes["sql"].InnerText;
-            if (this.SQL.Length > 0) this._fieldKey = Utility.NextColumnKey();
         }
 
-        public override String GetValueSQL()
+        public override String GetValueSQL(RepositoryConfig config)
         {
             String val = null;
-
+                        
             if (SQL != null && SQL.Length > 0)
             {
                 val = SQL;
+                if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
-            else if (TableAlias != null && TableAlias.Length > 0)
+            else 
             {
-                val = TableAlias + "." + Column;
-                if (this._fieldKey != "") val += " " + _fieldKey;
-            }
-            else
-            {
-                val = Table + "." + Column;
-                if (this._fieldKey != "") val += " " + _fieldKey;
+                val = config.GetMappedTable(TableId).AliasOrName + "." + Column;
+                if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
 
             return val;
         }
 
-        public override String FieldKey()
+        public String ColumnOrAlias
         {
-            if (this._fieldKey != "") return _fieldKey;
-            return GetValueSQL();
+            get
+            {
+                if (ColumnAlias != null && ColumnAlias != "") return ColumnAlias;
+                return Column;
+            }
         }
 
-        public override Object GetValue()
+        public override Object GetValue(RepositoryConfig config)
         {
             throw new Exception("Cannot get individual value of a DB Mapping");
         }
@@ -130,12 +122,12 @@ namespace OAIServer
             base.Load(node);
         }
 
-        public override String GetValueSQL()
+        public override String GetValueSQL(RepositoryConfig config)
         {
             return "'" + Value.ToString() + "'";
         }
 
-        public override Object GetValue()
+        public override Object GetValue(RepositoryConfig config)
         {
             return Value;
         }
@@ -143,45 +135,50 @@ namespace OAIServer
 
     public class SQLMaxValueMapping : FieldMapping
     {
-        public String Table = "";
-        public String TableAlias = "";
+        public String TableId = "";
         public String Column = "";
+        public String ColumnAlias = "";
         public String SQL = "";
         public String DBCnnStr = "";
 
         public override void Load(XmlNode node)
         {
             base.Load(node);
-            this.Table = node.Attributes["table"].InnerText;
-            this.TableAlias = node.Attributes["tableAlias"].InnerText;
+            this.TableId = node.Attributes["table"].InnerText;
             this.Column = node.Attributes["column"].InnerText;
+            this.ColumnAlias = node.Attributes["columnAlias"].InnerText;
             this.SQL = node.Attributes["sql"].InnerText;
-            if (this.SQL.Length > 0) this._fieldKey = Utility.NextColumnKey();
+            if (this.SQL.Length > 0 && ColumnAlias == "") this.ColumnAlias = Utility.NextColumnKey();
         }
 
-        public override String GetValueSQL()
+        public override String GetValueSQL(RepositoryConfig config)
         {
             String val = "";
 
             if (SQL != null && SQL.Length > 0)
             {
                 val = SQL;
-            }
-            else if (TableAlias != null && TableAlias.Length > 0)
-            {
-                val = TableAlias + "." + Column;
-                if (this._fieldKey != "") val += " " + _fieldKey;
+                if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
             else
             {
-                val = Table + "." + Column;
-                if (this._fieldKey != "") val += " " + _fieldKey;
+                val = config.GetMappedTable(TableId).AliasOrName + "." + Column;
+                if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
 
             return val;
         }
 
-        public override Object GetValue()
+        public String ColumnOrAlias
+        {
+            get
+            {
+                if (ColumnAlias != null && ColumnAlias != "") return ColumnAlias;
+                return Column;
+            }
+        }
+
+        public override Object GetValue(RepositoryConfig config)
         {
             Object val = null;
 
@@ -195,7 +192,7 @@ namespace OAIServer
                 }
                 else
                 {
-                    cmd.CommandText = "select max(" + Column + ") from " + Table;
+                    cmd.CommandText = "select max(" + Column + ") from " + config.GetMappedTable(TableId).Name;
                 }
 
                 val = cmd.ExecuteScalar();

@@ -56,7 +56,7 @@ namespace OAIServer
 
             XmlNode mtn = doc.SelectSingleNode("//Services/Service/Table");
             RootTable = new MappedTable();
-            RootTable.Load(mtn);
+            RootTable.Load(mtn, null);
 
 
             Mappings.Clear();
@@ -87,11 +87,11 @@ namespace OAIServer
             }            
         }
 
-        public MappedTable GetMappedTable(String name, String alias)
+        public MappedTable GetMappedTable(String id)
         {
-            if (RootTable.Name == name && RootTable.Alias == alias) return RootTable;
+            if (RootTable.Id == id) return RootTable;
 
-            return RootTable.GetMappedTable(name, alias);
+            return RootTable.GetMappedTable(id);
         }
 
         public FieldMapping GetMapping(String field)
@@ -129,11 +129,11 @@ namespace OAIServer
                 {
                     if (fm.GetType() == typeof(FixedValueMapping))
                     {
-                        val = fm.GetValue();
+                        val = fm.GetValue(this);
                     }
                     else if (fm.GetType() == typeof(SQLMaxValueMapping))
                     {
-                        val = fm.GetValue();
+                        val = fm.GetValue(this);
                     }
                 }
             }

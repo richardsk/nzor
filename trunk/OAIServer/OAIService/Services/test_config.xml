@@ -13,19 +13,20 @@
     </Sets>
 
     <DBConnectionString>Provider=SQLOLEDB;data source=devserver05;integrated security=SSPI;initial catalog=PlantNames_Dev;persist security info=true</DBConnectionString>
-    <Table name="tblName" alias="" pk="NameGuid">
-      <TableJoin name="tblNameBiostatus" alias="" pk="NameBiostatusCounterPk" type="left" fkFrom="NameGuid" fkTo="NameBiostatusNameFk">        
+    <Table id="1" name="tblName" alias="" pk="NameGuid">
+      <TableJoin id="2" name="tblNameBiostatus" alias="" pk="NameBiostatusCounterPk" type="left" fkFrom="NameGuid" fkTo="NameBiostatusNameFk">        
       </TableJoin>
-      <TableJoin name="tblName" alias="pn" pk="NameGuid" type="inner" fkFrom="NameParentFk" fkTo="NameGuid">
+      <TableJoin id="3" name="tblName" alias="pn" pk="NameGuid" type="inner" fkFrom="NameParentFk" fkTo="NameGuid">
       </TableJoin>
     </Table>
 
     <Mappings>
 
-      <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="tblName" tableAlias="" column="NameUpdatedDate" sql="" datatype="" />
-      <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="tblName" tableAlias="" column="NameGuid" sql="" datatype="" />
-      <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" tableAlias="" column="" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '')" datatype="" />
-      <Mapping type="DatabaseMapping" field="[ParentName]" table="tblName" tableAlias="pn" column="NameGuid" sql="" datatype="" />
+      <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameGuid" columnAlias="" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" datatype="" />
+      <Mapping type="DatabaseMapping" field="[ParentName]" table="3" column="NameGuid" columnAlias="ParentID" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
       
     </Mappings>
   </Service>

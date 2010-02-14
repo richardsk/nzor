@@ -31,7 +31,7 @@ namespace OAIServer
                 {
                     if (fm.GetType() == typeof(DatabaseMapping))
                     {
-                        sql += fm.GetValueSQL() + ", ";
+                        sql += fm.GetValueSQL(_rep) + ", ";
                     }
                 }
                 sql = sql.Trim();
@@ -58,13 +58,13 @@ namespace OAIServer
             }
         }
 
-        private String GetFieldValue(String field)
+        private String GetFieldValue(String dbField)
         {
             String val = "";
             if (_results == null || _results.Tables.Count == 0) return "";
 
-            FieldMapping fm = _rep.GetMapping(field);
-            DataColumn col = _results.Tables[0].Columns[fm.FieldKey()];
+            DatabaseMapping fm = (DatabaseMapping)_rep.GetMapping(dbField);
+            DataColumn col = _results.Tables[0].Columns[fm.ColumnOrAlias];
             if (col != null)
             {
                 val = _results.Tables[0].Rows[0][col].ToString();
@@ -92,7 +92,14 @@ namespace OAIServer
             xml = xml.Replace(FieldMapping.METADATA_PREFIX, metadataPrefix);
 
             String val = GetFieldValue(FieldMapping.RECORD_STATUS);
-            xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
+            if (val != null && val.Length > 0)
+            {
+                xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
+            }
+            else
+            {
+                xml = xml.Replace(FieldMapping.RECORD_STATUS, "");
+            }
             
             val = GetFieldValue(FieldMapping.RECORD_DATE);
             Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, val);

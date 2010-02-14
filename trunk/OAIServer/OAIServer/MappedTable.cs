@@ -9,6 +9,7 @@ namespace OAIServer
 {
     public class MappedTable
     {
+        public String Id = "";
         public String Name = "";
         public String Alias = "";
         public String Type = "";
@@ -16,10 +17,22 @@ namespace OAIServer
         public String FKFrom = "";
         public String FKTo = "";
 
+        public MappedTable ParentTable = null;
+
         public List<MappedTable> JoinedTables = new List<MappedTable>();
 
-        public void Load(XmlNode node)
+        public String AliasOrName
         {
+            get
+            {
+                if (Alias != null && Alias.Length > 0) return Alias;
+                return this.Name;
+            }
+        }
+            
+        public void Load(XmlNode node, MappedTable parent)
+        {
+            this.Id = node.Attributes["id"].InnerText;
             this.Name = node.Attributes["name"].InnerText;
             this.Alias = node.Attributes["alias"].InnerText;
             this.PK = node.Attributes["pk"].InnerText;
@@ -27,24 +40,26 @@ namespace OAIServer
             if (node.Attributes["fkFrom"] != null) this.FKFrom = node.Attributes["fkFrom"].InnerText;
             if (node.Attributes["fkTo"] != null) this.FKTo = node.Attributes["fkTo"].InnerText;
 
+            this.ParentTable = parent;
+
             JoinedTables.Clear();
             XmlNodeList nl = node.SelectNodes("TableJoin");
             foreach (XmlNode tjn in nl)
             {
                 MappedTable mt = new MappedTable();
-                mt.Load(tjn);
+                mt.Load(tjn, this);
                 JoinedTables.Add(mt);
             }
         }
 
-        public MappedTable GetMappedTable(String name, String alias)
+        public MappedTable GetMappedTable(String id)
         {
-            if (this.Name == name && this.Alias == alias) return this;
+            if (this.Id == id) return this;
 
             MappedTable mt = null;
             foreach (MappedTable ct in JoinedTables)
             {
-                mt = ct.GetMappedTable(name, alias);
+                mt = ct.GetMappedTable(id);
                 if (mt != null) break;
             }
             return mt;
@@ -60,11 +75,14 @@ namespace OAIServer
         public void GetFullSql(ref String sql)
         {
             if (sql == null) sql = "";
-            if (sql.Length > 0) sql += this.Type + " join ";
-            on
+
+            bool joint = false;
+            if (sql.Length > 0) joint = true;
+
+            if (joint) sql += this.Type + " join ";            
             sql += this.Name + " ";
             if (this.Alias != "") sql += this.Alias + " ";
-
+            if (joint) sql += " on " + this.AliasOrName + "." + this.FKTo + " = " + this.ParentTable.AliasOrName + "." + this.FKFrom + " ";
             foreach (MappedTable mt in JoinedTables)
             {
                 mt.GetFullSql(ref sql);
