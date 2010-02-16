@@ -4,7 +4,7 @@
     <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
 
     <MetadataFormats>
-      <MetadataFormat prefix="nzor" uri="http://infofile.landcareresearch.co.nz/all/projects/main/00042/Project%20Team/NZOR%20provider%20for%20test.xsd"/>      
+      <MetadataFormat prefix="nzor" uri="C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_provider.xsd" mappingFile="nzor_mapping.xml" targetNamespace="http://www.nzor.org.nz/"/>      
     </MetadataFormats>
 
     <Sets>

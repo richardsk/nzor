@@ -102,29 +102,38 @@ namespace OAIServer
             }
             
             val = GetFieldValue(FieldMapping.RECORD_DATE);
-            Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, val);
+            DateTime dt = DateTime.Parse(val);
+            Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, dt.ToString("s"));
 
             //SETs
-            XElement xVal = GetSetsXml(repository);
+            String xVal = GetSetsXml();
             Utility.ReplaceXmlField(ref xml, FieldMapping.SET_SPECS, xVal);
 
             //Record Metadata
-            xVal = GetRecordMetadata(repository, id, metadataPrefix);
+            xVal = GetRecordMetadata(metadataPrefix);
             Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
 
             return XElement.Parse(xml);
         }
 
-        public XElement GetSetsXml(String repository)
+        public String GetSetsXml()
         {
-            XElement val = null;
+            String val = "";
+ 
+            foreach (String set in _rep.Sets)
+            {
+                val += "<setSpec>" + set + "</setSpec>";
+            }
 
             return val;
         }
 
-        public XElement GetRecordMetadata(String repository, String recordId, String metadataPrefix)
+        public String GetRecordMetadata(String metadataPrefix)
         {
-            XElement val = null;
+            String val = null;
+
+            MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
+            val = mf.ProcessResults(_results, _rep);
 
             return val;
         }

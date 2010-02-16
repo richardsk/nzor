@@ -40,8 +40,7 @@ namespace OAIServer
             foreach (XmlNode mn in ml)
             {
                 MetadataFormat mf = new MetadataFormat();
-                mf.Prefix = mn.Attributes["prefix"].InnerText;
-                mf.Uri = mn.Attributes["uri"].InnerText;
+                mf.Load(mn);
 
                 MetadataFormats.Add(mf);
             }
@@ -108,6 +107,22 @@ namespace OAIServer
             }
 
             return fm;
+        }
+
+        public MetadataFormat GetMetadataFormat(String prefix)
+        {
+            MetadataFormat mf = null;
+
+            foreach (MetadataFormat m in MetadataFormats)
+            {
+                if (m.Prefix == prefix)
+                {
+                    mf = m;
+                    break;
+                }
+            }
+
+            return mf;
         }
 
         public Object GetFieldValue(String field)

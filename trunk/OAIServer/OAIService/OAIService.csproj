@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\nzor_mapping.xml" />
     <Content Include="Global.asax" />
     <Content Include="OAIPMHService.svc" />
     <Content Include="Responses\GetRecordResponse.xml" />
@@ -82,6 +83,9 @@
       <Project>{E4C5F358-272C-4753-92AF-045154A42A59}</Project>
       <Name>OAIServer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\nzor_provider.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
