@@ -89,7 +89,7 @@ namespace OAIServer
 
             XmlSchemaSet schemas = new XmlSchemaSet();
             schemas.Add(s);
-            Xml.XmlSampleGenerator genr = new Xml.XmlSampleGenerator(schemas, new XmlQualifiedName("DataSet", TargetNamespace));
+            Xml.XmlSampleGenerator genr = new Xml.XmlSampleGenerator(schemas, new XmlQualifiedName("DataSet"));
             genr.AutoGenerateValues = false;
 
             genr.ElementAdded += new Xml.XmlSampleGenerator.ElementAddedHanlder(this.ElementAdded);
