@@ -21,6 +21,7 @@ namespace OAIServer
 
         private List<SchemaMapping> _mappings = null;
         private RepositoryConfig _rep = null;
+        private DataSet _results = null;
 
         public void Load(XmlNode node)
         {
@@ -83,6 +84,8 @@ namespace OAIServer
             }
 
             _rep = rep;
+            _results = results;
+
             LoadMappings();
 
             //XmlDocument doc = new XmlDocument();
@@ -118,7 +121,7 @@ namespace OAIServer
                 SchemaMapping sm = GetMapping(path);
                 if (sm != null)
                 {
-                    Object val = _rep.GetFieldValue(sm.Name);
+                    String val = GetFieldValue(sm.Name);
                     if (val != null) el.FixedValue = val.ToString();
                 }
             }
@@ -131,12 +134,26 @@ namespace OAIServer
                 SchemaMapping sm = GetMapping(path);
                 if (sm != null)
                 {
-                    Object val = _rep.GetFieldValue(sm.Name);
+                    String val = GetFieldValue(sm.Name);
                     if (val != null) attr.FixedValue = val.ToString();
                 }
             }
         }
 
+        private String GetFieldValue(String dbField)
+        {
+            String val = "";
+            if (_results == null || _results.Tables.Count == 0) return "";
+
+            DatabaseMapping fm = (DatabaseMapping)_rep.GetMapping(dbField);
+            DataColumn col = _results.Tables[0].Columns[fm.ColumnOrAlias];
+            if (col != null)
+            {
+                val = _results.Tables[0].Rows[0][col].ToString();
+            }
+
+            return val;
+        }
 
         protected void ProcessElement(String path, XmlSchemaObject el, XmlDocument doc, XmlElement currentNode)
         {

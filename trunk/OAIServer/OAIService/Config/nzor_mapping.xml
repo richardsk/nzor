@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Mappings>
-  <Mapping name="[ParentNameId]" xpath="//DataSet/TaxonConcepts/TaxonConcept/Name[@ref='[[RecordID]]']/parent::element()/Relationships/ParentConcept[@ref]"/>
+  <Mapping name="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull"/>
+  <Mapping name="[ParentNameId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Name[@ref='[[RecordID]]']/parent::element()/Relationships/ParentConcept[@ref]"/>
 </Mappings>

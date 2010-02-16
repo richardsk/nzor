@@ -25,8 +25,9 @@
       <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
       <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameGuid" columnAlias="" sql="" datatype="" />
       <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" datatype="" />
-      <Mapping type="DatabaseMapping" field="[ParentName]" table="3" column="NameGuid" columnAlias="ParentID" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[ParentNameId]" table="3" column="NameGuid" columnAlias="ParentID" sql="" datatype="" />
       <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
+      <Mapping type="DatabaseMapping" field="[NameFull]" table="1" column="NameFull" columnAlias="" sql="" datatype="" />
       
     </Mappings>
   </Service>

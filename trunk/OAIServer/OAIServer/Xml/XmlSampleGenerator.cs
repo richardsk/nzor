@@ -270,8 +270,6 @@ namespace OAIServer.Xml {
                   parentElem.AddChild(elem);
               }
 
-              if (ElementAdded != null) ElementAdded(elem, FindXPath(elem));
-
               //Get minOccurs, maxOccurs alone from the current particle, everything else pick up from globalDecl
               if (any != null)
               { //Element from any
@@ -287,6 +285,7 @@ namespace OAIServer.Xml {
               elem.FixedValue = eGlobalDecl.FixedValue;
               elem.IsNillable = eGlobalDecl.IsNillable;
 
+              if (ElementAdded != null) ElementAdded(elem, FindXPath(elem));
 
               if (eGlobalDecl.ElementSchemaType == AnyType)
               {
@@ -766,11 +765,10 @@ namespace OAIServer.Xml {
                     InstanceGroup group = rootElement.Child;
                     while (group != null) 
                     {
-                        ProcessGroup(group);
+                        xml += ProcessGroup(group);
                         group = group.Sibling;
                     }
                 }
-                xml += Environment.NewLine;
                 xml += "</" + rootElement.QualifiedName.Name + ">" + Environment.NewLine;
             }
             else 
@@ -788,24 +786,24 @@ namespace OAIServer.Xml {
             }
             else //Its a group node of sequence or choice
             { 
-                if(!grp.IsChoice) 
-                {
+                //if(!grp.IsChoice) 
+                //{
                     String innerXml = "";
-                    for (int i=0; i < grp.Occurs; i++) 
-                    {
+                    //for (int i=0; i < grp.Occurs; i++) 
+                    //{
                         InstanceGroup childGroup = grp.Child;
                         while (childGroup != null) 
                         {
                             innerXml += ProcessGroup(childGroup);
                             childGroup = childGroup.Sibling;
                         }
-                    }
-                    return innerXml;
-                }
-                else 
-                {
-                    return ProcessChoiceGroup(grp);
-                }
+                //    }
+                        return innerXml;
+                //}
+                //else 
+                //{
+                //    return ProcessChoiceGroup(grp);
+                //}
             }
         }
         
@@ -862,10 +860,10 @@ namespace OAIServer.Xml {
                 if (innerText.Length > 0 || innerXml.Length > 0)
                 {
                     xml += "<";
-                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "") xml += elem.QualifiedName.Namespace + ":";
+                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
                     xml += elem.QualifiedName.Name;
                     xml += ProcessElementAttrs(elem);
-                    xml += "/>" + Environment.NewLine;
+                    xml += ">";
                     xml += ProcessComment(elem);
                     xml += CheckIfMixed(elem);
                     xml += Environment.NewLine;
@@ -876,7 +874,7 @@ namespace OAIServer.Xml {
                             xml += WriteNillable();
                             elem.GenNil = false;
                             xml += "</";
-                            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "") xml += elem.QualifiedName.Namespace + ":";
+                            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
                             xml += elem.QualifiedName.Name + ">";
                             continue;
                         }
@@ -887,11 +885,15 @@ namespace OAIServer.Xml {
                     }
 
                     xml += innerText;
-                    xml += innerXml;
 
-                    xml += Environment.NewLine;
+                    if (innerXml.Length > 0)
+                    {
+                        xml += innerXml;
+                        xml += Environment.NewLine;
+                    }
+
                     xml += "</";
-                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "") xml += elem.QualifiedName.Namespace + ":"; 
+                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":"; 
                     xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
                 }
                 
