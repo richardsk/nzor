@@ -49,7 +49,8 @@ namespace OAIServer
                     {
                         if (fm.GetType() == typeof(DatabaseMapping))
                         {
-                            sql += fm.GetValueSQL(dc) + ", ";
+                            String fv = fm.GetValueSQL(dc);
+                            if (fv != null) sql += fv + ", ";
                         }
                     }
                     sql = sql.Trim();
@@ -86,11 +87,13 @@ namespace OAIServer
             String val = "";
             if (_results == null || _results.Tables.Count == 0) return "";
 
+            if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
+
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
-            DataColumn col = _results.Tables[0].Columns[fm.ColumnOrAlias];
+            DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
             if (col != null)
             {
-                val = _results.Tables[0].Rows[0][col].ToString();
+                val = _results.Tables[set].Rows[0][col].ToString();
             }
 
             return val;
@@ -141,8 +144,15 @@ namespace OAIServer
             }
             
             val = GetFieldValue(set, FieldMapping.RECORD_DATE);
-            DateTime date = DateTime.Parse(val);
-            Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, date.ToString("s"));
+            if (val != "")
+            {
+                DateTime date = DateTime.Parse(val);
+                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, date.ToString("s"));
+            }
+            else
+            {
+                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, "");
+            }
 
             //SETs
             String xVal = GetSetsXml();

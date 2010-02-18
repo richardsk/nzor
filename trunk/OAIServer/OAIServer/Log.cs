@@ -12,7 +12,7 @@ namespace OAIServer
             try
             {
                 string file = System.Configuration.ConfigurationManager.AppSettings["LOG_FILE"];
-                string msg = DateTime.Now.ToString() + " : ERROR : " + ex.Message + " : " + ex.StackTrace;
+                string msg = DateTime.Now.ToString() + " : ERROR : " + ex.Message + " : " + ex.StackTrace + Environment.NewLine;
                 System.IO.File.AppendAllText(file, msg);
             }
             catch (Exception)
@@ -24,7 +24,7 @@ namespace OAIServer
             try
             {
                 string file = System.Configuration.ConfigurationManager.AppSettings["LOG_FILE"];
-                msg = DateTime.Now.ToString() + " : " + msg;
+                msg = DateTime.Now.ToString() + " : " + msg + Environment.NewLine;
                 System.IO.File.AppendAllText(file, msg);
             }
             catch (Exception)

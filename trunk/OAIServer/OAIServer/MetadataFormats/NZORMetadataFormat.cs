@@ -17,10 +17,12 @@ namespace OAIServer
         public static String NZORConceptObject = "TaxonConcept";
         public static String NZORPublicationObject = "Publication";
 
-        public override string ProcessResults(System.Data.DataSet results, RepositoryConfig rep)
+        public override String ProcessResults(System.Data.DataSet results, RepositoryConfig rep)
         {
             return base.ProcessResults(results, rep);
 
+
+            //Alterntive hard-coded method ...
 
             String xml = "";
 

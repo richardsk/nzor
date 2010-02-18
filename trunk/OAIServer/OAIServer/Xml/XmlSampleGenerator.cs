@@ -159,7 +159,11 @@ namespace OAIServer.Xml {
             if(ProcessSchemaSet()) { //Only if valid schemas were loaded
                 if (instanceRoot != null) { //If found a root to generate XML
                     instanceElementsProcessed = new Hashtable();
-                    writer.WriteString(ProcessInstanceTree(instanceRoot));
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(ProcessInstanceTree(instanceRoot));
+
+                    doc.WriteTo(writer);
                 }
                 writer.Flush();
             }
@@ -212,7 +216,7 @@ namespace OAIServer.Xml {
                 }
                 else if (node.GetType() == typeof(InstanceAttribute))
                 {
-                    builder.Insert(0, "/@" + node.QualifiedName.Name);
+                    builder.Insert(0, "[@" + node.QualifiedName.Name + "]");
 
                     node = node.Parent;
                 }
@@ -870,16 +874,17 @@ namespace OAIServer.Xml {
                     }
                 }
 
-                if (innerText.Length > 0 || innerXml.Length > 0)
+                String attrText = ProcessElementAttrs(elem);
+
+                if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
                 {
                     xml += "<";
                     if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
                     xml += elem.QualifiedName.Name;
-                    xml += ProcessElementAttrs(elem);
+                    xml += attrText;
                     xml += ">";
                     xml += ProcessComment(elem);
                     xml += CheckIfMixed(elem);
-                    xml += Environment.NewLine;
                     if (elem.IsNillable && generateValues)
                     {
                         if (elem.GenNil)
@@ -901,6 +906,7 @@ namespace OAIServer.Xml {
 
                     if (innerXml.Length > 0)
                     {
+                        xml += Environment.NewLine;
                         xml += innerXml;
                         xml += Environment.NewLine;
                     }

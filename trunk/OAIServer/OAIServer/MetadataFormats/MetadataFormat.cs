@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Data;
 using System.Net;
@@ -126,6 +127,8 @@ namespace OAIServer
         {
             String val = "";
             if (_results == null || _results.Tables.Count == 0) return "";
+
+            if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
 
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
             DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];

@@ -83,7 +83,9 @@ namespace OAIServer
         public override String GetValueSQL(DataConnection dc)
         {
             String val = null;
-                        
+
+            if (this.ColumnOrAlias == "" && (SQL == null || SQL.Length == 0)) return null;
+
             if (SQL != null && SQL.Length > 0)
             {
                 val = SQL;

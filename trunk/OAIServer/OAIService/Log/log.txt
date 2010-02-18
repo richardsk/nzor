@@ -1,24 +1,241 @@
-16/02/2010 12:24:02 p.m. : ERROR : Couldn't find element within parent :    at OAIServer.Xml.XmlSampleGenerator.FindElementIndex(InstanceGroup element) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 220
-   at OAIServer.Xml.XmlSampleGenerator.FindXPath(InstanceObject node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 182
-   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 262
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 505
-   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 516
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 476
-   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 324
-   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 292
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 505
-   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 516
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 476
-   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 324
-   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 292
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 505
-   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 516
-   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 476
-   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 324
-   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 292
-   at OAIServer.Xml.XmlSampleGenerator.ProcessSchemaSet() in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 165
-   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 134
-   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormat.cs:line 98
-   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 136
-   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 113
+19/02/2010 9:54:39 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 9:56:27 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 9:57:51 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 9:57:51 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 9:58:14 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 9:58:42 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 9:58:42 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 10:01:32 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 10:01:34 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 10:02:01 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 10:02:12 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 10:03:22 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 10:03:25 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 10:03:56 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.MappedTable.Load(XmlNode node, MappedTable parent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MappedTable.cs:line 35
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 26
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 3319/02/2010 10:03:56 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 109
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+
+19/02/2010 10:25:29 a.m. : ERROR : Incorrect syntax near ','. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 73
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 105
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 3919/02/2010 10:30:24 a.m. : ERROR : Invalid column name 'NameYear'.
+Invalid column name 'RankName'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 10:31:26 a.m. : ERROR : Invalid column name 'RankName'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 10:32:56 a.m. : ERROR : Invalid column name 'TaxonRankName'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:20:35 a.m. : ERROR : Data at the root level is invalid. Line 1, position 1. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 91
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 176
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 153
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:20:58 a.m. : ERROR : Data at the root level is invalid. Line 1, position 1. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 91
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 176
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 153
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:21:33 a.m. : ERROR : Root element is missing. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ThrowWithoutLineInfo(String res)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 91
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 176
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 153
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:35:16 a.m. : ERROR : Invalid column name 'BibliographyReferenceFk'.
+Invalid column name 'ReferenceGuid'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:37:42 a.m. : ERROR : Invalid column name 'BibliographyReferenceFk'.
+Invalid column name 'ReferenceGuid'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:39:13 a.m. : ERROR : Invalid column name 'ReferenceGuid'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 74
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 106
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:47:01 a.m. : ERROR : There is no row at position 0. :    at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.RBTree`1.get_Item(Int32 index)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at OAIServer.MetadataFormat.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 135
+   at OAIServer.MetadataFormat.AttributeAdded(InstanceAttribute attr, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 120
+   at OAIServer.Xml.XmlSampleGenerator.GenerateInstanceAttribute(XmlSchemaAttribute attr, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 490
+   at OAIServer.Xml.XmlSampleGenerator.GenerateAttribute(XmlSchemaObjectTable attributes, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 472
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 360
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.ProcessSchemaSet() in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 194
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 159
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 87
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 176
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 153
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:47:58 a.m. : ERROR : There is no row at position 0. :    at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.RBTree`1.get_Item(Int32 index)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at OAIServer.MetadataFormat.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 135
+   at OAIServer.MetadataFormat.AttributeAdded(InstanceAttribute attr, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 120
+   at OAIServer.Xml.XmlSampleGenerator.GenerateInstanceAttribute(XmlSchemaAttribute attr, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 490
+   at OAIServer.Xml.XmlSampleGenerator.GenerateAttribute(XmlSchemaObjectTable attributes, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 472
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 360
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 533
+   at OAIServer.Xml.XmlSampleGenerator.GenerateGroupBase(XmlSchemaGroupBase gBase, InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 544
+   at OAIServer.Xml.XmlSampleGenerator.GenerateParticle(XmlSchemaParticle particle, Boolean root, InstanceGroup iGrp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 504
+   at OAIServer.Xml.XmlSampleGenerator.ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 352
+   at OAIServer.Xml.XmlSampleGenerator.GenerateElement(XmlSchemaElement e, Boolean root, InstanceGroup parentElem, XmlSchemaAny any) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 320
+   at OAIServer.Xml.XmlSampleGenerator.ProcessSchemaSet() in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 194
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 159
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 87
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 176
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 153
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:50:37 a.m. : ERROR : There is no row at position 0. :    at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.RBTree`1.get_Item(Int32 index)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at OAIServer.GetRecordRequest.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 94
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 134
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:50:43 a.m. : ERROR : There is no row at position 0. :    at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.RBTree`1.get_Item(Int32 index)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at OAIServer.GetRecordRequest.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 94
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 134
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:52:56 a.m. : ERROR : There is no row at position 0. :    at System.Data.RBTree`1.GetNodeByIndex(Int32 userIndex)
+   at System.Data.RBTree`1.get_Item(Int32 index)
+   at System.Data.DataRowCollection.get_Item(Int32 index)
+   at OAIServer.GetRecordRequest.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 94
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 134
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 11:59:30 a.m. : ERROR : String was not recognized as a valid DateTime. :    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.DateTime.Parse(String s)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 147
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+19/02/2010 12:00:27 p.m. : ERROR : String was not recognized as a valid DateTime. :    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.DateTime.Parse(String s)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 147
    at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
