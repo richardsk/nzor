@@ -53,12 +53,12 @@ namespace OAIServer
             this.Field = node.Attributes["field"].InnerText;
         }
 
-        public virtual String GetValueSQL(RepositoryConfig config)
+        public virtual String GetValueSQL(DataConnection dc)
         {
             return "";
         }
 
-        public virtual Object GetValue(RepositoryConfig config)
+        public virtual Object GetValue(DataConnection dc)
         {
             return null;
         }
@@ -80,7 +80,7 @@ namespace OAIServer
             this.SQL = node.Attributes["sql"].InnerText;
         }
 
-        public override String GetValueSQL(RepositoryConfig config)
+        public override String GetValueSQL(DataConnection dc)
         {
             String val = null;
                         
@@ -91,7 +91,7 @@ namespace OAIServer
             }
             else 
             {
-                val = config.GetMappedTable(TableId).AliasOrName + "." + Column;
+                val = dc.GetMappedTable(TableId).AliasOrName + "." + Column;
                 if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
 
@@ -107,7 +107,7 @@ namespace OAIServer
             }
         }
 
-        public override Object GetValue(RepositoryConfig config)
+        public override Object GetValue(DataConnection dc)
         {
             throw new Exception("Cannot get individual value of a DB Mapping");
         }
@@ -122,12 +122,12 @@ namespace OAIServer
             base.Load(node);
         }
 
-        public override String GetValueSQL(RepositoryConfig config)
+        public override String GetValueSQL(DataConnection dc)
         {
             return "'" + Value.ToString() + "'";
         }
 
-        public override Object GetValue(RepositoryConfig config)
+        public override Object GetValue(DataConnection dc)
         {
             return Value;
         }
@@ -151,7 +151,7 @@ namespace OAIServer
             if (this.SQL.Length > 0 && ColumnAlias == "") this.ColumnAlias = Utility.NextColumnKey();
         }
 
-        public override String GetValueSQL(RepositoryConfig config)
+        public override String GetValueSQL(DataConnection dc)
         {
             String val = "";
 
@@ -162,7 +162,7 @@ namespace OAIServer
             }
             else
             {
-                val = config.GetMappedTable(TableId).AliasOrName + "." + Column;
+                val = dc.GetMappedTable(TableId).AliasOrName + "." + Column;
                 if (this.ColumnAlias != "") val += " " + ColumnAlias;
             }
 
@@ -178,7 +178,7 @@ namespace OAIServer
             }
         }
 
-        public override Object GetValue(RepositoryConfig config)
+        public override Object GetValue(DataConnection dc)
         {
             Object val = null;
 
@@ -192,7 +192,7 @@ namespace OAIServer
                 }
                 else
                 {
-                    cmd.CommandText = "select max(" + Column + ") from " + config.GetMappedTable(TableId).Name;
+                    cmd.CommandText = "select max(" + Column + ") from " + dc.GetMappedTable(TableId).Name;
                 }
 
                 val = cmd.ExecuteScalar();

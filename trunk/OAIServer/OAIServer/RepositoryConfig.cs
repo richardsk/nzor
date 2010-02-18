@@ -11,12 +11,10 @@ namespace OAIServer
     {
         public String Name = "";
         public String AdminEmail = "";
-        public String OleDBConnectionString = "";
 
         public List<MetadataFormat> MetadataFormats = new List<MetadataFormat>();
         public List<String> Sets = new List<String>();
-        public MappedTable RootTable = null;
-        public List<FieldMapping> Mappings = new List<FieldMapping>();
+        public List<DataConnection> DataConnections = new List<DataConnection>();
         
 
         public void Load(String fileName)
@@ -26,9 +24,6 @@ namespace OAIServer
 
             XmlNode n = doc.SelectSingleNode("//Services/Service");
             this.Name = n.Attributes["name"].InnerText;
-
-            n = doc.SelectSingleNode("//Services/Service/DBConnectionString");
-            this.OleDBConnectionString = n.InnerText;
 
             n = doc.SelectSingleNode("//Services/Service/AdminEmail");
             this.AdminEmail = n.InnerText;
@@ -53,60 +48,30 @@ namespace OAIServer
                 Sets.Add(sn.Attributes["name"].InnerText);
             }
 
-            XmlNode mtn = doc.SelectSingleNode("//Services/Service/Table");
-            RootTable = new MappedTable();
-            RootTable.Load(mtn, null);
-
-
-            Mappings.Clear();
-            XmlNodeList mpl = doc.SelectNodes("//Services/Service/Mappings/Mapping");
-
-            foreach (XmlNode mpn in mpl)
+            XmlNodeList dcl = doc.SelectNodes("//Services/Service/DataConnections/DataConnection");
+            foreach (XmlNode dcn in dcl)
             {
-                FieldMapping fm = null;
-
-                String type = mpn.Attributes["type"].InnerText;
-                if (type == "DatabaseMapping")
-                {
-                    fm = new DatabaseMapping();
-                    fm.Load(mpn);
-                }
-                else if (type == "SQLMaxValueMapping")
-                {
-                    fm = new SQLMaxValueMapping();
-                    fm.Load(mpn);
-                }
-                else if (type == "FixedValueMapping")
-                {
-                    fm = new FixedValueMapping();
-                    fm.Load(mpn);
-                }
-
-                Mappings.Add(fm);
-            }            
+                DataConnection dc = new DataConnection();
+                dc.Load(dcn);
+                DataConnections.Add(dc);
+            }
+    
         }
 
-        public MappedTable GetMappedTable(String id)
+        public DataConnection GetDataConnection(String set)
         {
-            if (RootTable.Id == id) return RootTable;
+            DataConnection dc = null;
 
-            return RootTable.GetMappedTable(id);
-        }
-
-        public FieldMapping GetMapping(String field)
-        {
-            FieldMapping fm = null;
-
-            foreach (FieldMapping m in Mappings)
+            foreach (DataConnection d in DataConnections)
             {
-                if (m.Field == field)
+                if (d.Set == set)
                 {
-                    fm = m;
+                    dc = d;
                     break;
                 }
             }
 
-            return fm;
+            return dc;
         }
 
         public MetadataFormat GetMetadataFormat(String prefix)
@@ -125,7 +90,7 @@ namespace OAIServer
             return mf;
         }
 
-        public Object GetFieldValue(String field)
+        public Object GetFieldValue(String field, DataConnection dc)
         {
             Object val = null;
 
@@ -139,16 +104,16 @@ namespace OAIServer
             }
             else 
             {
-                FieldMapping fm = GetMapping(field);
+                FieldMapping fm = dc.GetMapping(field);
                 if (fm != null)
                 {
                     if (fm.GetType() == typeof(FixedValueMapping))
                     {
-                        val = fm.GetValue(this);
+                        val = fm.GetValue(dc);
                     }
                     else if (fm.GetType() == typeof(SQLMaxValueMapping))
                     {
-                        val = fm.GetValue(this);
+                        val = fm.GetValue(dc);
                     }
                 }
             }

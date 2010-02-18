@@ -55,6 +55,7 @@ namespace OAIServer.Xml {
         private int maxThreshold = 5;
         private int listLength = 1;
         private bool generateValues = true;
+        private String indexingElement = "";
 
         //To pick-up recursive element defs
         private Hashtable elementTypesProcessed;
@@ -98,6 +99,18 @@ namespace OAIServer.Xml {
             set
             {
                 this.generateValues = value;
+            }
+        }
+
+        public String IndexingElement
+        {
+            get
+            {
+                return indexingElement;
+            }
+            set
+            {
+                indexingElement = value;
             }
         }
 

@@ -56,12 +56,13 @@ namespace OAIServer
             return rep;
         }
 
-        public static Object GetFixedFieldValue(String repository, string field)
+        public static Object GetFixedFieldValue(String repository, String set, string field)
         {
             Object val = null;
 
             RepositoryConfig rep = GetConfig(repository);
-            val = rep.GetFieldValue(field);
+            DataConnection dc = rep.GetDataConnection(set);
+            val = rep.GetFieldValue(field, dc);
 
             return val;
         }
