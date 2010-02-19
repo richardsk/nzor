@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.OleDb;
+using System.ServiceModel.Web;
+using System.Xml.Linq;
+using System.IO;
+using System.Web;
+
+namespace OAIServer
+{
+    class ListRecordsRequest
+    {
+        DataSet _results = null;
+        RepositoryConfig _rep = null;
+
+        private DataSet GetResultData()
+        {
+            //all sets
+            DataSet ds = null;
+
+            foreach (DataConnection dc in _rep.DataConnections)
+            {
+                DataSet tmpDs = GetResultData(dc.Set);
+                if (ds == null) ds = tmpDs;
+                else if (tmpDs != null) ds.Merge(tmpDs);
+            }
+
+            return ds;
+        }
+        
+        private DataSet GetResultData(String set)
+        {
+            DataSet ds = null;
+
+            DataConnection dc = _rep.GetDataConnection(set);
+
+            if (dc != null)
+            {
+                using (OleDbConnection cnn = new OleDbConnection(dc.DBConnStr))
+                {
+                    cnn.Open();
+                    OleDbCommand cmd = cnn.CreateCommand();
+
+                    String sql = "select ";
+
+                    foreach (FieldMapping fm in dc.Mappings)
+                    {
+                        if (fm.GetType() == typeof(DatabaseMapping))
+                        {
+                            String fv = fm.GetValueSQL(dc);
+                            if (fv != null) sql += fv + ", ";
+                        }
+                    }
+                    sql = sql.Trim();
+                    sql = sql.TrimEnd(',');
+
+
+                    String fromSql = "";
+                    dc.RootTable.GetFullSql(ref fromSql);
+                    sql += " from " + fromSql;
+
+
+                    sql += " where ";
+                    if (dc.RootTable.Alias != null && dc.RootTable.Alias.Length > 0) sql += dc.RootTable.Alias;
+                    else sql += dc.RootTable.Name;
+                    sql += "." + dc.RootTable.PK + " = '" + id + "'";
+
+                    cmd.CommandText = sql;
+
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    ds = new DataSet();
+                    da.Fill(ds);
+
+                    //root table has name of Set
+                    ds.Tables[0].TableName = set;
+                    cnn.Close();
+                }
+            }
+
+            return ds;
+        }
+
+        private String GetFieldValue(String set, String dbField)
+        {
+            String val = "";
+            if (_results == null || _results.Tables.Count == 0) return "";
+
+            if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
+
+            DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
+            DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
+            if (col != null)
+            {
+                val = _results.Tables[set].Rows[0][col].ToString();
+            }
+
+            return val;
+        }
+
+        public XElement GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken)
+        {
+            WebOperationContext ctx = WebOperationContext.Current;
+
+            _rep = OAIServer.GetConfig(repository);
+
+            _results = GetResultData();
+
+
+            //TODO
+
+            DataConnection dc = _rep.GetDataConnection(set);
+
+            string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\GetRecordResponse.xml"));
+            xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
+
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
+            xml = xml.Replace(FieldMapping.BASE_URL, url);
+
+            xml = xml.Replace(FieldMapping.METADATA_PREFIX, metadataPrefix);
+
+            String val = GetFieldValue(set, FieldMapping.RECORD_STATUS);
+            if (val != null && val.Length > 0)
+            {
+                xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
+            }
+            else
+            {
+                xml = xml.Replace(FieldMapping.RECORD_STATUS, "");
+            }
+
+            val = GetFieldValue(set, FieldMapping.RECORD_DATE);
+            if (val != "")
+            {
+                DateTime date = DateTime.Parse(val);
+                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, date.ToString("s"));
+            }
+            else
+            {
+                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, "");
+            }
+
+            //SETs
+            String xVal = GetSetsXml();
+            Utility.ReplaceXmlField(ref xml, FieldMapping.SET_SPECS, xVal);
+
+            //Record Metadata
+            xVal = GetRecordMetadata(metadataPrefix);
+            Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+
+            return XElement.Parse(xml);
+        }
+
+        public String GetSetsXml()
+        {
+            String val = "";
+
+            foreach (String set in _rep.Sets)
+            {
+                val += "<setSpec>" + set + "</setSpec>";
+            }
+
+            return val;
+        }
+
+        public String GetRecordMetadata(String metadataPrefix)
+        {
+            String val = null;
+
+            MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
+            val = mf.ProcessResults(_results, _rep);
+
+            return val;
+        }
+    }
+}
