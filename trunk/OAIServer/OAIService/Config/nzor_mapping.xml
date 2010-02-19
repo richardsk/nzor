@@ -1,5 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Mappings>
-  <Mapping name="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull"/>
-  <Mapping name="[ParentNameId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Name[@ref='[[RecordID]]']/parent::element()/Relationships/ParentConcept[@ref]"/>
-</Mappings>
+<MetadataFormatMapping>
+  <Sets>
+    <Set name="TaxonName" indexingElement="/DataSet/TaxonNames/TaxonName" />
+    <Set name="TaxonConcept" indexingElement="/DataSet/TaxonConcepts/TaxonConcept" />
+  </Sets>
+  <SchemaMappings>
+    <SchemaMapping set="TaxonName" field="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull" />
+    <SchemaMapping set="TaxonName" field="[Rank]" xpath="/DataSet/TaxonNames/TaxonName/Rank" />
+    <SchemaMapping set="TaxonName" field="[Canonical]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/Simple" />
+    <SchemaMapping set="TaxonName" field="[Uninomial]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/Uninomial" />
+    <SchemaMapping set="TaxonName" field="[Genus]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/Genus" />
+    <SchemaMapping set="TaxonName" field="[InfragenericEpithet]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/InfragenericEpithet" />
+    <SchemaMapping set="TaxonName" field="[SpecificEpithet]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/SpecificEpithet" /> />
+    <SchemaMapping set="TaxonName" field="[InfraspecificEpithet]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/InfraspecificEpithet" />
+    <SchemaMapping set="TaxonName" field="[Cultivar]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/CultivarNameGroup" />
+    <SchemaMapping set="TaxonName" field="[Authorship]" xpath="/DataSet/TaxonNames/TaxonName/Authorship" />
+    <SchemaMapping set="TaxonName" field="[BasionymAuthors]" xpath="/DataSet/TaxonNames/TaxonName/BasionymAuthors" />
+    <SchemaMapping set="TaxonName" field="[CombiningAuthors]" xpath="/DataSet/TaxonNames/TaxonName/CombiningAuthors" />
+    <SchemaMapping set="TaxonName" field="[Year]" xpath="/DataSet/TaxonNames/TaxonName/Year" />
+
+    <SchemaMapping set="TaxonConcept" field="[Name]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Name[@ref]" />
+    
+  </SchemaMappings>
+</MetadataFormatMapping>
