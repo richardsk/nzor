@@ -56,13 +56,49 @@ namespace OAIServer
             return rep;
         }
 
-        public static Object GetFixedFieldValue(String repository, String set, string field)
+        public static Object GetFixedFieldValue(String repository, string field)
         {
             Object val = null;
 
             RepositoryConfig rep = GetConfig(repository);
-            DataConnection dc = rep.GetDataConnection(set);
-            val = rep.GetFieldValue(field, dc);
+
+            if (field == FieldMapping.ADMIN_EMAIL)
+            {
+                val = rep.AdminEmail;
+            }
+            else if (field == FieldMapping.REPOSITORY_NAME)
+            {
+                val = repository;
+            }
+            else
+            {
+                foreach (DataConnection dc in rep.DataConnections)
+                {
+                    foreach (FieldMapping fm in dc.Mappings)
+                    {
+                        if (fm.GetType() == typeof(FixedValueMapping))
+                        {
+                            FixedValueMapping fvm = (FixedValueMapping)fm;
+                            if (fvm.Field == field)
+                            {
+                                val = fvm.Value;
+                                break;
+                            }
+                        }
+                        else if (fm.GetType() == typeof(SQLMaxValueMapping) || fm.GetType() == typeof(SQLMinValueMapping))
+                        {
+                            DatabaseMapping dbm = (DatabaseMapping)fm;
+                            if (dbm.Field == field)
+                            {
+                                val = dbm.GetValue(dc);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (val != null) break;
+                }
+            }
 
             return val;
         }

@@ -161,7 +161,8 @@ namespace OAIServer.Xml {
                     instanceElementsProcessed = new Hashtable();
 
                     XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(ProcessInstanceTree(instanceRoot));
+                    String xml = ProcessInstanceTree(instanceRoot);
+                    doc.LoadXml(xml);
 
                     doc.WriteTo(writer);
                 }
@@ -902,7 +903,7 @@ namespace OAIServer.Xml {
                         }
                     }
 
-                    xml += innerText;
+                    xml += System.Web.HttpUtility.HtmlEncode(innerText);
 
                     if (innerXml.Length > 0)
                     {

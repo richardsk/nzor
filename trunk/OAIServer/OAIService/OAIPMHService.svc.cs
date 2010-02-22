@@ -22,6 +22,8 @@ namespace OAIService
         {
             try
             {
+                IdentifyRequest req = new IdentifyRequest();
+                return req.GetResultXml(repository);
             }
             catch (Exception ex)
             {
@@ -56,9 +58,19 @@ namespace OAIService
             throw new NotImplementedException();
         }
 
-        public XElement ListRecords()
+        public XElement ListRecords(string repository, string fromDate, string toDate, string set, string resumptionToken, string mdPrefix)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ListRecordsRequest req = new ListRecordsRequest();
+                return req.GetResultXml(repository, mdPrefix, set, fromDate, toDate, resumptionToken);
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+            }
+
+            return null;
         }
 
         public XElement ListSets()

@@ -12,7 +12,7 @@
     </Sets>
     
     <MetadataFormats>
-      <MetadataFormat prefix="nzor" uri="C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_provider.xsd" mappingFile="nzor_mappings.xml" />        
+      <MetadataFormat prefix="nzor" uri="C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_provider.xsd" mappingFile="nzor_mapping.xml" />        
     </MetadataFormats>
 
     <DataConnections>
@@ -21,10 +21,12 @@
         <Table id="1" name="tblName" alias="" pk="NameGuid">
           <TableJoin id="2" name="tblTaxonRank" alias="" pk="TaxonRankPk" type="inner" fkFrom="NameTaxonRankFk" fkTo="TaxonRankPk">        
           </TableJoin>
+          <TableJoin id="3" name="tblID" alias="" pk="Pk" type="inner" fkFrom="NameGuid" fkTo="ID" orderby="Counter"></TableJoin>
         </Table>
         <Mappings>
-          <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameGuid" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="3" column="Counter" columnAlias="" sql="" datatype=""/>
           <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" datatype="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[NameFull]" table="1" column="NameFull" columnAlias="" sql="" datatype="" />
@@ -52,11 +54,33 @@
           </TableJoin>
         </Table>
         <Mappings>
-          <Mapping type="SQLMaxValueMapping" field="[EARLIEST_DATE]" table="1" column="BibliographyUpdatedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="BibliographyUpdatedDate" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="BibliographyGuid" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" datatype="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="BibliographyUpdatedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Name]" table="1" column="BibliographyNameFk" columnAlias="" sql="" datatype="" />          
+          <Mapping type="DatabaseMapping" field="[Name]" table="1" column="BibliographyNameFk" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AccordingTo]" table="1" column="BibliographyReferenceFk" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConcept]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptProvider]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ParentConcept]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptProvider]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="" columnAlias="" sql="" datatype="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="Publication">
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver05;integrated security=SSPI;initial catalog=PlantNames_Dev;persist security info=true</DBConnectionString>
+        <Table id="1" name="tblReference" alias="" pk="ReferenceID">          
+        </Table>
+        <Mappings>
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ReferenceUpdatedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ReferenceID" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblReference.ReferenceIsDeleted = 1 then 'deleted' else '' end)" datatype="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ReferenceUpdatedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="ReferenceGenCitation" columnAlias="" sql="" datatype="" />
+          
         </Mappings>
       </DataConnection>
     </DataConnections>

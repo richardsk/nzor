@@ -11,7 +11,7 @@ namespace OAIServer
 {
     public class IdentifyRequest
     {
-        public XElement GetResultXml(String repository, String set)
+        public XElement GetResultXml(String repository)
         {
             WebOperationContext ctx = WebOperationContext.Current;
 
@@ -22,13 +22,13 @@ namespace OAIServer
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
             xml = xml.Replace(FieldMapping.BASE_URL, url);
 
-            Object val = OAIServer.GetFixedFieldValue(repository, set, FieldMapping.ADMIN_EMAIL);
+            Object val = OAIServer.GetFixedFieldValue(repository, FieldMapping.ADMIN_EMAIL);
             Utility.ReplaceXmlField(ref xml, FieldMapping.ADMIN_EMAIL, val);
 
-            val = OAIServer.GetFixedFieldValue(repository, set, FieldMapping.EARLIEST_DATE);
+            val = OAIServer.GetFixedFieldValue(repository, FieldMapping.EARLIEST_DATE);
             Utility.ReplaceXmlField(ref xml, FieldMapping.EARLIEST_DATE, val);
 
-            val = OAIServer.GetFixedFieldValue(repository, set, FieldMapping.REPOSITORY_NAME);
+            val = OAIServer.GetFixedFieldValue(repository, FieldMapping.REPOSITORY_NAME);
             Utility.ReplaceXmlField(ref xml, FieldMapping.REPOSITORY_NAME, val);
 
             return XElement.Parse(xml);

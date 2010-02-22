@@ -239,3 +239,524 @@ Invalid column name 'ReferenceGuid'. :    at System.Data.OleDb.OleDbDataReader.P
    at System.DateTime.Parse(String s)
    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 147
    at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:26:43 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:26:48 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:26:48 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:27:01 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:27:01 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:27:30 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:27:30 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:27:43 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:27:50 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:27:52 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:28:00 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:28:02 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:28:27 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:28:44 a.m. : ERROR : Could not find file 'C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_mappings.xml'. :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.OpenUrlDelegate(Object xmlResolver)
+   at System.Threading.CompressedStack.runTryCode(Object userData)
+   at System.Runtime.CompilerServices.RuntimeHelpers.ExecuteCodeWithGuaranteedCleanup(TryCode code, CleanupCode backoutCode, Object userData)
+   at System.Threading.CompressedStack.Run(CompressedStack compressedStack, ContextCallback callback, Object state)
+   at System.Xml.XmlTextReaderImpl.OpenUrl()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.MetadataFormat.LoadMapping() in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 43
+   at OAIServer.MetadataFormat.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 33
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 38
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+22/02/2010 8:28:44 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 112
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:29:29 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 50
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 108
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:29:47 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 50
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 108
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:30:40 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 50
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 108
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:30:56 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 50
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 25
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 108
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:32:40 a.m. : ERROR : An error occurred while parsing EntityName. Line 5, position 40. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.Throw(String res)
+   at System.Xml.XmlTextReaderImpl.ParseEntityName()
+   at System.Xml.XmlTextReaderImpl.ParseEntityReference()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 164
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 185
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 162
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:35:41 a.m. : ERROR : An error occurred while parsing EntityName. Line 5, position 40. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.Throw(String res)
+   at System.Xml.XmlTextReaderImpl.ParseEntityName()
+   at System.Xml.XmlTextReaderImpl.ParseEntityReference()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 165
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 185
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 162
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 8:50:54 a.m. : ERROR : Column 'tblName.NameGuid' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 185
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 8:52:29 a.m. : ERROR : Column 'tblName.NameGuid' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 185
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:32:33 a.m. : ERROR : Column 'tblName.NameGuid' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 185
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:33:43 a.m. : ERROR : '&' is an unexpected token. The expected token is '"' or '''. Line 41, position 11. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowUnexpectedToken(String expectedToken1, String expectedToken2)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 165
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 211
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 184
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:34:45 a.m. : ERROR : '&' is an unexpected token. The expected token is '"' or '''. Line 41, position 11. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowUnexpectedToken(String expectedToken1, String expectedToken2)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 165
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 211
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 184
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:37:24 a.m. : ERROR : '&' is an unexpected token. The expected token is '"' or '''. Line 41, position 11. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowUnexpectedToken(String expectedToken1, String expectedToken2)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 165
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 211
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 184
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:38:03 a.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 15. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 191
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:42:03 a.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 15. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 191
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:43:07 a.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 15. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 191
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:45:43 a.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 15. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 193
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:46:41 a.m. : ERROR : There are multiple root elements. Line 15, position 2. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 193
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 10:56:12 a.m. : ERROR : Timeout expired :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 48
+   at OAIServer.ListRecordsRequest.GetResultData(String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 28
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 134
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 11:01:41 a.m. : ERROR : Name cannot begin with the '2' character, hexadecimal value 0x32. Line 7, position 31. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 205
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 11:05:14 a.m. : ERROR : Name cannot begin with the '2' character, hexadecimal value 0x32. Line 7, position 31. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 205
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 11:09:46 a.m. : ERROR : Name cannot begin with the '2' character, hexadecimal value 0x32. Line 7, position 31. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 11:19:07 a.m. : ERROR : Name cannot begin with the '2' character, hexadecimal value 0x32. Line 7, position 31. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 11:20:06 a.m. : ERROR : Name cannot begin with the '2' character, hexadecimal value 0x32. Line 7, position 31. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:05:05 p.m. : ERROR : Key cannot be null.
+Parameter name: key :    at System.Collections.Hashtable.get_Item(Object key)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 189
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:06:15 p.m. : ERROR : Key cannot be null.
+Parameter name: key :    at System.Collections.Hashtable.get_Item(Object key)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 189
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:12:53 p.m. : ERROR : Key cannot be null.
+Parameter name: key :    at System.Collections.Hashtable.get_Item(Object key)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 189
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:14:40 p.m. : ERROR : Unable to cast object of type 'System.Collections.DictionaryEntry' to type 'System.String'. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 189
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:19:43 p.m. : ERROR : Column 'Counter' does not belong to table Table. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 123
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 29
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 186
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:31:36 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 234
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:31:46 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 234
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:32:47 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 234
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:33:36 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 234
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 4:38:24 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 234
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 5:00:54 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 237
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 64
+22/02/2010 5:01:42 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 5:01:49 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 5:01:54 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 5:02:09 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 5:02:15 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+22/02/2010 5:02:16 p.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:46:47 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:47:51 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:51:14 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:52:15 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:52:19 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:52:45 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:52:49 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:53:09 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 8:53:12 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39
+23/02/2010 9:01:51 a.m. : ERROR : '' is an invalid expanded name. :    at System.Xml.Linq.XName.Get(String expandedName)
+   at System.Xml.Linq.XName.op_Implicit(String expandedName)
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 121
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 39

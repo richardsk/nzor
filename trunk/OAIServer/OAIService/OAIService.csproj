@@ -66,6 +66,8 @@
     <Content Include="Responses\GetRecordResponse.xml" />
     <Content Include="Responses\IdentifyResponse.xml" />
     <Content Include="Responses\ListRecordsResponse.xml" />
+    <Content Include="Responses\RecordSnippet.xml" />
+    <Content Include="Responses\ResumptionSnippet.xml" />
     <Content Include="Services\test_config.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -86,7 +88,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\nzor_provider.xsd" />
+    <Content Include="Config\nzor_provider.xsd">
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

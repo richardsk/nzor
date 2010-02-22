@@ -22,6 +22,7 @@ namespace OAIServer
         protected MetadataFormatMapping _mapping = null;
         protected RepositoryConfig _rep = null;
         protected DataSet _results = null;
+        protected String _RecordID = null;
 
         public virtual void Load(XmlNode node)
         {
@@ -46,7 +47,7 @@ namespace OAIServer
             }
         }
 
-        public virtual String ProcessResults(DataSet results, RepositoryConfig rep)
+        public virtual String ProcessResults(DataSet results, RepositoryConfig rep, String id)
         {
             XmlSchema s = null;
 
@@ -67,6 +68,7 @@ namespace OAIServer
 
             _rep = rep;
             _results = results;
+            _RecordID = id;
 
             LoadMapping();
 
@@ -131,10 +133,25 @@ namespace OAIServer
             if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
 
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
+            DatabaseMapping idField = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(FieldMapping.IDENTIFIER);
             DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
             if (col != null)
             {
-                val = _results.Tables[set].Rows[0][col].ToString();
+                if (_RecordID != null && _RecordID.Length > 0)
+                {
+                    foreach (DataRow r in _results.Tables[set].Rows)
+                    {
+                        if (r[idField.ColumnOrAlias].ToString().ToLower() == _RecordID.ToLower())
+                        {
+                            val = r[col].ToString();
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    val = _results.Tables[set].Rows[0][col].ToString();
+                }
             }
 
             return val;

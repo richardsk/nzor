@@ -63,6 +63,8 @@
     <Compile Include="MetadataFormats\MetadataFormat.cs" />
     <Compile Include="MetadataFormats\MetadataFormatSet.cs" />
     <Compile Include="MetadataFormats\NZORMetadataFormat.cs" />
+    <Compile Include="OAIException.cs" />
+    <Compile Include="OAIRequestSession.cs" />
     <Compile Include="OAIServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryConfig.cs" />

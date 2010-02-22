@@ -17,9 +17,9 @@ namespace OAIServer
         public static String NZORConceptObject = "TaxonConcept";
         public static String NZORPublicationObject = "Publication";
 
-        public override String ProcessResults(System.Data.DataSet results, RepositoryConfig rep)
+        public override String ProcessResults(System.Data.DataSet results, RepositoryConfig rep, String id)
         {
-            return base.ProcessResults(results, rep);
+            return base.ProcessResults(results, rep, id);
 
 
             //Alterntive hard-coded method ...

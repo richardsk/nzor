@@ -3,6 +3,7 @@
   <Sets>
     <Set name="TaxonName" indexingElement="/DataSet/TaxonNames/TaxonName" />
     <Set name="TaxonConcept" indexingElement="/DataSet/TaxonConcepts/TaxonConcept" />
+    <Set name="Publication" indexingElement="/DataSet/Publications/Publication" />
   </Sets>
   <SchemaMappings>
     <SchemaMapping set="TaxonName" field="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull" />
@@ -20,6 +21,16 @@
     <SchemaMapping set="TaxonName" field="[Year]" xpath="/DataSet/TaxonNames/TaxonName/Year" />
 
     <SchemaMapping set="TaxonConcept" field="[Name]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Name[@ref]" />
+    <SchemaMapping set="TaxonConcept" field="[AccordingTo]" xpath="/DataSet/TaxonConcepts/TaxonConcept/AccordingTo[@ref]" />
+    <SchemaMapping set="TaxonConcept" field="[Rank]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Rank" />
+    <SchemaMapping set="TaxonConcept" field="[AcceptedConcept]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/AcceptedConcept[@ref]" />
+    <SchemaMapping set="TaxonConcept" field="[AcceptedConceptProvider]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/AcceptedConcept/Status[@providerId]" />
+    <SchemaMapping set="TaxonConcept" field="[AcceptedConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/AcceptedConcept/Status[@inUse]" />
+    <SchemaMapping set="TaxonConcept" field="[ParentConcept]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept[@ref]" />
+    <SchemaMapping set="TaxonConcept" field="[ParentConceptProvider]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@providerId]" />
+    <SchemaMapping set="TaxonConcept" field="[ParentConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@inUse]" />
+
+    <SchemaMapping set="Publication" field="[Citation]" xpath="/DataSet/Publications/Publication/Citation" />
     
   </SchemaMappings>
 </MetadataFormatMapping>

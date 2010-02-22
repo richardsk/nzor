@@ -118,11 +118,7 @@ namespace OAIServer
                 }
             }
 
-            if (set == "") return new XElement("");
-
-
-            DataConnection dc = _rep.GetDataConnection(set);
-            
+           
             string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\GetRecordResponse.xml"));
             xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
 
@@ -133,56 +129,52 @@ namespace OAIServer
             xml = xml.Replace(FieldMapping.IDENTIFIER, id);
             xml = xml.Replace(FieldMapping.METADATA_PREFIX, metadataPrefix);
 
-            String val = GetFieldValue(set, FieldMapping.RECORD_STATUS);
-            if (val != null && val.Length > 0)
+            try
             {
-                xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
-            }
-            else
-            {
-                xml = xml.Replace(FieldMapping.RECORD_STATUS, "");
-            }
-            
-            val = GetFieldValue(set, FieldMapping.RECORD_DATE);
-            if (val != "")
-            {
-                DateTime date = DateTime.Parse(val);
-                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, date.ToString("s"));
-            }
-            else
-            {
-                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, "");
-            }
+                xml = xml.Replace(FieldMapping.SET_SPECS, "<setSpec>" + set + "</setSpec>");
 
-            //SETs
-            String xVal = GetSetsXml();
-            Utility.ReplaceXmlField(ref xml, FieldMapping.SET_SPECS, xVal);
+                String val = GetFieldValue(set, FieldMapping.RECORD_STATUS);
+                if (val != null && val.Length > 0)
+                {
+                    xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
+                }
+                else
+                {
+                    xml = xml.Replace(FieldMapping.RECORD_STATUS, "");
+                }
 
-            //Record Metadata
-            xVal = GetRecordMetadata(metadataPrefix);
-            Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+                val = GetFieldValue(set, FieldMapping.RECORD_DATE);
+                if (val != "")
+                {
+                    DateTime date = DateTime.Parse(val);
+                    Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, date.ToString("s"));
+                }
+                else
+                {
+                    Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_DATE, "");
+                }
+
+                if (set == null || set == "") throw new OAIException(OAIError.idDoesNotExist);
+
+                //Record Metadata
+                String xVal = GetRecordMetadata(metadataPrefix, id);
+                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+            }
+            catch (OAIException ex)
+            {
+                xml = xml.Replace(FieldMapping.OAI_ERROR, ex.ToString());
+                xml = xml.Replace(FieldMapping.RECORD_METADATA, "");
+            }
 
             return XElement.Parse(xml);
         }
 
-        public String GetSetsXml()
-        {
-            String val = "";
- 
-            foreach (String set in _rep.Sets)
-            {
-                val += "<setSpec>" + set + "</setSpec>";
-            }
-
-            return val;
-        }
-
-        public String GetRecordMetadata(String metadataPrefix)
+        public String GetRecordMetadata(String metadataPrefix, String id)
         {
             String val = null;
 
             MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
-            val = mf.ProcessResults(_results, _rep);
+            val = mf.ProcessResults(_results, _rep, id);
 
             return val;
         }

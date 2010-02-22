@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
          http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
   <responseDate>2002-06-01T19:20:30Z</responseDate>
-  <request verb="ListRecords" from="[FROM_DATE]" until="[TO_DATE]"
-           set="[SET]"
+  <request verb="ListRecords" [FROM_DATE] [TO_DATE]
+           [SET]
            metadataPrefix="[METADATA_PREFIX]">[BASE_URL]</request>
   <ListRecords>
     [RECORDS]
   </ListRecords>
+  [RESUMPTION_TOKEN]
 </OAI-PMH>
 

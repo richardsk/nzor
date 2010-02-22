@@ -13,18 +13,19 @@ namespace OAIService
     [ServiceContract]
     public interface IOAIPMHService
     {
-        [WebGet(UriTemplate = "{service}?verb=Identify")]
+        [WebGet(UriTemplate = "{repository}?verb=Identify")]
         [OperationContract]
-        XElement Identify(string service);
-        [WebGet(UriTemplate = "{service}?verb=GetRecord&identifier={id}&metadataPrefix={mdPrefix}")]
+        XElement Identify(string repository);
+        [WebGet(UriTemplate = "{repository}?verb=GetRecord&identifier={id}&metadataPrefix={mdPrefix}")]
         [OperationContract]
-        XElement GetRecord(string service, string id, string mdPrefix);
+        XElement GetRecord(string repository, string id, string mdPrefix);
         [OperationContract]
         XElement ListIdentifiers();
         [OperationContract]
         XElement ListMetadataFormats();
         [OperationContract]
-        XElement ListRecords();
+        [WebGet(UriTemplate = "{repository}?verb=ListRecords&from={fromDate}&until={toDate}&set={set}&resumptionToken={resumptionToken}&metadataPrefix={mdPrefix}")]
+        XElement ListRecords(string repository, string fromDate, string toDate, string set, string resumptionToken, string mdPrefix);
         [OperationContract]
         XElement ListSets();
 

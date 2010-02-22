@@ -115,6 +115,10 @@ namespace OAIServer
                     {
                         val = fm.GetValue(dc);
                     }
+                    else if (fm.GetType() == typeof(SQLMinValueMapping))
+                    {
+                        val = fm.GetValue(dc);
+                    }
                 }
             }
 

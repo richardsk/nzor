@@ -43,6 +43,11 @@ namespace OAIServer
                     fm = new SQLMaxValueMapping();
                     fm.Load(mpn);
                 }
+                else if (type == "SQLMinValueMapping")
+                {
+                    fm = new SQLMinValueMapping();
+                    fm.Load(mpn);
+                }
                 else if (type == "FixedValueMapping")
                 {
                     fm = new FixedValueMapping();

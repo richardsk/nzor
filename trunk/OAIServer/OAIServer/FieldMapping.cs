@@ -27,6 +27,17 @@ namespace OAIServer
         public static string RECORD_DATE = "[RECORD_DATE]";
         public static string SET_SPECS = "[SET_SPECS]";
         public static string RECORD_METADATA = "[RECORD_METADATA]";
+        public static string RECORDS = "[RECORDS]";
+        public static string FROM_DATE = "[FROM_DATE]";
+        public static string TO_DATE = "[TO_DATE]";
+        public static string SET = "[SET]";
+        public static string EXP_DATE = "[EXP_DATE]";
+        public static string LIST_SIZE = "[LIST_SIZE]";
+        public static string CURSOR = "[CURSOR]";
+        public static string RESUMPTION_TOKEN = "[RESUMPTION_TOKEN]";
+        public static string TOKEN = "[TOKEN]";
+        public static string RESUMPTION_COLUMN = "[RESUMPTION_COLUMN]";
+        public static string OAI_ERROR = "[OAI_ERROR]";
 
 
         protected String _field = "";
@@ -135,56 +146,13 @@ namespace OAIServer
         }
     }
 
-    public class SQLMaxValueMapping : FieldMapping
+    public class SQLMaxValueMapping : DatabaseMapping
     {
-        public String TableId = "";
-        public String Column = "";
-        public String ColumnAlias = "";
-        public String SQL = "";
-        public String DBCnnStr = "";
-
-        public override void Load(XmlNode node)
-        {
-            base.Load(node);
-            this.TableId = node.Attributes["table"].InnerText;
-            this.Column = node.Attributes["column"].InnerText;
-            this.ColumnAlias = node.Attributes["columnAlias"].InnerText;
-            this.SQL = node.Attributes["sql"].InnerText;
-            if (this.SQL.Length > 0 && ColumnAlias == "") this.ColumnAlias = Utility.NextColumnKey();
-        }
-
-        public override String GetValueSQL(DataConnection dc)
-        {
-            String val = "";
-
-            if (SQL != null && SQL.Length > 0)
-            {
-                val = SQL;
-                if (this.ColumnAlias != "") val += " " + ColumnAlias;
-            }
-            else
-            {
-                val = dc.GetMappedTable(TableId).AliasOrName + "." + Column;
-                if (this.ColumnAlias != "") val += " " + ColumnAlias;
-            }
-
-            return val;
-        }
-
-        public String ColumnOrAlias
-        {
-            get
-            {
-                if (ColumnAlias != null && ColumnAlias != "") return ColumnAlias;
-                return Column;
-            }
-        }
-
         public override Object GetValue(DataConnection dc)
         {
             Object val = null;
 
-            using (OleDbConnection cnn = new OleDbConnection(DBCnnStr))
+            using (OleDbConnection cnn = new OleDbConnection(dc.DBConnStr))
             {
                 cnn.Open();
                 OleDbCommand cmd = cnn.CreateCommand();
@@ -204,4 +172,32 @@ namespace OAIServer
             return val;
         }
     }
+
+    public class SQLMinValueMapping : DatabaseMapping
+    {
+        public override Object GetValue(DataConnection dc)
+        {
+            Object val = null;
+
+            using (OleDbConnection cnn = new OleDbConnection(dc.DBConnStr))
+            {
+                cnn.Open();
+                OleDbCommand cmd = cnn.CreateCommand();
+                if (SQL != null && SQL.Length > 0)
+                {
+                    cmd.CommandText = SQL;
+                }
+                else
+                {
+                    cmd.CommandText = "select min(" + Column + ") from " + dc.GetMappedTable(TableId).Name;
+                }
+
+                val = cmd.ExecuteScalar();
+                cnn.Close();
+            }
+
+            return val;
+        }
+    }
+
 }
