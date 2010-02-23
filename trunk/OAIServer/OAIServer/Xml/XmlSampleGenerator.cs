@@ -39,12 +39,13 @@ namespace OAIServer.Xml {
 
     public class XmlSampleGenerator {
         private XmlSchemaSet schemaSet;     
-        private String resultXml;
+        
         private XmlResolver xmlResolver;
         private InstanceElement instanceRoot; 
         private XmlQualifiedName rootElement;
         private string rootTargetNamespace;
-
+        private SQLValueGen _sqlValueGen = null;
+        
         internal const string NsXsd = "http://www.w3.org/2001/XMLSchema";
         internal const string NsXsi = "http://www.w3.org/2001/XMLSchema-instance";
         internal const string NsXml = "http://www.w3.org/XML/1998/namespace";
@@ -52,7 +53,7 @@ namespace OAIServer.Xml {
         internal XmlQualifiedName XsdNil= new XmlQualifiedName("nil", NsXsi );
         
         //Default options
-        private int maxThreshold = 5;
+        private int maxThreshold = 1;
         private int listLength = 1;
         private bool generateValues = true;
         private String indexingElement = "";
@@ -66,11 +67,11 @@ namespace OAIServer.Xml {
 
         private XmlSchemaType AnyType;        
         
-        internal delegate void ElementAddedHanlder(InstanceElement el, String path);
-        internal event ElementAddedHanlder ElementAdded;
+        //internal delegate void ElementAddedHanlder(InstanceElement el, String path);
+        //internal event ElementAddedHanlder ElementAdded;
 
-        internal delegate void AttributeAddedHanlder(InstanceAttribute attr, String path);
-        internal event AttributeAddedHanlder AttributeAdded;
+        //internal delegate void AttributeAddedHanlder(InstanceAttribute attr, String path);
+        //internal event AttributeAddedHanlder AttributeAdded;
 
         public int MaxThreshold {
             get {
@@ -111,6 +112,18 @@ namespace OAIServer.Xml {
             set
             {
                 indexingElement = value;
+            }
+        }
+
+        public SQLValueGen ValueGenerator
+        {
+            get
+            {
+                return _sqlValueGen;
+            }
+            set
+            {
+                _sqlValueGen = value;
             }
         }
 
@@ -303,11 +316,9 @@ namespace OAIServer.Xml {
               elem.FixedValue = eGlobalDecl.FixedValue;
               elem.IsNillable = eGlobalDecl.IsNillable;
 
-              if (ElementAdded != null) ElementAdded(elem, FindXPath(elem));
-
               if (eGlobalDecl.ElementSchemaType == AnyType)
               {
-                  elem.ValueGenerator = XmlValueGenerator.AnyGenerator;
+                  elem.ValueGenerator = _sqlValueGen; // XmlValueGenerator.AnyGenerator;
               }
               else
               {
@@ -332,22 +343,24 @@ namespace OAIServer.Xml {
                   }
                   else
                   { //elementType is XmlSchemaSimpleType
-                      elem.ValueGenerator = XmlValueGenerator.CreateGenerator(eGlobalDecl.ElementSchemaType.Datatype, listLength);
+                      elem.ValueGenerator = _sqlValueGen; // XmlValueGenerator.CreateGenerator(eGlobalDecl.ElementSchemaType.Datatype, listLength);
                   }
               }
-              if (elem.ValueGenerator != null && elem.ValueGenerator.Prefix == null)
-              {
-                  elem.ValueGenerator.Prefix = elem.QualifiedName.Name;
-              }
+              //if (elem.ValueGenerator != null && elem.ValueGenerator.Prefix == null)
+              //{
+              //    elem.ValueGenerator.Prefix = elem.QualifiedName.Name;
+              //}
 
               return true;
           } // End of e.IsAbstract
           return false;
         }
         
-        private void ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) {
-            if (ct.ContentModel != null && ct.ContentModel is XmlSchemaSimpleContent) {
-                elem.ValueGenerator = XmlValueGenerator.CreateGenerator(ct.Datatype, listLength);    
+        private void ProcessComplexType(XmlSchemaComplexType ct, InstanceElement elem) 
+        {
+            if (ct.ContentModel != null && ct.ContentModel is XmlSchemaSimpleContent) 
+            {
+                elem.ValueGenerator = _sqlValueGen; // XmlValueGenerator.CreateGenerator(ct.Datatype, listLength);    
             }
             else {
                 GenerateParticle(ct.ContentTypeParticle, false, elem);
@@ -396,9 +409,8 @@ namespace OAIServer.Xml {
                     attr = new InstanceAttribute(new XmlQualifiedName("any_Attr", "otherNS"));
                 }
                 if (attr != null) {
-                    attr.ValueGenerator = XmlValueGenerator.AnySimpleTypeGenerator;
+                    attr.ValueGenerator = _sqlValueGen; // XmlValueGenerator.AnySimpleTypeGenerator;
                     elem.AddAttribute(attr);
-                    if (AttributeAdded != null) AttributeAdded(attr, FindXPath(attr));
                     return;
                 }
             }
@@ -483,12 +495,11 @@ namespace OAIServer.Xml {
             iAttr.DefaultValue = attr.DefaultValue;
             iAttr.FixedValue = attr.FixedValue;
             iAttr.AttrUse = attr.Use;
-            iAttr.ValueGenerator = XmlValueGenerator.CreateGenerator(attr.AttributeSchemaType.Datatype, listLength);
-            if (iAttr.ValueGenerator != null && iAttr.ValueGenerator.Prefix == null) {
-                    iAttr.ValueGenerator.Prefix = iAttr.QualifiedName.Name;
-            }
+            iAttr.ValueGenerator = _sqlValueGen; // XmlValueGenerator.CreateGenerator(attr.AttributeSchemaType.Datatype, listLength);
+            //if (iAttr.ValueGenerator != null && iAttr.ValueGenerator.Prefix == null) {
+            //        iAttr.ValueGenerator.Prefix = iAttr.QualifiedName.Name;
+            //}
             elem.AddAttribute(iAttr);
-            if (AttributeAdded != null) AttributeAdded(iAttr, FindXPath(iAttr));
         }
 
         
@@ -575,7 +586,7 @@ namespace OAIServer.Xml {
                     elem = new InstanceElement(new XmlQualifiedName("any_element", "otherNS"));
                 }
                 if (elem != null) {
-                    elem.ValueGenerator = XmlValueGenerator.AnyGenerator;
+                    elem.ValueGenerator = _sqlValueGen; // XmlValueGenerator.AnyGenerator;
                     elem.Occurs = any.MaxOccurs >= maxThreshold ? maxThreshold : any.MaxOccurs;
                     elem.Occurs = any.MinOccurs > elem.Occurs ? any.MinOccurs : elem.Occurs;
                     grp.AddChild(elem);
@@ -759,7 +770,7 @@ namespace OAIServer.Xml {
                 xml += "<" + rootElement.QualifiedName.Name;
                 if (rootTargetNamespace != null) xml += " xmlns=\"" + rootTargetNamespace + "\"";
                 xml += " xmlns:xsi=\"" + NsXsi + "\">" + Environment.NewLine;
-                xml += ProcessElementAttrs(rootElement);
+                xml += ProcessElementAttrs(rootElement, 0);
                 xml += ProcessComment(rootElement);
                 xml += CheckIfMixed(rootElement);
                 xml += Environment.NewLine;
@@ -775,7 +786,7 @@ namespace OAIServer.Xml {
                     }
                     else if (generateValues) 
                     {
-                        xml += rootElement.ValueGenerator.GenerateValue();
+                        xml += rootElement.ValueGenerator.GetValue(0, FindXPath(rootElement));
                     }
                 }
                 else 
@@ -844,7 +855,10 @@ namespace OAIServer.Xml {
                 return "";
             }
             instanceElementsProcessed.Add(elem, elem);
-            for (int i=0; i < elem.Occurs; i++) 
+
+            bool more = true;
+            int index = 0;
+            while (more)
             {
                 String innerText = "";
 
@@ -860,7 +874,9 @@ namespace OAIServer.Xml {
                     }
                     else if (generateValues)
                     {
-                        innerText = elem.ValueGenerator.GenerateValue();
+                        ValueGenResult res = elem.ValueGenerator.GetValue(index, FindXPath(elem));
+                        more = res.MoreData;
+                        if ( res.Value != null) innerText = res.Value.ToString();
                     }
                 }
 
@@ -875,7 +891,7 @@ namespace OAIServer.Xml {
                     }
                 }
 
-                String attrText = ProcessElementAttrs(elem);
+                String attrText = ProcessElementAttrs(elem, index);
 
                 if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
                 {
@@ -916,6 +932,8 @@ namespace OAIServer.Xml {
                     if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":"; 
                     xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
                 }
+
+                index += 1;
                 
             }
             instanceElementsProcessed.Remove(elem);
@@ -947,7 +965,7 @@ namespace OAIServer.Xml {
             return xml;
         }
 
-        private String ProcessElementAttrs(InstanceElement elem) 
+        private String ProcessElementAttrs(InstanceElement elem, int recordIndex) 
         {
             String xml = "";
             if(elem.XsiType != XmlQualifiedName.Empty) 
@@ -979,7 +997,8 @@ namespace OAIServer.Xml {
                     }
                     else if (generateValues) 
                     {
-                        val = attr.ValueGenerator.GenerateValue();
+                        ValueGenResult res = elem.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
+                        if (res.Value != null) val = res.Value.ToString();                        
                     }
 
                     if (val.Length > 0)

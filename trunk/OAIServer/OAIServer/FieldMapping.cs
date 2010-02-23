@@ -81,6 +81,7 @@ namespace OAIServer
         public String Column = "";
         public String ColumnAlias = "";
         public String SQL = "";
+        public String OrderBy = "";
 
         public override void Load(XmlNode node)
         {
@@ -89,6 +90,7 @@ namespace OAIServer
             this.Column = node.Attributes["column"].InnerText;
             this.ColumnAlias = node.Attributes["columnAlias"].InnerText;
             this.SQL = node.Attributes["sql"].InnerText;
+            if (node.Attributes["orderBy"] != null) this.OrderBy = node.Attributes["orderBy"].InnerText;
         }
 
         public override String GetValueSQL(DataConnection dc)

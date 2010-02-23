@@ -40,7 +40,7 @@ namespace OAIServer
                 {
                     XmlNode nameNode = namesNode.AppendChild(doc.CreateElement("TaxonName"));
 
-                    nameNode.AppendChild(doc.CreateElement("NameFull")).InnerText = GetFieldValue(NZORNameObject, "");
+                    //nameNode.AppendChild(doc.CreateElement("NameFull")).InnerText = GetFieldValue(NZORNameObject, "");
                 }
             }
 

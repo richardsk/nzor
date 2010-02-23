@@ -90,10 +90,13 @@ namespace OAIServer
             if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
 
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
-            DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
-            if (col != null)
+            if (fm != null)
             {
-                val = _results.Tables[set].Rows[0][col].ToString();
+                DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
+                if (col != null)
+                {
+                    val = _results.Tables[set].Rows[0][col].ToString();
+                }
             }
 
             return val;
@@ -159,6 +162,8 @@ namespace OAIServer
                 //Record Metadata
                 String xVal = GetRecordMetadata(metadataPrefix, id);
                 Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+
+                xml = xml.Replace(FieldMapping.OAI_ERROR, "");
             }
             catch (OAIException ex)
             {

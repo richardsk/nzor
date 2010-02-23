@@ -98,12 +98,14 @@ namespace OAIServer
 
                     String idCol = "";   
                     String idColName = "";
+                    String orderby = "";
                     DatabaseMapping rcm = (DatabaseMapping)dc.GetMapping(FieldMapping.RESUMPTION_COLUMN);
                     if (rcm == null)
                     {
                         DatabaseMapping idm = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
                         idCol = idm.GetValueSQL(dc);
                         idColName = idm.ColumnOrAlias;
+                        if (idm.OrderBy != null && idm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(idm.TableId).AliasOrName + "." + idm.OrderBy;
                     }
                     else
                     {
@@ -121,8 +123,10 @@ namespace OAIServer
                     else
                     {
                         if (_requestedResumptionToken != null && _requestedResumptionToken != "") return null; //no records for this set in this iteration
-                    }                    
+                    }
 
+                    sql += orderby;
+                                        
                     cmd.CommandText = sql;
 
                     OleDbDataAdapter da = new OleDbDataAdapter(cmd);

@@ -21,7 +21,7 @@
         <Table id="1" name="tblName" alias="" pk="NameGuid">
           <TableJoin id="2" name="tblTaxonRank" alias="" pk="TaxonRankPk" type="inner" fkFrom="NameTaxonRankFk" fkTo="TaxonRankPk">        
           </TableJoin>
-          <TableJoin id="3" name="tblID" alias="" pk="Pk" type="inner" fkFrom="NameGuid" fkTo="ID" orderby="Counter"></TableJoin>
+          <TableJoin id="3" name="tblID" alias="" pk="Pk" type="inner" fkFrom="NameGuid" fkTo="ID" orderBy="Counter"></TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="NameUpdatedDate" columnAlias="" sql="" datatype="" />
@@ -58,14 +58,15 @@
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="BibliographyGuid" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" datatype="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="BibliographyUpdatedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Name]" table="1" column="BibliographyNameFk" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AccordingTo]" table="1" column="BibliographyReferenceFk" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="BibliographyGuid" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="BibliographyNameFk" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AccordingToId]" table="1" column="BibliographyReferenceFk" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AcceptedConcept]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AcceptedConceptProvider]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptId]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptProviderId]" table="1" column="" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ParentConcept]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ParentConceptProvider]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptProviderId]" table="1" column="" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="" columnAlias="" sql="" datatype="" />
         </Mappings>
       </DataConnection>

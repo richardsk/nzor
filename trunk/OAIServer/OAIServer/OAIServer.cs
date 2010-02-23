@@ -11,7 +11,7 @@ namespace OAIServer
     {
         public static List<RepositoryConfig> ConfigList = new List<RepositoryConfig>();
 
-        public static void Load(String configDir)
+        public static void  Load(String configDir)
         {
             ConfigList.Clear();
 

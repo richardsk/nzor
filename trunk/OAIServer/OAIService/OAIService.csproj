@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="Config\nzor_provider.xsd">
     </Content>
+    <Content Include="Services\plantnames_config.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,6 +16,7 @@ namespace OAIServer
         public String PK = "";
         public String FKFrom = "";
         public String FKTo = "";
+        public String JoinCondition = "";
 
         public MappedTable ParentTable = null;
 
@@ -39,6 +40,7 @@ namespace OAIServer
             if (node.Attributes["type"] != null) this.Type = node.Attributes["type"].InnerText;
             if (node.Attributes["fkFrom"] != null) this.FKFrom = node.Attributes["fkFrom"].InnerText;
             if (node.Attributes["fkTo"] != null) this.FKTo = node.Attributes["fkTo"].InnerText;
+            if (node.Attributes["joinCondition"] != null) this.JoinCondition = node.Attributes["joinCondition"].InnerText;
 
             this.ParentTable = parent;
 
@@ -82,7 +84,11 @@ namespace OAIServer
             if (joint) sql += this.Type + " join ";            
             sql += this.Name + " ";
             if (this.Alias != "") sql += this.Alias + " ";
-            if (joint) sql += " on " + this.AliasOrName + "." + this.FKTo + " = " + this.ParentTable.AliasOrName + "." + this.FKFrom + " ";
+            if (joint)
+            {
+                sql += " on " + this.AliasOrName + "." + this.FKTo + " = " + this.ParentTable.AliasOrName + "." + this.FKFrom + " ";
+                if (JoinCondition != null && JoinCondition != "") sql += " and " + JoinCondition + " ";
+            }
             foreach (MappedTable mt in JoinedTables)
             {
                 mt.GetFullSql(ref sql);

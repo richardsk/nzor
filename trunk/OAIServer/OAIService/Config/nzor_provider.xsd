@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
-<xs:schema xmlns="http://www.nzor.org.nz/" targetNamespace="http://www.nzor.org.nz/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns="http://www.nzor.org.nz/schema/provider/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nzor.org.nz/schema/provider/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="DataSet">
 		<xs:annotation>
-			<xs:documentation>NZOR data set for consumers</xs:documentation> 
+			<xs:documentation>NZOR data set for consumers</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>

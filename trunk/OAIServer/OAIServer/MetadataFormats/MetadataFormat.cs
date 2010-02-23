@@ -80,8 +80,8 @@ namespace OAIServer
             genr.AutoGenerateValues = false;
             //genr.IndexingElement = IndexingElement;
 
-            genr.ElementAdded += new Xml.XmlSampleGenerator.ElementAddedHanlder(this.ElementAdded);
-            genr.AttributeAdded += new Xml.XmlSampleGenerator.AttributeAddedHanlder(this.AttributeAdded);
+            //genr.ElementAdded += new Xml.XmlSampleGenerator.ElementAddedHanlder(this.ElementAdded);
+            //genr.AttributeAdded += new Xml.XmlSampleGenerator.AttributeAddedHanlder(this.AttributeAdded);
 
             MemoryStream ms = new MemoryStream();
             XmlTextWriter wr = new XmlTextWriter(ms, Encoding.UTF8);
@@ -99,63 +99,63 @@ namespace OAIServer
             //return doc.OuterXml;
         }
 
-        internal void ElementAdded(Xml.InstanceElement el, String path)
-        {
-            if (el != null)
-            {
-                SchemaMapping sm = _mapping.GetMapping(path);
-                if (sm != null)
-                {
-                    String val = GetFieldValue(sm.Set, sm.Field);
-                    if (val != null) el.FixedValue = val.ToString();
-                }
-            }
-        }
+        //internal void ElementAdded(Xml.InstanceElement el, String path)
+        //{
+        //    if (el != null)
+        //    {
+        //        SchemaMapping sm = _mapping.GetMapping(path);
+        //        if (sm != null)
+        //        {
+        //            String val = GetFieldValue(sm.Set, sm.Field);
+        //            if (val != null) el.FixedValue = val.ToString();
+        //        }
+        //    }
+        //}
 
-        internal void AttributeAdded(Xml.InstanceAttribute attr, String path)
-        {
-            if (attr != null)
-            {
-                SchemaMapping sm = _mapping.GetMapping(path);
-                if (sm != null)
-                {
-                    String val = GetFieldValue(sm.Set, sm.Field);
-                    if (val != null) attr.FixedValue = val.ToString();
-                }
-            }
-        }
+        //internal void AttributeAdded(Xml.InstanceAttribute attr, String path)
+        //{
+        //    if (attr != null)
+        //    {
+        //        SchemaMapping sm = _mapping.GetMapping(path);
+        //        if (sm != null)
+        //        {
+        //            String val = GetFieldValue(sm.Set, sm.Field);
+        //            if (val != null) attr.FixedValue = val.ToString();
+        //        }
+        //    }
+        //}
 
-        protected String GetFieldValue(String set, String dbField)
-        {
-            String val = "";
-            if (_results == null || _results.Tables.Count == 0) return "";
+        //protected String GetFieldValue(String set, String dbField)
+        //{
+        //    String val = "";
+        //    if (_results == null || _results.Tables.Count == 0) return "";
 
-            if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
+        //    if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
 
-            DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
-            DatabaseMapping idField = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(FieldMapping.IDENTIFIER);
-            DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
-            if (col != null)
-            {
-                if (_RecordID != null && _RecordID.Length > 0)
-                {
-                    foreach (DataRow r in _results.Tables[set].Rows)
-                    {
-                        if (r[idField.ColumnOrAlias].ToString().ToLower() == _RecordID.ToLower())
-                        {
-                            val = r[col].ToString();
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    val = _results.Tables[set].Rows[0][col].ToString();
-                }
-            }
+        //    DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
+        //    DatabaseMapping idField = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(FieldMapping.IDENTIFIER);
+        //    DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
+        //    if (col != null)
+        //    {
+        //        if (_RecordID != null && _RecordID.Length > 0)
+        //        {
+        //            foreach (DataRow r in _results.Tables[set].Rows)
+        //            {
+        //                if (r[idField.ColumnOrAlias].ToString().ToLower() == _RecordID.ToLower())
+        //                {
+        //                    val = r[col].ToString();
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            val = _results.Tables[set].Rows[0][col].ToString();
+        //        }
+        //    }
 
-            return val;
-        }
+        //    return val;
+        //}
 
 
         public void XsdValEvent(object sender, ValidationEventArgs e)
