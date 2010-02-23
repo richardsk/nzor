@@ -78,10 +78,9 @@ namespace OAIServer
             schemas.Add(s);
             Xml.XmlSampleGenerator genr = new Xml.XmlSampleGenerator(schemas, new XmlQualifiedName("DataSet"));
             genr.AutoGenerateValues = false;
-            //genr.IndexingElement = IndexingElement;
 
-            //genr.ElementAdded += new Xml.XmlSampleGenerator.ElementAddedHanlder(this.ElementAdded);
-            //genr.AttributeAdded += new Xml.XmlSampleGenerator.AttributeAddedHanlder(this.AttributeAdded);
+            SQLValueGen gen = new SQLValueGen(_rep, this, _mapping, _results, _RecordID);
+            genr.ValueGenerator = gen;
 
             MemoryStream ms = new MemoryStream();
             XmlTextWriter wr = new XmlTextWriter(ms, Encoding.UTF8);

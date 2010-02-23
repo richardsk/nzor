@@ -862,6 +862,8 @@ namespace OAIServer.Xml {
             {
                 String innerText = "";
 
+                more = false;
+
                 if (elem.ValueGenerator != null)
                 {
                     if (elem.IsFixed)
@@ -872,11 +874,11 @@ namespace OAIServer.Xml {
                     {
                         innerText = elem.DefaultValue;
                     }
-                    else if (generateValues)
+                    else 
                     {
                         ValueGenResult res = elem.ValueGenerator.GetValue(index, FindXPath(elem));
                         more = res.MoreData;
-                        if ( res.Value != null) innerText = res.Value.ToString();
+                        if (res.Value != null) innerText = res.Value.ToString();
                     }
                 }
 
