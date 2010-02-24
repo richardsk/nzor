@@ -23,11 +23,10 @@ namespace OAIServer
         {
             //all sets
             DataSet ds = null;
+            req.NumRecords = 0;
 
             foreach (DataConnection dc in _rep.DataConnections)
             {
-                req.NumRecords = 0;
-
                 DataSet tmpDs = GetResultData(dc.Set, req.FromDate, req.ToDate, req);
                 if (ds == null)
                 {
