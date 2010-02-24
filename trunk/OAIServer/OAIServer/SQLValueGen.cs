@@ -59,6 +59,13 @@ namespace OAIServer
             {
                 if (_recordId != null && _recordId.Length > 0)
                 {
+                    //DataRow[] recs = _data.Tables[set].Select(idField.ColumnOrAlias + "='" + _recordId + "'");
+
+                    //if (recs != null && recs.Length > 0)
+                    //{
+                    //    value = recs[0][col].ToString();
+                    //}
+
                     foreach (DataRow r in _data.Tables[set].Rows)
                     {
                         if (r[idField.ColumnOrAlias].ToString().ToLower() == _recordId.ToLower())

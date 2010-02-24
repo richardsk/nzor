@@ -997,13 +997,13 @@ namespace OAIServer.Xml {
                     {
                         val = attr.FixedValue;
                     }
-                    else if (generateValues) 
+                    else if (attr.ValueGenerator != null)
                     {
-                        ValueGenResult res = elem.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
+                        ValueGenResult res = attr.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
                         if (res.Value != null) val = res.Value.ToString();                        
                     }
 
-                    if (val.Length > 0)
+                    if (val != null && val.Length > 0)
                     {
                         if (attr.QualifiedName.Namespace == NsXml)
                         {
