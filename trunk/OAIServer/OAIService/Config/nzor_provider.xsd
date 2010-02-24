@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
-<xs:schema xmlns="http://www.nzor.org.nz/schema/provider/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nzor.org.nz/schema/provider/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="DataSet">
 		<xs:annotation>
 			<xs:documentation>NZOR data set for consumers</xs:documentation>
@@ -128,7 +128,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 															<xs:attribute name="type">
 																<xs:simpleType>
 																	<xs:restriction base="xs:string">
-																		<xs:enumeration value="full"/>
+																		<xs:enumeration value="abbrev"/>
 																		<xs:enumeration value="abbreviation"/>
 																	</xs:restriction>
 																</xs:simpleType>
@@ -261,47 +261,6 @@ The type of date can be modified to indicate this is the actual date of publicat
 												<xs:documentation>The full name including appropriate rank and author abbreviations.</xs:documentation>
 											</xs:annotation>
 										</xs:element>
-										<xs:element name="Representations">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="NamePart" type="xs:string">
-														<xs:annotation>
-															<xs:documentation>The name excluding the author abbreviations</xs:documentation>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="NameHtml" type="xs:string">
-														<xs:annotation>
-															<xs:documentation>&lt;em&gt;Acer&lt;/em&gt; L.</xs:documentation>
-														</xs:annotation>
-													</xs:element>
-													<xs:element name="NameHtml2" minOccurs="0">
-														<xs:annotation>
-															<xs:documentation>
-																<em>Acer</em> L.</xs:documentation>
-														</xs:annotation>
-														<xs:complexType mixed="true">
-															<xs:choice minOccurs="0" maxOccurs="unbounded">
-																<xs:element name="em"/>
-															</xs:choice>
-														</xs:complexType>
-													</xs:element>
-													<xs:element name="NameHtm3" minOccurs="0">
-														<xs:annotation>
-															<xs:documentation>
-																<em>Acer</em>
-																<text>L.</text>
-															</xs:documentation>
-														</xs:annotation>
-														<xs:complexType>
-															<xs:choice maxOccurs="unbounded">
-																<xs:element name="em"/>
-																<xs:element name="text"/>
-															</xs:choice>
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
 										<xs:element name="Rank" type="xs:string"/>
 										<xs:element name="CanonicalName">
 											<xs:annotation>
@@ -380,7 +339,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 										</xs:element>
 										<xs:element name="NomenclaturalCode" type="xs:string"/>
 									</xs:sequence>
-									<xs:attribute name="id" type="xs:ID" use="required"/>
+									<xs:attribute name="id" type="xs:string" use="required"/>
 									<xs:attribute name="createdDate" type="xs:date">
 										<xs:annotation>
 											<xs:documentation>Date record created</xs:documentation>
@@ -390,6 +349,16 @@ The type of date can be modified to indicate this is the actual date of publicat
 										<xs:annotation>
 											<xs:documentation>Date record last modified</xs:documentation>
 										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="qualityCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="Null"/>
+												<xs:enumeration value="Unvalidated"/>
+												<xs:enumeration value="Validated Secondary Source"/>
+												<xs:enumeration value="Validated Primary Source"/>
+											</xs:restriction>
+										</xs:simpleType>
 									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
@@ -415,6 +384,8 @@ The type of date can be modified to indicate this is the actual date of publicat
 									</xs:sequence>
 									<xs:attribute name="id" type="xs:ID" use="required"/>
 									<xs:attribute name="isTradeName" type="xs:boolean"/>
+									<xs:attribute name="createdDate" type="xs:dateTime"/>
+									<xs:attribute name="modifiedDate" type="xs:dateTime"/>
 								</xs:complexType>
 							</xs:element>
 						</xs:choice>
@@ -455,28 +426,14 @@ The type of date can be modified to indicate this is the actual date of publicat
 													<xs:sequence>
 														<xs:element name="AcceptedConcept" minOccurs="0">
 															<xs:complexType>
-																<xs:sequence>
-																	<xs:element name="Status" maxOccurs="unbounded">
-																		<xs:complexType>
-																			<xs:attribute name="providerId" use="required"/>
-																			<xs:attribute name="inUse" type="xs:boolean" use="required"/>
-																		</xs:complexType>
-																	</xs:element>
-																</xs:sequence>
 																<xs:attribute name="ref" use="required"/>
+																<xs:attribute name="inUse" type="xs:boolean" use="required"/>
 															</xs:complexType>
 														</xs:element>
 														<xs:element name="ParentConcept" minOccurs="0">
 															<xs:complexType>
-																<xs:sequence>
-																	<xs:element name="Status" maxOccurs="unbounded">
-																		<xs:complexType>
-																			<xs:attribute name="providerId" use="required"/>
-																			<xs:attribute name="inUse" type="xs:boolean" use="required"/>
-																		</xs:complexType>
-																	</xs:element>
-																</xs:sequence>
 																<xs:attribute name="ref" use="required"/>
+																<xs:attribute name="inUse" type="xs:boolean" use="required"/>
 															</xs:complexType>
 														</xs:element>
 														<xs:element name="HigherClassification"/>
@@ -525,10 +482,26 @@ The type of date can be modified to indicate this is the actual date of publicat
 																	<xs:element name="Gender" type="xs:string" minOccurs="0"/>
 																	<xs:element name="PartOfTaxon" type="xs:string" minOccurs="0"/>
 																	<xs:element name="LifeStage" type="xs:string" minOccurs="0"/>
-																	<xs:element name="GeoRegion" type="xs:string" minOccurs="0"/>
+																	<xs:element name="GeoRegion" minOccurs="0">
+																		<xs:complexType>
+																			<xs:simpleContent>
+																				<xs:extension base="xs:string">
+																					<xs:attribute name="geographicSchema" type="xs:string"/>
+																				</xs:extension>
+																			</xs:simpleContent>
+																		</xs:complexType>
+																	</xs:element>
 																	<xs:element name="InUse" type="xs:boolean"/>
 																</xs:sequence>
 																<xs:attribute name="conceptRef" type="xs:string" use="required"/>
+																<xs:attribute name="type">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="is vernacular for"/>
+																			<xs:enumeration value="is trade name for"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:attribute>
 															</xs:complexType>
 														</xs:element>
 													</xs:sequence>
@@ -640,6 +613,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 														</xs:simpleType>
 													</xs:element>
 												</xs:sequence>
+												<xs:attribute name="id" type="xs:string"/>
 												<xs:attribute name="createdDate" type="xs:date">
 													<xs:annotation>
 														<xs:documentation>Date record created</xs:documentation>
@@ -719,7 +693,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 	<xs:complexType name="nameRefType">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="ref"/>
+				<xs:attribute name="ref" type="xs:string"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>

@@ -996,3 +996,41 @@ Invalid column name 'Uninomial'. :    at System.Data.OleDb.OleDbDataReader.Proce
    at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 337
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 281
    at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+24/02/2010 4:21:29 p.m. : ERROR : The 'DataConnections' start tag on line 18 does not match the end tag of 'Service'. Line 101, position 5. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowTagMismatch(NodeData startTag)
+   at System.Xml.XmlTextReaderImpl.ParseEndElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 23
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+24/02/2010 4:21:31 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 111
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 41
+24/02/2010 4:21:41 p.m. : ERROR : The 'DataConnections' start tag on line 18 does not match the end tag of 'Service'. Line 101, position 5. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ThrowTagMismatch(NodeData startTag)
+   at System.Xml.XmlTextReaderImpl.ParseEndElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   at System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.Load(String filename)
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 23
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33
+24/02/2010 4:21:41 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 111
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 41
+24/02/2010 4:22:49 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 111
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 41
+24/02/2010 4:22:57 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 111
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 41

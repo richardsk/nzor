@@ -32,6 +32,14 @@
     <SchemaMapping set="TaxonConcept" field="[ParentConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@inUse]" />
 
     <SchemaMapping set="Publication" field="[Citation]" xpath="/DataSet/Publications/Publication/Citation" />
-    
+
+    <SchemaMapping set="Metadata" field="[ProviderId]" xpath="/DataSet/Metadata/Provider[@id]" />
+    <SchemaMapping set="Metadata" field="[ProviderName]" xpath="/DataSet/Metadata/Provider/Name" />
+    <SchemaMapping set="Metadata" field="[OrganisationUrl]" xpath="/DataSet/Metadata/Provider/OrganisationURL" />
+    <SchemaMapping set="Metadata" field="[MetadataDate]" xpath="/DataSet/Metadata/DateGenerated" />
+    <SchemaMapping set="Metadata" field="[Disclaimer]" xpath="/DataSet/Metadata/Useage/Disclaimer" />
+    <SchemaMapping set="Metadata" field="[Attribution]" xpath="/DataSet/Metadata/Useage/Attribution" />
+    <SchemaMapping set="Metadata" field="[Licensing]" xpath="/DataSet/Metadata/Useage/Licensing" />
+        
   </SchemaMappings>
 </MetadataFormatMapping>
