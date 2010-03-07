@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Services>
-  <Service name="nzflora">
+  <Service name="plant_names">
     <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
 
     <Sets>
@@ -49,6 +49,7 @@
         <Table id="1" name="Metadata" alias="" pk="ProviderId">
         </Table>
         <Mappings>
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ProviderId" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[ProviderId]" table="1" column="ProviderId" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[ProviderName]" table="1" column="Name" columnAlias="" sql="" datatype="" />
           <Mapping type="DatabaseMapping" field="[Disclaimer]" table="1" column="Disclaimer" columnAlias="" sql="" datatype="" />
@@ -82,19 +83,26 @@
         </Mappings>
       </DataConnection>
 
-      <!--DataConnection set="Publication">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver05;integrated security=SSPI;initial catalog=PlantNames_Dev;persist security info=true</DBConnectionString>
-        <Table id="1" name="tblReference" alias="" pk="ReferenceID">
+      <DataConnection set="Publication">
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <Table id="1" name="Publication" alias="" pk="PublicationID">
+          <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId">            
+          </TableJoin>
         </Table>
         <Mappings>
-          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ReferenceUpdatedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ReferenceID" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblReference.ReferenceIsDeleted = 1 then 'deleted' else '' end)" datatype="" />
-          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ReferenceUpdatedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="ReferenceGenCitation" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="PublicationID" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Publication.IsDeleted = 1 then 'deleted' else '' end)" datatype="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="Citation" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitle]" table="2" column="Title" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleType]" table="2" column="type" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleLevel]" table="2" column="Level" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" datatype="" />
+          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" datatype="" />
 
         </Mappings>
-      </DataConnection-->
+      </DataConnection>
     </DataConnections>
 
   </Service>

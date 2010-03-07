@@ -17,6 +17,17 @@ namespace OAIService
     [System.ServiceModel.Activation.AspNetCompatibilityRequirements(RequirementsMode = System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Allowed)] 
     public class OAIPMHService : IOAIPMHService
     {
+        private bool IsDebug()
+        {
+            bool isDebug = false;
+            try
+            {
+                isDebug = bool.Parse(ConfigurationManager.AppSettings["DEBUG"]);
+            }
+            catch (Exception)
+            { }
+            return isDebug;
+        }
 
         public XElement Identify(string repository)
         {
@@ -25,11 +36,15 @@ namespace OAIService
                 IdentifyRequest req = new IdentifyRequest();
                 return req.GetResultXml(repository);
             }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
             catch (Exception ex)
             {
                 Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
             }
-
             return null;
         }
 
@@ -40,9 +55,14 @@ namespace OAIService
                 GetRecordRequest req = new GetRecordRequest();
                 return req.GetResultXml(repository, id, mdPrefix);
             }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
             catch (Exception ex)
             {
                 Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
             }
 
             return null;
@@ -65,11 +85,15 @@ namespace OAIService
                 ListRecordsRequest req = new ListRecordsRequest();
                 return req.GetResultXml(repository, mdPrefix, set, fromDate, toDate, resumptionToken);
             }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
             catch (Exception ex)
             {
                 Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
             }
-
             return null;
         }
 

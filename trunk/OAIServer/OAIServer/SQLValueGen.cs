@@ -53,6 +53,8 @@ namespace OAIServer
             if (_data.Tables[set] == null || _data.Tables[set].Rows.Count == 0) return false;
 
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
+            if (fm == null) return false;
+
             DatabaseMapping idField = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(FieldMapping.IDENTIFIER);
             DataColumn col = _data.Tables[set].Columns[fm.ColumnOrAlias];
             if (col != null)

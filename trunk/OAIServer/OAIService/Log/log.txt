@@ -1034,3 +1034,183 @@ Invalid column name 'Uninomial'. :    at System.Data.OleDb.OleDbDataReader.Proce
 24/02/2010 4:22:57 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 111
    at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 41
+5/03/2010 4:15:42 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 105
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+5/03/2010 4:17:01 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 105
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+5/03/2010 4:17:29 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 105
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+5/03/2010 4:26:39 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 105
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+8/03/2010 10:08:17 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 66
+8/03/2010 10:10:36 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 65
+8/03/2010 10:15:03 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:17:24 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:17:38 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:18:24 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:19:42 a.m. : ERROR : Cannot open database "PlantNames_Cache" requested by the login. The login failed. :    at System.Data.OleDb.OleDbConnectionInternal..ctor(OleDbConnectionString constr, OleDbConnection connection)
+   at System.Data.OleDb.OleDbConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup)
+   at System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   at System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.OleDb.OleDbConnection.Open()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate, OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 58
+   at OAIServer.ListRecordsRequest.GetResultData(OAIRequestSession req) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 30
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 203
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:20:14 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.SQLValueGen.GetFieldValue(String set, String dbField, Int32 recordIndex, Object& value) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 57
+   at OAIServer.SQLValueGen.GetValue(Int32 recordIndex, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 40
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 879
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 336
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 280
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:22:27 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.SQLValueGen.GetFieldValue(String set, String dbField, Int32 recordIndex, Object& value) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 57
+   at OAIServer.SQLValueGen.GetValue(Int32 recordIndex, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 40
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 879
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 336
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 280
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:23:45 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.SQLValueGen.GetFieldValue(String set, String dbField, Int32 recordIndex, Object& value) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 57
+   at OAIServer.SQLValueGen.GetValue(Int32 recordIndex, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 40
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 879
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 336
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 280
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:27:16 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.SQLValueGen.GetFieldValue(String set, String dbField, Int32 recordIndex, Object& value) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 57
+   at OAIServer.SQLValueGen.GetValue(Int32 recordIndex, String path) in C:\Development\NZOR\Dev\OAIServer\OAIServer\SQLValueGen.cs:line 40
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 879
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 891
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 336
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 280
+   at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 78
+8/03/2010 10:32:28 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 182
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 163
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 52
+8/03/2010 10:33:01 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 182
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 163
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 52
+8/03/2010 10:33:48 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 182
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 163
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 52
+8/03/2010 10:35:20 a.m. : ERROR : Exception of type 'OAIServer.OAIException' was thrown. :    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 107
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 52
+8/03/2010 11:43:27 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.OAIServer.GetFixedFieldValue(String repository, String field) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 67
+   at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 25
+   at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 37
+8/03/2010 11:58:46 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.OAIServer.GetFixedFieldValue(String repository, String field) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 67
+   at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 25
+   at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 37
+8/03/2010 12:00:58 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.OAIServer.GetFixedFieldValue(String repository, String field) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 67
+   at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 25
+   at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 37
+8/03/2010 12:01:07 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 113
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+8/03/2010 12:01:18 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 113
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56

@@ -32,6 +32,14 @@
     <SchemaMapping set="TaxonConcept" field="[ParentConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@inUse]" />
 
     <SchemaMapping set="Publication" field="[Citation]" xpath="/DataSet/Publications/Publication/Citation" />
+    <SchemaMapping set="Publication" field="[PublicationId]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier" />
+    <SchemaMapping set="Publication" field="[PublicationIdType]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier[@type]" />
+    <SchemaMapping set="Publication" field="[PublicationAuthors]" xpath="/DataSet/Publications/Publication/Authors/Simple" />
+    <SchemaMapping set="Publication" field="[DateOfPublication]" xpath="/DataSet/Publications/Publication/Dates/Date" />
+    <SchemaMapping set="Publication" field="[DateOnPublication]" xpath="/DataSet/Publications/Publication/Dates/Date" />
+    <SchemaMapping set="Publication" field="[PublicationTitle]" xpath="/DataSet/Publications/Publication/Titles/Title" />
+    <SchemaMapping set="Publication" field="[PublicationTitleType]" xpath="/DataSet/Publications/Publication/Titles/Title[@type]" />
+    <SchemaMapping set="Publication" field="[PublicationTitleLevel]" xpath="/DataSet/Publications/Publication/Titles/Title[@level]" />
 
     <SchemaMapping set="Metadata" field="[ProviderId]" xpath="/DataSet/Metadata/Provider[@id]" />
     <SchemaMapping set="Metadata" field="[ProviderName]" xpath="/DataSet/Metadata/Provider/Name" />

@@ -104,6 +104,8 @@ namespace OAIServer
 
         public XElement GetResultXml(String repository, String id, String metadataPrefix)
         {
+            if (metadataPrefix == null) throw new OAIException(OAIError.badArgument);
+
             WebOperationContext ctx = WebOperationContext.Current;
             
             _rep = OAIServer.GetConfig(repository);

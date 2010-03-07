@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2009 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="DataSet">
 		<xs:annotation>
-			<xs:documentation>NZOR data set for consumers</xs:documentation>
+			<xs:documentation>NZOR data set from Providers</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -13,10 +13,10 @@
 							<xs:element name="Provider">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="Name"/>
-										<xs:element name="OrganisationURL"/>
+										<xs:element name="Name" type="xs:string"/>
+										<xs:element name="OrganisationURL" type="xs:string"/>
 									</xs:sequence>
-									<xs:attribute name="id" type="xs:ID" use="required"/>
+									<xs:attribute name="id" type="xs:string" use="required"/>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="DateGenerated" type="xs:dateTime"/>
@@ -119,20 +119,20 @@ The type of date can be modified to indicate this is the actual date of publicat
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="Title" maxOccurs="unbounded">
-														<xs:complexType mixed="true">
-															<xs:choice>
-																<xs:element name="i" minOccurs="0" maxOccurs="unbounded"/>
-																<xs:element name="b" minOccurs="0" maxOccurs="unbounded"/>
-															</xs:choice>
-															<xs:attribute name="level" type="xs:int"/>
-															<xs:attribute name="type">
-																<xs:simpleType>
-																	<xs:restriction base="xs:string">
-																		<xs:enumeration value="abbrev"/>
-																		<xs:enumeration value="abbreviation"/>
-																	</xs:restriction>
-																</xs:simpleType>
-															</xs:attribute>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="level" type="xs:int"/>
+																	<xs:attribute name="type">
+																		<xs:simpleType>
+																			<xs:restriction base="xs:string">
+																				<xs:enumeration value="full"/>
+																				<xs:enumeration value="abbreviation"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:attribute>
+																</xs:extension>
+															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
@@ -181,17 +181,17 @@ The type of date can be modified to indicate this is the actual date of publicat
 										<xs:element name="Publisher" minOccurs="0">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name"/>
-													<xs:element name="City"/>
+													<xs:element name="Name" type="xs:string"/>
+													<xs:element name="City" type="xs:string"/>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="Keywords" minOccurs="0">
 											<xs:complexType>
 												<xs:choice>
-													<xs:element name="Simple"/>
+													<xs:element name="Simple" type="xs:string"/>
 													<xs:sequence>
-														<xs:element name="Keyword" maxOccurs="unbounded"/>
+														<xs:element name="Keyword" type="xs:string" maxOccurs="unbounded"/>
 													</xs:sequence>
 												</xs:choice>
 											</xs:complexType>
@@ -218,12 +218,9 @@ The type of date can be modified to indicate this is the actual date of publicat
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="id" type="xs:ID" use="required"/>
-									<xs:attribute name="parentPublicationRef"/>
+									<xs:attribute name="id" type="xs:string" use="required"/>
+									<xs:attribute name="parentPublicationRef" type="xs:string"/>
 									<xs:attribute name="type">
-										<xs:annotation>
-											<xs:documentation>Not fully enumerated</xs:documentation>
-										</xs:annotation>
 										<xs:simpleType>
 											<xs:restriction base="xs:string">
 												<xs:enumeration value="Book"/>
@@ -235,12 +232,12 @@ The type of date can be modified to indicate this is the actual date of publicat
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:attribute>
-									<xs:attribute name="createdDate" type="xs:date">
+									<xs:attribute name="createdDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record created</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
-									<xs:attribute name="modifiedDate" type="xs:date">
+									<xs:attribute name="modifiedDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record last modified</xs:documentation>
 										</xs:annotation>
@@ -263,9 +260,6 @@ The type of date can be modified to indicate this is the actual date of publicat
 										</xs:element>
 										<xs:element name="Rank" type="xs:string"/>
 										<xs:element name="CanonicalName">
-											<xs:annotation>
-												<xs:documentation>An alternative for NZOR?</xs:documentation>
-											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="Simple" type="xs:string">
@@ -309,7 +303,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
-														<xs:attribute name="ref"/>
+														<xs:attribute name="ref" type="xs:string"/>
 													</xs:extension>
 												</xs:simpleContent>
 											</xs:complexType>
@@ -340,12 +334,12 @@ The type of date can be modified to indicate this is the actual date of publicat
 										<xs:element name="NomenclaturalCode" type="xs:string"/>
 									</xs:sequence>
 									<xs:attribute name="id" type="xs:string" use="required"/>
-									<xs:attribute name="createdDate" type="xs:date">
+									<xs:attribute name="createdDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record created</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
-									<xs:attribute name="modifiedDate" type="xs:date">
+									<xs:attribute name="modifiedDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record last modified</xs:documentation>
 										</xs:annotation>
@@ -370,7 +364,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
-														<xs:attribute name="ref"/>
+														<xs:attribute name="ref" type="xs:string"/>
 													</xs:extension>
 												</xs:simpleContent>
 											</xs:complexType>
@@ -382,7 +376,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 											</xs:annotation>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute name="id" type="xs:ID" use="required"/>
+									<xs:attribute name="id" type="xs:string" use="required"/>
 									<xs:attribute name="isTradeName" type="xs:boolean"/>
 									<xs:attribute name="createdDate" type="xs:dateTime"/>
 									<xs:attribute name="modifiedDate" type="xs:dateTime"/>
@@ -410,12 +404,12 @@ The type of date can be modified to indicate this is the actual date of publicat
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
-														<xs:attribute name="ref"/>
+														<xs:attribute name="ref" type="xs:string"/>
 													</xs:extension>
 												</xs:simpleContent>
 											</xs:complexType>
 										</xs:element>
-										<xs:element name="Rank" minOccurs="0">
+										<xs:element name="Rank" type="xs:string" minOccurs="0">
 											<xs:annotation>
 												<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
 											</xs:annotation>
@@ -426,17 +420,17 @@ The type of date can be modified to indicate this is the actual date of publicat
 													<xs:sequence>
 														<xs:element name="AcceptedConcept" minOccurs="0">
 															<xs:complexType>
-																<xs:attribute name="ref" use="required"/>
+																<xs:attribute name="ref" type="xs:string" use="required"/>
 																<xs:attribute name="inUse" type="xs:boolean" use="required"/>
 															</xs:complexType>
 														</xs:element>
 														<xs:element name="ParentConcept" minOccurs="0">
 															<xs:complexType>
-																<xs:attribute name="ref" use="required"/>
+																<xs:attribute name="ref" type="xs:string" use="required"/>
 																<xs:attribute name="inUse" type="xs:boolean" use="required"/>
 															</xs:complexType>
 														</xs:element>
-														<xs:element name="HigherClassification"/>
+														<xs:element name="HigherClassification" type="xs:string"/>
 														<xs:element name="RelatedConcept" minOccurs="0" maxOccurs="unbounded">
 															<xs:annotation>
 																<xs:documentation>required for anamorph/teleomorph; hybrids</xs:documentation>
@@ -445,7 +439,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																<xs:sequence>
 																	<xs:element name="InUse" type="xs:boolean"/>
 																</xs:sequence>
-																<xs:attribute name="ref" use="required"/>
+																<xs:attribute name="ref" type="xs:string" use="required"/>
 																<xs:attribute name="type" use="required">
 																	<xs:annotation>
 																		<xs:documentation>the concept is the *type* for the related concept</xs:documentation>
@@ -509,13 +503,13 @@ The type of date can be modified to indicate this is the actual date of publicat
 											</xs:element>
 										</xs:choice>
 									</xs:sequence>
-									<xs:attribute name="id" type="xs:ID" use="required"/>
-									<xs:attribute name="createdDate" type="xs:date">
+									<xs:attribute name="id" type="xs:string" use="required"/>
+									<xs:attribute name="createdDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record created</xs:documentation>
 										</xs:annotation>
 									</xs:attribute>
-									<xs:attribute name="modifiedDate" type="xs:date">
+									<xs:attribute name="modifiedDate" type="xs:dateTime">
 										<xs:annotation>
 											<xs:documentation>Date record last modified</xs:documentation>
 										</xs:annotation>
@@ -538,8 +532,8 @@ The type of date can be modified to indicate this is the actual date of publicat
 														<xs:complexType>
 															<xs:simpleContent>
 																<xs:extension base="xs:string">
-																	<xs:attribute name="conceptRef"/>
-																	<xs:attribute name="nameRef"/>
+																	<xs:attribute name="conceptRef" type="xs:string"/>
+																	<xs:attribute name="nameRef" type="xs:string"/>
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>
@@ -548,7 +542,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 														<xs:complexType>
 															<xs:simpleContent>
 																<xs:extension base="xs:string">
-																	<xs:attribute name="ref"/>
+																	<xs:attribute name="ref" type="xs:string"/>
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>
@@ -572,8 +566,8 @@ The type of date can be modified to indicate this is the actual date of publicat
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
-													<xs:element name="Biome" type="biomeType"/>
-													<xs:element name="EnvironmentalContext">
+													<xs:element name="Biome" type="biomeType" minOccurs="0"/>
+													<xs:element name="EnvironmentalContext" minOccurs="0">
 														<xs:simpleType>
 															<xs:restriction base="xs:string">
 																<xs:enumeration value="Wild"/>
@@ -614,12 +608,12 @@ The type of date can be modified to indicate this is the actual date of publicat
 													</xs:element>
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string"/>
-												<xs:attribute name="createdDate" type="xs:date">
+												<xs:attribute name="createdDate" type="xs:dateTime">
 													<xs:annotation>
 														<xs:documentation>Date record created</xs:documentation>
 													</xs:annotation>
 												</xs:attribute>
-												<xs:attribute name="modifiedDate" type="xs:date">
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
 													<xs:annotation>
 														<xs:documentation>Date record last modified</xs:documentation>
 													</xs:annotation>
@@ -639,8 +633,8 @@ The type of date can be modified to indicate this is the actual date of publicat
 														<xs:complexType>
 															<xs:simpleContent>
 																<xs:extension base="xs:string">
-																	<xs:attribute name="conceptRef"/>
-																	<xs:attribute name="nameRef"/>
+																	<xs:attribute name="conceptRef" type="xs:string"/>
+																	<xs:attribute name="nameRef" type="xs:string"/>
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>
@@ -649,7 +643,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 														<xs:complexType>
 															<xs:simpleContent>
 																<xs:extension base="xs:string">
-																	<xs:attribute name="ref"/>
+																	<xs:attribute name="ref" type="xs:string"/>
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>
@@ -674,10 +668,53 @@ The type of date can be modified to indicate this is the actual date of publicat
 														</xs:complexType>
 													</xs:element>
 													<xs:element name="Biome" type="biomeType"/>
-													<xs:element name="Action"/>
-													<xs:element name="Outcome"/>
-													<xs:element name="ActionStatus"/>
-													<xs:element name="Status"/>
+													<xs:element name="Action">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Prevention"/>
+																<xs:enumeration value="Eradication"/>
+																<xs:enumeration value="Control"/>
+																<xs:enumeration value="Containment"/>
+																<xs:enumeration value="Mitigation"/>
+																<xs:enumeration value="Interception"/>
+																<xs:enumeration value="Conservation"/>
+																<xs:enumeration value="None"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Outcome">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Successful"/>
+																<xs:enumeration value="Failed"/>
+																<xs:enumeration value="Unconfirmed success"/>
+																<xs:enumeration value="Unconfirmed failure"/>
+																<xs:enumeration value="Ongoing"/>
+																<xs:enumeration value="Unknown"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="ActionStatus">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Proposed"/>
+																<xs:enumeration value="Executing"/>
+																<xs:enumeration value="Completed"/>
+																<xs:enumeration value="Unknown"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Status">
+														<xs:annotation>
+															<xs:documentation>Legal status (not fully enumerated)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Threatened"/>
+																<xs:enumeration value="Prohibited"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
@@ -699,9 +736,9 @@ The type of date can be modified to indicate this is the actual date of publicat
 	</xs:complexType>
 	<xs:complexType name="useageType">
 		<xs:sequence>
-			<xs:element name="Disclaimer" minOccurs="0"/>
-			<xs:element name="Attribution" minOccurs="0"/>
-			<xs:element name="Licensing" minOccurs="0"/>
+			<xs:element name="Disclaimer" type="xs:string" minOccurs="0"/>
+			<xs:element name="Attribution" type="xs:string" minOccurs="0"/>
+			<xs:element name="Licensing" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="providerLinkType">
