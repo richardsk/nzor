@@ -22,24 +22,24 @@
           <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'"></TableJoin>          
         </Table>
         <Mappings>
-          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" datatype=""/>
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" datatype="" /-->
-          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[NameFull]" table="1" column="NameFull" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="Rank" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Canonical]" table="1" column="CanonicalSimple" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Uninomial]" table="1" column="CanonicalUninomial" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Genus]" table="1" column="CanonicalGenus" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[InfragenericEpithet]" table="1" column="CanonicalInfragenericEpithet" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[SpecificEpithet]" table="1" column="CanonicalSpecificEpithet" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[InfraspecificEpithet]" table="1" column="CanonicalInfraspecificEpithet" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Cultivar]" table="1" column="CanonicalCultivarNameGroup" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Authorship]" table="1" column="Authorship" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
+          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameFull]" table="1" column="NameFull" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="Rank" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Canonical]" table="1" column="CanonicalSimple" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Uninomial]" table="1" column="CanonicalUninomial" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Genus]" table="1" column="CanonicalGenus" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[InfragenericEpithet]" table="1" column="CanonicalInfragenericEpithet" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[SpecificEpithet]" table="1" column="CanonicalSpecificEpithet" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[InfraspecificEpithet]" table="1" column="CanonicalInfraspecificEpithet" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Cultivar]" table="1" column="CanonicalCultivarNameGroup" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Authorship]" table="1" column="Authorship" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
           
         </Mappings>
       </DataConnection>
@@ -49,12 +49,12 @@
         <Table id="1" name="Metadata" alias="" pk="ProviderId">
         </Table>
         <Mappings>
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ProviderId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ProviderId]" table="1" column="ProviderId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ProviderName]" table="1" column="Name" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Disclaimer]" table="1" column="Disclaimer" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Attribution]" table="1" column="Attribution" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Licensing]" table="1" column="Licensing" columnAlias="" sql="" datatype="" />            
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ProviderId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ProviderId]" table="1" column="ProviderId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ProviderName]" table="1" column="Name" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Disclaimer]" table="1" column="Disclaimer" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Attribution]" table="1" column="Attribution" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Licensing]" table="1" column="Licensing" columnAlias="" sql="" fixedAttributes="" />            
         </Mappings>
       </DataConnection>
 
@@ -66,20 +66,20 @@
           <!--TableJoin id="3" name="Re" alias="" pk="ReferenceID" type="inner" fkFrom="BibliographyReferenceFk" fkTo="ReferenceID"></TableJoin-->
         </Table>
         <Mappings>
-          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ConceptId" columnAlias="" sql="" datatype="" />
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" datatype="" /-->
-          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="ConceptId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AcceptedConceptId]" table="1" column="AcceptedConceptId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AcceptedConceptProviderId]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="AcceptedConceptInUse" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="ParentConceptId" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ParentConceptProviderId]" table="1" column="" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="ParentConceptInUse" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptId]" table="1" column="AcceptedConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptProviderId]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="AcceptedConceptInUse" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="ParentConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptProviderId]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="ParentConceptInUse" columnAlias="" sql="" fixedAttributes="" />
         </Mappings>
       </DataConnection>
 
@@ -90,16 +90,17 @@
           </TableJoin>
         </Table>
         <Mappings>
-          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="PublicationID" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Publication.IsDeleted = 1 then 'deleted' else '' end)" datatype="" />
-          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="Citation" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[PublicationTitle]" table="2" column="Title" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[PublicationTitleType]" table="2" column="type" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[PublicationTitleLevel]" table="2" column="Level" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" datatype="" />
-          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" datatype="" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="PublicationID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Publication.IsDeleted = 1 then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="Citation" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitle]" table="2" column="Title" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleType]" table="2" column="type" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleLevel]" table="2" column="Level" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[DateOfPublication]" table="1" column="DateOfPublication" columnAlias="" sql="" fixedAttributes="type='of publication'" />
+          <Mapping type="DatabaseMapping" field="[DateOnPublication]" table="1" column="DateOnPublication" columnAlias="" sql="" fixedAttributes="type='on publication'" />
 
         </Mappings>
       </DataConnection>

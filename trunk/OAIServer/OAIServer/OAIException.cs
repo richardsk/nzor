@@ -10,6 +10,7 @@ namespace OAIServer
         idDoesNotExist,
         badResumptionToken,
         badArgument,
+        cannotDisseminateFormat, 
         Unknown
     }
 

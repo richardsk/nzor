@@ -41,6 +41,7 @@ namespace OAIServer
 
 
         protected String _field = "";
+        protected String _fixedAttributes = "";
 
         public String Field
         {
@@ -54,6 +55,18 @@ namespace OAIServer
             }
         }
 
+        public String Fixedattributes
+        {
+            get
+            {
+                return _fixedAttributes;
+            }
+            set
+            {
+                _fixedAttributes = value;
+            }
+        }
+
         public override string ToString()
         {
             return _field;
@@ -62,6 +75,7 @@ namespace OAIServer
         public virtual void Load(XmlNode node)
         {
             this.Field = node.Attributes["field"].InnerText;
+            if (node.Attributes["fixedAttributes"] != null) this.Fixedattributes = node.Attributes["fixedAttributes"].InnerText;
         }
 
         public virtual String GetValueSQL(DataConnection dc)

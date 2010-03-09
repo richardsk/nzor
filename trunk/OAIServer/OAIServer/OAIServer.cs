@@ -61,6 +61,8 @@ namespace OAIServer
             Object val = null;
 
             RepositoryConfig rep = GetConfig(repository);
+            
+            if (repository == null) throw new OAIException(OAIError.badArgument);
 
             if (field == FieldMapping.ADMIN_EMAIL)
             {

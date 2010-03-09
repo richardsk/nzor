@@ -1214,3 +1214,48 @@ Invalid column name 'Uninomial'. :    at System.Data.OleDb.OleDbDataReader.Proce
 8/03/2010 12:01:18 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 113
    at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+9/03/2010 9:31:58 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 23
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 113
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+9/03/2010 11:08:14 a.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 186
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 167
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+9/03/2010 4:41:23 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 903
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 955
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 955
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 189
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 167
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+9/03/2010 4:42:33 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.Xml.XmlSampleGenerator.ProcessElementAttrs(InstanceElement elem, Int32 recordIndex) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1034
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 901
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 956
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 956
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 956
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 814
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 826
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 797
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 177
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 88
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 189
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 167
+   at OAIService.OAIPMHService.GetRecord(String repository, String id, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 56
+9/03/2010 5:08:31 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.FieldMapping.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\FieldMapping.cs:line 78
+   at OAIServer.DatabaseMapping.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\FieldMapping.cs:line 102
+   at OAIServer.DataConnection.Load(XmlNode node) in C:\Development\NZOR\Dev\OAIServer\OAIServer\DataConnection.cs:line 49
+   at OAIServer.RepositoryConfig.Load(String fileName) in C:\Development\NZOR\Dev\OAIServer\OAIServer\RepositoryConfig.cs:line 55
+   at OAIServer.OAIServer.LoadConfig(String filename) in C:\Development\NZOR\Dev\OAIServer\OAIServer\OAIServer.cs:line 33

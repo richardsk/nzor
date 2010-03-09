@@ -6,10 +6,24 @@ using System.Data;
 
 namespace OAIServer
 {
-    public class ValueGenResult
+    public class GenValue
     {
         public Object Value = null;
+        public String FixedAttrValue = "";
+    }
+
+    public class ValueGenResult
+    {
+        public List<GenValue> Values = new List<GenValue>();
         public bool MoreData = false;
+
+        public void AddValue(Object val, String attrVals)
+        {
+            GenValue gv = new GenValue();
+            gv.Value = val;
+            gv.FixedAttrValue = attrVals;
+            Values.Add(gv);
+        }
     }
 
     public class SQLValueGen
@@ -33,15 +47,35 @@ namespace OAIServer
         {
             ValueGenResult vgr = new ValueGenResult();
 
-            SchemaMapping sm = _mapping.GetMapping(path);
+            List<SchemaMapping> sm = _mapping.GetMappings(path);
             if (sm != null)
             {
-                Object val = null;
-                vgr.MoreData = GetFieldValue(sm.Set, sm.Field, recordIndex, ref val);
-                vgr.Value = val;
+                foreach (SchemaMapping s in sm)
+                {
+                    Object val = null;
+                    vgr.MoreData |= GetFieldValue(s.Set, s.Field, recordIndex, ref val);
+                    
+                    vgr.AddValue(val, GetFixedAttrValue(s.Set, s.Field));                    
+                }
             }
 
             return vgr;
+        }
+
+        private String GetFixedAttrValue(String set, String field)
+        {
+            String val = "";
+            DataConnection dc = _rep.GetDataConnection(set);
+            if (dc != null)
+            {
+                FieldMapping fm = dc.GetMapping(field);
+                if (fm != null)
+                {
+                    val = fm.Fixedattributes;
+                }
+            }
+
+            return val;
         }
 
         protected bool GetFieldValue(String set, String dbField, int recordIndex, ref Object value)

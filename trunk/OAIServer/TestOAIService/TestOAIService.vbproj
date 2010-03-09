@@ -129,13 +129,13 @@
   <ItemGroup>
     <None Include="My Project\DataSources\System.Xml.Linq.XElement.datasource" />
     <None Include="Service References\oai\OAIPMHService.wsdl" />
+    <None Include="Service References\oai\OAIPMHService.xsd" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\oai\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\oai\OAIPMHService.disco" />
-    <None Include="Service References\oai\OAIPMHService.xsd" />
     <None Include="Service References\oai\OAIPMHService1.xsd" />
   </ItemGroup>
   <ItemGroup>

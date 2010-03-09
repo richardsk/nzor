@@ -68,7 +68,7 @@ namespace OAIServer
         public FieldMapping GetMapping(String field)
         {
             FieldMapping fm = null;
-
+            
             foreach (FieldMapping m in Mappings)
             {
                 if (m.Field == field)

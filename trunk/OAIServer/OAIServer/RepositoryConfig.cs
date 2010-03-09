@@ -124,5 +124,17 @@ namespace OAIServer
 
             return val;
         }
+
+        public String GetFixedAttrValue(String field, DataConnection dc)
+        {
+            String val = "";
+            FieldMapping fm = dc.GetMapping(field);
+            if (fm != null)
+            {
+                val = fm.Fixedattributes;
+            }
+
+            return val;
+        }
     }
 }

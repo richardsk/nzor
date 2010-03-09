@@ -847,6 +847,46 @@ namespace OAIServer.Xml {
             return innerXml;
         }
 
+        private void AddXmlElement(InstanceElement elem, ref String xml, String value, String innerXml, String attrs)
+        {
+            xml += "<";
+            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
+            xml += elem.QualifiedName.Name;
+            xml += attrs;
+            xml += ">";
+            xml += ProcessComment(elem);
+            xml += CheckIfMixed(elem);
+            //if (elem.IsNillable && generateValues)
+            //{
+            //    if (elem.GenNil)
+            //    {
+            //        xml += WriteNillable();
+            //        elem.GenNil = false;
+            //        xml += "</";
+            //        if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
+            //        xml += elem.QualifiedName.Name + ">";
+                    
+            //    }
+            //    else
+            //    {
+            //        elem.GenNil = true;
+            //    }
+            //}
+
+            xml += System.Web.HttpUtility.HtmlEncode(value);
+
+            if (innerXml.Length > 0)
+            {
+                xml += Environment.NewLine;
+                xml += innerXml;
+                xml += Environment.NewLine;
+            }
+
+            xml += "</";
+            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
+            xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
+        }
+
         private String ProcessElement(InstanceElement elem) 
         {
             String xml = "";
@@ -860,79 +900,70 @@ namespace OAIServer.Xml {
             int index = 0;
             while (more)
             {
-                String innerText = "";
-
                 more = false;
+
+                ValueGenResult res = null;
 
                 if (elem.ValueGenerator != null)
                 {
                     if (elem.IsFixed)
                     {
-                        innerText = elem.FixedValue;
+                        res = new ValueGenResult();
+                        res.AddValue(elem.FixedValue, "");                        
                     }
                     else if (elem.HasDefault)
                     {
-                        innerText = elem.DefaultValue;
+                        res = new ValueGenResult();
+                        res.AddValue(elem.DefaultValue, "");
                     }
                     else 
                     {
-                        ValueGenResult res = elem.ValueGenerator.GetValue(index, FindXPath(elem));
+                        res = elem.ValueGenerator.GetValue(index, FindXPath(elem));
                         more = res.MoreData;
-                        if (res.Value != null) innerText = res.Value.ToString();
                     }
                 }
 
-                String innerXml = "";
-                if (elem.ValueGenerator == null)
+                if (res != null)
                 {
-                    InstanceGroup childGroup = elem.Child;
-                    while (childGroup != null)
+                    foreach (GenValue gv in res.Values)
                     {
-                        innerXml += ProcessGroup(childGroup);
-                        childGroup = childGroup.Sibling;
+                        String innerXml = "";
+                        if (elem.ValueGenerator == null)
+                        {
+                            InstanceGroup childGroup = elem.Child;
+                            while (childGroup != null)
+                            {
+                                innerXml += ProcessGroup(childGroup);
+                                childGroup = childGroup.Sibling;
+                            }
+                        }
+
+                        String attrText = ProcessElementAttrs(elem, index);
+                        if (gv.FixedAttrValue != null && gv.FixedAttrValue.Length > 0) attrText += " " + gv.FixedAttrValue;
+                        String innerText = "";
+                        if (gv.Value != null) innerText = gv.Value.ToString();
+
+                        if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
+                        {
+                            AddXmlElement(elem, ref xml, innerText, innerXml, attrText);
+                        }
                     }
                 }
-
-                String attrText = ProcessElementAttrs(elem, index);
-
-                if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
+                else
                 {
-                    xml += "<";
-                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
-                    xml += elem.QualifiedName.Name;
-                    xml += attrText;
-                    xml += ">";
-                    xml += ProcessComment(elem);
-                    xml += CheckIfMixed(elem);
-                    if (elem.IsNillable && generateValues)
+
+                    String childXml = "";
+                    if (elem.ValueGenerator == null)
                     {
-                        if (elem.GenNil)
+                        InstanceGroup childGroup = elem.Child;
+                        while (childGroup != null)
                         {
-                            xml += WriteNillable();
-                            elem.GenNil = false;
-                            xml += "</";
-                            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
-                            xml += elem.QualifiedName.Name + ">";
-                            continue;
-                        }
-                        else
-                        {
-                            elem.GenNil = true;
+                            childXml += ProcessGroup(childGroup);
+                            childGroup = childGroup.Sibling;
                         }
                     }
 
-                    xml += System.Web.HttpUtility.HtmlEncode(innerText);
-
-                    if (innerXml.Length > 0)
-                    {
-                        xml += Environment.NewLine;
-                        xml += innerXml;
-                        xml += Environment.NewLine;
-                    }
-
-                    xml += "</";
-                    if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":"; 
-                    xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
+                    if (childXml != null && childXml.Length > 0) AddXmlElement(elem, ref xml, "", childXml, "");
                 }
 
                 index += 1;
@@ -1000,7 +1031,7 @@ namespace OAIServer.Xml {
                     else if (attr.ValueGenerator != null)
                     {
                         ValueGenResult res = attr.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
-                        if (res.Value != null) val = res.Value.ToString();                        
+                        if (res.Values.Count > 0 && res.Values[0] != null) val = res.Values[0].ToString(); // can only be one attr                
                     }
 
                     if (val != null && val.Length > 0)

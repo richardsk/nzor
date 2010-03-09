@@ -110,6 +110,8 @@ namespace OAIServer
             
             _rep = OAIServer.GetConfig(repository);
 
+            if (_rep == null) throw new OAIException(OAIError.badArgument);
+
             _results = GetResultData(id);
 
             //work out what set this id is in
@@ -181,6 +183,9 @@ namespace OAIServer
             String val = null;
 
             MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
+
+            if (mf == null) throw new OAIException(OAIError.cannotDisseminateFormat);            
+
             val = mf.ProcessResults(_results, _rep, id);
 
             return val;

@@ -31,16 +31,15 @@ namespace OAIServer
 
         }
 
-        public SchemaMapping GetMapping(String xpath)
+        public List<SchemaMapping> GetMappings(String xpath)
         {
-            SchemaMapping sm = null;
+            List<SchemaMapping> sm = new List<SchemaMapping>();
 
             foreach (SchemaMapping s in SchemaMappings)
             {
                 if (s.XPath == xpath)
                 {
-                    sm = s;
-                    break;
+                    sm.Add(s);
                 }
             }
 

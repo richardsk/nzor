@@ -175,7 +175,9 @@ namespace OAIServer
             WebOperationContext ctx = WebOperationContext.Current;
             
             _rep = OAIServer.GetConfig(repository);
-            
+
+            if (_rep == null) throw new OAIException(OAIError.badArgument);
+
             _requestedResumptionToken = resumptionToken;
 
 
@@ -333,6 +335,9 @@ namespace OAIServer
             String val = null;
 
             MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
+
+            if (mf == null) throw new OAIException(OAIError.cannotDisseminateFormat);    
+
             val = mf.ProcessResults(_results, _rep, id);
 
             return val;
