@@ -77,7 +77,7 @@
     <Compile Include="Xml\InstanceElement.cs" />
     <Compile Include="Xml\InstanceGroup.cs" />
     <Compile Include="Xml\InstanceObject.cs" />
-    <Compile Include="SQLValueGen.cs" />
+    <Compile Include="XmlValueGen.cs" />
     <Compile Include="Xml\XmlGen.cs" />
     <Compile Include="Xml\XmlSampleGenerator.cs" />
   </ItemGroup>

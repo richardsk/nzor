@@ -44,7 +44,7 @@ namespace OAIServer.Xml {
         private InstanceElement instanceRoot; 
         private XmlQualifiedName rootElement;
         private string rootTargetNamespace;
-        private SQLValueGen _sqlValueGen = null;
+        private XmlValueGen _sqlValueGen = null;
         
         internal const string NsXsd = "http://www.w3.org/2001/XMLSchema";
         internal const string NsXsi = "http://www.w3.org/2001/XMLSchema-instance";
@@ -115,7 +115,7 @@ namespace OAIServer.Xml {
             }
         }
 
-        public SQLValueGen ValueGenerator
+        public XmlValueGen ValueGenerator
         {
             get
             {
@@ -963,7 +963,8 @@ namespace OAIServer.Xml {
                         }
                     }
 
-                    if (childXml != null && childXml.Length > 0) AddXmlElement(elem, ref xml, "", childXml, "");
+                    String attrText = ProcessElementAttrs(elem, index);
+                    if (childXml != null && childXml.Length > 0) AddXmlElement(elem, ref xml, "", childXml, attrText);
                 }
 
                 index += 1;
@@ -1031,7 +1032,7 @@ namespace OAIServer.Xml {
                     else if (attr.ValueGenerator != null)
                     {
                         ValueGenResult res = attr.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
-                        if (res.Values.Count > 0 && res.Values[0] != null) val = res.Values[0].ToString(); // can only be one attr                
+                        if (res.Values.Count > 0 && res.Values[0] != null && res.Values[0].Value != null) val = res.Values[0].Value.ToString(); // can only be one attr                
                     }
 
                     if (val != null && val.Length > 0)

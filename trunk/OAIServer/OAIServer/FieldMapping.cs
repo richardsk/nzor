@@ -19,6 +19,13 @@ namespace OAIServer
         public static string GET_DATE = "[GET_DATE]";
         public static string BASE_URL = "[BASE_URL]";
         public static string ADMIN_EMAIL = "[ADMIN_EMAIL]";
+        public static string PROVIDER_ID = "[ProviderId]";
+        public static string PROVIDER_NAME = "[ProviderName]";
+        public static string ORGANISATION_URL = "[OrganisationUrl]";
+        public static string METADATA_DATE = "[MetadataDate]";
+        public static string DISCLAIMER = "[Disclaimer]";
+        public static string LICENSING = "[Licensing]";
+        public static string ATTRIBUTION = "[Attribution]";
         public static string EARLIEST_DATE = "[EARLIEST_DATE]";
         public static string REPOSITORY_NAME = "[REPOSITORY_NAME]";
         public static string IDENTIFIER = "[IDENTIFIER]";
@@ -89,6 +96,35 @@ namespace OAIServer
         }
     }
 
+    public class FixedValueMapping : FieldMapping
+    {
+        public Object Value;
+        
+        private String svcPropertyName = "";
+
+        public override void Load(XmlNode node)
+        {
+            base.Load(node);
+            if (node.Attributes["value"] != null) Value = node.Attributes["value"].InnerText;
+            if (node.Attributes["serviceProperty"] != null) svcPropertyName = node.Attributes["serviceProperty"].InnerText;
+        }
+
+        public override String GetValueSQL(DataConnection dc)
+        {
+            return "'" + Value.ToString() + "'";
+        }
+
+        public override Object GetValue(DataConnection dc)
+        {
+            if (svcPropertyName != null && svcPropertyName != "" && dc.Repository != null)
+            {
+                Object val = OAIServer.GetFixedFieldValue(dc.Repository.Name, svcPropertyName);
+                if (val != null && val.ToString().Length > 0) return val;
+            }
+            return Value;
+        }
+    }
+
     public class DatabaseMapping : FieldMapping
     {
         public String TableId = "";
@@ -139,26 +175,6 @@ namespace OAIServer
         public override Object GetValue(DataConnection dc)
         {
             throw new Exception("Cannot get individual value of a DB Mapping");
-        }
-    }
-
-    public class FixedValueMapping : FieldMapping
-    {
-        public Object Value;
-
-        public override void Load(XmlNode node)
-        {
-            base.Load(node);
-        }
-
-        public override String GetValueSQL(DataConnection dc)
-        {
-            return "'" + Value.ToString() + "'";
-        }
-
-        public override Object GetValue(DataConnection dc)
-        {
-            return Value;
         }
     }
 

@@ -68,6 +68,34 @@ namespace OAIServer
             {
                 val = rep.AdminEmail;
             }
+            else if (field == FieldMapping.PROVIDER_ID)
+            {
+                val = rep.ProviderId;
+            }
+            else if (field == FieldMapping.PROVIDER_NAME)
+            {
+                val = rep.ProviderName;
+            }
+            else if (field == FieldMapping.ORGANISATION_URL)
+            {
+                val = rep.OrganisationUrl;
+            }
+            else if (field == FieldMapping.METADATA_DATE)
+            {
+                val = rep.MetadataDate;
+            }
+            else if (field == FieldMapping.DISCLAIMER)
+            {
+                val = rep.Disclaimer;
+            }
+            else if (field == FieldMapping.ATTRIBUTION)
+            {
+                val = rep.Attribution;
+            }
+            else if (field == FieldMapping.LICENSING)
+            {
+                val = rep.Licensing;
+            }
             else if (field == FieldMapping.REPOSITORY_NAME)
             {
                 val = repository;

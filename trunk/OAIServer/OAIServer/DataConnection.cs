@@ -11,6 +11,7 @@ namespace OAIServer
         public String DBConnStr = "";
         public String Set = "";
 
+        public RepositoryConfig Repository = null;
         public MappedTable RootTable = null;
         public List<FieldMapping> Mappings = new List<FieldMapping>();
 
@@ -19,11 +20,14 @@ namespace OAIServer
             Set = node.Attributes["set"].InnerText;
 
             XmlNode el = node.SelectSingleNode("DBConnectionString");
-            DBConnStr = el.InnerText;
+            if (el != null) DBConnStr = el.InnerText;
 
             el = node.SelectSingleNode("Table");
-            RootTable = new MappedTable();
-            RootTable.Load(el, null);
+            if (el != null)
+            {
+                RootTable = new MappedTable();
+                RootTable.Load(el, null);
+            }
 
             Mappings.Clear();
             XmlNodeList mpl = node.SelectNodes("Mappings/Mapping");

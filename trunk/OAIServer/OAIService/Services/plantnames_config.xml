@@ -2,6 +2,13 @@
 <Services>
   <Service name="plant_names">
     <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
+    <ProviderId>NZFLORA</ProviderId>
+    <ProviderName>New Zealand Plant Names Database</ProviderName>
+    <OrganisationUrl>http://nzflora.landcareresearch.co.nz</OrganisationUrl>
+    <MetadataDate>2010-03-10</MetadataDate>
+    <Disclaimer></Disclaimer>
+    <Attribution></Attribution>
+    <Licensing></Licensing>
 
     <Sets>
       <Set name="Metadata"/>
@@ -41,20 +48,6 @@
           <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
           
-        </Mappings>
-      </DataConnection>
-
-      <DataConnection set="Metadata">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Metadata" alias="" pk="ProviderId">
-        </Table>
-        <Mappings>
-          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ProviderId" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[ProviderId]" table="1" column="ProviderId" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[ProviderName]" table="1" column="Name" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[Disclaimer]" table="1" column="Disclaimer" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[Attribution]" table="1" column="Attribution" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[Licensing]" table="1" column="Licensing" columnAlias="" sql="" fixedAttributes="" />            
         </Mappings>
       </DataConnection>
 
@@ -102,6 +95,18 @@
           <Mapping type="DatabaseMapping" field="[DateOfPublication]" table="1" column="DateOfPublication" columnAlias="" sql="" fixedAttributes="type='of publication'" />
           <Mapping type="DatabaseMapping" field="[DateOnPublication]" table="1" column="DateOnPublication" columnAlias="" sql="" fixedAttributes="type='on publication'" />
 
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="Metadata">
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[ProviderId]" fixedAttributes="" value="" serviceProperty="[ProviderId]" />
+          <Mapping type="FixedValueMapping" field="[ProviderName]" fixedAttributes="" value="" serviceProperty="[ProviderName]" />
+          <Mapping type="FixedValueMapping" field="[OrganisationUrl]" fixedAttributes="" value="" serviceProperty="[OrganisationUrl]" />
+          <Mapping type="FixedValueMapping" field="[MetadataDate]" fixedAttributes="" value="" serviceProperty="[MetadataDate]" />
+          <Mapping type="FixedValueMapping" field="[Disclaimer]" fixedAttributes="" value="" serviceProperty="[Disclaimer]" />
+          <Mapping type="FixedValueMapping" field="[Attribution]" fixedAttributes="" value="" serviceProperty="[Attribution]" />
+          <Mapping type="FixedValueMapping" field="[Licensing]" fixedAttributes="" value="" serviceProperty="[Licensing]" />
         </Mappings>
       </DataConnection>
     </DataConnections>

@@ -4,6 +4,7 @@
     <Set name="TaxonName" indexingElement="/DataSet/TaxonNames/TaxonName" />
     <Set name="TaxonConcept" indexingElement="/DataSet/TaxonConcepts/TaxonConcept" />
     <Set name="Publication" indexingElement="/DataSet/Publications/Publication" />
+    <Set name="Metadata" indexingElement="/DataSet/Metadata" />
   </Sets>
   <SchemaMappings>
     <SchemaMapping set="TaxonName" field="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull" />

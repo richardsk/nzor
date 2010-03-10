@@ -22,9 +22,12 @@ namespace OAIServer
 
             foreach (DataConnection dc in _rep.DataConnections)
             {
-                DataSet tmpDs = GetResultData(id, dc.Set);
-                if (ds == null) ds = tmpDs;
-                else if (tmpDs != null) ds.Merge(tmpDs);
+                if (dc.DBConnStr != null && dc.DBConnStr.Length > 0)
+                {
+                    DataSet tmpDs = GetResultData(id, dc.Set);
+                    if (ds == null) ds = tmpDs;
+                    else if (tmpDs != null) ds.Merge(tmpDs);
+                }
             }
 
             return ds;

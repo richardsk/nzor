@@ -8,6 +8,8 @@ namespace OAIServer
 {
     public class MetadataFormatSet
     {
+        public static String ALL_SET = "All";
+
         public String Name = "";
         public String IndexingElement = "";
 

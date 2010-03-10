@@ -10,6 +10,12 @@ namespace OAIServer
     {
         public Object Value = null;
         public String FixedAttrValue = "";
+
+        public override string ToString()
+        {
+            if (Value != null) return Value.ToString();
+            return "";
+        }
     }
 
     public class ValueGenResult
@@ -26,7 +32,7 @@ namespace OAIServer
         }
     }
 
-    public class SQLValueGen
+    public class XmlValueGen
     {
         private MetadataFormat _mdFormat = null;
         private DataSet _data = null;
@@ -34,7 +40,7 @@ namespace OAIServer
         private RepositoryConfig _rep = null;
         private MetadataFormatMapping _mapping = null;
 
-        public SQLValueGen(RepositoryConfig rep, MetadataFormat mf, MetadataFormatMapping mapping, DataSet data, String recordId)
+        public XmlValueGen(RepositoryConfig rep, MetadataFormat mf, MetadataFormatMapping mapping, DataSet data, String recordId)
         {
             _rep = rep;
             _mdFormat = mf;
@@ -47,15 +53,18 @@ namespace OAIServer
         {
             ValueGenResult vgr = new ValueGenResult();
 
-            List<SchemaMapping> sm = _mapping.GetMappings(path);
-            if (sm != null)
+            MetadataFormatSet set = _mapping.GetMappedSet(path);
+            if (set == null) return vgr;
+
+            List<SchemaMapping> sms = _mapping.GetMappings(path);
+            if (sms != null)
             {
-                foreach (SchemaMapping s in sm)
+                foreach (SchemaMapping sm in sms)
                 {
                     Object val = null;
-                    vgr.MoreData |= GetFieldValue(s.Set, s.Field, recordIndex, ref val);
+                    vgr.MoreData |= GetFieldValue(set.Name, sm.Field, recordIndex, ref val);
                     
-                    vgr.AddValue(val, GetFixedAttrValue(s.Set, s.Field));                    
+                    vgr.AddValue(val, GetFixedAttrValue(set.Name, sm.Field));                    
                 }
             }
 
@@ -78,19 +87,32 @@ namespace OAIServer
             return val;
         }
 
-        protected bool GetFieldValue(String set, String dbField, int recordIndex, ref Object value)
+        protected bool GetFieldValue(String set, String field, int recordIndex, ref Object value)
         {
             bool more = false;
 
             if (_data == null || _data.Tables.Count == 0) return false;
 
-            if (_data.Tables[set] == null || _data.Tables[set].Rows.Count == 0) return false;
+            DataConnection dc = _rep.GetDataConnection(set);
+            if (dc == null) return false;
 
-            DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
+            FieldMapping fm = dc.GetMapping(field);
             if (fm == null) return false;
 
-            DatabaseMapping idField = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(FieldMapping.IDENTIFIER);
-            DataColumn col = _data.Tables[set].Columns[fm.ColumnOrAlias];
+            if (fm.GetType() == typeof(FixedValueMapping))
+            {
+                FixedValueMapping fxm = (FixedValueMapping)fm;
+                value = fxm.GetValue(dc);
+                return false;
+            }
+            
+            if (_data.Tables[set] == null || _data.Tables[set].Rows.Count == 0) return false;
+
+            DatabaseMapping dm = (DatabaseMapping)fm;
+            if (dm == null) return false;
+
+            DatabaseMapping idField = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
+            DataColumn col = _data.Tables[set].Columns[dm.ColumnOrAlias];
             if (col != null)
             {
                 if (_recordId != null && _recordId.Length > 0)

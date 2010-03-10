@@ -8,7 +8,7 @@ namespace OAIServer.Xml {
     internal abstract class InstanceObject {
 
         XmlQualifiedName qualifiedName;
-        SQLValueGen valueGenerator;
+        XmlValueGen valueGenerator;
 
         InstanceGroup parent;
 
@@ -38,7 +38,7 @@ namespace OAIServer.Xml {
             }
         }
 
-        internal SQLValueGen ValueGenerator {
+        internal XmlValueGen ValueGenerator {
             get {
                 return valueGenerator;
             }

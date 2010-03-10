@@ -11,6 +11,13 @@ namespace OAIServer
     {
         public String Name = "";
         public String AdminEmail = "";
+        public String ProviderId = "";
+        public String ProviderName = "";
+        public String OrganisationUrl = "";
+        public String MetadataDate = "";
+        public String Disclaimer = "";
+        public String Attribution = "";
+        public String Licensing = "";
 
         public List<MetadataFormat> MetadataFormats = new List<MetadataFormat>();
         public List<String> Sets = new List<String>();
@@ -27,6 +34,27 @@ namespace OAIServer
 
             n = doc.SelectSingleNode("//Services/Service/AdminEmail");
             this.AdminEmail = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/ProviderId");
+            if (n != null) this.ProviderId = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/ProviderName");
+            if (n != null) this.ProviderName = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/OrganisationUrl");
+            if (n != null) this.OrganisationUrl = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/MetadataDate");
+            if (n != null) this.MetadataDate = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/Disclaimer");
+            if (n != null) this.Disclaimer = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/Attribution");
+            if (n != null) this.Attribution = n.InnerText;
+
+            n = doc.SelectSingleNode("//Services/Service/Licensing");
+            if (n != null) this.Licensing = n.InnerText;
 
 
             MetadataFormats.Clear();
@@ -53,6 +81,7 @@ namespace OAIServer
             {
                 DataConnection dc = new DataConnection();
                 dc.Load(dcn);
+                dc.Repository = this;
                 DataConnections.Add(dc);
             }
     
@@ -88,53 +117,6 @@ namespace OAIServer
             }
 
             return mf;
-        }
-
-        public Object GetFieldValue(String field, DataConnection dc)
-        {
-            Object val = null;
-
-            if (field == FieldMapping.ADMIN_EMAIL)
-            {
-                val = AdminEmail;
-            }
-            else if (field == FieldMapping.REPOSITORY_NAME)
-            {
-                val = Name;
-            }
-            else 
-            {
-                FieldMapping fm = dc.GetMapping(field);
-                if (fm != null)
-                {
-                    if (fm.GetType() == typeof(FixedValueMapping))
-                    {
-                        val = fm.GetValue(dc);
-                    }
-                    else if (fm.GetType() == typeof(SQLMaxValueMapping))
-                    {
-                        val = fm.GetValue(dc);
-                    }
-                    else if (fm.GetType() == typeof(SQLMinValueMapping))
-                    {
-                        val = fm.GetValue(dc);
-                    }
-                }
-            }
-
-            return val;
-        }
-
-        public String GetFixedAttrValue(String field, DataConnection dc)
-        {
-            String val = "";
-            FieldMapping fm = dc.GetMapping(field);
-            if (fm != null)
-            {
-                val = fm.Fixedattributes;
-            }
-
-            return val;
         }
     }
 }

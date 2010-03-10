@@ -79,7 +79,7 @@ namespace OAIServer
             Xml.XmlSampleGenerator genr = new Xml.XmlSampleGenerator(schemas, new XmlQualifiedName("DataSet"));
             genr.AutoGenerateValues = false;
 
-            SQLValueGen gen = new SQLValueGen(_rep, this, _mapping, _results, _RecordID);
+            XmlValueGen gen = new XmlValueGen(_rep, this, _mapping, _results, _RecordID);
             genr.ValueGenerator = gen;
 
             MemoryStream ms = new MemoryStream();

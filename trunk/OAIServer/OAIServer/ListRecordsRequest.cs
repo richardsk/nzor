@@ -27,16 +27,19 @@ namespace OAIServer
 
             foreach (DataConnection dc in _rep.DataConnections)
             {
-                DataSet tmpDs = GetResultData(dc.Set, req.FromDate, req.ToDate, req);
-                if (ds == null)
+                if (dc.DBConnStr != null && dc.DBConnStr.Length > 0)
                 {
-                    ds = tmpDs;
-                    if (tmpDs != null) req.NumRecords += tmpDs.Tables[0].Rows.Count;
-                }
-                else if (tmpDs != null)
-                {
-                    ds.Merge(tmpDs);
-                    req.NumRecords += tmpDs.Tables[0].Rows.Count;
+                    DataSet tmpDs = GetResultData(dc.Set, req.FromDate, req.ToDate, req);
+                    if (ds == null)
+                    {
+                        ds = tmpDs;
+                        if (tmpDs != null) req.NumRecords += tmpDs.Tables[0].Rows.Count;
+                    }
+                    else if (tmpDs != null)
+                    {
+                        ds.Merge(tmpDs);
+                        req.NumRecords += tmpDs.Tables[0].Rows.Count;
+                    }
                 }
             }
 
