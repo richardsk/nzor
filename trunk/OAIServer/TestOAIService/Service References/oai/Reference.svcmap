@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bc5dd977-7d09-4e22-a615-456e822ac97e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4785/OAIPMHService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OAIPMHService.xsd" MetadataType="Schema" ID="c2e4b629-e0ba-4514-9f52-b3404e36bf98" SourceId="1" SourceUrl="http://localhost:4785/OAIPMHService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OAIPMHService.wsdl" MetadataType="Wsdl" ID="c00e3a14-735b-4e45-b13e-fee56e57e3f9" SourceId="1" SourceUrl="http://localhost:4785/OAIPMHService.svc?wsdl" />
+    <MetadataFile FileName="OAIPMHService.disco" MetadataType="Disco" ID="658b4e50-a886-4734-aaa4-925922014dfc" SourceId="1" SourceUrl="http://localhost:4785/OAIPMHService.svc?disco" />
+    <MetadataFile FileName="OAIPMHService1.xsd" MetadataType="Schema" ID="75edf29f-f288-43a1-a4fa-a2435cff8330" SourceId="1" SourceUrl="http://localhost:4785/OAIPMHService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
