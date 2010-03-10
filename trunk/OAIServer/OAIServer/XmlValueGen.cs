@@ -128,7 +128,19 @@ namespace OAIServer
                     {
                         if (r[idField.ColumnOrAlias].ToString().ToLower() == _recordId.ToLower())
                         {
-                            value = r[col].ToString();
+                            if (col.DataType == typeof(DateTime))
+                            {
+                                value = "";
+                                if (r[col] != DBNull.Value)
+                                {
+                                    DateTime dt = (DateTime)r[col];
+                                    value = dt.ToString("s");
+                                }
+                            }
+                            else
+                            {
+                                value = r[col].ToString();
+                            }
                             break;
                         }
                     }
@@ -137,7 +149,19 @@ namespace OAIServer
                 {
                     if (recordIndex < _data.Tables[set].Rows.Count)
                     {
-                        value = _data.Tables[set].Rows[recordIndex][col].ToString();
+                        if (col.DataType == typeof(DateTime))
+                        {
+                            value = "";
+                            if (_data.Tables[set].Rows[recordIndex][col] != DBNull.Value)
+                            {
+                                DateTime dt = (DateTime)_data.Tables[set].Rows[recordIndex][col];
+                                value = dt.ToString("s");
+                            }
+                        }
+                        else
+                        {
+                            value = _data.Tables[set].Rows[recordIndex][col].ToString();
+                        }
                         more = (_data.Tables[set].Rows.Count > (recordIndex+1));
                     }
                     else

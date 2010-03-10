@@ -32,8 +32,13 @@
     <SchemaMapping set="TaxonConcept" field="[ParentConceptProviderId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@providerId]" />
     <SchemaMapping set="TaxonConcept" field="[ParentConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@inUse]" />
 
+    <SchemaMapping set="Publication" field="[PublicationId]" xpath="/DataSet/Publications/Publication[@id]" />
+    <SchemaMapping set="Publication" field="[PublicationParentId]" xpath="/DataSet/Publications/Publication[@parentPublicationRef]" />
+    <SchemaMapping set="Publication" field="[PublicationType]" xpath="/DataSet/Publications/Publication[@type]" />
+    <SchemaMapping set="Publication" field="[PublicationCreatedDate]" xpath="/DataSet/Publications/Publication[@createdDate]" />
+    <SchemaMapping set="Publication" field="[PublicationModifiedDate]" xpath="/DataSet/Publications/Publication[@modifiedDate]" />
     <SchemaMapping set="Publication" field="[Citation]" xpath="/DataSet/Publications/Publication/Citation" />
-    <SchemaMapping set="Publication" field="[PublicationId]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier" />
+    <SchemaMapping set="Publication" field="[PublicationIdentifier]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier" />
     <SchemaMapping set="Publication" field="[PublicationIdType]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier[@type]" />
     <SchemaMapping set="Publication" field="[PublicationAuthors]" xpath="/DataSet/Publications/Publication/Authors/Simple" />
     <SchemaMapping set="Publication" field="[DateOfPublication]" xpath="/DataSet/Publications/Publication/Dates/Date" />
@@ -41,6 +46,15 @@
     <SchemaMapping set="Publication" field="[PublicationTitle]" xpath="/DataSet/Publications/Publication/Titles/Title" />
     <SchemaMapping set="Publication" field="[PublicationTitleType]" xpath="/DataSet/Publications/Publication/Titles/Title[@type]" />
     <SchemaMapping set="Publication" field="[PublicationTitleLevel]" xpath="/DataSet/Publications/Publication/Titles/Title[@level]" />
+    <SchemaMapping set="Publication" field="[PublicationEditor]" xpath="/DataSet/Publications/Publication/Simple" />
+    <SchemaMapping set="Publication" field="[PublicationVolume]" xpath="/DataSet/Publications/Publication/Volume" />
+    <SchemaMapping set="Publication" field="[PublicationEdition]" xpath="/DataSet/Publications/Publication/Edition" />
+    <SchemaMapping set="Publication" field="[PublicationIssue]" xpath="/DataSet/Publications/Publication/Issue" />
+    <SchemaMapping set="Publication" field="[StartPage]" xpath="/DataSet/Publications/Publication/Pages/Page" />
+    <SchemaMapping set="Publication" field="[EndPage]" xpath="/DataSet/Publications/Publication/Pages/Page" />
+    <SchemaMapping set="Publication" field="[PageTotal]" xpath="/DataSet/Publications/Publication/Pages/Page" />
+    <SchemaMapping set="Publication" field="[PublisherName]" xpath="/DataSet/Publications/Publication/Publisher/Name" />
+    <SchemaMapping set="Publication" field="[PublisherCity]" xpath="/DataSet/Publications/Publication/Publisher/City" />
 
     <SchemaMapping set="Metadata" field="[ProviderId]" xpath="/DataSet/Metadata/Provider[@id]" />
     <SchemaMapping set="Metadata" field="[ProviderName]" xpath="/DataSet/Metadata/Provider/Name" />
