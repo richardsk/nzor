@@ -34,6 +34,10 @@
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
           <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameQualityCode]" table="1" column="QualityCode" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameFull]" table="1" column="NameFull" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="Rank" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Canonical]" table="1" column="CanonicalSimple" columnAlias="" sql="" fixedAttributes="" />
@@ -47,16 +51,51 @@
           <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[MicroReference]" table="1" column="MicroReference" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TypeName]" table="1" column="TypeName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TypeNameId]" table="1" column="TypeNameID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ProtologueOrthography]" table="1" column="ProtologueOrthography" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymName]" table="1" column="Basionym" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymNameId]" table="1" column="BasionymID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[LaterHomonymOf]" table="1" column="LaterHomonymOf" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[LaterHomonymOfId]" table="1" column="LaterHomonymOfId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedName]" table="1" column="ReplacementFor" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedNameId]" table="1" column="ReplacementForId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NomenclaturalStatus]" table="1" column="NomenclaturalStatus" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NomenclaturalCode]" table="1" column="NomenclaturalCode" columnAlias="" sql="" fixedAttributes="" />
           
         </Mappings>
       </DataConnection>
 
+      <DataConnection set="VernacularName">
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <Table id="1" name="Vernacular" alias="" pk="VernacularId">
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'"></TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
+          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameId]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameFull]" table="1" column="NameFull" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNamePublishedIn]" table="1" column="PublishedIn" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNamePublishedInId]" table="1" column="PublishedInId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameLanguage]" table="1" column="Language" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameCountry]" table="1" column="Country" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+      
       <DataConnection set="TaxonConcept">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Concept" alias="" pk="ConceptId">
-          <TableJoin id="2" name="Name" alias="" pk="NameId" type="inner" fkFrom="NameId" fkTo="NameId">
+        <Table id="1" name="Concept" alias="" pk="ConceptId">          
+          <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId">            
           </TableJoin>
-          <!--TableJoin id="3" name="Re" alias="" pk="ReferenceID" type="inner" fkFrom="BibliographyReferenceFk" fkTo="ReferenceID"></TableJoin-->
+          <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId">            
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -64,15 +103,28 @@
           <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[AccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Rank]" table="2" column="rank" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[AcceptedConceptId]" table="1" column="AcceptedConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[AcceptedConceptProviderId]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="AcceptedConceptInUse" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="ParentConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptProviderId]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="ParentConceptInUse" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[HigherClassification]" table="1" column="HigherClassification" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptInUse]" table="2" column="InUse" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptId]" table="2" column="ToConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptType]" table="2" column="Type" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicationGender]" table="3" column="Gender" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonPartOf]" table="3" column="PartOfTaxon" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonGeoRegion]" table="3" column="GeoRegion" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonGeographicSchema]" table="3" column="GeographicSchema" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonInUse]" table="3" column="InUse" columnAlias="appInUse" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonConceptId]" table="3" column="ToConceptId" columnAlias="appToConcept" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptAplicatonType]" table="3" column="Type" columnAlias="appType" sql="" fixedAttributes="" />
         </Mappings>
       </DataConnection>
 

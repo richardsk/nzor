@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MetadataFormatMapping>
   <Sets>
-    <Set name="TaxonName" indexingElement="/DataSet/TaxonNames/TaxonName" />
-    <Set name="TaxonConcept" indexingElement="/DataSet/TaxonConcepts/TaxonConcept" />
-    <Set name="Publication" indexingElement="/DataSet/Publications/Publication" />
     <Set name="Metadata" indexingElement="/DataSet/Metadata" />
+    <Set name="Publication" indexingElement="/DataSet/Publications/Publication" />
+    <Set name="TaxonName" indexingElement="/DataSet/TaxonNames/TaxonName" />
+    <Set name="VernacularName" indexingElement="/DataSet/TaxonNames/VernacularName" />
+    <Set name="TaxonConcept" indexingElement="/DataSet/TaxonConcepts/TaxonConcept" />
   </Sets>
   <SchemaMappings>
+    <SchemaMapping set="TaxonName" field="[NameId]" xpath="/DataSet/TaxonNames/TaxonName[@id]" />
+    <SchemaMapping set="TaxonName" field="[NameCreatedDate]" xpath="/DataSet/TaxonNames/TaxonName[@createdDate]" />
+    <SchemaMapping set="TaxonName" field="[NameModifiedDate]" xpath="/DataSet/TaxonNames/TaxonName[@modifiedDate]" />
+    <SchemaMapping set="TaxonName" field="[NameQualityCode]" xpath="/DataSet/TaxonNames/TaxonName[@qualityCode]" />
     <SchemaMapping set="TaxonName" field="[NameFull]" xpath="/DataSet/TaxonNames/TaxonName/NameFull" />
     <SchemaMapping set="TaxonName" field="[Rank]" xpath="/DataSet/TaxonNames/TaxonName/Rank" />
     <SchemaMapping set="TaxonName" field="[Canonical]" xpath="/DataSet/TaxonNames/TaxonName/CanonicalName/Simple" />
@@ -20,8 +25,34 @@
     <SchemaMapping set="TaxonName" field="[BasionymAuthors]" xpath="/DataSet/TaxonNames/TaxonName/BasionymAuthors" />
     <SchemaMapping set="TaxonName" field="[CombiningAuthors]" xpath="/DataSet/TaxonNames/TaxonName/CombiningAuthors" />
     <SchemaMapping set="TaxonName" field="[Year]" xpath="/DataSet/TaxonNames/TaxonName/Year" />
+    <SchemaMapping set="TaxonName" field="[MicroReference]" xpath="/DataSet/TaxonNames/TaxonName/MicroReference" />
+    <SchemaMapping set="TaxonName" field="[TypeName]" xpath="/DataSet/TaxonNames/TaxonName/TypeName" />
+    <SchemaMapping set="TaxonName" field="[TypeNameId]" xpath="/DataSet/TaxonNames/TaxonName/TypeName[@ref]" />
+    <SchemaMapping set="TaxonName" field="[ProtologueOrthography]" xpath="/DataSet/TaxonNames/TaxonName/ProtologueOrthography" />
+    <SchemaMapping set="TaxonName" field="[BasionymName]" xpath="/DataSet/TaxonNames/TaxonName/Basionym" />
+    <SchemaMapping set="TaxonName" field="[BasionymNameId]" xpath="/DataSet/TaxonNames/TaxonName/Basionym[@ref]" />
+    <SchemaMapping set="TaxonName" field="[LaterHomonymOf]" xpath="/DataSet/TaxonNames/TaxonName/LaterHomonymOf" />
+    <SchemaMapping set="TaxonName" field="[LaterHomonymOfId]" xpath="/DataSet/TaxonNames/TaxonName/LaterHomonymOf[@ref]" />
+    <SchemaMapping set="TaxonName" field="[BlockedName]" xpath="/DataSet/TaxonNames/TaxonName/ReplacementFor/BlockedName" />
+    <SchemaMapping set="TaxonName" field="[BlockedNameId]" xpath="/DataSet/TaxonNames/TaxonName/ReplacementFor/BlockedName[@ref]" />
+    <SchemaMapping set="TaxonName" field="[RecombinedName]" xpath="/DataSet/TaxonNames/TaxonName/ReplacementFor/RecombinedName" />
+    <SchemaMapping set="TaxonName" field="[RecombinedNameId]" xpath="/DataSet/TaxonNames/TaxonName/ReplacementFor/RecombinedName[@ref]" />
+    <SchemaMapping set="TaxonName" field="[NomenclaturalStatus]" xpath="/DataSet/TaxonNames/TaxonName/NomenclaturalStatus" />
+    <SchemaMapping set="TaxonName" field="[NomenclaturalCode]" xpath="/DataSet/TaxonNames/TaxonName/NomenclaturalCode" />
+
+    <SchemaMapping set="VernacularName" field="[VernacularNameId]" xpath="/DataSet/TaxonNames/VernacularName[@id]" />
+    <SchemaMapping set="VernacularName" field="[IsTradeName]" xpath="/DataSet/TaxonNames/VernacularName[@isTradeName]" />
+    <SchemaMapping set="VernacularName" field="[VernacularNameCreatedDate]" xpath="/DataSet/TaxonNames/VernacularName[@createdDate]" />
+    <SchemaMapping set="VernacularName" field="[VernacularNameModifiedDate]" xpath="/DataSet/TaxonNames/VernacularName[@modifiedDate]" />
+    <SchemaMapping set="VernacularName" field="[VernacularNameFull]" xpath="/DataSet/TaxonNames/VernacularName/NameFull" />
+    <SchemaMapping set="VernacularName" field="[VernacularNameCountry]" xpath="/DataSet/TaxonNames/VernacularName/Country" />
+    <SchemaMapping set="VernacularName" field="[VernacularNameLanguage]" xpath="/DataSet/TaxonNames/VernacularName/Language" />
+    <SchemaMapping set="VernacularName" field="[VernacularNamePublishedIn]" xpath="/DataSet/TaxonNames/VernacularName/PublishedIn" />
+    <SchemaMapping set="VernacularName" field="[VernacularNamePublishedInId]" xpath="/DataSet/TaxonNames/VernacularName/PublishedIn[@ref]" />
 
     <SchemaMapping set="TaxonConcept" field="[ConceptId]" xpath="/DataSet/TaxonConcepts/TaxonConcept[@id]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptCreatedDate]" xpath="/DataSet/TaxonConcepts/TaxonConcept[@createdDate]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptModifiedDate]" xpath="/DataSet/TaxonConcepts/TaxonConcept[@modifiedDate]" />
     <SchemaMapping set="TaxonConcept" field="[NameId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Name[@ref]" />
     <SchemaMapping set="TaxonConcept" field="[AccordingToId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/AccordingTo[@ref]" />
     <SchemaMapping set="TaxonConcept" field="[Rank]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Rank" />
@@ -31,6 +62,18 @@
     <SchemaMapping set="TaxonConcept" field="[ParentConceptId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept[@ref]" />
     <SchemaMapping set="TaxonConcept" field="[ParentConceptProviderId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@providerId]" />
     <SchemaMapping set="TaxonConcept" field="[ParentConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/ParentConcept/Status[@inUse]" />
+    <SchemaMapping set="TaxonConcept" field="[HigherClassification]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/HigherClassification" />
+    <SchemaMapping set="TaxonConcept" field="[RelatedConceptInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/RelatedConcept[@InUse]" />
+    <SchemaMapping set="TaxonConcept" field="[RelatedConceptId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/RelatedConcept[@ref]" />
+    <SchemaMapping set="TaxonConcept" field="[RelatedConceptType]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Relationships/RelatedConcept[@type]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonGender]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application/Gender" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonPartOf]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application/PartOfTaxon" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonLifeStage]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application/LifeStage" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonGeoRegion]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application/GeoRegion" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonGeographicSchema]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application/GeoRegion[@geoGraphicSchema]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonInUse]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application[@InUse]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonConceptId]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application[@conceptRef]" />
+    <SchemaMapping set="TaxonConcept" field="[ConceptAplicatonType]" xpath="/DataSet/TaxonConcepts/TaxonConcept/Applications/Application[@type]" />
 
     <SchemaMapping set="Publication" field="[PublicationId]" xpath="/DataSet/Publications/Publication[@id]" />
     <SchemaMapping set="Publication" field="[PublicationParentId]" xpath="/DataSet/Publications/Publication[@parentPublicationRef]" />
@@ -39,7 +82,7 @@
     <SchemaMapping set="Publication" field="[PublicationModifiedDate]" xpath="/DataSet/Publications/Publication[@modifiedDate]" />
     <SchemaMapping set="Publication" field="[Citation]" xpath="/DataSet/Publications/Publication/Citation" />
     <SchemaMapping set="Publication" field="[PublicationIdentifier]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier" />
-    <SchemaMapping set="Publication" field="[PublicationIdType]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier[@type]" />
+    <SchemaMapping set="Publication" field="[PublicationIdentifierType]" xpath="/DataSet/Publications/Publication/Identifiers/Identifier[@type]" />
     <SchemaMapping set="Publication" field="[PublicationAuthors]" xpath="/DataSet/Publications/Publication/Authors/Simple" />
     <SchemaMapping set="Publication" field="[DateOfPublication]" xpath="/DataSet/Publications/Publication/Dates/Date" />
     <SchemaMapping set="Publication" field="[DateOnPublication]" xpath="/DataSet/Publications/Publication/Dates/Date" />

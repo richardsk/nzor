@@ -517,17 +517,18 @@ namespace OAIServer.Xml {
             }
             else if (particle is XmlSchemaChoice) {
                 XmlSchemaChoice ch = (XmlSchemaChoice)particle;
-                if (ch.MaxOccurs == 1) {
-                    XmlSchemaParticle pt = (XmlSchemaParticle)(ch.Items[0]);
-                    GenerateParticle(pt, false, iGrp);
-                }
-                else {
+                //todo - shouldnt really do both of a choice element, but we are leaving this up to the config to pick one or the other
+                //if (ch.MaxOccurs == 1) {
+                //    XmlSchemaParticle pt = (XmlSchemaParticle)(ch.Items[0]);
+                //    GenerateParticle(pt, false, iGrp);
+                //}
+                //else {
                     InstanceGroup grp = new InstanceGroup();
                     grp.Occurs = max;
                     grp.IsChoice = true;
                     iGrp.AddChild(grp);
                     GenerateGroupBase(ch,grp);
-                }
+                //}
             }
             else if (particle is XmlSchemaAll) {
                 GenerateAll((XmlSchemaAll)particle, iGrp);
@@ -939,12 +940,12 @@ namespace OAIServer.Xml {
                         }
 
                         String attrText = ProcessElementAttrs(elem, index);
-                        if (gv.FixedAttrValue != null && gv.FixedAttrValue.Length > 0) attrText += " " + gv.FixedAttrValue;
                         String innerText = "";
                         if (gv.Value != null) innerText = gv.Value.ToString();
 
                         if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
                         {
+                            if (gv.FixedAttrValue != null && gv.FixedAttrValue.Length > 0) attrText += " " + gv.FixedAttrValue;
                             AddXmlElement(elem, ref xml, innerText, innerXml, attrText);
                         }
                     }
@@ -964,7 +965,7 @@ namespace OAIServer.Xml {
                     }
 
                     String attrText = ProcessElementAttrs(elem, index);
-                    if (childXml != null && childXml.Length > 0) AddXmlElement(elem, ref xml, "", childXml, attrText);
+                    if ((childXml != null && childXml.Length > 0) || (attrText != null && attrText.Length > 0)) AddXmlElement(elem, ref xml, "", childXml, attrText);
                 }
 
                 index += 1;

@@ -94,6 +94,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Service References\consumer\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\oai\Reference.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,6 +137,7 @@
     <None Include="Service References\oai\OAIPMHService.xsd" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\consumer\" />
     <WCFMetadataStorage Include="Service References\oai\" />
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +151,25 @@
     <None Include="Service References\oai\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\consumer\Service.wsdl" />
     <None Include="Service References\oai\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\consumer\Service.disco" />
+    <None Include="Service References\consumer\Service.xsd" />
+    <None Include="Service References\consumer\Service1.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\consumer\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\consumer\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\consumer\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
