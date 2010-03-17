@@ -10,17 +10,78 @@ namespace OAIServer
     public class OAIServer
     {
         public static List<RepositoryConfig> ConfigList = new List<RepositoryConfig>();
+        public static String WebDir = "";
 
-        public static void  Load(String configDir)
+        private static ExpiringList _OAISessions = null;
+
+        public static OAIRequestSession GetResumptionSession(String resumptionToken, String fromDate, String toDate, String metadataPrefix, String repository, String set)
         {
-            ConfigList.Clear();
+            OAIRequestSession req = null;
 
-            String[] files = System.IO.Directory.GetFiles(configDir, "*.xml");
+            req = new OAIRequestSession();
+
+            if (resumptionToken != null && resumptionToken.Length > 0)
+            {
+                ExpiringListItem eli = _OAISessions.Get(resumptionToken.ToUpper());
+                if (eli == null || eli.Value == null) throw new OAIException(OAIError.badResumptionToken);
+                OAIRequestSession storedReq = (OAIRequestSession)eli.Value;
+                if (storedReq.ResumptionToken.ToUpper() != resumptionToken.ToUpper()) throw new OAIException(OAIError.badResumptionToken);
+
+                req.NumRecords = storedReq.NumRecords;
+                req.Cursor = storedReq.Cursor;
+                foreach (String key in storedReq.NextRecordPositions.Keys)
+                {
+                    req.NextRecordPositions.Add(key, storedReq.NextRecordPositions[key]);
+                }
+            }
+
+            req.CallerIP = System.ServiceModel.OperationContext.Current.IncomingMessageProperties[System.ServiceModel.Channels.RemoteEndpointMessageProperty.Name].ToString();
+            req.CallDate = DateTime.Now;
+            req.FromDate = fromDate;
+            req.ToDate = toDate;
+            req.MetadataPrefix = metadataPrefix;
+            req.Repository = repository;
+            req.Set = set;
+            req.ResumptionToken = Guid.NewGuid().ToString();
+            
+            int hours = int.Parse(System.Configuration.ConfigurationManager.AppSettings["TokenExpirationHours"]);
+            req.ResumptionExpiry = DateTime.Now.AddHours(hours);
+
+            _OAISessions.Add(new ExpiringListItem(req.ResumptionToken.ToUpper(), req, req.ResumptionExpiry));
+            
+            _OAISessions.Save(System.IO.Path.Combine(WebDir, "Config"));
+
+            return req;
+        }
+
+        public static void SaveSession()
+        {
+            _OAISessions.Save(System.IO.Path.Combine(WebDir, "Config"));
+        }
+
+        public static void Load(String webDir)
+        {
+            WebDir = webDir;
+            ConfigList.Clear();
+            
+            String[] files = System.IO.Directory.GetFiles(System.IO.Path.Combine(WebDir, "Services"), "*.xml");
             foreach (String f in files)
             {
                 RepositoryConfig rc = LoadConfig(f);
                 if (rc != null) ConfigList.Add(rc);
             }
+
+            _OAISessions = null;
+            try
+            {
+                _OAISessions = ExpiringList.Load(System.IO.Path.Combine(WebDir, "Config"), "OAISessions");                
+            }
+            catch (Exception)
+            {
+                //mustn't exist yet
+            }
+            if (_OAISessions == null) _OAISessions = new ExpiringList("OAISessions");
+
         }
 
         private static RepositoryConfig LoadConfig(String filename)

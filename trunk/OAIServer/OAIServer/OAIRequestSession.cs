@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
+using System.Xml;
+using System.Collections;
 
 namespace OAIServer
 {
-    public class OAIRequestSession
+
+    [Serializable()]
+    public class OAIRequestSession 
     {
         public String CallerIP = "";
         public DateTime CallDate = DateTime.MinValue;
@@ -22,6 +27,12 @@ namespace OAIServer
         public int NumRecords = 0;
         public int Cursor = 0;
 
-        public System.Collections.Hashtable NextRecordPositions = new System.Collections.Hashtable();
+        public Hashtable NextRecordPositions = new Hashtable();
+
+        public OAIRequestSession()
+        {
+        }
+
+
     }
 }

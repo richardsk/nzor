@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataConnection.cs" />
+    <Compile Include="ExpiringList.cs" />
     <Compile Include="FieldMapping.cs" />
     <Compile Include="GetRecordRequest.cs" />
     <Compile Include="IdentifyRequest.cs" />

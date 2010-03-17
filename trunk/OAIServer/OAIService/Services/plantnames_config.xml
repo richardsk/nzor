@@ -160,7 +160,6 @@
           <Mapping type="DatabaseMapping" field="[PageTotal]" table="1" column="PageTotal" columnAlias="" sql="" fixedAttributes="type='total'" />
           <Mapping type="DatabaseMapping" field="[PublisherName]" table="1" column="PublisherName" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[PublisherCity]" table="1" column="PublisherCity" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[PublisherCity]" table="1" column="PublisherCity" columnAlias="" sql="" fixedAttributes="" />
 
         </Mappings>
       </DataConnection>

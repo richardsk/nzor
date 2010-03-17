@@ -40,7 +40,8 @@ namespace OAIServer
                 _mapping = new MetadataFormatMapping();
 
                 XmlDocument md = new XmlDocument();
-                md.Load(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Config\\" + MappingFile));
+                //md.Load(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Config\\" + MappingFile));
+                md.Load(Path.Combine(OAIServer.WebDir, "Config\\" + MappingFile));
 
                 XmlNode node = md.SelectSingleNode("//MetadataFormatMapping");
                 _mapping.Load(node);

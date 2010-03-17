@@ -24,7 +24,7 @@ namespace OAIService
         {
             try
             {
-                OAIServer.OAIServer.Load(HttpContext.Current.Request.PhysicalApplicationPath + "\\Services");
+                OAIServer.OAIServer.Load(HttpContext.Current.Request.PhysicalApplicationPath);
             }
             catch (Exception ex)
             {

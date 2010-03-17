@@ -15,7 +15,7 @@ Option Explicit On
 Namespace oai
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0"),  _
-     System.ServiceModel.ServiceContractAttribute(ConfigurationName:="oai.IOAIPMHService")>  _
+     System.ServiceModel.ServiceContractAttribute(ConfigurationName:="oai.IOAIPMHService", SessionMode:=System.ServiceModel.SessionMode.Required)>  _
     Public Interface IOAIPMHService
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IOAIPMHService/Identify", ReplyAction:="http://tempuri.org/IOAIPMHService/IdentifyResponse")>  _

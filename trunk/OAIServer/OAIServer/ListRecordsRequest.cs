@@ -18,27 +18,34 @@ namespace OAIServer
         DataSet _results = null;
         RepositoryConfig _rep = null;
         String _requestedResumptionToken = "";
+        OAIRequestSession _session = null;
 
-        private DataSet GetResultData(OAIRequestSession req)
+        public ListRecordsRequest()
+        {
+        }
+
+        public ListRecordsRequest(OAIRequestSession session)
+        {
+            _session = session;
+        }
+
+        private DataSet GetResultData()
         {
             //all sets
             DataSet ds = null;
-            req.NumRecords = 0;
 
             foreach (DataConnection dc in _rep.DataConnections)
             {
                 if (dc.DBConnStr != null && dc.DBConnStr.Length > 0)
                 {
-                    DataSet tmpDs = GetResultData(dc.Set, req.FromDate, req.ToDate, req);
+                    DataSet tmpDs = GetResultData(dc.Set, _session.FromDate, _session.ToDate);
                     if (ds == null)
                     {
                         ds = tmpDs;
-                        if (tmpDs != null) req.NumRecords += tmpDs.Tables[0].Rows.Count;
                     }
                     else if (tmpDs != null)
                     {
                         ds.Merge(tmpDs);
-                        req.NumRecords += tmpDs.Tables[0].Rows.Count;
                     }
                 }
             }
@@ -46,7 +53,7 @@ namespace OAIServer
             return ds;
         }
         
-        private DataSet GetResultData(String set, String fromDate, String toDate, OAIRequestSession req)
+        private DataSet GetResultData(String set, String fromDate, String toDate)
         {
             _maxResults = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["MaxRecordsReturned"]);
 
@@ -62,6 +69,7 @@ namespace OAIServer
                     OleDbCommand cmd = cnn.CreateCommand();
 
                     String sql = "select top " + (_maxResults + 1).ToString() + " ";
+                    String countSql = "";
 
                     FieldMapping dtMapping = null;
 
@@ -86,15 +94,21 @@ namespace OAIServer
                     String fromSql = "";
                     dc.RootTable.GetFullSql(ref fromSql);
                     sql += " from " + fromSql;
+                    countSql += " from " + fromSql;
 
                     if (dtMapping != null && fromDate != null && fromDate != "")
                     {
                         sql += " where ";
                         sql += dtMapping.GetValueSQL(dc) + " >= '" + fromDate.ToString() + "' ";
+                        countSql += " where ";
+                        countSql += dtMapping.GetValueSQL(dc) + " >= '" + fromDate.ToString() + "' ";
                         if (toDate != null && toDate != "")
                         {
                             sql += "and ";
                             sql += dtMapping.GetValueSQL(dc) + " <= '" + toDate.ToString() + "' ";
+
+                            countSql += "and ";
+                            countSql += dtMapping.GetValueSQL(dc) + " <= '" + toDate.ToString() + "' ";
                         }
                     }
 
@@ -113,14 +127,16 @@ namespace OAIServer
                     {
                         idCol = rcm.GetValueSQL(dc);
                         idColName = rcm.ColumnOrAlias;
+                        if (rcm.OrderBy != null && rcm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(rcm.TableId).AliasOrName + "." + rcm.OrderBy;
                     }
 
                     String pos = "";
-                    if (req.NextRecordPositions[dc.Set] != null) pos = req.NextRecordPositions[dc.Set].ToString();
+                    if (_session.NextRecordPositions[dc.Set] != null) pos = _session.NextRecordPositions[dc.Set].ToString();
 
                     if (pos != null && pos != "")
                     {
                         sql += " and " + idCol + " > '" + pos + "'";
+                        countSql += " and " + idCol + " > '" + pos + "'";
                     }
                     else
                     {
@@ -128,7 +144,21 @@ namespace OAIServer
                     }
 
                     sql += orderby;
-                                        
+                    
+
+                    //get total count of records
+                    //only if this is the first call
+                    countSql = "select count(" + idCol + ") " + countSql;
+                    if (pos == null || pos == "")
+                    {
+                        OleDbCommand cntCmd = cnn.CreateCommand();
+                        cntCmd.CommandText = countSql;
+                        int total = (int)cntCmd.ExecuteScalar();
+
+                        _session.NumRecords += total;
+                    }
+
+
                     cmd.CommandText = sql;
 
                     OleDbDataAdapter da = new OleDbDataAdapter(cmd);
@@ -136,15 +166,16 @@ namespace OAIServer
                     da.Fill(ds);
 
                     int cnt = ds.Tables[0].Rows.Count;
+
                     if (cnt > _maxResults)
                     {
-                        req.NextRecordPositions[set] = ds.Tables[0].Rows[cnt - 2][idColName].ToString();
+                        _session.NextRecordPositions[set] = ds.Tables[0].Rows[cnt - 2][idColName].ToString();
                         ds.Tables[0].Rows[cnt - 1].Delete();
                         ds.AcceptChanges();
                     }
                     else
                     {
-                        req.NextRecordPositions[set] = "";
+                        _session.NextRecordPositions[set] = "";
                     }
 
                     //root table has name of Set
@@ -184,7 +215,8 @@ namespace OAIServer
             _requestedResumptionToken = resumptionToken;
 
 
-            string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ListRecordsResponse.xml"));
+            //string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ListRecordsResponse.xml"));
+            string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListRecordsResponse.xml"));
 
             if (fromDate != null && fromDate.Length > 0) xml = xml.Replace(FieldMapping.FROM_DATE, "from=\"" + fromDate + "\"");
             else xml = xml.Replace(FieldMapping.FROM_DATE, "");
@@ -195,7 +227,7 @@ namespace OAIServer
             if (set != null && set.Length > 0) xml = xml.Replace(FieldMapping.SET, "set=\"" + set + "\"");
             else xml = xml.Replace(FieldMapping.SET, "");
 
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString; //.AbsoluteUri.ToString(); //HttpContext.Current.Request.Url.AbsoluteUri;
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
             xml = xml.Replace(FieldMapping.BASE_URL, url);
 
@@ -203,12 +235,10 @@ namespace OAIServer
 
             try
             {
-                OAIRequestSession req = GetResumptionSession(resumptionToken, fromDate, toDate, metadataPrefix, repository, set);
+                _results = GetResultData();
 
-                _results = GetResultData(req);
-
-                bool moreRecords = false;                
-                foreach (String nextRec in req.NextRecordPositions.Values)
+                bool moreRecords = false;
+                foreach (String nextRec in _session.NextRecordPositions.Values)
                 {
                     if (nextRec != null && nextRec != "")
                     {
@@ -223,13 +253,13 @@ namespace OAIServer
                 }
                 else
                 {
-                    resxml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ResumptionSnippet.xml"));
-                    resxml = resxml.Replace(FieldMapping.EXP_DATE, req.ResumptionExpiry.ToString("s"));
-                    resxml = resxml.Replace(FieldMapping.LIST_SIZE, req.NumRecords.ToString());
-                    resxml = resxml.Replace(FieldMapping.CURSOR, req.Cursor.ToString());
-                    resxml = resxml.Replace(FieldMapping.TOKEN, req.ResumptionToken);
+                    //resxml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ResumptionSnippet.xml"));
+                    resxml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ResumptionSnippet.xml"));
+                    resxml = resxml.Replace(FieldMapping.EXP_DATE, _session.ResumptionExpiry.ToString("s"));
+                    resxml = resxml.Replace(FieldMapping.LIST_SIZE, _session.NumRecords.ToString());
+                    resxml = resxml.Replace(FieldMapping.CURSOR, _session.Cursor.ToString());
+                    resxml = resxml.Replace(FieldMapping.TOKEN, _session.ResumptionToken);
                 }
-                req.Cursor += req.NumRecords; //ready for next time
 
                 if (resxml != "")
                 {
@@ -242,51 +272,57 @@ namespace OAIServer
 
                 String records = "";
 
-                foreach (DataTable resultTable in _results.Tables)
+                if (_results != null)
                 {
-                    if (resultTable.Rows.Count == 0) continue;
-
-                    DataConnection dc = _rep.GetDataConnection(resultTable.TableName);
-                    DatabaseMapping idField = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
-
-                    foreach (DataRow row in resultTable.Rows)
+                    foreach (DataTable resultTable in _results.Tables)
                     {
-                        string recordXml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\RecordSnippet.xml"));
+                        if (resultTable.Rows.Count == 0) continue;
+
+                        _session.Cursor += resultTable.Rows.Count; //cursor incrmented for subsequent calls
 
 
-                        String status = GetFieldValue(set, FieldMapping.RECORD_STATUS);
-                        if (status != null && status.Length > 0)
+                        DataConnection dc = _rep.GetDataConnection(resultTable.TableName);
+                        DatabaseMapping idField = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
+
+                        foreach (DataRow row in resultTable.Rows)
                         {
-                            recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + status + "\"");
-                        }
-                        else
-                        {
-                            recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "");
-                        }
+                            //string recordXml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\RecordSnippet.xml"));
+                            string recordXml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\RecordSnippet.xml"));
 
-                        recordXml = recordXml.Replace(FieldMapping.IDENTIFIER, row[idField.ColumnOrAlias].ToString());
+                            String status = GetFieldValue(set, FieldMapping.RECORD_STATUS);
+                            if (status != null && status.Length > 0)
+                            {
+                                recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + status + "\"");
+                            }
+                            else
+                            {
+                                recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "");
+                            }
 
-                        String val = GetFieldValue(set, FieldMapping.RECORD_DATE);
-                        if (val != "")
-                        {
-                            DateTime date = DateTime.Parse(val);
-                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, date.ToString("s"));
+                            recordXml = recordXml.Replace(FieldMapping.IDENTIFIER, row[idField.ColumnOrAlias].ToString());
+
+                            String val = GetFieldValue(set, FieldMapping.RECORD_DATE);
+                            if (val != "")
+                            {
+                                DateTime date = DateTime.Parse(val);
+                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, date.ToString("s"));
+                            }
+                            else
+                            {
+                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, "");
+                            }
+
+                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.SET_SPECS, resultTable.TableName);
+
+                            //Record Metadata
+                            if (status == null || status == "")
+                            {
+                                String xVal = GetRecordMetadata(metadataPrefix, row[idField.ColumnOrAlias].ToString());
+                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_METADATA, xVal);
+                            }
+
+                            records += recordXml + Environment.NewLine;
                         }
-                        else
-                        {
-                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, "");
-                        }
-
-                        Utility.ReplaceXmlField(ref recordXml, FieldMapping.SET_SPECS, resultTable.TableName);
-
-                        //Record Metadata
-                        if (status == null || status == "")
-                        {
-                            String xVal = GetRecordMetadata(metadataPrefix, row[idField.ColumnOrAlias].ToString());
-                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_METADATA, xVal);
-                        }
-
-                        records += recordXml + Environment.NewLine;
                     }
                 }
 
@@ -301,37 +337,6 @@ namespace OAIServer
             return XElement.Parse(xml);
         }
 
-        public OAIRequestSession GetResumptionSession(String resumptionToken, String fromDate, String toDate, String metadataPrefix, String repository, String set)
-        {
-            OAIRequestSession req = null;
-
-            if (resumptionToken != null && resumptionToken.Length > 0)
-            {
-                req = (OAIRequestSession)HttpContext.Current.Session[resumptionToken];
-
-                if (req == null) throw new OAIException(OAIError.badResumptionToken);
-            }
-            else
-            {
-                req = new OAIRequestSession();
-                req.CallerIP = HttpContext.Current.Request.UserHostName;
-                req.CallDate = DateTime.Now;
-                req.FromDate = fromDate;
-                req.ToDate = toDate;
-                req.MetadataPrefix = metadataPrefix;
-                req.Repository = repository;
-                req.Set = set;
-                req.ResumptionToken = Guid.NewGuid().ToString();
-
-                HttpContext.Current.Session[req.ResumptionToken] = req;
-            }
-
-            int hours = int.Parse(System.Configuration.ConfigurationManager.AppSettings["TokenExpirationHours"]);
-            req.ResumptionExpiry = DateTime.Now.AddHours(hours);
-            HttpContext.Current.Session.Timeout = hours * 60;
-
-            return req;
-        }
 
         public String GetRecordMetadata(String metadataPrefix, String id)
         {

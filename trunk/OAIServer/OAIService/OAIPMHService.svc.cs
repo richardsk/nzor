@@ -14,9 +14,11 @@ using OAIServer;
 namespace OAIService
 {
     // NOTE: If you change the class name "Service1" here, you must also update the reference to "Service1" in Web.config and in the associated .svc file.
-    [System.ServiceModel.Activation.AspNetCompatibilityRequirements(RequirementsMode = System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Allowed)] 
+    //[System.ServiceModel.Activation.AspNetCompatibilityRequirements(RequirementsMode = System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode.Allowed)]
+    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class OAIPMHService : IOAIPMHService
     {
+
         private bool IsDebug()
         {
             bool isDebug = false;
@@ -28,6 +30,7 @@ namespace OAIService
             { }
             return isDebug;
         }
+
 
         public XElement Identify(string repository)
         {
@@ -78,12 +81,16 @@ namespace OAIService
             throw new NotImplementedException();
         }
 
+        [OperationBehavior(ReleaseInstanceMode = ReleaseInstanceMode.None)]
         public XElement ListRecords(string repository, string fromDate, string toDate, string set, string resumptionToken, string mdPrefix)
         {
             try
             {
-                ListRecordsRequest req = new ListRecordsRequest();
-                return req.GetResultXml(repository, mdPrefix, set, fromDate, toDate, resumptionToken);
+                OAIRequestSession session = OAIServer.OAIServer.GetResumptionSession(resumptionToken, fromDate, toDate, mdPrefix, repository, set);
+                ListRecordsRequest req = new ListRecordsRequest(session);
+                XElement result = req.GetResultXml(repository, mdPrefix, set, fromDate, toDate, resumptionToken);
+                OAIServer.OAIServer.SaveSession();
+                return result;
             }
             catch (OAIException oex)
             {
