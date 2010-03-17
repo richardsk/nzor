@@ -51,12 +51,12 @@ namespace OAIService
             return null;
         }
 
-        public XElement GetRecord(string repository, string id, string mdPrefix)
+        public XElement GetRecord(string repository, string identifier, string metadataPrefix)
         {
             try
             {
                 GetRecordRequest req = new GetRecordRequest();
-                return req.GetResultXml(repository, id, mdPrefix);
+                return req.GetResultXml(repository, identifier, metadataPrefix);
             }
             catch (OAIException oex)
             {
@@ -82,13 +82,13 @@ namespace OAIService
         }
 
         [OperationBehavior(ReleaseInstanceMode = ReleaseInstanceMode.None)]
-        public XElement ListRecords(string repository, string fromDate, string toDate, string set, string resumptionToken, string mdPrefix)
+        public XElement ListRecords(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix)
         {
             try
             {
-                OAIRequestSession session = OAIServer.OAIServer.GetResumptionSession(resumptionToken, fromDate, toDate, mdPrefix, repository, set);
+                OAIRequestSession session = OAIServer.OAIServer.GetResumptionSession(resumptionToken, from, until, metadataPrefix, repository, set);
                 ListRecordsRequest req = new ListRecordsRequest(session);
-                XElement result = req.GetResultXml(repository, mdPrefix, set, fromDate, toDate, resumptionToken);
+                XElement result = req.GetResultXml(repository, metadataPrefix, set, from, until, resumptionToken);
                 OAIServer.OAIServer.SaveSession();
                 return result;
             }

@@ -1659,3 +1659,7 @@ Invalid column name 'NameCreatedDate'. :    at System.Data.OleDb.OleDbDataReader
    at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 238
    at OAIService.OAIPMHService.ListRecords(String repository, String fromDate, String toDate, String set, String resumptionToken, String mdPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 91
+17/03/2010 3:09:53 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 18
+   at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 40
+17/03/2010 3:10:16 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 18
+   at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 40

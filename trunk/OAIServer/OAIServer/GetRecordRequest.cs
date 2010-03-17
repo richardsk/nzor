@@ -129,10 +129,10 @@ namespace OAIServer
             }
 
            
-            string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\GetRecordResponse.xml"));
+            string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\GetRecordResponse.xml"));
             xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
 
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString;
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
             xml = xml.Replace(FieldMapping.BASE_URL, url);
 

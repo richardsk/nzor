@@ -214,8 +214,6 @@ namespace OAIServer
 
             _requestedResumptionToken = resumptionToken;
 
-
-            //string xml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ListRecordsResponse.xml"));
             string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListRecordsResponse.xml"));
 
             if (fromDate != null && fromDate.Length > 0) xml = xml.Replace(FieldMapping.FROM_DATE, "from=\"" + fromDate + "\"");
@@ -227,7 +225,7 @@ namespace OAIServer
             if (set != null && set.Length > 0) xml = xml.Replace(FieldMapping.SET, "set=\"" + set + "\"");
             else xml = xml.Replace(FieldMapping.SET, "");
 
-            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString; //.AbsoluteUri.ToString(); //HttpContext.Current.Request.Url.AbsoluteUri;
+            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString; 
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
             xml = xml.Replace(FieldMapping.BASE_URL, url);
 
@@ -253,7 +251,6 @@ namespace OAIServer
                 }
                 else
                 {
-                    //resxml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\ResumptionSnippet.xml"));
                     resxml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ResumptionSnippet.xml"));
                     resxml = resxml.Replace(FieldMapping.EXP_DATE, _session.ResumptionExpiry.ToString("s"));
                     resxml = resxml.Replace(FieldMapping.LIST_SIZE, _session.NumRecords.ToString());
@@ -286,7 +283,6 @@ namespace OAIServer
 
                         foreach (DataRow row in resultTable.Rows)
                         {
-                            //string recordXml = File.ReadAllText(Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "Responses\\RecordSnippet.xml"));
                             string recordXml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\RecordSnippet.xml"));
 
                             String status = GetFieldValue(set, FieldMapping.RECORD_STATUS);

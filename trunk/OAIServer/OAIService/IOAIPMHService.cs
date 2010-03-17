@@ -16,16 +16,16 @@ namespace OAIService
         [WebGet(UriTemplate = "{repository}?verb=Identify")]
         [OperationContract]
         XElement Identify(string repository);
-        [WebGet(UriTemplate = "{repository}?verb=GetRecord&identifier={id}&metadataPrefix={mdPrefix}")]
+        [WebGet(UriTemplate = "{repository}?verb=GetRecord&identifier={identifier}&metadataPrefix={metadataPrefix}")]
         [OperationContract]
-        XElement GetRecord(string repository, string id, string mdPrefix);
+        XElement GetRecord(string repository, string identifier, string metadataPrefix);
         [OperationContract]
         XElement ListIdentifiers();
         [OperationContract]
         XElement ListMetadataFormats();
         [OperationContract]
-        [WebGet(UriTemplate = "{repository}?verb=ListRecords&from={fromDate}&until={toDate}&set={set}&resumptionToken={resumptionToken}&metadataPrefix={mdPrefix}")]
-        XElement ListRecords(string repository, string fromDate, string toDate, string set, string resumptionToken, string mdPrefix);
+        [WebGet(UriTemplate = "{repository}?verb=ListRecords&from={from}&until={until}&set={set}&resumptionToken={resumptionToken}&metadataPrefix={metadataPrefix}")]
+        XElement ListRecords(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix);
         [OperationContract]
         XElement ListSets();
 
