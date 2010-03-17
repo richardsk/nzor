@@ -58,7 +58,10 @@
     <Compile Include="FieldMapping.cs" />
     <Compile Include="GetRecordRequest.cs" />
     <Compile Include="IdentifyRequest.cs" />
+    <Compile Include="ListIdentifiersRequest.cs" />
+    <Compile Include="ListMetadataFormatsRequest.cs" />
     <Compile Include="ListRecordsRequest.cs" />
+    <Compile Include="ListSetsRequest.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MappedTable.cs" />
     <Compile Include="MetadataFormats\MetadataFormat.cs" />

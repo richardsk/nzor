@@ -11,7 +11,7 @@ using System.Web;
 
 namespace OAIServer
 {
-    public class ListRecordsRequest
+    public class ListIdentifiersRequest
     {
         private int _maxResults = 1000;
 
@@ -20,11 +20,11 @@ namespace OAIServer
         String _requestedResumptionToken = "";
         OAIRequestSession _session = null;
 
-        public ListRecordsRequest()
+        public ListIdentifiersRequest()
         {
         }
 
-        public ListRecordsRequest(OAIRequestSession session)
+        public ListIdentifiersRequest(OAIRequestSession session)
         {
             _session = session;
         }
@@ -52,7 +52,7 @@ namespace OAIServer
 
             return ds;
         }
-        
+
         private DataSet GetResultData(String set, String fromDate, String toDate)
         {
             _maxResults = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["MaxRecordsReturned"]);
@@ -68,22 +68,43 @@ namespace OAIServer
                     cnn.Open();
                     OleDbCommand cmd = cnn.CreateCommand();
 
-                    String sql = "select top " + (_maxResults + 1).ToString() + " ";
-                    String countSql = "";
+                    String idCol = "";
+                    String idColName = "";
+                    String orderby = "";
+                    DatabaseMapping rcm = (DatabaseMapping)dc.GetMapping(FieldMapping.RESUMPTION_COLUMN);
+                    if (rcm == null)
+                    {
+                        DatabaseMapping idm = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
+                        idCol = idm.GetValueSQL(dc);
+                        idColName = idm.ColumnOrAlias;
+                        if (idm.OrderBy != null && idm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(idm.TableId).AliasOrName + "." + idm.OrderBy;
+                    }
+                    else
+                    {
+                        idCol = rcm.GetValueSQL(dc);
+                        idColName = rcm.ColumnOrAlias;
+                        if (rcm.OrderBy != null && rcm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(rcm.TableId).AliasOrName + "." + rcm.OrderBy;
+                    }
+
+                    String sql = "select top " + (_maxResults + 1).ToString() + " " + idCol;
+                    String countSql = "select count(" + idCol + ") ";
 
                     FieldMapping dtMapping = null;
 
                     foreach (FieldMapping fm in dc.Mappings)
                     {
-                        if (fm.GetType() == typeof(DatabaseMapping))
-                        {
-                            String fv = fm.GetValueSQL(dc);
-                            if (fv != null) sql += fv + ", ";
-                        }
-
                         if (fm.Field == FieldMapping.RECORD_DATE)
                         {
                             dtMapping = fm;
+                            sql += ", " + dtMapping.GetValueSQL(dc);
+                        }
+                        if (fm.Field == FieldMapping.RECORD_STATUS)
+                        {
+                            sql += ", " + fm.GetValueSQL(dc);
+                        }
+                        if (rcm != null && fm.Field == FieldMapping.IDENTIFIER)
+                        {
+                            sql += ", " + fm.GetValueSQL(dc);
                         }
                     }
 
@@ -112,24 +133,6 @@ namespace OAIServer
                         }
                     }
 
-                    String idCol = "";   
-                    String idColName = "";
-                    String orderby = "";
-                    DatabaseMapping rcm = (DatabaseMapping)dc.GetMapping(FieldMapping.RESUMPTION_COLUMN);
-                    if (rcm == null)
-                    {
-                        DatabaseMapping idm = (DatabaseMapping)dc.GetMapping(FieldMapping.IDENTIFIER);
-                        idCol = idm.GetValueSQL(dc);
-                        idColName = idm.ColumnOrAlias;
-                        if (idm.OrderBy != null && idm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(idm.TableId).AliasOrName + "." + idm.OrderBy;
-                    }
-                    else
-                    {
-                        idCol = rcm.GetValueSQL(dc);
-                        idColName = rcm.ColumnOrAlias;
-                        if (rcm.OrderBy != null && rcm.OrderBy != "") orderby = " order by " + dc.GetMappedTable(rcm.TableId).AliasOrName + "." + rcm.OrderBy;
-                    }
-
                     String pos = "";
                     if (_session.NextRecordPositions[dc.Set] != null) pos = _session.NextRecordPositions[dc.Set].ToString();
 
@@ -144,11 +147,10 @@ namespace OAIServer
                     }
 
                     sql += orderby;
-                    
+
 
                     //get total count of records
                     //only if this is the first call
-                    countSql = "select count(" + idCol + ") " + countSql;
                     if (pos == null || pos == "")
                     {
                         OleDbCommand cntCmd = cnn.CreateCommand();
@@ -207,14 +209,14 @@ namespace OAIServer
         public XElement GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken)
         {
             WebOperationContext ctx = WebOperationContext.Current;
-            
+
             _rep = OAIServer.GetConfig(repository);
 
             if (_rep == null) throw new OAIException(OAIError.badArgument);
 
             _requestedResumptionToken = resumptionToken;
 
-            string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListRecordsResponse.xml"));
+            string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListIdentifiersResponse.xml"));
 
             xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
 
@@ -227,7 +229,7 @@ namespace OAIServer
             if (set != null && set.Length > 0) xml = xml.Replace(FieldMapping.SET, "set=\"" + set + "\"");
             else xml = xml.Replace(FieldMapping.SET, "");
 
-            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString; 
+            string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString;
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));
             xml = xml.Replace(FieldMapping.BASE_URL, url);
 
@@ -285,7 +287,7 @@ namespace OAIServer
 
                         foreach (DataRow row in resultTable.Rows)
                         {
-                            string recordXml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\RecordSnippet.xml"));
+                            string recordXml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\HeaderSnippet.xml"));
 
                             String status = GetFieldValue(set, FieldMapping.RECORD_STATUS);
                             if (status != null && status.Length > 0)
@@ -312,13 +314,6 @@ namespace OAIServer
 
                             Utility.ReplaceXmlField(ref recordXml, FieldMapping.SET_SPECS, resultTable.TableName);
 
-                            //Record Metadata
-                            if (status == null || status == "")
-                            {
-                                String xVal = GetRecordMetadata(metadataPrefix, row[idField.ColumnOrAlias].ToString());
-                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_METADATA, xVal);
-                            }
-
                             records += recordXml + Environment.NewLine;
                         }
                     }
@@ -335,18 +330,5 @@ namespace OAIServer
             return XElement.Parse(xml);
         }
 
-
-        public String GetRecordMetadata(String metadataPrefix, String id)
-        {
-            String val = null;
-
-            MetadataFormat mf = _rep.GetMetadataFormat(metadataPrefix);
-
-            if (mf == null) throw new OAIException(OAIError.cannotDisseminateFormat);    
-
-            val = mf.ProcessResults(_results, _rep, id);
-
-            return val;
-        }
     }
 }

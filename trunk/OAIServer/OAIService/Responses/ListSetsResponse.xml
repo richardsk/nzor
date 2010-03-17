@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>[GET_DATE]</responseDate>
+  <request verb="ListSets">[BASE_URL]</request>
+  <ListSets>
+    <set>
+      <setSpec>TaxonName</setSpec>
+      <setName>TaxonName</setName>
+    </set>
+    <set>
+      <setSpec>TaxonConcept</setSpec>
+      <setName>TaxonConcept</setName>
+    </set>
+    <set>
+      <setSpec>Publication</setSpec>
+      <setName>Publication</setName>
+    </set>
+    <set>
+      <setSpec>TaxonProperty</setSpec>
+      <setName>TaxonProperty</setName>
+    </set>
+    <set>
+      <setSpec>Metadata</setSpec>
+      <setName>Metadata</setName>
+    </set>
+    <set>
+      <setSpec>VernacularName</setSpec>
+      <setName>VernacularName</setName>
+    </set>
+  </ListSets>
+</OAI-PMH>

@@ -71,17 +71,49 @@ namespace OAIService
             return null;
         }
 
-        public XElement ListIdentifiers()
+        public XElement ListIdentifiers(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix)
         {
-            throw new NotImplementedException();
+            try
+            {
+                OAIRequestSession session = OAIServer.OAIServer.GetResumptionSession(resumptionToken, from, until, metadataPrefix, repository, set);
+                ListIdentifiersRequest req = new ListIdentifiersRequest(session);
+                XElement result = req.GetResultXml(repository, metadataPrefix, set, from, until, resumptionToken);
+                OAIServer.OAIServer.SaveSession();
+                return result;
+            }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
+            }
+
+            return null;
         }
 
-        public XElement ListMetadataFormats()
+        public XElement ListMetadataFormats(String repository, String identifier)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ListMetadataFormatsRequest req = new ListMetadataFormatsRequest();
+                return req.GetResultXml(repository, identifier);
+            }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
+            }
+
+            return null;
         }
 
-        [OperationBehavior(ReleaseInstanceMode = ReleaseInstanceMode.None)]
         public XElement ListRecords(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix)
         {
             try
@@ -104,9 +136,24 @@ namespace OAIService
             return null;
         }
 
-        public XElement ListSets()
+        public XElement ListSets(string repository)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ListSetsRequest req = new ListSetsRequest();
+                return req.GetResultXml(repository);
+            }
+            catch (OAIException oex)
+            {
+                return XElement.Parse(oex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                if (IsDebug()) return XElement.Parse("<Error>" + ex.Message + "</Error>");
+            }
+
+            return null;
         }
 
     }

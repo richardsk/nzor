@@ -13,21 +13,24 @@ namespace OAIService
     [ServiceContract()]
     public interface IOAIPMHService
     {
+        [OperationContract]
         [WebGet(UriTemplate = "{repository}?verb=Identify")]
-        [OperationContract]
         XElement Identify(string repository);
-        [WebGet(UriTemplate = "{repository}?verb=GetRecord&identifier={identifier}&metadataPrefix={metadataPrefix}")]
         [OperationContract]
+        [WebGet(UriTemplate = "{repository}?verb=GetRecord&identifier={identifier}&metadataPrefix={metadataPrefix}")]
         XElement GetRecord(string repository, string identifier, string metadataPrefix);
         [OperationContract]
-        XElement ListIdentifiers();
+        [WebGet(UriTemplate = "{repository}?verb=ListIdentifiers&from={from}&until={until}&set={set}&resumptionToken={resumptionToken}&metadataPrefix={metadataPrefix}")]
+        XElement ListIdentifiers(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix);
         [OperationContract]
-        XElement ListMetadataFormats();
+        [WebGet(UriTemplate = "{repository}?verb=ListMetadataFormats&identifier={identifier}")]
+        XElement ListMetadataFormats(string repository, string identifier);
         [OperationContract]
         [WebGet(UriTemplate = "{repository}?verb=ListRecords&from={from}&until={until}&set={set}&resumptionToken={resumptionToken}&metadataPrefix={metadataPrefix}")]
         XElement ListRecords(string repository, string from, string until, string set, string resumptionToken, string metadataPrefix);
         [OperationContract]
-        XElement ListSets();
+        [WebGet(UriTemplate = "{repository}?verb=ListSets")]
+        XElement ListSets(string repository);
 
     }
 

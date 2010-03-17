@@ -90,6 +90,10 @@
   <ItemGroup>
     <Content Include="Config\nzor_provider.xsd">
     </Content>
+    <Content Include="Responses\HeaderSnippet.xml" />
+    <Content Include="Responses\ListIdentifiersResponse.xml" />
+    <Content Include="Responses\ListMetadataFormatsResponse.xml" />
+    <Content Include="Responses\ListSetsResponse.xml" />
     <Content Include="Services\plantnames_config.xml" />
   </ItemGroup>
   <ItemGroup>

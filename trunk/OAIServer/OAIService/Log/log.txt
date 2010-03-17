@@ -1663,3 +1663,78 @@ Invalid column name 'NameCreatedDate'. :    at System.Data.OleDb.OleDbDataReader
    at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 40
 17/03/2010 3:10:16 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.IdentifyRequest.GetResultXml(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIServer\IdentifyRequest.cs:line 18
    at OAIService.OAIPMHService.Identify(String repository) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 40
+17/03/2010 4:07:59 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListIdentifiersRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 41
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 234
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 79
+17/03/2010 4:08:51 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListIdentifiersRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 41
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 234
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 79
+17/03/2010 4:09:37 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:10:32 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:11:26 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:12:08 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:12:12 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:12:49 p.m. : ERROR : Column 'NameId' does not belong to table TaxonName. :    at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 296
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:14:00 p.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 13. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 328
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:14:38 p.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 13. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 328
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
+17/03/2010 4:16:30 p.m. : ERROR : Name cannot begin with the '[' character, hexadecimal value 0x5B. Line 11, position 13. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.Throw(Int32 pos, String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text)
+   at OAIServer.ListIdentifiersRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListIdentifiersRequest.cs:line 328
+   at OAIService.OAIPMHService.ListIdentifiers(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 80
