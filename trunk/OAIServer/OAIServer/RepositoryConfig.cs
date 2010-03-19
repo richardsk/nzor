@@ -87,6 +87,23 @@ namespace OAIServer
     
         }
 
+        public MappedTable GetMappedTableByPath(String path)
+        {
+            MappedTable tbl = null;
+
+            foreach (DataConnection dc in DataConnections)
+            {
+                MappedTable mt = dc.GetMappedTableByPath(path);
+                if (mt != null)
+                {
+                    tbl = mt;
+                    break;
+                }
+            }
+
+            return tbl;
+        }
+
         public DataConnection GetDataConnection(String set)
         {
             DataConnection dc = null;

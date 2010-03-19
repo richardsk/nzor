@@ -71,9 +71,11 @@ namespace OAIServer.Xml {
             }
         }
         
-        internal InstanceElement Clone(decimal occurs) {
+        internal InstanceElement Clone(decimal maxOccurs, decimal minOccurs) 
+        {
             InstanceElement newElem = (InstanceElement)MemberwiseClone();
-            newElem.Occurs = occurs;
+            newElem.MaxOccurs = maxOccurs;
+            newElem.MinOccurs = minOccurs;
             newElem.Child = null;
             newElem.Parent = null;
             newElem.Sibling = null;

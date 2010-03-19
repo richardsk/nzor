@@ -49,6 +49,12 @@ namespace OAIServer
             _recordId = recordId;
         }
 
+        public bool HasIndexingPoint(String path)
+        {
+            MappedTable mt = _rep.GetMappedTableByPath(path);
+            return (mt != null);
+        }
+
         public ValueGenResult GetValue(int recordIndex, String path)
         {
             ValueGenResult vgr = new ValueGenResult();
@@ -124,25 +130,57 @@ namespace OAIServer
                     //    value = recs[0][col].ToString();
                     //}
 
+                    bool found = false;
+                    int pos = 0;
                     foreach (DataRow r in _data.Tables[set].Rows)
                     {
                         if (r[idField.ColumnOrAlias].ToString().ToLower() == _recordId.ToLower())
                         {
-                            if (col.DataType == typeof(DateTime))
+                            if (!found)
                             {
-                                value = "";
-                                if (r[col] != DBNull.Value)
+                                if (pos == recordIndex)
                                 {
-                                    DateTime dt = (DateTime)r[col];
-                                    value = dt.ToString("s");
+                                    if (col.DataType == typeof(DateTime))
+                                    {
+                                        value = "";
+                                        if (r[col] != DBNull.Value)
+                                        {
+                                            DateTime dt = (DateTime)r[col];
+                                            value = dt.ToString("s");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        value = r[col].ToString();
+                                    }
+                                    found = true;
                                 }
+                                pos++;
                             }
                             else
                             {
-                                value = r[col].ToString();
+                                //any more records with same id and diff values for this field?
+                                object diffVal = "";
+                                if (col.DataType == typeof(DateTime))
+                                {
+                                    diffVal = "";
+                                    if (r[col] != DBNull.Value)
+                                    {
+                                        DateTime dt = (DateTime)r[col];
+                                        diffVal = dt.ToString("s");
+                                    }
+                                }
+                                else
+                                {
+                                    diffVal = r[col].ToString();
+                                }
+                                if (diffVal != null && diffVal.ToString() != "" && diffVal.ToString() != value.ToString())
+                                {
+                                    more = true;
+                                    break;
+                                }
                             }
-                            break;
-                        }
+                        }                        
                     }
                 }
                 else

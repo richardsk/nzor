@@ -56,7 +56,6 @@ namespace OAIServer.Xml {
         private int maxThreshold = 1;
         private int listLength = 1;
         private bool generateValues = true;
-        private String indexingElement = "";
 
         //To pick-up recursive element defs
         private Hashtable elementTypesProcessed;
@@ -100,18 +99,6 @@ namespace OAIServer.Xml {
             set
             {
                 this.generateValues = value;
-            }
-        }
-
-        public String IndexingElement
-        {
-            get
-            {
-                return indexingElement;
-            }
-            set
-            {
-                indexingElement = value;
             }
         }
 
@@ -277,16 +264,17 @@ namespace OAIServer.Xml {
                   Debug.Assert(!root);
                   if (any == null && e.MinOccurs > 0)
                   { //If not generating for any or optional ref to cyclic global element
-                      decimal occurs = e.MaxOccurs;
-                      if (e.MaxOccurs >= maxThreshold)
-                      {
-                          occurs = maxThreshold;
-                      }
-                      if (e.MinOccurs > occurs)
-                      {
-                          occurs = e.MinOccurs;
-                      }
-                      parentElem.AddChild(elem.Clone(occurs));
+                      decimal max = e.MaxOccurs;
+                      decimal min = e.MinOccurs;
+                      //if (e.MaxOccurs >= maxThreshold)
+                      //{
+                      //    occurs = maxThreshold;
+                      //}
+                      //if (e.MinOccurs > occurs)
+                      //{
+                      //    occurs = e.MinOccurs;
+                      //}
+                      parentElem.AddChild(elem.Clone(max, min));
                   }
                   return false;
               }
@@ -304,13 +292,13 @@ namespace OAIServer.Xml {
               //Get minOccurs, maxOccurs alone from the current particle, everything else pick up from globalDecl
               if (any != null)
               { //Element from any
-                  elem.Occurs = any.MaxOccurs >= maxThreshold ? maxThreshold : any.MaxOccurs;
-                  elem.Occurs = any.MinOccurs > elem.Occurs ? any.MinOccurs : elem.Occurs;
+                  elem.MaxOccurs = any.MaxOccurs; //>= maxThreshold ? maxThreshold : any.MaxOccurs;
+                  elem.MinOccurs = any.MinOccurs; // > elem.Occurs ? any.MinOccurs : elem.Occurs;
               }
               else
               {
-                  elem.Occurs = e.MaxOccurs >= maxThreshold ? maxThreshold : e.MaxOccurs;
-                  elem.Occurs = e.MinOccurs > elem.Occurs ? e.MinOccurs : elem.Occurs;
+                  elem.MaxOccurs = e.MaxOccurs; // >= maxThreshold ? maxThreshold : e.MaxOccurs;
+                  elem.MinOccurs = e.MinOccurs; // > elem.Occurs ? e.MinOccurs : elem.Occurs;
               }
               elem.DefaultValue = eGlobalDecl.DefaultValue;
               elem.FixedValue = eGlobalDecl.FixedValue;
@@ -504,14 +492,14 @@ namespace OAIServer.Xml {
 
         
         private void GenerateParticle(XmlSchemaParticle particle, bool root, InstanceGroup iGrp) {
-            decimal max;
-            max = particle.MaxOccurs >= maxThreshold ? maxThreshold : particle.MaxOccurs;
-            max = particle.MinOccurs > max ? particle.MinOccurs : max;
+            decimal max = particle.MaxOccurs; //>= maxThreshold ? maxThreshold : particle.MaxOccurs;
+            decimal min = particle.MinOccurs; // > max ? particle.MinOccurs : max;
 
             if (particle is XmlSchemaSequence ) {
                 XmlSchemaSequence seq = (XmlSchemaSequence)particle;
                 InstanceGroup grp = new InstanceGroup();
-                grp.Occurs = max;
+                grp.MaxOccurs = max;
+                grp.MinOccurs = min;
                 iGrp.AddChild(grp);
                 GenerateGroupBase(seq, grp);
             }
@@ -524,7 +512,8 @@ namespace OAIServer.Xml {
                 //}
                 //else {
                     InstanceGroup grp = new InstanceGroup();
-                    grp.Occurs = max;
+                    grp.MaxOccurs = max;
+                    grp.MinOccurs = min;
                     grp.IsChoice = true;
                     iGrp.AddChild(grp);
                     GenerateGroupBase(ch,grp);
@@ -588,8 +577,8 @@ namespace OAIServer.Xml {
                 }
                 if (elem != null) {
                     elem.ValueGenerator = _sqlValueGen; // XmlValueGenerator.AnyGenerator;
-                    elem.Occurs = any.MaxOccurs >= maxThreshold ? maxThreshold : any.MaxOccurs;
-                    elem.Occurs = any.MinOccurs > elem.Occurs ? any.MinOccurs : elem.Occurs;
+                    elem.MaxOccurs = any.MaxOccurs; // >= maxThreshold ? maxThreshold : any.MaxOccurs;
+                    elem.MinOccurs = any.MinOccurs; // > elem.Occurs ? any.MinOccurs : elem.Occurs;
                     grp.AddChild(elem);
                     return;
                 }
@@ -795,7 +784,8 @@ namespace OAIServer.Xml {
                     InstanceGroup group = rootElement.Child;
                     while (group != null) 
                     {
-                        xml += ProcessGroup(group);
+                        bool moreData = false;
+                        xml += ProcessGroup(group, ref moreData);
                         group = group.Sibling;
                     }
                 }
@@ -808,11 +798,11 @@ namespace OAIServer.Xml {
             return xml;
         }
         
-        private String ProcessGroup(InstanceGroup grp) 
+        private String ProcessGroup(InstanceGroup grp, ref bool moreData) 
         {
             if(grp is InstanceElement) 
             {
-                return ProcessElement((InstanceElement)grp);
+                return ProcessElement((InstanceElement)grp, ref moreData);
             }
             else //Its a group node of sequence or choice
             { 
@@ -824,7 +814,7 @@ namespace OAIServer.Xml {
                         InstanceGroup childGroup = grp.Child;
                         while (childGroup != null) 
                         {
-                            innerXml += ProcessGroup(childGroup);
+                            innerXml += ProcessGroup(childGroup, ref moreData);
                             childGroup = childGroup.Sibling;
                         }
                 //    }
@@ -837,16 +827,16 @@ namespace OAIServer.Xml {
             }
         }
         
-        private String ProcessChoiceGroup(InstanceGroup grp) 
-        {
-            String innerXml = "";
-            //TODO ??
-            for (int i=0; i < grp.Occurs; i++) //Cyclically iterate over the children of choice
-            {
-                innerXml += ProcessGroup(grp.GetChild(i % grp.NoOfChildren));
-            }
-            return innerXml;
-        }
+        //private String ProcessChoiceGroup(InstanceGroup grp) 
+        //{
+        //    String innerXml = "";
+        //    //TODO ??
+        //    for (int i=0; i < grp.Occurs; i++) //Cyclically iterate over the children of choice
+        //    {
+        //        innerXml += ProcessGroup(grp.GetChild(i % grp.NoOfChildren));
+        //    }
+        //    return innerXml;
+        //}
 
         private void AddXmlElement(InstanceElement elem, ref String xml, String value, String innerXml, String attrs)
         {
@@ -888,16 +878,18 @@ namespace OAIServer.Xml {
             xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
         }
 
-        private String ProcessElement(InstanceElement elem) 
+        private String ProcessElement(InstanceElement elem, ref bool moreData) 
         {
             String xml = "";
             if (instanceElementsProcessed[elem] != null) 
             {
-                return "";
+                return "";                
             }
             instanceElementsProcessed.Add(elem, elem);
 
+
             bool more = true;
+            moreData = false;
             int index = 0;
             while (more)
             {
@@ -934,7 +926,7 @@ namespace OAIServer.Xml {
                             InstanceGroup childGroup = elem.Child;
                             while (childGroup != null)
                             {
-                                innerXml += ProcessGroup(childGroup);
+                                innerXml += ProcessGroup(childGroup, ref moreData);
                                 childGroup = childGroup.Sibling;
                             }
                         }
@@ -949,6 +941,12 @@ namespace OAIServer.Xml {
                             AddXmlElement(elem, ref xml, innerText, innerXml, attrText);
                         }
                     }
+
+                    if (more && elem.MaxOccurs < index)
+                    {
+                        moreData = true;
+                        more = false;
+                    }
                 }
                 else
                 {
@@ -959,7 +957,18 @@ namespace OAIServer.Xml {
                         InstanceGroup childGroup = elem.Child;
                         while (childGroup != null)
                         {
-                            childXml += ProcessGroup(childGroup);
+                            more = true;
+                            int grpIndex = 0;
+                            while (more)
+                            {
+                                childXml += ProcessGroup(childGroup, ref more);
+                                grpIndex++;
+                                if (more && childGroup.MaxOccurs < grpIndex)
+                                {
+                                    moreData = true;
+                                    more = false;
+                                }
+                            }
                             childGroup = childGroup.Sibling;
                         }
                     }

@@ -144,9 +144,11 @@ namespace OAIServer
                 xml = xml.Replace(FieldMapping.SET_SPECS, "<setSpec>" + set + "</setSpec>");
 
                 String val = GetFieldValue(set, FieldMapping.RECORD_STATUS);
+                String status = "";
                 if (val != null && val.Length > 0)
                 {
                     xml = xml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + val + "\"");
+                    status = val;
                 }
                 else
                 {
@@ -166,9 +168,16 @@ namespace OAIServer
 
                 if (set == null || set == "") throw new OAIException(OAIError.idDoesNotExist);
 
-                //Record Metadata
-                String xVal = GetRecordMetadata(metadataPrefix, id);
-                Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+                if (status == "")
+                {
+                    //Record Metadata
+                    String xVal = GetRecordMetadata(metadataPrefix, id);
+                    Utility.ReplaceXmlField(ref xml, FieldMapping.RECORD_METADATA, xVal);
+                }
+                else
+                {
+                    Utility.ReplaceXmlField(ref xml, "<Metadata>" + FieldMapping.RECORD_METADATA + "</Metadata>", "");
+                }
 
                 xml = xml.Replace(FieldMapping.OAI_ERROR, "");
             }

@@ -17,6 +17,7 @@ namespace OAIServer
         public String FKFrom = "";
         public String FKTo = "";
         public String JoinCondition = "";
+        public String IndexingElement = "";
 
         public MappedTable ParentTable = null;
 
@@ -41,6 +42,7 @@ namespace OAIServer
             if (node.Attributes["fkFrom"] != null) this.FKFrom = node.Attributes["fkFrom"].InnerText;
             if (node.Attributes["fkTo"] != null) this.FKTo = node.Attributes["fkTo"].InnerText;
             if (node.Attributes["joinCondition"] != null) this.JoinCondition = node.Attributes["joinCondition"].InnerText;
+            if (node.Attributes["indexingElement"] != null) this.IndexingElement = node.Attributes["indexingElement"].InnerText;
 
             this.ParentTable = parent;
 
@@ -62,6 +64,19 @@ namespace OAIServer
             foreach (MappedTable ct in JoinedTables)
             {
                 mt = ct.GetMappedTable(id);
+                if (mt != null) break;
+            }
+            return mt;
+        }
+
+        public MappedTable GetMappedTableByPath(String path)
+        {
+            if (this.IndexingElement.ToLower() == path.ToLower()) return this;
+
+            MappedTable mt = null;
+            foreach (MappedTable ct in JoinedTables)
+            {
+                mt = ct.GetMappedTableByPath(path);
                 if (mt != null) break;
             }
             return mt;

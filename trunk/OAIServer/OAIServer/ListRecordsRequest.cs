@@ -187,18 +187,21 @@ namespace OAIServer
             return ds;
         }
 
-        private String GetFieldValue(String set, String dbField)
+        private String GetFieldValue(String set, DataRow row, String dbField)
         {
             String val = "";
             if (_results == null || _results.Tables.Count == 0) return "";
 
-            if (_results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
+            if (row == null || _results.Tables[set] == null || _results.Tables[set].Rows.Count == 0) return "";
 
             DatabaseMapping fm = (DatabaseMapping)_rep.GetDataConnection(set).GetMapping(dbField);
-            DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
-            if (col != null)
+            if (fm != null)
             {
-                val = _results.Tables[set].Rows[0][col].ToString();
+                DataColumn col = _results.Tables[set].Columns[fm.ColumnOrAlias];
+                if (col != null)
+                {
+                    val = row[col].ToString();
+                }
             }
 
             return val;
@@ -270,6 +273,7 @@ namespace OAIServer
                 }
 
                 String records = "";
+                List<String> recordsDone = new List<string>();
 
                 if (_results != null)
                 {
@@ -285,9 +289,13 @@ namespace OAIServer
 
                         foreach (DataRow row in resultTable.Rows)
                         {
+                            String id = row[idField.ColumnOrAlias].ToString();
+                            if (recordsDone.Contains(id.ToLower())) continue;
+                            recordsDone.Add(id.ToLower());
+
                             string recordXml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\RecordSnippet.xml"));
 
-                            String status = GetFieldValue(set, FieldMapping.RECORD_STATUS);
+                            String status = GetFieldValue(resultTable.TableName, row, FieldMapping.RECORD_STATUS);
                             if (status != null && status.Length > 0)
                             {
                                 recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "status=\"" + status + "\"");
@@ -297,9 +305,9 @@ namespace OAIServer
                                 recordXml = recordXml.Replace(FieldMapping.RECORD_STATUS, "");
                             }
 
-                            recordXml = recordXml.Replace(FieldMapping.IDENTIFIER, row[idField.ColumnOrAlias].ToString());
+                            recordXml = recordXml.Replace(FieldMapping.IDENTIFIER, id);
 
-                            String val = GetFieldValue(set, FieldMapping.RECORD_DATE);
+                            String val = GetFieldValue(resultTable.TableName, row, FieldMapping.RECORD_DATE);
                             if (val != "")
                             {
                                 DateTime date = DateTime.Parse(val);
@@ -315,7 +323,7 @@ namespace OAIServer
                             //Record Metadata
                             if (status == null || status == "")
                             {
-                                String xVal = GetRecordMetadata(metadataPrefix, row[idField.ColumnOrAlias].ToString());
+                                String xVal = GetRecordMetadata(metadataPrefix, id);
                                 Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_METADATA, xVal);
                             }
 

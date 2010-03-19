@@ -4,7 +4,8 @@ namespace OAIServer.Xml {
     using System.Collections;
     
     internal class InstanceGroup : InstanceObject {
-        decimal occurs = 1;
+        decimal maxOccurs = 1;
+        decimal minOccurs = 0;
         bool isChoice = false;
 
         InstanceGroup sibling;
@@ -13,13 +14,26 @@ namespace OAIServer.Xml {
         internal InstanceGroup() {
         }
         
-        internal decimal Occurs {
+        internal decimal MaxOccurs {
             get {
-                return occurs;
+                return maxOccurs;
             }
 
             set {
-                occurs = value;
+                maxOccurs = value;
+            }
+        }
+
+        internal decimal MinOccurs
+        {
+            get
+            {
+                return minOccurs;
+            }
+
+            set
+            {
+                minOccurs = value;
             }
         }
         

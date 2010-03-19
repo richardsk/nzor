@@ -62,6 +62,13 @@ namespace OAIServer
             }    
         }
 
+        public MappedTable GetMappedTableByPath(String path)
+        {
+            if (RootTable.IndexingElement.ToLower() == path.ToLower()) return RootTable;
+
+            return RootTable.GetMappedTableByPath(path);
+        }
+
         public MappedTable GetMappedTable(String id)
         {
             if (RootTable.Id == id) return RootTable;
