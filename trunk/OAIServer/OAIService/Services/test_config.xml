@@ -3,9 +3,9 @@
   <Service name="test">
     <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
     <ProviderId>NZOR_TEST</ProviderId>
-    <ProviderName>Test Provider</ProviderName>
-    <OrganisationUrl>http://www.nzor.org.nz</OrganisationUrl>
-    <MetadataDate></MetadataDate>
+    <ProviderName>NZOR Test Provider</ProviderName>
+    <OrganisationUrl></OrganisationUrl>
+    <MetadataDate>2010-03-10</MetadataDate>
     <Disclaimer></Disclaimer>
     <Attribution></Attribution>
     <Licensing></Licensing>
@@ -25,14 +25,17 @@
     <DataConnections>
       <DataConnection set="TaxonName">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Name" alias="" pk="NameId">
-          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'"></TableJoin>
+        <Table id="1" name="Name" alias="" pk="NameId" indexingElement="">
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="NameID" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -69,14 +72,17 @@
 
       <DataConnection set="VernacularName">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Vernacular" alias="" pk="VernacularId">
-          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'"></TableJoin>
+        <Table id="1" name="Vernacular" alias="" pk="VernacularId" indexingElement="">
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[VernacularNameId]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[VernacularNameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -91,16 +97,18 @@
 
       <DataConnection set="TaxonConcept">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Concept" alias="" pk="ConceptId">
-          <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId">
+        <Table id="1" name="Concept" alias="" pk="ConceptId" indexingElement="">
+          <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">
           </TableJoin>
-          <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId">
+          <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">
+          </TableJoin>
+          <TableJoin id="4" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="ConceptId" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ConceptCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -130,10 +138,10 @@
 
       <DataConnection set="Publication">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
-        <Table id="1" name="Publication" alias="" pk="PublicationID">
-          <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId">
+        <Table id="1" name="Publication" alias="" pk="PublicationID" indexingElement="">
+          <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId" indexingElement="/DataSet/Publications/Publication/Titles/Title">
           </TableJoin>
-          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="PublicationId" fkTo="DeprecatedOldId">            
+          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="PublicationId" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>
         </Table>
         <Mappings>

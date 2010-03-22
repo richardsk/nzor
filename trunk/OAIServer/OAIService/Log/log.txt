@@ -1759,3 +1759,19 @@ Invalid column name 'NameCreatedDate'. :    at System.Data.OleDb.OleDbDataReader
 18/03/2010 4:10:16 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.ListRecordsRequest.GetFieldValue(String set, String dbField) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 198
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 290
    at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+23/03/2010 11:13:25 a.m. : ERROR : Invalid column name 'PublicationId'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteScalar()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 156
+   at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 241
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+23/03/2010 11:14:20 a.m. : ERROR : The objects "Deprecated" and "Deprecated" in the FROM clause have the same exposed names. Use correlation names to distinguish them. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteScalar()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 156
+   at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 241
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123

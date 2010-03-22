@@ -26,13 +26,16 @@
       <DataConnection set="TaxonName">
         <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Name" alias="" pk="NameId" indexingElement="">
-          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement=""></TableJoin>          
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement="">            
+          </TableJoin>
+          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="NameID" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -72,12 +75,14 @@
         <Table id="1" name="Vernacular" alias="" pk="VernacularId" indexingElement="">
           <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'" indexingElement="">            
           </TableJoin>
+          <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblName.NameSuppress = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[VernacularNameId]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[VernacularNameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
@@ -97,11 +102,13 @@
           </TableJoin>
           <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">            
           </TableJoin>
+          <TableJoin id="4" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="ConceptId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
         </Table>
         <Mappings>
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
-          <!--Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when tblBibliography.BibliographyIsDeleted = 1 then 'deleted' else '' end)" fixedAttributes="" /-->
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ConceptCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
