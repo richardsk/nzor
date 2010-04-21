@@ -60,8 +60,9 @@ namespace NZOR.Matching
         {
             System.String pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical).ToString();
 
-            foreach (DsNameMatch.NameRow row in names.Name)
+            for (int i = names.Name.Count - 1; i >= 0; i--)
             {
+                DsNameMatch.NameRow row = names.Name[i];
                 if (Utility.LevenshteinPercent(row.Canonical.Trim(), pnCanonical.Trim()) < m_Threshold)
                 {
                     row.Delete();

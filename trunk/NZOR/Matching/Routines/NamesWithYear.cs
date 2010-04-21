@@ -63,8 +63,9 @@ namespace NZOR.Matching
             if (pnYear == System.DBNull.Value || pnYear.ToString().Length == 0) return;
             //succeed 
 
-            foreach (DsNameMatch.NameRow row in names.Name)
+            for (int i = names.Name.Count - 1; i >= 0; i--)
             {
+                DsNameMatch.NameRow row = names.Name[i];
                 if (row["Year"].ToString().Trim() != pnYear.ToString().Trim())
                 {
                     row.Delete();
@@ -81,8 +82,9 @@ namespace NZOR.Matching
                 {
                     cnn.Open();
 
-                    foreach (DsNameMatch.NameRow row in names.Name)
+                    for (int i = names.Name.Count - 1; i >= 0; i--)
                     {
+                        DsNameMatch.NameRow row = names.Name[i];
                         if (NZOR.Data.ConsensusName.HasProviderValue(cnn, row.NameID, NZOR.Data.NameProperties.Year, pnYear.ToString()) == false)
                         {
                             row.Delete();

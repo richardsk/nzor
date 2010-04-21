@@ -40,7 +40,7 @@ namespace NZOR.Integration
 
                 //get next matcher 
                 int nextId = -1;
-                if (results.Tables[0].Rows.Count == 0)
+                if (results == null || results.Tables[0].Rows.Count == 0)
                 {
                     //revert to last set then go to fail id 
                     if (nm.FailId == -1)
@@ -80,12 +80,15 @@ namespace NZOR.Integration
             }
 
             List<NameMatch> names = new List<NameMatch>();
-            foreach (NZOR.Data.DsNameMatch.NameRow row in results.Name)
+            if (results != null)
             {
-                NameMatch match = new NameMatch();
-                match.NameFull = row.FullName;
-                match.NameId = row.NameID.ToString();
-                names.Add(match);
+                foreach (NZOR.Data.DsNameMatch.NameRow row in results.Name)
+                {
+                    NameMatch match = new NameMatch();
+                    match.NameFull = row.FullName;
+                    match.NameId = row.NameID.ToString();
+                    names.Add(match);
+                }
             }
 
             return names; 

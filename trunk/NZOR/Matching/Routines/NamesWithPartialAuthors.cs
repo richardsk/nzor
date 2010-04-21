@@ -69,8 +69,9 @@ namespace NZOR.Matching
             authors = authors.Replace(" et ", " & ");
             if (authors.IndexOf(" ex ") != -1) authors = authors.Substring(authors.IndexOf(" ex ") + 4);
 
-            foreach (DsNameMatch.NameRow row in names.Name)
+            for (int i = names.Name.Count - 1; i >= 0; i--)
             {
+                DsNameMatch.NameRow row = names.Name[i];
                 String nameAuth = row["Authors"].ToString().Trim();
                 nameAuth = nameAuth.Replace("  ", " ");
                 nameAuth = nameAuth.Replace(" et ", " & ");

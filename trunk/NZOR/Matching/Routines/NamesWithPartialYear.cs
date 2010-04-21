@@ -71,8 +71,9 @@ namespace NZOR.Matching
             pnYear = pnYear.Replace("\"", "");
             pnYear = pnYear.Replace("?", "");
 
-            foreach (DsNameMatch.NameRow row in names.Name)
+            for (int i = names.Name.Count - 1; i >= 0; i--)
             {
+                DsNameMatch.NameRow row = names.Name[i];
                 String yr = row["Year"].ToString().Trim();
                 yr = yr.Replace("  ", " ");
                 yr = yr.Replace("[", "");

@@ -67,7 +67,7 @@ namespace NZORTest
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
-            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
+            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));
 
             List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1);
             List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);

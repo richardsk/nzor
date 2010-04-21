@@ -57,7 +57,7 @@ namespace NZOR.Matching
 
             DsNameMatch ds = new DsNameMatch();
 
-            if (!parRow.IsNull("ConsensusNameToID"))
+            if (parRow != null && !parRow.IsNull("ConsensusNameToID"))
             {
                 System.Guid parentId = (System.Guid)parRow["ConsensusNameToID"];
 
@@ -85,8 +85,9 @@ namespace NZOR.Matching
             {
                 System.Guid parentId = (System.Guid)parRow["ConsensusNameToID"];
 
-                foreach (DsNameMatch.NameRow nmRow in names.Name)
+                for (int i = names.Name.Count - 1; i >= 0; i--)
                 {
+                    DsNameMatch.NameRow nmRow = names.Name[i];
                     if (nmRow.ParentID != parentId) nmRow.Delete();
                 }
             }

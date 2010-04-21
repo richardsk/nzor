@@ -76,8 +76,9 @@ namespace NZOR.Matching
         {
             object pnRank = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Rank);
 
-            foreach (DsNameMatch.NameRow row in names.Name)
+            for (int i = names.Name.Count - 1; i >= 0; i--) 
             {
+                DsNameMatch.NameRow row = names.Name[i];
                 if (row["Rank"].ToString().Trim() != pnRank.ToString().Trim())
                 {
                     row.Delete();

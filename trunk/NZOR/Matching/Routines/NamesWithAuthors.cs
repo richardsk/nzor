@@ -66,8 +66,9 @@ namespace NZOR.Matching
 
             if (authors != System.DBNull.Value)
             {
-                foreach (DsNameMatch.NameRow row in names.Name)
+                for (int i = names.Name.Count - 1; i >= 0; i--)
                 {
+                    DsNameMatch.NameRow row = names.Name[i];
                     if (!row.IsAuthorsNull() && row.Authors.Length > 0 && row.Authors.ToLower().Trim() != authors.ToString().ToLower().Trim())
                     {
                         row.Delete();
@@ -81,8 +82,9 @@ namespace NZOR.Matching
 
                     using (SqlConnection cnn = new SqlConnection())
                     {
-                        foreach (DsNameMatch.NameRow row in names.Name)
+                        for (int i = names.Name.Count - 1; i >= 0; i--)
                         {
+                            DsNameMatch.NameRow row = names.Name[i];
                             if (ConsensusName.HasProviderValue(cnn, row.NameID, NameProperties.Authors, authors) == false)
                             {
                                 row.Delete();
