@@ -47,7 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigSet.cs" />
+    <Compile Include="IntegrationProcessor.cs" />
     <Compile Include="Integrator.cs" />
+    <Compile Include="IntegratorThread.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

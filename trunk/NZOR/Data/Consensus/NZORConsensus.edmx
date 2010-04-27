@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NZOR_Consensus.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="NZOR_ConsensusStoreContainer">
+          <EntitySet Name="Concept" EntityType="NZOR_Consensus.Store.Concept" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="ConceptRelationship" EntityType="NZOR_Consensus.Store.ConceptRelationship" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="Name" EntityType="NZOR_Consensus.Store.Name" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="NameProperty" EntityType="NZOR_Consensus.Store.NameProperty" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="Reference" EntityType="NZOR_Consensus.Store.Reference" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="ReferenceField" EntityType="NZOR_Consensus.Store.ReferenceField" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="TaxonProperty" EntityType="NZOR_Consensus.Store.TaxonProperty" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="TaxonPropertyValue" EntityType="NZOR_Consensus.Store.TaxonPropertyValue" store:Type="Tables" Schema="cons" />
+          <EntitySet Name="ConceptRelationshipType" EntityType="NZOR_Consensus.Store.ConceptRelationshipType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NameClass" EntityType="NZOR_Consensus.Store.NameClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NameClassProperty" EntityType="NZOR_Consensus.Store.NameClassProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Provider" EntityType="NZOR_Consensus.Store.Provider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaxonPropertyClass" EntityType="NZOR_Consensus.Store.TaxonPropertyClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaxonRank" EntityType="NZOR_Consensus.Store.TaxonRank" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Concept_Name" Association="NZOR_Consensus.Store.FK_Concept_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept" Association="NZOR_Consensus.Store.FK_ConceptRelationship_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept1" Association="NZOR_Consensus.Store.FK_ConceptRelationship_Concept1">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_ConceptRelationshipType" Association="NZOR_Consensus.Store.FK_ConceptRelationship_ConceptRelationshipType">
+            <End Role="ConceptRelationshipType" EntitySet="ConceptRelationshipType" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_NameClass" Association="NZOR_Consensus.Store.FK_Name_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_TaxonRank" Association="NZOR_Consensus.Store.FK_Name_TaxonRank">
+            <End Role="TaxonRank" EntitySet="TaxonRank" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameClassProperty_NameClass" Association="NZOR_Consensus.Store.FK_NameClassProperty_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_Name" Association="NZOR_Consensus.Store.FK_NameProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_NameClassProperty" Association="NZOR_Consensus.Store.FK_NameProperty_NameClassProperty">
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceField_Reference" Association="NZOR_Consensus.Store.FK_ReferenceField_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="ReferenceField" EntitySet="ReferenceField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_Name" Association="NZOR_Consensus.Store.FK_TaxonProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_Reference" Association="NZOR_Consensus.Store.FK_TaxonProperty_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_TaxonPropertyClass" Association="NZOR_Consensus.Store.FK_TaxonProperty_TaxonPropertyClass">
+            <End Role="TaxonPropertyClass" EntitySet="TaxonPropertyClass" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Concept">
+          <Key>
+            <PropertyRef Name="ConceptID" />
+          </Key>
+          <Property Name="ConceptID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccordingToReferenceID" Type="uniqueidentifier" />
+          <Property Name="Orthography" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConceptRelationship">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipID" />
+          </Key>
+          <Property Name="ConceptRelationshipID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FromConceptID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ToConceptID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConceptRelationshipTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Name">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="TaxonRankID" Type="uniqueidentifier" />
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OriginalOrthography" Type="nvarchar" MaxLength="500" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="5" />
+          <Property Name="AddedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NameProperty">
+          <Key>
+            <PropertyRef Name="NamePropertyID" />
+          </Key>
+          <Property Name="NamePropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameClassPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="RelatedID" Type="uniqueidentifier" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="ReferenceID" />
+          </Key>
+          <Property Name="ReferenceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ReferenceField">
+          <Key>
+            <PropertyRef Name="ReferenceFieldID" />
+          </Key>
+          <Property Name="ReferenceFieldID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReferenceFieldTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaxonProperty">
+          <Key>
+            <PropertyRef Name="TaxonPropertyID" />
+          </Key>
+          <Property Name="TaxonPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaxonPropertyClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GeoRegionID" Type="uniqueidentifier" />
+          <Property Name="ReferenceID" Type="uniqueidentifier" />
+          <Property Name="ConceptID" Type="uniqueidentifier" />
+          <Property Name="NameID" Type="uniqueidentifier" />
+          <Property Name="InUse" Type="bit" />
+          <Property Name="AddedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TaxonPropertyValue">
+          <Key>
+            <PropertyRef Name="TaxonPropertyValueID" />
+          </Key>
+          <Property Name="TaxonPropertyValueID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaxonPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaxonPropertyTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Relationship" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MinOccurences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+        </EntityType>
+        <EntityType Name="NameClass">
+          <Key>
+            <PropertyRef Name="NameClassID" />
+          </Key>
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" />
+          </Key>
+          <Property Name="NameClassPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PropertyType" Type="nchar" MaxLength="10" />
+          <Property Name="MinOccurrences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Name="ProviderID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TaxonPropertyClass">
+          <Key>
+            <PropertyRef Name="TaxonPropertyClassID" />
+          </Key>
+          <Property Name="TaxonPropertyClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="KnownAbbreviations" Type="nvarchar" MaxLength="200" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="IncludeInFullName" Type="bit" />
+          <Property Name="AncestorRankID" Type="uniqueidentifier" />
+          <Property Name="MatchRuleSetID" Type="int" />
+          <Property Name="AddedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Concept_Name">
+          <End Role="Name" Type="NZOR_Consensus.Store.Name" Multiplicity="1" />
+          <End Role="Concept" Type="NZOR_Consensus.Store.Concept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="Concept">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept">
+          <End Role="Concept" Type="NZOR_Consensus.Store.Concept" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="FromConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept1">
+          <End Role="Concept" Type="NZOR_Consensus.Store.Concept" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Concept">
+              <PropertyRef Name="ConceptID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="ToConceptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConceptRelationship_ConceptRelationshipType">
+          <End Role="ConceptRelationshipType" Type="NZOR_Consensus.Store.ConceptRelationshipType" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.Store.ConceptRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConceptRelationshipType">
+              <PropertyRef Name="ConceptRelationshipTypeID" />
+            </Principal>
+            <Dependent Role="ConceptRelationship">
+              <PropertyRef Name="ConceptRelationshipTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Name_NameClass">
+          <End Role="NameClass" Type="NZOR_Consensus.Store.NameClass" Multiplicity="1" />
+          <End Role="Name" Type="NZOR_Consensus.Store.Name" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NameClass">
+              <PropertyRef Name="NameClassID" />
+            </Principal>
+            <Dependent Role="Name">
+              <PropertyRef Name="NameClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Name_TaxonRank">
+          <End Role="TaxonRank" Type="NZOR_Consensus.Store.TaxonRank" Multiplicity="0..1" />
+          <End Role="Name" Type="NZOR_Consensus.Store.Name" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaxonRank">
+              <PropertyRef Name="TaxonRankID" />
+            </Principal>
+            <Dependent Role="Name">
+              <PropertyRef Name="TaxonRankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NameClassProperty_NameClass">
+          <End Role="NameClass" Type="NZOR_Consensus.Store.NameClass" Multiplicity="1" />
+          <End Role="NameClassProperty" Type="NZOR_Consensus.Store.NameClassProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NameClass">
+              <PropertyRef Name="NameClassID" />
+            </Principal>
+            <Dependent Role="NameClassProperty">
+              <PropertyRef Name="NameClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NameProperty_Name">
+          <End Role="Name" Type="NZOR_Consensus.Store.Name" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Consensus.Store.NameProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="NameProperty">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NameProperty_NameClassProperty">
+          <End Role="NameClassProperty" Type="NZOR_Consensus.Store.NameClassProperty" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Consensus.Store.NameProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NameClassProperty">
+              <PropertyRef Name="NameClassPropertyID" />
+            </Principal>
+            <Dependent Role="NameProperty">
+              <PropertyRef Name="NameClassPropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenceField_Reference">
+          <End Role="Reference" Type="NZOR_Consensus.Store.Reference" Multiplicity="1" />
+          <End Role="ReferenceField" Type="NZOR_Consensus.Store.ReferenceField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reference">
+              <PropertyRef Name="ReferenceID" />
+            </Principal>
+            <Dependent Role="ReferenceField">
+              <PropertyRef Name="ReferenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxonProperty_Name">
+          <End Role="Name" Type="NZOR_Consensus.Store.Name" Multiplicity="0..1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.Store.TaxonProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Name">
+              <PropertyRef Name="NameID" />
+            </Principal>
+            <Dependent Role="TaxonProperty">
+              <PropertyRef Name="NameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxonProperty_Reference">
+          <End Role="Reference" Type="NZOR_Consensus.Store.Reference" Multiplicity="0..1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.Store.TaxonProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reference">
+              <PropertyRef Name="ReferenceID" />
+            </Principal>
+            <Dependent Role="TaxonProperty">
+              <PropertyRef Name="ReferenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaxonProperty_TaxonPropertyClass">
+          <End Role="TaxonPropertyClass" Type="NZOR_Consensus.Store.TaxonPropertyClass" Multiplicity="1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.Store.TaxonProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaxonPropertyClass">
+              <PropertyRef Name="TaxonPropertyClassID" />
+            </Principal>
+            <Dependent Role="TaxonProperty">
+              <PropertyRef Name="TaxonPropertyClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+      warning 6037: Foreign Key constraint 'FK_NameProperty_NameClassProperty1' has been omitted from the storage model. Column 'NameClassPropertyID' of table 'NZOR_Consensus.Store.NameProperty' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+      
+      <Association Name="FK_NameProperty_NameClassProperty1">
+        <End Role="NameClassProperty" Type="NZOR_Consensus.Store.NameClassProperty" Multiplicity="1" />
+        <End Role="NameProperty" Type="NZOR_Consensus.Store.NameProperty" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="NameClassProperty">
+            <PropertyRef Name="NameClassPropertyID" />
+          </Principal>
+          <Dependent Role="NameProperty">
+            <PropertyRef Name="NameClassPropertyID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NZOR_Consensus" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="NZOR">
+          <EntitySet Name="Concept" EntityType="NZOR_Consensus.Concept" />
+          <EntitySet Name="ConceptRelationship" EntityType="NZOR_Consensus.ConceptRelationship" />
+          <EntitySet Name="Name" EntityType="NZOR_Consensus.Name" />
+          <EntitySet Name="NameProperty" EntityType="NZOR_Consensus.NameProperty" />
+          <EntitySet Name="Reference" EntityType="NZOR_Consensus.Reference" />
+          <EntitySet Name="ReferenceField" EntityType="NZOR_Consensus.ReferenceField" />
+          <EntitySet Name="TaxonProperty" EntityType="NZOR_Consensus.TaxonProperty" />
+          <EntitySet Name="TaxonPropertyValue" EntityType="NZOR_Consensus.TaxonPropertyValue" />
+          <EntitySet Name="ConceptRelationshipType" EntityType="NZOR_Consensus.ConceptRelationshipType" />
+          <EntitySet Name="NameClass" EntityType="NZOR_Consensus.NameClass" />
+          <EntitySet Name="NameClassProperty" EntityType="NZOR_Consensus.NameClassProperty" />
+          <EntitySet Name="Provider" EntityType="NZOR_Consensus.Provider" />
+          <EntitySet Name="TaxonPropertyClass" EntityType="NZOR_Consensus.TaxonPropertyClass" />
+          <EntitySet Name="TaxonRank" EntityType="NZOR_Consensus.TaxonRank" />
+          <AssociationSet Name="FK_Concept_Name" Association="NZOR_Consensus.FK_Concept_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="Concept" EntitySet="Concept" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept" Association="NZOR_Consensus.FK_ConceptRelationship_Concept">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_Concept1" Association="NZOR_Consensus.FK_ConceptRelationship_Concept1">
+            <End Role="Concept" EntitySet="Concept" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConceptRelationship_ConceptRelationshipType" Association="NZOR_Consensus.FK_ConceptRelationship_ConceptRelationshipType">
+            <End Role="ConceptRelationshipType" EntitySet="ConceptRelationshipType" />
+            <End Role="ConceptRelationship" EntitySet="ConceptRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_NameClass" Association="NZOR_Consensus.FK_Name_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Name_TaxonRank" Association="NZOR_Consensus.FK_Name_TaxonRank">
+            <End Role="TaxonRank" EntitySet="TaxonRank" />
+            <End Role="Name" EntitySet="Name" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_Name" Association="NZOR_Consensus.FK_NameProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_Name" Association="NZOR_Consensus.FK_TaxonProperty_Name">
+            <End Role="Name" EntitySet="Name" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameProperty_NameClassProperty" Association="NZOR_Consensus.FK_NameProperty_NameClassProperty">
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+            <End Role="NameProperty" EntitySet="NameProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenceField_Reference" Association="NZOR_Consensus.FK_ReferenceField_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="ReferenceField" EntitySet="ReferenceField" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_Reference" Association="NZOR_Consensus.FK_TaxonProperty_Reference">
+            <End Role="Reference" EntitySet="Reference" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaxonProperty_TaxonPropertyClass" Association="NZOR_Consensus.FK_TaxonProperty_TaxonPropertyClass">
+            <End Role="TaxonPropertyClass" EntitySet="TaxonPropertyClass" />
+            <End Role="TaxonProperty" EntitySet="TaxonProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NameClassProperty_NameClass" Association="NZOR_Consensus.FK_NameClassProperty_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Concept">
+          <Key>
+            <PropertyRef Name="ConceptID" />
+          </Key>
+          <Property Name="ConceptID" Type="Guid" Nullable="false" />
+          <Property Name="AccordingToReferenceID" Type="Guid" />
+          <Property Name="Orthography" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Consensus.FK_Concept_Name" FromRole="Concept" ToRole="Name" />
+          <NavigationProperty Name="ConceptRelationship" Relationship="NZOR_Consensus.FK_ConceptRelationship_Concept" FromRole="Concept" ToRole="ConceptRelationship" />
+          <NavigationProperty Name="ConceptRelationship1" Relationship="NZOR_Consensus.FK_ConceptRelationship_Concept1" FromRole="Concept" ToRole="ConceptRelationship" />
+        </EntityType>
+        <EntityType Name="ConceptRelationship">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipID" />
+          </Key>
+          <Property Name="ConceptRelationshipID" Type="Guid" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Consensus.FK_ConceptRelationship_Concept" FromRole="ConceptRelationship" ToRole="Concept" />
+          <NavigationProperty Name="Concept1" Relationship="NZOR_Consensus.FK_ConceptRelationship_Concept1" FromRole="ConceptRelationship" ToRole="Concept" />
+          <NavigationProperty Name="ConceptRelationshipType" Relationship="NZOR_Consensus.FK_ConceptRelationship_ConceptRelationshipType" FromRole="ConceptRelationship" ToRole="ConceptRelationshipType" />
+        </EntityType>
+        <EntityType Name="Name">
+          <Key>
+            <PropertyRef Name="NameID" />
+          </Key>
+          <Property Name="NameID" Type="Guid" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="OriginalOrthography" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="GoverningCode" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Concept" Relationship="NZOR_Consensus.FK_Concept_Name" FromRole="Name" ToRole="Concept" />
+          <NavigationProperty Name="NameClass" Relationship="NZOR_Consensus.FK_Name_NameClass" FromRole="Name" ToRole="NameClass" />
+          <NavigationProperty Name="TaxonRank" Relationship="NZOR_Consensus.FK_Name_TaxonRank" FromRole="Name" ToRole="TaxonRank" />
+          <NavigationProperty Name="NameProperty" Relationship="NZOR_Consensus.FK_NameProperty_Name" FromRole="Name" ToRole="NameProperty" />
+          <NavigationProperty Name="TaxonProperty" Relationship="NZOR_Consensus.FK_TaxonProperty_Name" FromRole="Name" ToRole="TaxonProperty" />
+          <Property Name="NameClassID" Type="Int32" Nullable="true" />
+          <Property Name="TaxonRankID" Type="Int32" Nullable="true" /></EntityType>
+        <EntityType Name="NameProperty">
+          <Key>
+            <PropertyRef Name="NamePropertyID" />
+          </Key>
+          <Property Name="NamePropertyID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RelatedID" Type="Guid" />
+          <Property Name="Sequence" Type="Int32" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Consensus.FK_NameProperty_Name" FromRole="NameProperty" ToRole="Name" />
+          <NavigationProperty Name="NameClassProperty" Relationship="NZOR_Consensus.FK_NameProperty_NameClassProperty" FromRole="NameProperty" ToRole="NameClassProperty" />
+          <Property Name="NameClassPropertyID" Type="Int32" Nullable="true" /></EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="ReferenceID" />
+          </Key>
+          <Property Name="ReferenceID" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceTypeID" Type="Guid" Nullable="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="ReferenceField" Relationship="NZOR_Consensus.FK_ReferenceField_Reference" FromRole="Reference" ToRole="ReferenceField" />
+          <NavigationProperty Name="TaxonProperty" Relationship="NZOR_Consensus.FK_TaxonProperty_Reference" FromRole="Reference" ToRole="TaxonProperty" />
+        </EntityType>
+        <EntityType Name="ReferenceField">
+          <Key>
+            <PropertyRef Name="ReferenceFieldID" />
+          </Key>
+          <Property Name="ReferenceFieldID" Type="Guid" Nullable="false" />
+          <Property Name="ReferenceFieldTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Reference" Relationship="NZOR_Consensus.FK_ReferenceField_Reference" FromRole="ReferenceField" ToRole="Reference" />
+        </EntityType>
+        <EntityType Name="TaxonProperty">
+          <Key>
+            <PropertyRef Name="TaxonPropertyID" />
+          </Key>
+          <Property Name="TaxonPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="GeoRegionID" Type="Guid" />
+          <Property Name="ConceptID" Type="Guid" />
+          <Property Name="InUse" Type="Boolean" />
+          <Property Name="AddedDate" Type="DateTime" />
+          <Property Name="UpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Consensus.FK_TaxonProperty_Name" FromRole="TaxonProperty" ToRole="Name" />
+          <NavigationProperty Name="Reference" Relationship="NZOR_Consensus.FK_TaxonProperty_Reference" FromRole="TaxonProperty" ToRole="Reference" />
+          <NavigationProperty Name="TaxonPropertyClass" Relationship="NZOR_Consensus.FK_TaxonProperty_TaxonPropertyClass" FromRole="TaxonProperty" ToRole="TaxonPropertyClass" />
+        </EntityType>
+        <EntityType Name="TaxonPropertyValue">
+          <Key>
+            <PropertyRef Name="TaxonPropertyValueID" />
+          </Key>
+          <Property Name="TaxonPropertyValueID" Type="Guid" Nullable="false" />
+          <Property Name="TaxonPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="TaxonPropertyTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Relationship" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MinOccurences" Type="Int32" />
+          <Property Name="MaxOccurrences" Type="Int32" />
+          <NavigationProperty Name="ConceptRelationship" Relationship="NZOR_Consensus.FK_ConceptRelationship_ConceptRelationshipType" FromRole="ConceptRelationshipType" ToRole="ConceptRelationship" />
+        </EntityType>
+        <EntityType Name="NameClass">
+          <Key>
+            <PropertyRef Name="NameClassID" />
+          </Key>
+          <Property Name="NameClassID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Name" Relationship="NZOR_Consensus.FK_Name_NameClass" FromRole="NameClass" ToRole="Name" />
+          <NavigationProperty Name="NameClassProperty" Relationship="NZOR_Consensus.FK_NameClassProperty_NameClass" FromRole="NameClass" ToRole="NameClassProperty" />
+        </EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" />
+          </Key>
+          <Property Name="NameClassPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="MinOccurrences" Type="Int32" />
+          <Property Name="MaxOccurrences" Type="Int32" />
+          <Property Name="GoverningCode" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="NameProperty" Relationship="NZOR_Consensus.FK_NameProperty_NameClassProperty" FromRole="NameClassProperty" ToRole="NameProperty" />
+          <NavigationProperty Name="NameClass" Relationship="NZOR_Consensus.FK_NameClassProperty_NameClass" FromRole="NameClassProperty" ToRole="NameClass" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ProviderID" />
+          </Key>
+          <Property Name="ProviderID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TaxonPropertyClass">
+          <Key>
+            <PropertyRef Name="TaxonPropertyClassID" />
+          </Key>
+          <Property Name="TaxonPropertyClassID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TaxonProperty" Relationship="NZOR_Consensus.FK_TaxonProperty_TaxonPropertyClass" FromRole="TaxonPropertyClass" ToRole="TaxonProperty" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="KnownAbbreviations" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="IncludeInFullName" Type="Boolean" />
+          <Property Name="AncestorRankID" Type="Guid" />
+          <Property Name="MatchRuleSetID" Type="Int32" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="Name1" Relationship="NZOR_Consensus.FK_Name_TaxonRank" FromRole="TaxonRank" ToRole="Name" />
+        </EntityType>
+        <Association Name="FK_Concept_Name">
+          <End Role="Name" Type="NZOR_Consensus.Name" Multiplicity="1" />
+          <End Role="Concept" Type="NZOR_Consensus.Concept" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept">
+          <End Role="Concept" Type="NZOR_Consensus.Concept" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptRelationship_Concept1">
+          <End Role="Concept" Type="NZOR_Consensus.Concept" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ConceptRelationship_ConceptRelationshipType">
+          <End Role="ConceptRelationshipType" Type="NZOR_Consensus.ConceptRelationshipType" Multiplicity="1" />
+          <End Role="ConceptRelationship" Type="NZOR_Consensus.ConceptRelationship" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Name_NameClass">
+          <End Role="NameClass" Type="NZOR_Consensus.NameClass" Multiplicity="1" />
+          <End Role="Name" Type="NZOR_Consensus.Name" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Name_TaxonRank">
+          <End Role="TaxonRank" Type="NZOR_Consensus.TaxonRank" Multiplicity="0..1" />
+          <End Role="Name" Type="NZOR_Consensus.Name" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_NameProperty_Name">
+          <End Role="Name" Type="NZOR_Consensus.Name" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Consensus.NameProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TaxonProperty_Name">
+          <End Role="Name" Type="NZOR_Consensus.Name" Multiplicity="0..1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.TaxonProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_NameProperty_NameClassProperty">
+          <End Role="NameClassProperty" Type="NZOR_Consensus.NameClassProperty" Multiplicity="1" />
+          <End Role="NameProperty" Type="NZOR_Consensus.NameProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ReferenceField_Reference">
+          <End Role="Reference" Type="NZOR_Consensus.Reference" Multiplicity="1" />
+          <End Role="ReferenceField" Type="NZOR_Consensus.ReferenceField" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TaxonProperty_Reference">
+          <End Role="Reference" Type="NZOR_Consensus.Reference" Multiplicity="0..1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.TaxonProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_TaxonProperty_TaxonPropertyClass">
+          <End Role="TaxonPropertyClass" Type="NZOR_Consensus.TaxonPropertyClass" Multiplicity="1" />
+          <End Role="TaxonProperty" Type="NZOR_Consensus.TaxonProperty" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_NameClassProperty_NameClass">
+          <End Role="NameClass" Type="NZOR_Consensus.NameClass" Multiplicity="1" />
+          <End Role="NameClassProperty" Type="NZOR_Consensus.NameClassProperty" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="NZOR_ConsensusStoreContainer" CdmEntityContainer="NZOR">
+          <EntitySetMapping Name="Concept">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Concept)">
+              <MappingFragment StoreEntitySet="Concept">
+                <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+                <ScalarProperty Name="AccordingToReferenceID" ColumnName="AccordingToReferenceID" />
+                <ScalarProperty Name="Orthography" ColumnName="Orthography" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConceptRelationship">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.ConceptRelationship)">
+              <MappingFragment StoreEntitySet="ConceptRelationship">
+                <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Name">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Name)">
+              <MappingFragment StoreEntitySet="Name">
+                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+                <ScalarProperty Name="NameID" ColumnName="NameID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="OriginalOrthography" ColumnName="OriginalOrthography" />
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.NameProperty)">
+              <MappingFragment StoreEntitySet="NameProperty">
+                <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+                <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reference">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Reference)">
+              <MappingFragment StoreEntitySet="Reference">
+                <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+                <ScalarProperty Name="ReferenceTypeID" ColumnName="ReferenceTypeID" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenceField">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.ReferenceField)">
+              <MappingFragment StoreEntitySet="ReferenceField">
+                <ScalarProperty Name="ReferenceFieldID" ColumnName="ReferenceFieldID" />
+                <ScalarProperty Name="ReferenceFieldTypeID" ColumnName="ReferenceFieldTypeID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.TaxonProperty)">
+              <MappingFragment StoreEntitySet="TaxonProperty">
+                <ScalarProperty Name="TaxonPropertyID" ColumnName="TaxonPropertyID" />
+                <ScalarProperty Name="GeoRegionID" ColumnName="GeoRegionID" />
+                <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+                <ScalarProperty Name="InUse" ColumnName="InUse" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonPropertyValue">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.TaxonPropertyValue)">
+              <MappingFragment StoreEntitySet="TaxonPropertyValue">
+                <ScalarProperty Name="TaxonPropertyValueID" ColumnName="TaxonPropertyValueID" />
+                <ScalarProperty Name="TaxonPropertyID" ColumnName="TaxonPropertyID" />
+                <ScalarProperty Name="TaxonPropertyTypeID" ColumnName="TaxonPropertyTypeID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConceptRelationshipType">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.ConceptRelationshipType)">
+              <MappingFragment StoreEntitySet="ConceptRelationshipType">
+                <ScalarProperty Name="ConceptRelationshipTypeID" ColumnName="ConceptRelationshipTypeID" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="MinOccurences" ColumnName="MinOccurences" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameClass">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.NameClass)">
+              <MappingFragment StoreEntitySet="NameClass">
+                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameClassProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.NameClassProperty)">
+              <MappingFragment StoreEntitySet="NameClassProperty">
+                <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="MinOccurrences" ColumnName="MinOccurrences" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provider">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Provider)">
+              <MappingFragment StoreEntitySet="Provider">
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonPropertyClass">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.TaxonPropertyClass)">
+              <MappingFragment StoreEntitySet="TaxonPropertyClass">
+                <ScalarProperty Name="TaxonPropertyClassID" ColumnName="TaxonPropertyClassID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonRank">
+            <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.TaxonRank)">
+              <MappingFragment StoreEntitySet="TaxonRank">
+                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KnownAbbreviations" ColumnName="KnownAbbreviations" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IncludeInFullName" ColumnName="IncludeInFullName" />
+                <ScalarProperty Name="AncestorRankID" ColumnName="AncestorRankID" />
+                <ScalarProperty Name="MatchRuleSetID" ColumnName="MatchRuleSetID" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Concept_Name" TypeName="NZOR_Consensus.FK_Concept_Name" StoreEntitySet="Concept">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ConceptID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_Concept" TypeName="NZOR_Consensus.FK_ConceptRelationship_Concept" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="FromConceptID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_Concept1" TypeName="NZOR_Consensus.FK_ConceptRelationship_Concept1" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="Concept">
+              <ScalarProperty Name="ConceptID" ColumnName="ToConceptID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ConceptRelationship_ConceptRelationshipType" TypeName="NZOR_Consensus.FK_ConceptRelationship_ConceptRelationshipType" StoreEntitySet="ConceptRelationship">
+            <EndProperty Name="ConceptRelationshipType">
+              <ScalarProperty Name="ConceptRelationshipTypeID" ColumnName="ConceptRelationshipTypeID" />
+            </EndProperty>
+            <EndProperty Name="ConceptRelationship">
+              <ScalarProperty Name="ConceptRelationshipID" ColumnName="ConceptRelationshipID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Name_NameClass" TypeName="NZOR_Consensus.FK_Name_NameClass" StoreEntitySet="Name">
+            <EndProperty Name="NameClass">
+              <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+            </EndProperty>
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Name_TaxonRank" TypeName="NZOR_Consensus.FK_Name_TaxonRank" StoreEntitySet="Name">
+            <EndProperty Name="TaxonRank">
+              <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+            </EndProperty>
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <Condition ColumnName="TaxonRankID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_NameProperty_Name" TypeName="NZOR_Consensus.FK_NameProperty_Name" StoreEntitySet="NameProperty">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="NameProperty">
+              <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TaxonProperty_Name" TypeName="NZOR_Consensus.FK_TaxonProperty_Name" StoreEntitySet="TaxonProperty">
+            <EndProperty Name="Name">
+              <ScalarProperty Name="NameID" ColumnName="NameID" />
+            </EndProperty>
+            <EndProperty Name="TaxonProperty">
+              <ScalarProperty Name="TaxonPropertyID" ColumnName="TaxonPropertyID" />
+            </EndProperty>
+            <Condition ColumnName="NameID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_NameProperty_NameClassProperty" TypeName="NZOR_Consensus.FK_NameProperty_NameClassProperty" StoreEntitySet="NameProperty">
+            <EndProperty Name="NameClassProperty">
+              <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+            </EndProperty>
+            <EndProperty Name="NameProperty">
+              <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ReferenceField_Reference" TypeName="NZOR_Consensus.FK_ReferenceField_Reference" StoreEntitySet="ReferenceField">
+            <EndProperty Name="Reference">
+              <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+            </EndProperty>
+            <EndProperty Name="ReferenceField">
+              <ScalarProperty Name="ReferenceFieldID" ColumnName="ReferenceFieldID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TaxonProperty_Reference" TypeName="NZOR_Consensus.FK_TaxonProperty_Reference" StoreEntitySet="TaxonProperty">
+            <EndProperty Name="Reference">
+              <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+            </EndProperty>
+            <EndProperty Name="TaxonProperty">
+              <ScalarProperty Name="TaxonPropertyID" ColumnName="TaxonPropertyID" />
+            </EndProperty>
+            <Condition ColumnName="ReferenceID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_TaxonProperty_TaxonPropertyClass" TypeName="NZOR_Consensus.FK_TaxonProperty_TaxonPropertyClass" StoreEntitySet="TaxonProperty">
+            <EndProperty Name="TaxonPropertyClass">
+              <ScalarProperty Name="TaxonPropertyClassID" ColumnName="TaxonPropertyClassID" />
+            </EndProperty>
+            <EndProperty Name="TaxonProperty">
+              <ScalarProperty Name="TaxonPropertyID" ColumnName="TaxonPropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_NameClassProperty_NameClass" TypeName="NZOR_Consensus.FK_NameClassProperty_NameClass" StoreEntitySet="NameClassProperty">
+            <EndProperty Name="NameClass">
+              <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
+            </EndProperty>
+            <EndProperty Name="NameClassProperty">
+              <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="NZORConsensus">
+        <EntityTypeShape EntityType="NZOR_Consensus.Concept" Width="1.5" PointX="8.25" PointY="6.75" Height="2.2496956380208326" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.ConceptRelationship" Width="1.5" PointX="10.5" PointY="6.875" Height="2.0853483072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.Name" Width="1.5" PointX="6" PointY="6.5" Height="3.0714322916666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.NameProperty" Width="1.5" PointX="8.25" PointY="3.75" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.Reference" Width="1.5" PointX="9" PointY="10.125" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.ReferenceField" Width="1.5" PointX="11.25" PointY="10.25" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.TaxonProperty" Width="1.5" PointX="11.25" PointY="3.625" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.TaxonPropertyValue" Width="1.5" PointX="0.75" PointY="1.5" Height="1.5923063151041668" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.ConceptRelationshipType" Width="1.5" PointX="8.25" PointY="13" Height="1.7566536458333353" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.NameClass" Width="1.5" PointX="0.75" PointY="7" Height="1.7566536458333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.NameClassProperty" Width="1.5" PointX="3" PointY="6.75" Height="2.2496956380208326" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.Provider" Width="1.5" PointX="0.75" PointY="4.5" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.TaxonPropertyClass" Width="1.5" PointX="9" PointY="0.75" Height="1.592306315104167" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.TaxonRank" Width="1.5" PointX="3.75" PointY="2.375" Height="2.9070849609374996" IsExpanded="true" />
+        <AssociationConnector Association="NZOR_Consensus.FK_Concept_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="7.8748478190104159" />
+          <ConnectorPoint PointX="8.25" PointY="7.8748478190104159" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_ConceptRelationship_Concept" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="7.9176741536458328" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="7.9176741536458319" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="7.9176741536458328" />
+          <ConnectorPoint PointX="10.5" PointY="7.9176741536458328" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_ConceptRelationship_Concept1" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="7.3338370768229169" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="7.333837076822916" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="7.3338370768229169" />
+          <ConnectorPoint PointX="10.5" PointY="7.3338370768229169" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_ConceptRelationship_ConceptRelationshipType" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="13.878326822916668" />
+          <ConnectorPoint PointX="10.875" PointY="13.878326822916668" />
+          <ConnectorPoint PointX="10.875" PointY="8.9603483072916656" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_Name_NameClass" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.7566536458333317" />
+          <ConnectorPoint PointX="1.5" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="6" PointY="9.31681396484375" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_Name_TaxonRank" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="5.2820849609375" />
+          <ConnectorPoint PointX="4.90625" PointY="9.1582523014322916" />
+          <ConnectorPoint PointX="6" PointY="9.1582523014322916" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_NameProperty_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="6.5" />
+          <ConnectorPoint PointX="6.75" PointY="4.7110701497395837" />
+          <ConnectorPoint PointX="8.25" PointY="4.7110701497395837" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_TaxonProperty_Name" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="10.791666666666666" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="12.40625" PointY="9.31681396484375" />
+          <ConnectorPoint PointX="12.40625" PointY="6.03904296875" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_NameProperty_NameClassProperty" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.34375" PointY="6.75" />
+          <ConnectorPoint PointX="3.34375" PointY="5.75431396484375" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="5.7543139648437487" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="5.75431396484375" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="5.7543139648437487" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="5.75431396484375" />
+          <ConnectorPoint PointX="8.25" PointY="5.75431396484375" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_ReferenceField_Reference" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.5" PointY="11.046153157552084" />
+          <ConnectorPoint PointX="10.791666666666666" PointY="11.046153157552084" />
+          <ConnectorPoint PointX="10.958333333333334" PointY="11.046153157552084" />
+          <ConnectorPoint PointX="11.25" PointY="11.046153157552084" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_TaxonProperty_Reference" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.125" PointY="10.125" />
+          <ConnectorPoint PointX="10.125" PointY="3.65625" />
+          <ConnectorPoint PointX="11.25" PointY="3.65625" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_TaxonProperty_TaxonPropertyClass" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.3125" PointY="2.342306315104167" />
+          <ConnectorPoint PointX="10.3125" PointY="3.640625" />
+          <ConnectorPoint PointX="11.25" PointY="3.640625" /></AssociationConnector>
+        <AssociationConnector Association="NZOR_Consensus.FK_NameClassProperty_NameClass" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.8783268229166659" />
+          <ConnectorPoint PointX="3" PointY="7.8783268229166659" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

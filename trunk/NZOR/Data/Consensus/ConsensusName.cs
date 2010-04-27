@@ -128,5 +128,41 @@ namespace NZOR.Data
 
             return r;
         }
+
+        /// <summary>
+        /// Add new consensus name from provider name details
+        /// </summary>
+        /// <param name="provName"></param>
+        /// <returns>new consensus name</returns>
+        public static DataSet AddConsensusName(DataSet provName)
+        {
+            NZOR.Data.Consensus.Name nm = new NZOR.Data.Consensus.Name();
+
+            nm.AddedDate = DateTime.Now;
+            nm.FullName = provName.Tables["Name"].Rows[0]["FullName"].ToString();
+            nm.GoverningCode = provName.Tables["Name"].Rows[0]["GoverningCode"].ToString();
+            nm.NameClassID = (int)provName.Tables["Name"].Rows[0]["NameClassID"];
+            nm.NameID = Guid.NewGuid();
+            nm.OriginalOrthography = provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString();
+            nm.TaxonRankID = (int)provName.Tables["Name"].Rows[0]["TaxonRankID"];
+
+            NZOR.Data.Consensus.NZOR n = new NZOR.Data.Consensus.NZOR();
+            n.AddToName(nm);
+
+            //properties
+            foreach (DataRow tpRow in provName.Tables["NameProperty"].Rows)
+            {
+                NZOR.Data.Consensus.NameProperty np = new NZOR.Data.Consensus.NameProperty();
+
+                np.AddedDate = DateTime.Now;
+                np.NameClassPropertyID = (int)tpRow["NameClassPropertyID"];
+                np.Value = tpRow["Value"].ToString();
+                if (!tpRow.IsNull("Sequence")) np.Sequence = (int)tpRow["Sequence"];
+                np.RelatedID = 
+                nm.NameProperty.Add(np);
+            }
+
+            n.SaveChanges();
+        }
     }
 }

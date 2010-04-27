@@ -54,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consensus\ConsensusName.cs" />
+    <Compile Include="Consensus\NZORConsensus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NZORConsensus.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DsNameMatch.cs">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -74,6 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="Consensus\NZORConsensus.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NZORConsensus.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="DsNameMatch.xsc">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
     </None>

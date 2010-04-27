@@ -11,11 +11,6 @@ namespace NZOR.Integration
 {
     public class Integrator
     {
-        public static List<MatchResult> IntegrateAll()
-        {
-            return null;
-        }
-
         public static List<NameMatch> DoMatch(DataSet provName, List<INameMatcher> routines)
         {
             NZOR.Data.DsNameMatch results = null;
