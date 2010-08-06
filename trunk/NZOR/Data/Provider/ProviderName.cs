@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace NZOR.Data
 {
@@ -75,5 +76,20 @@ namespace NZOR.Data
             return r;
         }
 
+        public static void UpdateProviderNameLink(DataSet provName, Guid? consensusNameID, LinkStatus status, int matchScore)
+        {
+            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
+
+            var res = from pns in provData.Name where pns.NameID.ToString().Equals(provName.Tables["Name"].Rows[0]["NameID"].ToString()) select pns;
+
+            if (res.Count() > 0)
+            {
+                NZOR.Data.Provider.Name pn = (NZOR.Data.Provider.Name)res.First();
+                pn.ConsensusNameID = consensusNameID;
+                pn.LinkStatus = status.ToString();
+                pn.MatchScore = matchScore;
+                provData.SaveChanges();
+            }
+        }
     }
 }

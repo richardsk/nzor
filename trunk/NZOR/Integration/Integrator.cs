@@ -81,7 +81,7 @@ namespace NZOR.Integration
                 {
                     NameMatch match = new NameMatch();
                     match.NameFull = row.FullName;
-                    match.NameId = row.NameID.ToString();
+                    match.NameId = row.NameID;
                     names.Add(match);
                 }
             }

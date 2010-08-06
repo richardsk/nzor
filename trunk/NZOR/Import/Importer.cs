@@ -9,6 +9,7 @@ namespace NZOR.Import
     {
         public Boolean ImportDataFromXml(System.Xml.Linq.XElement xml)
         {
+            return false;
         }
     }
 }

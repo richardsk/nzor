@@ -31,19 +31,22 @@ namespace NZOR.Integration
                 if (matches.Count == 0)
                 {
                     //insert
+                    NZOR.Data.Consensus.Name newName = NZOR.Data.ConsensusName.AddConsensusName(provName);
 
+                    Result.MatchedId = newName.NameID.ToString();
+                    Result.MatchedName = newName.FullName;                    
                     Result.Status = NZOR.Data.LinkStatus.Inserted;
                 }
                 else if (matches.Count == 1)
                 {
                     //link 
-
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, matches[0].NameId, NZOR.Data.LinkStatus.Matched, matches[0].MatchScore);
                     Result.Status = NZOR.Data.LinkStatus.Matched;
                 }
                 else
                 {
                     //multiple matches
-
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, null, NZOR.Data.LinkStatus.Multiple, 0);                    
                     Result.Status = NZOR.Data.LinkStatus.Multiple;
                 }
             }

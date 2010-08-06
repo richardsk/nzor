@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.integButton = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
+            // 
+            // integButton
+            // 
+            this.integButton.Location = new System.Drawing.Point(71, 37);
+            this.integButton.Name = "integButton";
+            this.integButton.Size = new System.Drawing.Size(133, 23);
+            this.integButton.TabIndex = 0;
+            this.integButton.Text = "Run Integration";
+            this.integButton.UseVisualStyleBackColor = true;
+            this.integButton.Click += new System.EventHandler(this.integButton_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(221, 37);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(367, 23);
+            this.progressBar1.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(845, 273);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.integButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -43,6 +64,9 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button integButton;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

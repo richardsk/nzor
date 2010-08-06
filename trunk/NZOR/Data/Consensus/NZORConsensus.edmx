@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NZOR_Consensus.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="NZOR_Consensus.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="NZOR_ConsensusStoreContainer">
           <EntitySet Name="Concept" EntityType="NZOR_Consensus.Store.Concept" store:Type="Tables" Schema="cons" />
           <EntitySet Name="ConceptRelationship" EntityType="NZOR_Consensus.Store.ConceptRelationship" store:Type="Tables" Schema="cons" />
@@ -394,12 +394,11 @@
           </Dependent>
         </ReferentialConstraint>
       </Association>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NZOR_Consensus" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="NZOR">
+        <EntityContainer Name="NZORConsensus">
           <EntitySet Name="Concept" EntityType="NZOR_Consensus.Concept" />
           <EntitySet Name="ConceptRelationship" EntityType="NZOR_Consensus.ConceptRelationship" />
           <EntitySet Name="Name" EntityType="NZOR_Consensus.Name" />
@@ -507,8 +506,7 @@
           <NavigationProperty Name="TaxonRank" Relationship="NZOR_Consensus.FK_Name_TaxonRank" FromRole="Name" ToRole="TaxonRank" />
           <NavigationProperty Name="NameProperty" Relationship="NZOR_Consensus.FK_NameProperty_Name" FromRole="Name" ToRole="NameProperty" />
           <NavigationProperty Name="TaxonProperty" Relationship="NZOR_Consensus.FK_TaxonProperty_Name" FromRole="Name" ToRole="TaxonProperty" />
-          <Property Name="NameClassID" Type="Int32" Nullable="true" />
-          <Property Name="TaxonRankID" Type="Int32" Nullable="true" /></EntityType>
+          </EntityType>
         <EntityType Name="NameProperty">
           <Key>
             <PropertyRef Name="NamePropertyID" />
@@ -521,7 +519,7 @@
           <Property Name="UpdatedDate" Type="DateTime" />
           <NavigationProperty Name="Name" Relationship="NZOR_Consensus.FK_NameProperty_Name" FromRole="NameProperty" ToRole="Name" />
           <NavigationProperty Name="NameClassProperty" Relationship="NZOR_Consensus.FK_NameProperty_NameClassProperty" FromRole="NameProperty" ToRole="NameClassProperty" />
-          <Property Name="NameClassPropertyID" Type="Int32" Nullable="true" /></EntityType>
+          </EntityType>
         <EntityType Name="Reference">
           <Key>
             <PropertyRef Name="ReferenceID" />
@@ -688,7 +686,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="NZOR_ConsensusStoreContainer" CdmEntityContainer="NZOR">
+        <EntityContainerMapping StorageEntityContainer="NZOR_ConsensusStoreContainer" CdmEntityContainer="NZORConsensus">
           <EntitySetMapping Name="Concept">
             <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Concept)">
               <MappingFragment StoreEntitySet="Concept">
@@ -713,8 +711,6 @@
           <EntitySetMapping Name="Name">
             <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.Name)">
               <MappingFragment StoreEntitySet="Name">
-                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" />
-                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
                 <ScalarProperty Name="NameID" ColumnName="NameID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="OriginalOrthography" ColumnName="OriginalOrthography" />
@@ -727,7 +723,6 @@
           <EntitySetMapping Name="NameProperty">
             <EntityTypeMapping TypeName="IsTypeOf(NZOR_Consensus.NameProperty)">
               <MappingFragment StoreEntitySet="NameProperty">
-                <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" />
                 <ScalarProperty Name="NamePropertyID" ColumnName="NamePropertyID" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="RelatedID" ColumnName="RelatedID" />
@@ -971,8 +966,8 @@
       <Diagram Name="NZORConsensus">
         <EntityTypeShape EntityType="NZOR_Consensus.Concept" Width="1.5" PointX="8.25" PointY="6.75" Height="2.2496956380208326" IsExpanded="true" />
         <EntityTypeShape EntityType="NZOR_Consensus.ConceptRelationship" Width="1.5" PointX="10.5" PointY="6.875" Height="2.0853483072916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="NZOR_Consensus.Name" Width="1.5" PointX="6" PointY="6.5" Height="3.0714322916666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="NZOR_Consensus.NameProperty" Width="1.5" PointX="8.25" PointY="3.75" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.Name" Width="1.5" PointX="6" PointY="6.5" Height="2.7427376302083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="NZOR_Consensus.NameProperty" Width="1.5" PointX="8.25" PointY="3.75" Height="2.2496956380208326" IsExpanded="true" />
         <EntityTypeShape EntityType="NZOR_Consensus.Reference" Width="1.5" PointX="9" PointY="10.125" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="NZOR_Consensus.ReferenceField" Width="1.5" PointX="11.25" PointY="10.25" Height="1.5923063151041674" IsExpanded="true" />
         <EntityTypeShape EntityType="NZOR_Consensus.TaxonProperty" Width="1.5" PointX="11.25" PointY="3.625" Height="2.4140429687499996" IsExpanded="true" />
@@ -1002,32 +997,31 @@
           <ConnectorPoint PointX="10.875" PointY="8.9603483072916656" /></AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_Name_NameClass" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="8.7566536458333317" />
-          <ConnectorPoint PointX="1.5" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="6" PointY="9.31681396484375" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="9.1524666341145817" />
+          <ConnectorPoint PointX="6" PointY="9.1524666341145817" /></AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_Name_TaxonRank" ManuallyRouted="false">
           <ConnectorPoint PointX="4.90625" PointY="5.2820849609375" />
-          <ConnectorPoint PointX="4.90625" PointY="9.1582523014322916" />
-          <ConnectorPoint PointX="6" PointY="9.1582523014322916" /></AssociationConnector>
+          <ConnectorPoint PointX="4.90625" PointY="6.59375" />
+          <ConnectorPoint PointX="6" PointY="6.59375" /></AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_NameProperty_Name" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="6.5" />
-          <ConnectorPoint PointX="6.75" PointY="4.7110701497395837" />
-          <ConnectorPoint PointX="8.25" PointY="4.7110701497395837" /></AssociationConnector>
+          <ConnectorPoint PointX="6.75" PointY="4.6937647643904006" />
+          <ConnectorPoint PointX="8.25" PointY="4.6937647643904006" /></AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_TaxonProperty_Name" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="12.40625" PointY="9.31681396484375" />
-          <ConnectorPoint PointX="12.40625" PointY="6.03904296875" /></AssociationConnector>
+          <ConnectorPoint PointX="7.5" PointY="6.59375" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="6.5937499999999991" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="6.59375" />
+          <ConnectorPoint PointX="12.40625" PointY="6.59375" />
+          <ConnectorPoint PointX="12.40625" PointY="6.03904296875" />
+          </AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_NameProperty_NameClassProperty" ManuallyRouted="false">
           <ConnectorPoint PointX="3.34375" PointY="6.75" />
-          <ConnectorPoint PointX="3.34375" PointY="5.75431396484375" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="5.7543139648437487" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="5.75431396484375" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="5.7543139648437487" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="5.75431396484375" />
-          <ConnectorPoint PointX="8.25" PointY="5.75431396484375" /></AssociationConnector>
+          <ConnectorPoint PointX="3.34375" PointY="5.6721402994791656" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="5.6721402994791648" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="5.6721402994791656" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="5.6721402994791648" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="5.6721402994791656" />
+          <ConnectorPoint PointX="8.25" PointY="5.6721402994791656" /></AssociationConnector>
         <AssociationConnector Association="NZOR_Consensus.FK_ReferenceField_Reference" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="11.046153157552084" />
           <ConnectorPoint PointX="10.791666666666666" PointY="11.046153157552084" />

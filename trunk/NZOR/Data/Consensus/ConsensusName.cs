@@ -134,20 +134,21 @@ namespace NZOR.Data
         /// </summary>
         /// <param name="provName"></param>
         /// <returns>new consensus name</returns>
-        public static DataSet AddConsensusName(DataSet provName)
+        public static NZOR.Data.Consensus.Name AddConsensusName(DataSet provName)
         {
             NZOR.Data.Consensus.Name nm = new NZOR.Data.Consensus.Name();
 
             nm.AddedDate = DateTime.Now;
             nm.FullName = provName.Tables["Name"].Rows[0]["FullName"].ToString();
             nm.GoverningCode = provName.Tables["Name"].Rows[0]["GoverningCode"].ToString();
-            nm.NameClassID = (int)provName.Tables["Name"].Rows[0]["NameClassID"];
+            nm.NameClass.NameClassID = (Guid)provName.Tables["Name"].Rows[0]["NameClassID"];
             nm.NameID = Guid.NewGuid();
             nm.OriginalOrthography = provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString();
-            nm.TaxonRankID = (int)provName.Tables["Name"].Rows[0]["TaxonRankID"];
+            nm.TaxonRank.TaxonRankID = (Guid)provName.Tables["Name"].Rows[0]["TaxonRankID"];
 
-            NZOR.Data.Consensus.NZOR n = new NZOR.Data.Consensus.NZOR();
-            n.AddToName(nm);
+            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
+            NZOR.Data.Consensus.NZORConsensus consData = new NZOR.Data.Consensus.NZORConsensus();
+            consData.AddToName(nm);
 
             //properties
             foreach (DataRow tpRow in provName.Tables["NameProperty"].Rows)
@@ -155,14 +156,27 @@ namespace NZOR.Data
                 NZOR.Data.Consensus.NameProperty np = new NZOR.Data.Consensus.NameProperty();
 
                 np.AddedDate = DateTime.Now;
-                np.NameClassPropertyID = (int)tpRow["NameClassPropertyID"];
+                np.NameClassProperty.NameClassPropertyID = (Guid)tpRow["NameClassPropertyID"];
                 np.Value = tpRow["Value"].ToString();
                 if (!tpRow.IsNull("Sequence")) np.Sequence = (int)tpRow["Sequence"];
-                np.RelatedID = 
+
+                if (tpRow["RelatedID"] != DBNull.Value)
+                {
+                    //connect to related provider name consensus id
+                    var res = from nps in provData.Name where nps.NameID.ToString().Equals(tpRow["RelatedID"].ToString()) select nps;
+                    if (res.Count() > 0)
+                    {
+                        NZOR.Data.Provider.Name pn = res.First();
+                        np.RelatedID = pn.ConsensusNameID;
+                    }
+                }
+
                 nm.NameProperty.Add(np);
             }
 
-            n.SaveChanges();
+            consData.SaveChanges();
+
+            return nm;
         }
     }
 }

@@ -11,69 +11,50 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_ConceptRelationship_ConceptRelationshipType", "ConceptRelationshipType", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.ConceptRelationshipType), "ConceptRelationship", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.ConceptRelationship))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_NameProperty_NameClassProperty", "NameClassProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Provider.NameClassProperty), "NameProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.NameProperty))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Biostatus_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "Biostatus", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Biostatus))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Concept_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Concept))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_GeoRegion_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "GeoRegion", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.GeoRegion))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Name_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "Name", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Name))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Biostatus_Concept", "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Concept), "Biostatus", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Biostatus))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Biostatus_Name", "Name", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Name), "Biostatus", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Biostatus))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Concept_Name", "Name", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Provider.Name), "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Concept))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_ConceptProperty_Concept", "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Provider.Concept), "ConceptProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.ConceptProperty))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_ConceptRelationship_Concept", "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Concept), "ConceptRelationship", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.ConceptRelationship))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_ConceptRelationship_Concept1", "Concept", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Concept), "ConceptRelationship", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.ConceptRelationship))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_NameProperty_Name", "Name", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Provider.Name), "NameProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.NameProperty))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_ReferenceField_Reference", "Reference", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Provider.Reference), "ReferenceField", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.ReferenceField))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Reference_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "Reference", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Reference))]
 
 // Original file name:
-// Generation date: 23/12/2009 1:38:15 p.m.
+// Generation date: 28/04/2010 12:37:08 p.m.
 namespace NZOR.Data.Provider
 {
     
     /// <summary>
-    /// There are no comments for Entities in the schema.
+    /// There are no comments for NZORProvider in the schema.
     /// </summary>
-    public partial class Entities : global::System.Data.Objects.ObjectContext
+    public partial class NZORProvider : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new Entities object using the connection string found in the 'Entities' section of the application configuration file.
+        /// Initializes a new NZORProvider object using the connection string found in the 'NZORProvider' section of the application configuration file.
         /// </summary>
-        public Entities() : 
-                base("name=Entities", "Entities")
+        public NZORProvider() : 
+                base("name=NZORProvider", "NZORProvider")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new NZORProvider object.
         /// </summary>
-        public Entities(string connectionString) : 
-                base(connectionString, "Entities")
+        public NZORProvider(string connectionString) : 
+                base(connectionString, "NZORProvider")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new NZORProvider object.
         /// </summary>
-        public Entities(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "Entities")
+        public NZORProvider(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "NZORProvider")
         {
             this.OnContextCreated();
         }
         partial void OnContextCreated();
-        /// <summary>
-        /// There are no comments for ConceptPropertyType in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<ConceptPropertyType> ConceptPropertyType
-        {
-            get
-            {
-                if ((this._ConceptPropertyType == null))
-                {
-                    this._ConceptPropertyType = base.CreateQuery<ConceptPropertyType>("[ConceptPropertyType]");
-                }
-                return this._ConceptPropertyType;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<ConceptPropertyType> _ConceptPropertyType;
         /// <summary>
         /// There are no comments for ConceptRelationshipType in the schema.
         /// </summary>
@@ -135,36 +116,6 @@ namespace NZOR.Data.Provider
         }
         private global::System.Data.Objects.ObjectQuery<TaxonRank> _TaxonRank;
         /// <summary>
-        /// There are no comments for Biostatus in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Biostatus> Biostatus
-        {
-            get
-            {
-                if ((this._Biostatus == null))
-                {
-                    this._Biostatus = base.CreateQuery<Biostatus>("[Biostatus]");
-                }
-                return this._Biostatus;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<Biostatus> _Biostatus;
-        /// <summary>
-        /// There are no comments for BiostatusValue in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<BiostatusValue> BiostatusValue
-        {
-            get
-            {
-                if ((this._BiostatusValue == null))
-                {
-                    this._BiostatusValue = base.CreateQuery<BiostatusValue>("[BiostatusValue]");
-                }
-                return this._BiostatusValue;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<BiostatusValue> _BiostatusValue;
-        /// <summary>
         /// There are no comments for Concept in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<Concept> Concept
@@ -180,21 +131,6 @@ namespace NZOR.Data.Provider
         }
         private global::System.Data.Objects.ObjectQuery<Concept> _Concept;
         /// <summary>
-        /// There are no comments for ConceptProperty in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<ConceptProperty> ConceptProperty
-        {
-            get
-            {
-                if ((this._ConceptProperty == null))
-                {
-                    this._ConceptProperty = base.CreateQuery<ConceptProperty>("[ConceptProperty]");
-                }
-                return this._ConceptProperty;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<ConceptProperty> _ConceptProperty;
-        /// <summary>
         /// There are no comments for ConceptRelationship in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<ConceptRelationship> ConceptRelationship
@@ -209,21 +145,6 @@ namespace NZOR.Data.Provider
             }
         }
         private global::System.Data.Objects.ObjectQuery<ConceptRelationship> _ConceptRelationship;
-        /// <summary>
-        /// There are no comments for GeoRegion in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<GeoRegion> GeoRegion
-        {
-            get
-            {
-                if ((this._GeoRegion == null))
-                {
-                    this._GeoRegion = base.CreateQuery<GeoRegion>("[GeoRegion]");
-                }
-                return this._GeoRegion;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<GeoRegion> _GeoRegion;
         /// <summary>
         /// There are no comments for Name in the schema.
         /// </summary>
@@ -285,13 +206,6 @@ namespace NZOR.Data.Provider
         }
         private global::System.Data.Objects.ObjectQuery<ReferenceField> _ReferenceField;
         /// <summary>
-        /// There are no comments for ConceptPropertyType in the schema.
-        /// </summary>
-        public void AddToConceptPropertyType(ConceptPropertyType conceptPropertyType)
-        {
-            base.AddObject("ConceptPropertyType", conceptPropertyType);
-        }
-        /// <summary>
         /// There are no comments for ConceptRelationshipType in the schema.
         /// </summary>
         public void AddToConceptRelationshipType(ConceptRelationshipType conceptRelationshipType)
@@ -320,20 +234,6 @@ namespace NZOR.Data.Provider
             base.AddObject("TaxonRank", taxonRank);
         }
         /// <summary>
-        /// There are no comments for Biostatus in the schema.
-        /// </summary>
-        public void AddToBiostatus(Biostatus biostatus)
-        {
-            base.AddObject("Biostatus", biostatus);
-        }
-        /// <summary>
-        /// There are no comments for BiostatusValue in the schema.
-        /// </summary>
-        public void AddToBiostatusValue(BiostatusValue biostatusValue)
-        {
-            base.AddObject("BiostatusValue", biostatusValue);
-        }
-        /// <summary>
         /// There are no comments for Concept in the schema.
         /// </summary>
         public void AddToConcept(Concept concept)
@@ -341,25 +241,11 @@ namespace NZOR.Data.Provider
             base.AddObject("Concept", concept);
         }
         /// <summary>
-        /// There are no comments for ConceptProperty in the schema.
-        /// </summary>
-        public void AddToConceptProperty(ConceptProperty conceptProperty)
-        {
-            base.AddObject("ConceptProperty", conceptProperty);
-        }
-        /// <summary>
         /// There are no comments for ConceptRelationship in the schema.
         /// </summary>
         public void AddToConceptRelationship(ConceptRelationship conceptRelationship)
         {
             base.AddObject("ConceptRelationship", conceptRelationship);
-        }
-        /// <summary>
-        /// There are no comments for GeoRegion in the schema.
-        /// </summary>
-        public void AddToGeoRegion(GeoRegion geoRegion)
-        {
-            base.AddObject("GeoRegion", geoRegion);
         }
         /// <summary>
         /// There are no comments for Name in the schema.
@@ -389,122 +275,6 @@ namespace NZOR.Data.Provider
         {
             base.AddObject("ReferenceField", referenceField);
         }
-    }
-    /// <summary>
-    /// There are no comments for NZOR_Provider.ConceptPropertyType in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// ConceptPropertyTypeID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="NZOR_Provider", Name="ConceptPropertyType")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class ConceptPropertyType : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new ConceptPropertyType object.
-        /// </summary>
-        /// <param name="conceptPropertyTypeID">Initial value of ConceptPropertyTypeID.</param>
-        /// <param name="propertyName">Initial value of PropertyName.</param>
-        public static ConceptPropertyType CreateConceptPropertyType(global::System.Guid conceptPropertyTypeID, string propertyName)
-        {
-            ConceptPropertyType conceptPropertyType = new ConceptPropertyType();
-            conceptPropertyType.ConceptPropertyTypeID = conceptPropertyTypeID;
-            conceptPropertyType.PropertyName = propertyName;
-            return conceptPropertyType;
-        }
-        /// <summary>
-        /// There are no comments for Property ConceptPropertyTypeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid ConceptPropertyTypeID
-        {
-            get
-            {
-                return this._ConceptPropertyTypeID;
-            }
-            set
-            {
-                this.OnConceptPropertyTypeIDChanging(value);
-                this.ReportPropertyChanging("ConceptPropertyTypeID");
-                this._ConceptPropertyTypeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ConceptPropertyTypeID");
-                this.OnConceptPropertyTypeIDChanged();
-            }
-        }
-        private global::System.Guid _ConceptPropertyTypeID;
-        partial void OnConceptPropertyTypeIDChanging(global::System.Guid value);
-        partial void OnConceptPropertyTypeIDChanged();
-        /// <summary>
-        /// There are no comments for Property PropertyName in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string PropertyName
-        {
-            get
-            {
-                return this._PropertyName;
-            }
-            set
-            {
-                this.OnPropertyNameChanging(value);
-                this.ReportPropertyChanging("PropertyName");
-                this._PropertyName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("PropertyName");
-                this.OnPropertyNameChanged();
-            }
-        }
-        private string _PropertyName;
-        partial void OnPropertyNameChanging(string value);
-        partial void OnPropertyNameChanged();
-        /// <summary>
-        /// There are no comments for Property PropertyDataType in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string PropertyDataType
-        {
-            get
-            {
-                return this._PropertyDataType;
-            }
-            set
-            {
-                this.OnPropertyDataTypeChanging(value);
-                this.ReportPropertyChanging("PropertyDataType");
-                this._PropertyDataType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("PropertyDataType");
-                this.OnPropertyDataTypeChanged();
-            }
-        }
-        private string _PropertyDataType;
-        partial void OnPropertyDataTypeChanging(string value);
-        partial void OnPropertyDataTypeChanged();
-        /// <summary>
-        /// There are no comments for Property Description in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this._Description;
-            }
-            set
-            {
-                this.OnDescriptionChanging(value);
-                this.ReportPropertyChanging("Description");
-                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Description");
-                this.OnDescriptionChanged();
-            }
-        }
-        private string _Description;
-        partial void OnDescriptionChanging(string value);
-        partial void OnDescriptionChanged();
     }
     /// <summary>
     /// There are no comments for NZOR_Provider.ConceptRelationshipType in the schema.
@@ -864,12 +634,12 @@ namespace NZOR.Data.Provider
         /// Create a new Provider object.
         /// </summary>
         /// <param name="providerID">Initial value of ProviderID.</param>
-        /// <param name="title">Initial value of Title.</param>
-        public static Provider CreateProvider(global::System.Guid providerID, string title)
+        /// <param name="name_1">Initial value of Name_1.</param>
+        public static Provider CreateProvider(global::System.Guid providerID, string name_1)
         {
             Provider provider = new Provider();
             provider.ProviderID = providerID;
-            provider.Title = title;
+            provider.Name_1 = name_1;
             return provider;
         }
         /// <summary>
@@ -896,49 +666,28 @@ namespace NZOR.Data.Provider
         partial void OnProviderIDChanging(global::System.Guid value);
         partial void OnProviderIDChanged();
         /// <summary>
-        /// There are no comments for Property Title in the schema.
+        /// There are no comments for Property Name_1 in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Title
+        public string Name_1
         {
             get
             {
-                return this._Title;
+                return this._Name_1;
             }
             set
             {
-                this.OnTitleChanging(value);
-                this.ReportPropertyChanging("Title");
-                this._Title = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("Title");
-                this.OnTitleChanged();
+                this.OnName_1Changing(value);
+                this.ReportPropertyChanging("Name_1");
+                this._Name_1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name_1");
+                this.OnName_1Changed();
             }
         }
-        private string _Title;
-        partial void OnTitleChanging(string value);
-        partial void OnTitleChanged();
-        /// <summary>
-        /// There are no comments for Biostatus in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Provider", "Biostatus")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Biostatus> Biostatus
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Provider", "Biostatus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Provider", "Biostatus", value);
-                }
-            }
-        }
+        private string _Name_1;
+        partial void OnName_1Changing(string value);
+        partial void OnName_1Changed();
         /// <summary>
         /// There are no comments for Concept in the schema.
         /// </summary>
@@ -961,27 +710,6 @@ namespace NZOR.Data.Provider
             }
         }
         /// <summary>
-        /// There are no comments for GeoRegion in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_GeoRegion_Provider", "GeoRegion")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoRegion> GeoRegion
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoRegion>("NZOR_Provider.FK_GeoRegion_Provider", "GeoRegion");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoRegion>("NZOR_Provider.FK_GeoRegion_Provider", "GeoRegion", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Name in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Name_Provider", "Name")]
@@ -999,6 +727,27 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Name>("NZOR_Provider.FK_Name_Provider", "Name", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Reference in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Reference_Provider", "Reference")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Reference> Reference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Reference>("NZOR_Provider.FK_Reference_Provider", "Reference");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Reference>("NZOR_Provider.FK_Reference_Provider", "Reference", value);
                 }
             }
         }
@@ -1285,349 +1034,6 @@ namespace NZOR.Data.Provider
         partial void OnModifiedDateChanged();
     }
     /// <summary>
-    /// There are no comments for NZOR_Provider.Biostatus in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// Biostatus1
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="NZOR_Provider", Name="Biostatus")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class Biostatus : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new Biostatus object.
-        /// </summary>
-        /// <param name="biostatus1">Initial value of Biostatus1.</param>
-        /// <param name="geoRegionID">Initial value of GeoRegionID.</param>
-        public static Biostatus CreateBiostatus(global::System.Guid biostatus1, global::System.Guid geoRegionID)
-        {
-            Biostatus biostatus = new Biostatus();
-            biostatus.Biostatus1 = biostatus1;
-            biostatus.GeoRegionID = geoRegionID;
-            return biostatus;
-        }
-        /// <summary>
-        /// There are no comments for Property Biostatus1 in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid Biostatus1
-        {
-            get
-            {
-                return this._Biostatus1;
-            }
-            set
-            {
-                this.OnBiostatus1Changing(value);
-                this.ReportPropertyChanging("Biostatus1");
-                this._Biostatus1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Biostatus1");
-                this.OnBiostatus1Changed();
-            }
-        }
-        private global::System.Guid _Biostatus1;
-        partial void OnBiostatus1Changing(global::System.Guid value);
-        partial void OnBiostatus1Changed();
-        /// <summary>
-        /// There are no comments for Property GeoRegionID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid GeoRegionID
-        {
-            get
-            {
-                return this._GeoRegionID;
-            }
-            set
-            {
-                this.OnGeoRegionIDChanging(value);
-                this.ReportPropertyChanging("GeoRegionID");
-                this._GeoRegionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("GeoRegionID");
-                this.OnGeoRegionIDChanged();
-            }
-        }
-        private global::System.Guid _GeoRegionID;
-        partial void OnGeoRegionIDChanging(global::System.Guid value);
-        partial void OnGeoRegionIDChanged();
-        /// <summary>
-        /// There are no comments for Property ReferenceID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> ReferenceID
-        {
-            get
-            {
-                return this._ReferenceID;
-            }
-            set
-            {
-                this.OnReferenceIDChanging(value);
-                this.ReportPropertyChanging("ReferenceID");
-                this._ReferenceID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ReferenceID");
-                this.OnReferenceIDChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _ReferenceID;
-        partial void OnReferenceIDChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnReferenceIDChanged();
-        /// <summary>
-        /// There are no comments for Property ProviderRecordId in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProviderRecordId
-        {
-            get
-            {
-                return this._ProviderRecordId;
-            }
-            set
-            {
-                this.OnProviderRecordIdChanging(value);
-                this.ReportPropertyChanging("ProviderRecordId");
-                this._ProviderRecordId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("ProviderRecordId");
-                this.OnProviderRecordIdChanged();
-            }
-        }
-        private string _ProviderRecordId;
-        partial void OnProviderRecordIdChanging(string value);
-        partial void OnProviderRecordIdChanged();
-        /// <summary>
-        /// There are no comments for Property ProviderUpdatedDate in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> ProviderUpdatedDate
-        {
-            get
-            {
-                return this._ProviderUpdatedDate;
-            }
-            set
-            {
-                this.OnProviderUpdatedDateChanging(value);
-                this.ReportPropertyChanging("ProviderUpdatedDate");
-                this._ProviderUpdatedDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ProviderUpdatedDate");
-                this.OnProviderUpdatedDateChanged();
-            }
-        }
-        private global::System.Nullable<global::System.DateTime> _ProviderUpdatedDate;
-        partial void OnProviderUpdatedDateChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnProviderUpdatedDateChanged();
-        /// <summary>
-        /// There are no comments for Provider in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Provider", "Provider")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Provider Provider
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Biostatus_Provider", "Provider").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Biostatus_Provider", "Provider").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Provider in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Provider> ProviderReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Biostatus_Provider", "Provider");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Provider>("NZOR_Provider.FK_Biostatus_Provider", "Provider", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Concept in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Concept", "Concept")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Concept Concept
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_Biostatus_Concept", "Concept").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_Biostatus_Concept", "Concept").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Concept in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Concept> ConceptReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_Biostatus_Concept", "Concept");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Concept>("NZOR_Provider.FK_Biostatus_Concept", "Concept", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Name in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Name", "Name")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Name Name
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Name>("NZOR_Provider.FK_Biostatus_Name", "Name").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Name>("NZOR_Provider.FK_Biostatus_Name", "Name").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Name in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Name> NameReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Name>("NZOR_Provider.FK_Biostatus_Name", "Name");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Name>("NZOR_Provider.FK_Biostatus_Name", "Name", value);
-                }
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for NZOR_Provider.BiostatusValue in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// BiostatusValueID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="NZOR_Provider", Name="BiostatusValue")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class BiostatusValue : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new BiostatusValue object.
-        /// </summary>
-        /// <param name="biostatusValueID">Initial value of BiostatusValueID.</param>
-        /// <param name="biostatusValueTypeID">Initial value of BiostatusValueTypeID.</param>
-        public static BiostatusValue CreateBiostatusValue(global::System.Guid biostatusValueID, global::System.Guid biostatusValueTypeID)
-        {
-            BiostatusValue biostatusValue = new BiostatusValue();
-            biostatusValue.BiostatusValueID = biostatusValueID;
-            biostatusValue.BiostatusValueTypeID = biostatusValueTypeID;
-            return biostatusValue;
-        }
-        /// <summary>
-        /// There are no comments for Property BiostatusValueID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid BiostatusValueID
-        {
-            get
-            {
-                return this._BiostatusValueID;
-            }
-            set
-            {
-                this.OnBiostatusValueIDChanging(value);
-                this.ReportPropertyChanging("BiostatusValueID");
-                this._BiostatusValueID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("BiostatusValueID");
-                this.OnBiostatusValueIDChanged();
-            }
-        }
-        private global::System.Guid _BiostatusValueID;
-        partial void OnBiostatusValueIDChanging(global::System.Guid value);
-        partial void OnBiostatusValueIDChanged();
-        /// <summary>
-        /// There are no comments for Property BiostatusValueTypeID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid BiostatusValueTypeID
-        {
-            get
-            {
-                return this._BiostatusValueTypeID;
-            }
-            set
-            {
-                this.OnBiostatusValueTypeIDChanging(value);
-                this.ReportPropertyChanging("BiostatusValueTypeID");
-                this._BiostatusValueTypeID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("BiostatusValueTypeID");
-                this.OnBiostatusValueTypeIDChanged();
-            }
-        }
-        private global::System.Guid _BiostatusValueTypeID;
-        partial void OnBiostatusValueTypeIDChanging(global::System.Guid value);
-        partial void OnBiostatusValueTypeIDChanged();
-        /// <summary>
-        /// There are no comments for Property Value in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this._Value;
-            }
-            set
-            {
-                this.OnValueChanging(value);
-                this.ReportPropertyChanging("Value");
-                this._Value = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Value");
-                this.OnValueChanged();
-            }
-        }
-        private string _Value;
-        partial void OnValueChanging(string value);
-        partial void OnValueChanged();
-    }
-    /// <summary>
     /// There are no comments for NZOR_Provider.Concept in the schema.
     /// </summary>
     /// <KeyProperties>
@@ -1810,6 +1216,98 @@ namespace NZOR.Data.Provider
         partial void OnAddedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnAddedDateChanged();
         /// <summary>
+        /// There are no comments for Property LinkStatus in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LinkStatus
+        {
+            get
+            {
+                return this._LinkStatus;
+            }
+            set
+            {
+                this.OnLinkStatusChanging(value);
+                this.ReportPropertyChanging("LinkStatus");
+                this._LinkStatus = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LinkStatus");
+                this.OnLinkStatusChanged();
+            }
+        }
+        private string _LinkStatus;
+        partial void OnLinkStatusChanging(string value);
+        partial void OnLinkStatusChanged();
+        /// <summary>
+        /// There are no comments for Property MatchScore in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> MatchScore
+        {
+            get
+            {
+                return this._MatchScore;
+            }
+            set
+            {
+                this.OnMatchScoreChanging(value);
+                this.ReportPropertyChanging("MatchScore");
+                this._MatchScore = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("MatchScore");
+                this.OnMatchScoreChanged();
+            }
+        }
+        private global::System.Nullable<int> _MatchScore;
+        partial void OnMatchScoreChanging(global::System.Nullable<int> value);
+        partial void OnMatchScoreChanged();
+        /// <summary>
+        /// There are no comments for Property ProviderNameID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProviderNameID
+        {
+            get
+            {
+                return this._ProviderNameID;
+            }
+            set
+            {
+                this.OnProviderNameIDChanging(value);
+                this.ReportPropertyChanging("ProviderNameID");
+                this._ProviderNameID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("ProviderNameID");
+                this.OnProviderNameIDChanged();
+            }
+        }
+        private string _ProviderNameID;
+        partial void OnProviderNameIDChanging(string value);
+        partial void OnProviderNameIDChanged();
+        /// <summary>
+        /// There are no comments for Property ProviderReferenceID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProviderReferenceID
+        {
+            get
+            {
+                return this._ProviderReferenceID;
+            }
+            set
+            {
+                this.OnProviderReferenceIDChanging(value);
+                this.ReportPropertyChanging("ProviderReferenceID");
+                this._ProviderReferenceID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("ProviderReferenceID");
+                this.OnProviderReferenceIDChanged();
+            }
+        }
+        private string _ProviderReferenceID;
+        partial void OnProviderReferenceIDChanging(string value);
+        partial void OnProviderReferenceIDChanged();
+        /// <summary>
         /// There are no comments for Provider in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Concept_Provider", "Provider")]
@@ -1847,27 +1345,6 @@ namespace NZOR.Data.Provider
             }
         }
         /// <summary>
-        /// There are no comments for Biostatus in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Concept", "Biostatus")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Biostatus> Biostatus
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Concept", "Biostatus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Concept", "Biostatus", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Name in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Concept_Name", "Name")]
@@ -1901,27 +1378,6 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Name>("NZOR_Provider.FK_Concept_Name", "Name", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for ConceptProperty in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_ConceptProperty_Concept", "ConceptProperty")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<ConceptProperty> ConceptProperty
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<ConceptProperty>("NZOR_Provider.FK_ConceptProperty_Concept", "ConceptProperty");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ConceptProperty>("NZOR_Provider.FK_ConceptProperty_Concept", "ConceptProperty", value);
                 }
             }
         }
@@ -1964,138 +1420,6 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ConceptRelationship>("NZOR_Provider.FK_ConceptRelationship_Concept1", "ConceptRelationship", value);
-                }
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for NZOR_Provider.ConceptProperty in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// ConceptPropertyID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="NZOR_Provider", Name="ConceptProperty")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class ConceptProperty : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new ConceptProperty object.
-        /// </summary>
-        /// <param name="conceptPropertyID">Initial value of ConceptPropertyID.</param>
-        /// <param name="propertyID">Initial value of PropertyID.</param>
-        /// <param name="propertyValue">Initial value of PropertyValue.</param>
-        public static ConceptProperty CreateConceptProperty(global::System.Guid conceptPropertyID, global::System.Guid propertyID, string propertyValue)
-        {
-            ConceptProperty conceptProperty = new ConceptProperty();
-            conceptProperty.ConceptPropertyID = conceptPropertyID;
-            conceptProperty.PropertyID = propertyID;
-            conceptProperty.PropertyValue = propertyValue;
-            return conceptProperty;
-        }
-        /// <summary>
-        /// There are no comments for Property ConceptPropertyID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid ConceptPropertyID
-        {
-            get
-            {
-                return this._ConceptPropertyID;
-            }
-            set
-            {
-                this.OnConceptPropertyIDChanging(value);
-                this.ReportPropertyChanging("ConceptPropertyID");
-                this._ConceptPropertyID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ConceptPropertyID");
-                this.OnConceptPropertyIDChanged();
-            }
-        }
-        private global::System.Guid _ConceptPropertyID;
-        partial void OnConceptPropertyIDChanging(global::System.Guid value);
-        partial void OnConceptPropertyIDChanged();
-        /// <summary>
-        /// There are no comments for Property PropertyID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid PropertyID
-        {
-            get
-            {
-                return this._PropertyID;
-            }
-            set
-            {
-                this.OnPropertyIDChanging(value);
-                this.ReportPropertyChanging("PropertyID");
-                this._PropertyID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("PropertyID");
-                this.OnPropertyIDChanged();
-            }
-        }
-        private global::System.Guid _PropertyID;
-        partial void OnPropertyIDChanging(global::System.Guid value);
-        partial void OnPropertyIDChanged();
-        /// <summary>
-        /// There are no comments for Property PropertyValue in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string PropertyValue
-        {
-            get
-            {
-                return this._PropertyValue;
-            }
-            set
-            {
-                this.OnPropertyValueChanging(value);
-                this.ReportPropertyChanging("PropertyValue");
-                this._PropertyValue = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("PropertyValue");
-                this.OnPropertyValueChanged();
-            }
-        }
-        private string _PropertyValue;
-        partial void OnPropertyValueChanging(string value);
-        partial void OnPropertyValueChanged();
-        /// <summary>
-        /// There are no comments for Concept in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_ConceptProperty_Concept", "Concept")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Concept Concept
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_ConceptProperty_Concept", "Concept").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_ConceptProperty_Concept", "Concept").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Concept in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Concept> ConceptReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Concept>("NZOR_Provider.FK_ConceptProperty_Concept", "Concept");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Concept>("NZOR_Provider.FK_ConceptProperty_Concept", "Concept", value);
                 }
             }
         }
@@ -2167,6 +1491,29 @@ namespace NZOR.Data.Provider
         private global::System.Nullable<int> _Sequence;
         partial void OnSequenceChanging(global::System.Nullable<int> value);
         partial void OnSequenceChanged();
+        /// <summary>
+        /// There are no comments for Property InUse in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<bool> InUse
+        {
+            get
+            {
+                return this._InUse;
+            }
+            set
+            {
+                this.OnInUseChanging(value);
+                this.ReportPropertyChanging("InUse");
+                this._InUse = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InUse");
+                this.OnInUseChanged();
+            }
+        }
+        private global::System.Nullable<bool> _InUse;
+        partial void OnInUseChanging(global::System.Nullable<bool> value);
+        partial void OnInUseChanged();
         /// <summary>
         /// There are no comments for ConceptRelationshipType in the schema.
         /// </summary>
@@ -2275,230 +1622,6 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Concept>("NZOR_Provider.FK_ConceptRelationship_Concept1", "Concept", value);
-                }
-            }
-        }
-    }
-    /// <summary>
-    /// There are no comments for NZOR_Provider.GeoRegion in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// GeoRegionID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="NZOR_Provider", Name="GeoRegion")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class GeoRegion : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new GeoRegion object.
-        /// </summary>
-        /// <param name="geoRegionID">Initial value of GeoRegionID.</param>
-        /// <param name="regionName">Initial value of RegionName.</param>
-        /// <param name="geoRegionSchemaID">Initial value of GeoRegionSchemaID.</param>
-        public static GeoRegion CreateGeoRegion(global::System.Guid geoRegionID, string regionName, global::System.Guid geoRegionSchemaID)
-        {
-            GeoRegion geoRegion = new GeoRegion();
-            geoRegion.GeoRegionID = geoRegionID;
-            geoRegion.RegionName = regionName;
-            geoRegion.GeoRegionSchemaID = geoRegionSchemaID;
-            return geoRegion;
-        }
-        /// <summary>
-        /// There are no comments for Property GeoRegionID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid GeoRegionID
-        {
-            get
-            {
-                return this._GeoRegionID;
-            }
-            set
-            {
-                this.OnGeoRegionIDChanging(value);
-                this.ReportPropertyChanging("GeoRegionID");
-                this._GeoRegionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("GeoRegionID");
-                this.OnGeoRegionIDChanged();
-            }
-        }
-        private global::System.Guid _GeoRegionID;
-        partial void OnGeoRegionIDChanging(global::System.Guid value);
-        partial void OnGeoRegionIDChanged();
-        /// <summary>
-        /// There are no comments for Property RegionName in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string RegionName
-        {
-            get
-            {
-                return this._RegionName;
-            }
-            set
-            {
-                this.OnRegionNameChanging(value);
-                this.ReportPropertyChanging("RegionName");
-                this._RegionName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("RegionName");
-                this.OnRegionNameChanged();
-            }
-        }
-        private string _RegionName;
-        partial void OnRegionNameChanging(string value);
-        partial void OnRegionNameChanged();
-        /// <summary>
-        /// There are no comments for Property Language in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Language
-        {
-            get
-            {
-                return this._Language;
-            }
-            set
-            {
-                this.OnLanguageChanging(value);
-                this.ReportPropertyChanging("Language");
-                this._Language = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Language");
-                this.OnLanguageChanged();
-            }
-        }
-        private string _Language;
-        partial void OnLanguageChanging(string value);
-        partial void OnLanguageChanged();
-        /// <summary>
-        /// There are no comments for Property GeoRegionSchemaID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid GeoRegionSchemaID
-        {
-            get
-            {
-                return this._GeoRegionSchemaID;
-            }
-            set
-            {
-                this.OnGeoRegionSchemaIDChanging(value);
-                this.ReportPropertyChanging("GeoRegionSchemaID");
-                this._GeoRegionSchemaID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("GeoRegionSchemaID");
-                this.OnGeoRegionSchemaIDChanged();
-            }
-        }
-        private global::System.Guid _GeoRegionSchemaID;
-        partial void OnGeoRegionSchemaIDChanging(global::System.Guid value);
-        partial void OnGeoRegionSchemaIDChanged();
-        /// <summary>
-        /// There are no comments for Property CorrectRegionID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> CorrectRegionID
-        {
-            get
-            {
-                return this._CorrectRegionID;
-            }
-            set
-            {
-                this.OnCorrectRegionIDChanging(value);
-                this.ReportPropertyChanging("CorrectRegionID");
-                this._CorrectRegionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("CorrectRegionID");
-                this.OnCorrectRegionIDChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _CorrectRegionID;
-        partial void OnCorrectRegionIDChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnCorrectRegionIDChanged();
-        /// <summary>
-        /// There are no comments for Property ParentRegionID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> ParentRegionID
-        {
-            get
-            {
-                return this._ParentRegionID;
-            }
-            set
-            {
-                this.OnParentRegionIDChanging(value);
-                this.ReportPropertyChanging("ParentRegionID");
-                this._ParentRegionID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ParentRegionID");
-                this.OnParentRegionIDChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _ParentRegionID;
-        partial void OnParentRegionIDChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnParentRegionIDChanged();
-        /// <summary>
-        /// There are no comments for Property ProviderRecordID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProviderRecordID
-        {
-            get
-            {
-                return this._ProviderRecordID;
-            }
-            set
-            {
-                this.OnProviderRecordIDChanging(value);
-                this.ReportPropertyChanging("ProviderRecordID");
-                this._ProviderRecordID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("ProviderRecordID");
-                this.OnProviderRecordIDChanged();
-            }
-        }
-        private string _ProviderRecordID;
-        partial void OnProviderRecordIDChanging(string value);
-        partial void OnProviderRecordIDChanged();
-        /// <summary>
-        /// There are no comments for Provider in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_GeoRegion_Provider", "Provider")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Provider Provider
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_GeoRegion_Provider", "Provider").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_GeoRegion_Provider", "Provider").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Provider in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Provider> ProviderReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_GeoRegion_Provider", "Provider");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Provider>("NZOR_Provider.FK_GeoRegion_Provider", "Provider", value);
                 }
             }
         }
@@ -2757,6 +1880,52 @@ namespace NZOR.Data.Provider
         partial void OnAddedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnAddedDateChanged();
         /// <summary>
+        /// There are no comments for Property LinkStatus in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LinkStatus
+        {
+            get
+            {
+                return this._LinkStatus;
+            }
+            set
+            {
+                this.OnLinkStatusChanging(value);
+                this.ReportPropertyChanging("LinkStatus");
+                this._LinkStatus = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LinkStatus");
+                this.OnLinkStatusChanged();
+            }
+        }
+        private string _LinkStatus;
+        partial void OnLinkStatusChanging(string value);
+        partial void OnLinkStatusChanged();
+        /// <summary>
+        /// There are no comments for Property MatchScore in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> MatchScore
+        {
+            get
+            {
+                return this._MatchScore;
+            }
+            set
+            {
+                this.OnMatchScoreChanging(value);
+                this.ReportPropertyChanging("MatchScore");
+                this._MatchScore = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("MatchScore");
+                this.OnMatchScoreChanged();
+            }
+        }
+        private global::System.Nullable<int> _MatchScore;
+        partial void OnMatchScoreChanging(global::System.Nullable<int> value);
+        partial void OnMatchScoreChanged();
+        /// <summary>
         /// There are no comments for Provider in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Name_Provider", "Provider")]
@@ -2790,27 +1959,6 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Provider>("NZOR_Provider.FK_Name_Provider", "Provider", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Biostatus in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Biostatus_Name", "Biostatus")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Biostatus> Biostatus
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Name", "Biostatus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Biostatus>("NZOR_Provider.FK_Biostatus_Name", "Biostatus", value);
                 }
             }
         }
@@ -3161,29 +2309,6 @@ namespace NZOR.Data.Provider
         partial void OnConsensusReferenceIDChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnConsensusReferenceIDChanged();
         /// <summary>
-        /// There are no comments for Property ProviderID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> ProviderID
-        {
-            get
-            {
-                return this._ProviderID;
-            }
-            set
-            {
-                this.OnProviderIDChanging(value);
-                this.ReportPropertyChanging("ProviderID");
-                this._ProviderID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ProviderID");
-                this.OnProviderIDChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _ProviderID;
-        partial void OnProviderIDChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnProviderIDChanged();
-        /// <summary>
         /// There are no comments for Property ProviderRecordID in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -3253,6 +2378,52 @@ namespace NZOR.Data.Provider
         partial void OnAddedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnAddedDateChanged();
         /// <summary>
+        /// There are no comments for Property LinkStatus in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LinkStatus
+        {
+            get
+            {
+                return this._LinkStatus;
+            }
+            set
+            {
+                this.OnLinkStatusChanging(value);
+                this.ReportPropertyChanging("LinkStatus");
+                this._LinkStatus = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LinkStatus");
+                this.OnLinkStatusChanged();
+            }
+        }
+        private string _LinkStatus;
+        partial void OnLinkStatusChanging(string value);
+        partial void OnLinkStatusChanged();
+        /// <summary>
+        /// There are no comments for Property MatchScore in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> MatchScore
+        {
+            get
+            {
+                return this._MatchScore;
+            }
+            set
+            {
+                this.OnMatchScoreChanging(value);
+                this.ReportPropertyChanging("MatchScore");
+                this._MatchScore = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("MatchScore");
+                this.OnMatchScoreChanged();
+            }
+        }
+        private global::System.Nullable<int> _MatchScore;
+        partial void OnMatchScoreChanging(global::System.Nullable<int> value);
+        partial void OnMatchScoreChanged();
+        /// <summary>
         /// There are no comments for ReferenceField in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_ReferenceField_Reference", "ReferenceField")]
@@ -3270,6 +2441,43 @@ namespace NZOR.Data.Provider
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ReferenceField>("NZOR_Provider.FK_ReferenceField_Reference", "ReferenceField", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Provider in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Provider", "FK_Reference_Provider", "Provider")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Provider Provider
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Reference_Provider", "Provider").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Reference_Provider", "Provider").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Provider in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Provider> ProviderReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Provider>("NZOR_Provider.FK_Reference_Provider", "Provider");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Provider>("NZOR_Provider.FK_Reference_Provider", "Provider", value);
                 }
             }
         }

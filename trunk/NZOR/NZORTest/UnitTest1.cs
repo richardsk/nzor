@@ -64,6 +64,7 @@ namespace NZORTest
         [TestMethod]
         public void TestMatch()
         {
+            
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
@@ -73,6 +74,19 @@ namespace NZORTest
             List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
             Assert.AreNotEqual(0, matches.Count);
+                        
+        }
+
+        [TestMethod]
+        public void TestLevenshtein()
+        {
+            Assert.AreEqual(0, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "this is a test"));
+            Assert.AreEqual(1, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "this is a test too"));
+            Assert.AreEqual(4, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "this is not going to pass"));
+            Assert.AreEqual(4, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "none the same"));
+            Assert.AreEqual(4, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", ""));
+            Assert.AreEqual(1, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "this is another test"));
+            Assert.AreEqual(2, NZOR.Matching.Utility.LevenshteinDistanceWords("this is a test", "this is test a"));
         }
     }
 }

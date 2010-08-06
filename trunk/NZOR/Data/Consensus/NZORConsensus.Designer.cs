@@ -24,36 +24,36 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Consensus", "FK_NameClassProperty_NameClass", "NameClass", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.Consensus.NameClass), "NameClassProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Consensus.NameClassProperty))]
 
 // Original file name:
-// Generation date: 22/04/2010 12:24:04 p.m.
+// Generation date: 28/04/2010 12:13:58 p.m.
 namespace NZOR.Data.Consensus
 {
     
     /// <summary>
-    /// There are no comments for NZOR in the schema.
+    /// There are no comments for NZORConsensus in the schema.
     /// </summary>
-    public partial class NZOR : global::System.Data.Objects.ObjectContext
+    public partial class NZORConsensus : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new NZOR object using the connection string found in the 'NZOR' section of the application configuration file.
+        /// Initializes a new NZORConsensus object using the connection string found in the 'NZORConsensus' section of the application configuration file.
         /// </summary>
-        public NZOR() : 
-                base("name=NZOR", "NZOR")
+        public NZORConsensus() : 
+                base("name=NZORConsensus", "NZORConsensus")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new NZOR object.
+        /// Initialize a new NZORConsensus object.
         /// </summary>
-        public NZOR(string connectionString) : 
-                base(connectionString, "NZOR")
+        public NZORConsensus(string connectionString) : 
+                base(connectionString, "NZORConsensus")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new NZOR object.
+        /// Initialize a new NZORConsensus object.
         /// </summary>
-        public NZOR(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "NZOR")
+        public NZORConsensus(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "NZORConsensus")
         {
             this.OnContextCreated();
         }
@@ -972,52 +972,6 @@ namespace NZOR.Data.Consensus
         partial void OnUpdatedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
         /// <summary>
-        /// There are no comments for Property NameClassID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<int> NameClassID
-        {
-            get
-            {
-                return this._NameClassID;
-            }
-            set
-            {
-                this.OnNameClassIDChanging(value);
-                this.ReportPropertyChanging("NameClassID");
-                this._NameClassID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("NameClassID");
-                this.OnNameClassIDChanged();
-            }
-        }
-        private global::System.Nullable<int> _NameClassID;
-        partial void OnNameClassIDChanging(global::System.Nullable<int> value);
-        partial void OnNameClassIDChanged();
-        /// <summary>
-        /// There are no comments for Property TaxonRankID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<int> TaxonRankID
-        {
-            get
-            {
-                return this._TaxonRankID;
-            }
-            set
-            {
-                this.OnTaxonRankIDChanging(value);
-                this.ReportPropertyChanging("TaxonRankID");
-                this._TaxonRankID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("TaxonRankID");
-                this.OnTaxonRankIDChanged();
-            }
-        }
-        private global::System.Nullable<int> _TaxonRankID;
-        partial void OnTaxonRankIDChanging(global::System.Nullable<int> value);
-        partial void OnTaxonRankIDChanged();
-        /// <summary>
         /// There are no comments for Concept in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("NZOR_Consensus", "FK_Concept_Name", "Concept")]
@@ -1316,29 +1270,6 @@ namespace NZOR.Data.Consensus
         private global::System.Nullable<global::System.DateTime> _UpdatedDate;
         partial void OnUpdatedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
-        /// <summary>
-        /// There are no comments for Property NameClassPropertyID in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<int> NameClassPropertyID
-        {
-            get
-            {
-                return this._NameClassPropertyID;
-            }
-            set
-            {
-                this.OnNameClassPropertyIDChanging(value);
-                this.ReportPropertyChanging("NameClassPropertyID");
-                this._NameClassPropertyID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("NameClassPropertyID");
-                this.OnNameClassPropertyIDChanged();
-            }
-        }
-        private global::System.Nullable<int> _NameClassPropertyID;
-        partial void OnNameClassPropertyIDChanging(global::System.Nullable<int> value);
-        partial void OnNameClassPropertyIDChanged();
         /// <summary>
         /// There are no comments for Name in the schema.
         /// </summary>

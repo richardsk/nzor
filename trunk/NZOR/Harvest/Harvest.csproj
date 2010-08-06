@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarvestController.cs" />
-    <Compile Include="Hervesters\OAIPMHHarvester.cs" />
+    <Compile Include="Harvesters\OAIPMHHarvester.cs" />
     <Compile Include="IHarvester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using NZOR.Data;
 
@@ -15,7 +16,7 @@ namespace NZOR.Matching
 
     public class NameMatch
     {
-        public string NameId = "";
+        public Guid NameId = Guid.Empty;
         public string NameFull = "";
         public int MatchScore = 0;
     }

@@ -18,7 +18,7 @@ namespace NZOR.Integration
         /// Individual threads will need to work with names that dont overlap with names in other threads - perhaps by working with names 
         /// in different parts of the taxonomic hierarchy.
         /// </summary>
-        public static void RunIntegration(XmlDocument config, int setNumber)
+        public void RunIntegration(XmlDocument config, int setNumber)
         {
             bool doAnother = true;
 
@@ -41,7 +41,7 @@ namespace NZOR.Integration
                     ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
 
                     if (numTh < 2) doAnother = false;
-
+                    
                     //if (currentThreads.Count > maxThreadCount) doAnother = false;
                 }
                 else
@@ -51,7 +51,7 @@ namespace NZOR.Integration
             }
         }
 
-        private static Guid GetNextNameForIntegration()
+        private Guid GetNextNameForIntegration()
         {
             Guid id = Guid.Empty;
 
@@ -62,9 +62,9 @@ namespace NZOR.Integration
                 {                    
                     cmd.CommandText = "select top 1 pn.nameid " + 
                         "from vwproviderconcepts pn " +
-                        "left join vwproviderconcepts sn on sn.relationshiptypeid = '6A11B466-1907-446F-9229-D604579AA155' and sn.toconceptid = pn.toconceptid and sn.nameid <> pn.nameid " +
+                        "left join vwproviderconcepts sn on sn.relationshiptypeid = '" + NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID().ToString() + "' and sn.toconceptid = pn.toconceptid and sn.nameid <> pn.nameid " +
 	                        "and (sn.linkstatus is null or sn.linkstatus <> 'Integrating') " +
-                        "left join prov.name par on pn.relationshiptypeid = '6A11B466-1907-446F-9229-D604579AA155' and par.nameid = pn.nametoid " +
+                        "left join prov.name par on pn.relationshiptypeid = '" + NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID().ToString() + "' and par.nameid = pn.nametoid " +
                         "where pn.consensusnameid is not null and sn.nameid is null and pn.consensusnameid is null " +
                         "order by pn.sortorder";
 

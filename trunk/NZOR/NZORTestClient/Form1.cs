@@ -29,5 +29,16 @@ namespace TestNZOR
             List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
         }
+
+        private void integButton_Click(object sender, EventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
+
+            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
+
+            NZOR.Integration.IntegrationProcessor proc = new NZOR.Integration.IntegrationProcessor();
+            proc.RunIntegration(doc, 1);
+        }
     }
 }
