@@ -30,6 +30,7 @@ namespace NZOR.Data
         public static String Canonical = "Canonical";
         public static String Rank = "Rank";
         public static String Authors = "Authors";
+        public static String CombinationAuthors = "CombinationAuthors";
     }
 
     public class ConceptProperties

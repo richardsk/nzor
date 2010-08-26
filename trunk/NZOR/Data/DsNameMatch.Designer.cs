@@ -272,6 +272,8 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnAuthors;
             
+            private global::System.Data.DataColumn columnCombinationAuthors;
+            
             private global::System.Data.DataColumn columnYear;
             
             private global::System.Data.DataColumn columnParentID;
@@ -344,6 +346,13 @@ namespace NZOR.Data {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn CombinationAuthorsColumn {
+                get {
+                    return this.columnCombinationAuthors;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn YearColumn {
                 get {
                     return this.columnYear;
@@ -393,7 +402,7 @@ namespace NZOR.Data {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public NameRow AddNameRow(System.Guid NameID, string Canonical, string FullName, string Rank, string Authors, string Year, System.Guid ParentID, int PercentMatch) {
+            public NameRow AddNameRow(System.Guid NameID, string Canonical, string FullName, string Rank, string Authors, string CombinationAuthors, string Year, System.Guid ParentID, int PercentMatch) {
                 NameRow rowNameRow = ((NameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NameID,
@@ -401,6 +410,7 @@ namespace NZOR.Data {
                         FullName,
                         Rank,
                         Authors,
+                        CombinationAuthors,
                         Year,
                         ParentID,
                         PercentMatch};
@@ -428,6 +438,7 @@ namespace NZOR.Data {
                 this.columnFullName = base.Columns["FullName"];
                 this.columnRank = base.Columns["Rank"];
                 this.columnAuthors = base.Columns["Authors"];
+                this.columnCombinationAuthors = base.Columns["CombinationAuthors"];
                 this.columnYear = base.Columns["Year"];
                 this.columnParentID = base.Columns["ParentID"];
                 this.columnPercentMatch = base.Columns["PercentMatch"];
@@ -445,6 +456,8 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnRank);
                 this.columnAuthors = new global::System.Data.DataColumn("Authors", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAuthors);
+                this.columnCombinationAuthors = new global::System.Data.DataColumn("CombinationAuthors", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCombinationAuthors);
                 this.columnYear = new global::System.Data.DataColumn("Year", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnYear);
                 this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
@@ -658,6 +671,21 @@ namespace NZOR.Data {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string CombinationAuthors {
+                get {
+                    try {
+                        return ((string)(this[this.tableName.CombinationAuthorsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CombinationAuthors\' in table \'Name\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableName.CombinationAuthorsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string Year {
                 get {
                     try {
@@ -750,6 +778,16 @@ namespace NZOR.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetAuthorsNull() {
                 this[this.tableName.AuthorsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCombinationAuthorsNull() {
+                return this.IsNull(this.tableName.CombinationAuthorsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCombinationAuthorsNull() {
+                this[this.tableName.CombinationAuthorsColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

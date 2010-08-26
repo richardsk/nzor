@@ -49,13 +49,19 @@ namespace NZOR.Data
                 foreach (DataRow row in res.Tables[0].Rows)
                 {
                     Guid id = (Guid)row["NameID"];
-                    ds.Name.AddNameRow(id,
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical).ToString(),
-                        row["FullName"].ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank).ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors).ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Year).ToString(),
-                        (Guid)GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType)["NameToID"],
+
+                    DataRow ntRow = ConsensusName.GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType);
+                    object nameTo = DBNull.Value;
+                    if (ntRow != null && ntRow["NameToID"] != DBNull.Value) nameTo = (Guid)ntRow["NameToID"];
+
+                    ds.Name.Rows.Add(id,
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical),
+                        row["FullName"],
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.CombinationAuthors),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Year),
+                        nameTo,
                         100);
                 }
             }
@@ -69,12 +75,11 @@ namespace NZOR.Data
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "declare @ids table(id uniqueidentifier); " +
-                    "insert @ids select distinct n.NameID from cons.Name n inner join vwConsensusConcepts cc on cc.NameID = n.NameID where Relationship = '" +
-                    conceptType + "' and NameToID = '" + nameToID.ToString() + "'; " +
-                    "select n.* from cons.Name n inner join @ids i on i.id = n.NameID; " +
-                    "select np.*, ncp.PropertyName from cons.NameProperty np inner join @ids i on i.id = np.NameID inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID; " +
-                    "select c.* from vwConsensusConcepts c inner join @ids i on i.id = c.NameID; ";
+                cmd.CommandText = "sprSelect_NamesWithConcept";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@conceptType", DbType.String).Value = conceptType;
+                cmd.Parameters.Add("@nameToID", DbType.Guid).Value = nameToID;
+
 
                 DataSet res = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -83,13 +88,19 @@ namespace NZOR.Data
                 foreach (DataRow row in res.Tables[0].Rows)
                 {
                     Guid id = (Guid)row["NameID"];
-                    ds.Name.AddNameRow(id,
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical).ToString(),
-                        row["FullName"].ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank).ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors).ToString(),
-                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Year).ToString(),
-                        (Guid)GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType)["NameToID"],
+
+                    DataRow ntRow = ConsensusName.GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType);
+                    object nameTo = DBNull.Value;
+                    if (ntRow != null && ntRow["NameToID"] != DBNull.Value) nameTo = (Guid)ntRow["NameToID"];
+
+                    ds.Name.Rows.Add(id,
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical),
+                        row["FullName"],
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.CombinationAuthors),
+                        GetNamePropertyValue(id, res.Tables[1], NameProperties.Year),
+                        nameTo,
                         100);
                 }
             }

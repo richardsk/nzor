@@ -58,7 +58,6 @@ namespace NZOR.Matching
         public void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
         {
             //TODO :
-            // - full, basionym, combination author matches 
             // - corrected authors / lookup
             // may need another table on pn dataset for Authors??
 

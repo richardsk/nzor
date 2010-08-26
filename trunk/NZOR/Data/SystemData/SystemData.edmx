@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SystemData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SystemDataStoreContainer">
+          <EntitySet Name="ConceptRelationshipType" EntityType="SystemData.Store.ConceptRelationshipType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaxonRank" EntityType="SystemData.Store.TaxonRank" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Relationship" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="MinOccurences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="KnownAbbreviations" Type="nvarchar" MaxLength="200" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="IncludeInFullName" Type="bit" />
+          <Property Name="AncestorRankID" Type="uniqueidentifier" />
+          <Property Name="MatchRuleSetID" Type="int" />
+          <Property Name="AddedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SystemData" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="NZOR_System">
+          <EntitySet Name="ConceptRelationshipType" EntityType="SystemData.ConceptRelationshipType" />
+          <EntitySet Name="TaxonRank" EntityType="SystemData.TaxonRank" />
+        </EntityContainer>
+        <EntityType Name="ConceptRelationshipType">
+          <Key>
+            <PropertyRef Name="ConceptRelationshipTypeID" />
+          </Key>
+          <Property Name="ConceptRelationshipTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Relationship" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MinOccurences" Type="Int32" />
+          <Property Name="MaxOccurrences" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TaxonRank">
+          <Key>
+            <PropertyRef Name="TaxonRankID" />
+          </Key>
+          <Property Name="TaxonRankID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="KnownAbbreviations" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="IncludeInFullName" Type="Boolean" />
+          <Property Name="AncestorRankID" Type="Guid" />
+          <Property Name="MatchRuleSetID" Type="Int32" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SystemDataStoreContainer" CdmEntityContainer="NZOR_System">
+          <EntitySetMapping Name="ConceptRelationshipType">
+            <EntityTypeMapping TypeName="IsTypeOf(SystemData.ConceptRelationshipType)">
+              <MappingFragment StoreEntitySet="ConceptRelationshipType">
+                <ScalarProperty Name="ConceptRelationshipTypeID" ColumnName="ConceptRelationshipTypeID" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="MinOccurences" ColumnName="MinOccurences" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxonRank">
+            <EntityTypeMapping TypeName="IsTypeOf(SystemData.TaxonRank)">
+              <MappingFragment StoreEntitySet="TaxonRank">
+                <ScalarProperty Name="TaxonRankID" ColumnName="TaxonRankID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KnownAbbreviations" ColumnName="KnownAbbreviations" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IncludeInFullName" ColumnName="IncludeInFullName" />
+                <ScalarProperty Name="AncestorRankID" ColumnName="AncestorRankID" />
+                <ScalarProperty Name="MatchRuleSetID" ColumnName="MatchRuleSetID" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SystemData">
+        <EntityTypeShape EntityType="SystemData.ConceptRelationshipType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="SystemData.TaxonRank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

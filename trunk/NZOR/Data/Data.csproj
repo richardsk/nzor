@@ -77,11 +77,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\ProviderName.cs" />
     <Compile Include="SystemData\ConceptRelationshipType.cs" />
-    <Compile Include="SystemData\System.Designer.cs">
+    <Compile Include="SystemData\SystemData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>System.edmx</DependentUpon>
+      <DependentUpon>SystemData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SystemData\TaxonRank.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -100,9 +101,9 @@
     <None Include="DsNameMatch.xss">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
     </None>
-    <EntityDeploy Include="SystemData\System.edmx">
+    <EntityDeploy Include="SystemData\SystemData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>System.Designer.cs</LastGenOutput>
+      <LastGenOutput>SystemData.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <EntityDeploy Include="Provider\NZORProvider.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

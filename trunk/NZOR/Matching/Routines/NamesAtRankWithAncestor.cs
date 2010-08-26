@@ -59,66 +59,69 @@ namespace NZOR.Matching
 
         public void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
         {
-            //TODO
-
+            //PROBABLY NOT REQUIRED NOW - just add the correct names in NamesWithSameParent
 
             //adds matches, not removes them 
+            //This routine makes sure that all names that have been selected for possible match are at the correct rank.
+            //  Names may have been selected at this point because they are a child of the same parent as the matching name, but this does not mean the names will be the 
+            //  correct rank - eg matching name "Aus bus var. dus" - may select a name in the DB "Aus bus subsp. cus" as "cus" is a child of the naem "Aus bus"
             //gets the descendent names with correct rank 
 
-            //DsNameMatch ds = new DsNameMatch();
+//            DsNameMatch ds = new DsNameMatch();
 
-            //string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-            //using (SqlConnection cnn = new SqlConnection(ConnectionString))
-            //{
-            //    cnn.Open();
+//            string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+//            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+//            {
+//                cnn.Open();
 
-            //    string ancestorRank = "";
-            //    Guid ancestorId = Guid.Empty;
+//                String rankId = pn.Tables["Name"].Rows[0]["TaxonRankID"].ToString();
+//                foreach (DsNameMatch.NameRow row in names.Name)
+//                {
+//                    using (SqlCommand cmd = cnn.CreateCommand())
+//                    {
+//                        cmd.CommandText = @"
+//                            declare @ids table(id uniqueidentifier)
+//		
+//                            insert @ids 
+//                            select distinct SeedNameID 
+//                            from cons.FlatName	
+//                            where TaxonRankID = '" + rankId + "' and NameId = '" + row.NameID.ToString() + "';" +
+//                           @"                            
+//                            select n.* 
+//                            from cons.Name n 
+//                            inner join @ids i on i.id = n.NameID;
+//                            
+//                            select np.*, ncp.PropertyName 
+//                            from cons.NameProperty np 
+//                            inner join @ids i on i.id = np.NameID 
+//                            inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID;
+//                                            
+//	                        select c.* 
+//	                        from vwConsensusConcepts c 
+//	                        inner join @ids i on i.id = c.NameID;";
 
-            //    using (SqlCommand cmd = cnn.CreateCommand())
-            //    {
-            //        cmd.CommandText = "select ar.rankname from tblrank r inner join tblrank ar on ar.rankpk = r.ancestorrankfk where r.rankpk = " + pn.PNNameRankFk.ToString;
+//                        DsNameMatch res = new DsNameMatch();
+//                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+//                        da.Fill(res);
 
-            //        ancestorRank = cmd.ExecuteScalar().ToString();
-            //    }
+//                        foreach (DataRow resRow in res.Tables[0].Rows)
+//                        {
+//                            Guid id = (Guid)row["NameID"];
+//                            ds.Name.AddNameRow(id,
+//                                GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical).ToString(),
+//                                row["FullName"].ToString(),
+//                                GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank).ToString(),
+//                                GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors).ToString(),
+//                                GetNamePropertyValue(id, res.Tables[1], NameProperties.CombinationAuthors).ToString(),
+//                                GetNamePropertyValue(id, res.Tables[1], NameProperties.Year).ToString(),
+//                                (Guid)GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType)["NameToID"],
+//                                100);
+//                        }
+//                    }
+//                }
 
-            //    if (!string.IsNullOrEmpty(ancestorRank))
-            //    {
-
-            //        using (SqlCommand cmd = cnn.CreateCommand)
-            //        {
-            //            cmd.CommandText = "sprSelect_ParentAtRank";
-            //            cmd.CommandType = CommandType.StoredProcedure;
-            //            cmd.Parameters.Add("@nameGuid", SqlDbType.UniqueIdentifier).Value = names.Name(0).NameGuid;
-            //            cmd.Parameters.Add("@rank", SqlDbType.NVarChar).Value = ancestorRank;
-
-            //            ancestorId = cmd.ExecuteScalar();
-            //        }
-
-            //        if (ancestorId != Guid.Empty)
-            //        {
-
-            //            foreach (DsNameMatch.NameRow row in names.Name)
-            //            {
-
-            //                using (SqlCommand cmd = cnn.CreateCommand)
-            //                {
-            //                    cmd.CommandText = "sprSelect_ChildrenAtRank";
-            //                    cmd.CommandType = CommandType.StoredProcedure;
-            //                    cmd.Parameters.Add("@nameGuid", SqlDbType.UniqueIdentifier).Value = row.NameGuid;
-            //                    cmd.Parameters.Add("@rank", SqlDbType.NVarChar).Value = pn.PNNameRank;
-
-            //                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //                    da.TableMappings.Add("Table", "Name");
-            //                    da.Fill(ds);
-
-            //                }
-            //            }
-
-            //            names = ds;
-            //        }
-            //    }
-
+            //    names = ds;
+                
             //    if (cnn.State != ConnectionState.Closed) cnn.Close();
 
             //}

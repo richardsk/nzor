@@ -5,8 +5,10 @@ Begin DataProject = "NZOR_DB"
    Begin Folder = "Change Scripts"
    End
    Begin Folder = "Create Scripts"
+      Script = "sprSelect_FlatNameToRoot.sql"
       Script = "sprSelect_NamesWithConcept.sql"
       Script = "sprSelect_ProvNameMatchingData.sql"
+      Script = "sprUpdate_FlatNameData.sql"
    End
    Begin DBRefFolder = "Database References"
       Begin DBRefNode = "devserver04\sql2005.NZOR_Strawman.dbo"
@@ -16,5 +18,9 @@ Begin DataProject = "NZOR_DB"
       End
    End
    Begin Folder = "Queries"
+   End
+   Begin Folder = "Views"
+      Script = "vwConsensusConcepts.sql"
+      Script = "vwProviderConcepts.sql"
    End
 End

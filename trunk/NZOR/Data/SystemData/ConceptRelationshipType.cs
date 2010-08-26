@@ -14,7 +14,7 @@ namespace NZOR.Data
         {
             if (_parRelId == Guid.Empty)
             {
-                NZOR.Data.SystemData.Entities se = new NZOR.Data.SystemData.Entities();
+                NZOR.Data.SystemData.NZOR_System se = new NZOR.Data.SystemData.NZOR_System();
                 var rels = from rt in se.ConceptRelationshipType where rt.Relationship.Equals("is child of") select rt.ConceptRelationshipTypeID;
                 _parRelId = rels.First();
             }
@@ -25,7 +25,7 @@ namespace NZOR.Data
         {
             if (_prefRelId == Guid.Empty)
             {
-                NZOR.Data.SystemData.Entities se = new NZOR.Data.SystemData.Entities();
+                NZOR.Data.SystemData.NZOR_System se = new NZOR.Data.SystemData.NZOR_System();
                 var rels = from rt in se.ConceptRelationshipType where rt.Relationship.Equals("is synonym of") select rt.ConceptRelationshipTypeID;
                 _prefRelId = rels.First();
             }

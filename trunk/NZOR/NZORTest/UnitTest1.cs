@@ -62,17 +62,35 @@ namespace NZORTest
         #endregion
 
         [TestMethod]
+        public void TestSystemData()
+        {
+            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID());
+            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.PreferredRelationshipTypeID());
+            Assert.IsNotNull(NZOR.Data.SystemData.TaxonRankData.GenusRank());
+
+        }
+
+        [TestMethod]
         public void TestMatch()
         {
             
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
-            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));
+            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));
 
             List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1);
+            
+            //test full match hierarchy/paths
             List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
+            Assert.AreNotEqual(0, matches.Count);
+
+
+            //test match parent
+            pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("C8F0B9CB-2B22-4649-9380-880AD0BB826F")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));            
+            matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
+                
             Assert.AreNotEqual(0, matches.Count);
                         
         }
