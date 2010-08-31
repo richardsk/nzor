@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NZOR.Harvest
 {
-    class HarvestController
+    public class HarvestController
     {
     }
 }
