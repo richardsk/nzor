@@ -125,14 +125,17 @@ namespace NZOR.Matching
                         cmd.CommandText = @"                       
                             select n.* 
                             from cons.Name n 
-                            where NameID = '" + parentId + "'; " + @"                            
+                            inner join cons.FlatName fn on fn.NameID = n.NameID
+                            where fn.ParentNameID = '" + parentId + "'; " + @"                            
                             select np.*, ncp.PropertyName 
-                            from cons.NameProperty np 
+                            from cons.NameProperty np  
+                            inner join cons.FlatName fn on fn.NameID = np.NameID
                             inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
-                            where np.NameID = '" + parentId + "'; " + @"                                            
+                            where fn.ParentNameID = '" + parentId + "'; " + @"                                            
                             select c.* 
-                            from vwConsensusConcepts c 
-                            where c.NameID = '" + parentId + "';";
+                            from vwConsensusConcepts c  
+                            inner join cons.FlatName fn on fn.NameID = c.NameID
+                            where fn.ParentNameID = '" + parentId + "';";
 
                         DataSet res = new DataSet();
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
