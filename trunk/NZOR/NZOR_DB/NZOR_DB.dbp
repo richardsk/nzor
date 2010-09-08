@@ -5,10 +5,24 @@ Begin DataProject = "NZOR_DB"
    Begin Folder = "Change Scripts"
    End
    Begin Folder = "Create Scripts"
-      Script = "sprSelect_FlatNameToRoot.sql"
-      Script = "sprSelect_NamesWithConcept.sql"
-      Script = "sprSelect_ProvNameMatchingData.sql"
-      Script = "sprUpdate_FlatNameData.sql"
+      Begin Folder = "Database"
+         Script = "Create_NZOR_Data_DB.sql"
+         Script = "Empty_NZOR_Data_DB.sql"
+         Script = "Insert_NZOR_Static_Data.sql"
+      End
+      Begin Folder = "Stored Procs"
+         Script = "sprSelect_FlatNameToRoot.sql"
+         Script = "sprSelect_NamesWithConcept.sql"
+         Script = "sprSelect_ProvNameMatchingData.sql"
+         Script = "sprUpdate_FlatNameData.sql"
+      End
+      Begin Folder = "Test"
+         Script = "InsertTestData.sql"
+      End
+      Begin Folder = "Utility"
+         Script = "Finalisation.sql"
+         Script = "Insert_Taxa_Backbone.sql"
+      End
    End
    Begin DBRefFolder = "Database References"
       Begin DBRefNode = "devserver04\sql2005.NZOR_Strawman.dbo"
