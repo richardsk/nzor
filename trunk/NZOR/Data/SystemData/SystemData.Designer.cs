@@ -9,9 +9,10 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SystemData", "FK_NameClassProperty_NameClass", "NameClass", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(NZOR.Data.SystemData.NameClass), "NameClassProperty", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.SystemData.NameClassProperty))]
 
 // Original file name:
-// Generation date: 26/08/2010 3:51:35 p.m.
+// Generation date: 9/09/2010 4:17:47 p.m.
 namespace NZOR.Data.SystemData
 {
     
@@ -76,6 +77,36 @@ namespace NZOR.Data.SystemData
         }
         private global::System.Data.Objects.ObjectQuery<TaxonRank> _TaxonRank;
         /// <summary>
+        /// There are no comments for NameClass in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<NameClass> NameClass
+        {
+            get
+            {
+                if ((this._NameClass == null))
+                {
+                    this._NameClass = base.CreateQuery<NameClass>("[NameClass]");
+                }
+                return this._NameClass;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<NameClass> _NameClass;
+        /// <summary>
+        /// There are no comments for NameClassProperty in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<NameClassProperty> NameClassProperty
+        {
+            get
+            {
+                if ((this._NameClassProperty == null))
+                {
+                    this._NameClassProperty = base.CreateQuery<NameClassProperty>("[NameClassProperty]");
+                }
+                return this._NameClassProperty;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<NameClassProperty> _NameClassProperty;
+        /// <summary>
         /// There are no comments for ConceptRelationshipType in the schema.
         /// </summary>
         public void AddToConceptRelationshipType(ConceptRelationshipType conceptRelationshipType)
@@ -88,6 +119,20 @@ namespace NZOR.Data.SystemData
         public void AddToTaxonRank(TaxonRank taxonRank)
         {
             base.AddObject("TaxonRank", taxonRank);
+        }
+        /// <summary>
+        /// There are no comments for NameClass in the schema.
+        /// </summary>
+        public void AddToNameClass(NameClass nameClass)
+        {
+            base.AddObject("NameClass", nameClass);
+        }
+        /// <summary>
+        /// There are no comments for NameClassProperty in the schema.
+        /// </summary>
+        public void AddToNameClassProperty(NameClassProperty nameClassProperty)
+        {
+            base.AddObject("NameClassProperty", nameClassProperty);
         }
     }
     /// <summary>
@@ -486,5 +531,316 @@ namespace NZOR.Data.SystemData
         private global::System.Nullable<global::System.DateTime> _ModifiedDate;
         partial void OnModifiedDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnModifiedDateChanged();
+    }
+    /// <summary>
+    /// There are no comments for SystemData.NameClass in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// NameClassID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SystemData", Name="NameClass")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class NameClass : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new NameClass object.
+        /// </summary>
+        /// <param name="nameClassID">Initial value of NameClassID.</param>
+        /// <param name="title">Initial value of Title.</param>
+        public static NameClass CreateNameClass(global::System.Guid nameClassID, string title)
+        {
+            NameClass nameClass = new NameClass();
+            nameClass.NameClassID = nameClassID;
+            nameClass.Title = title;
+            return nameClass;
+        }
+        /// <summary>
+        /// There are no comments for Property NameClassID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid NameClassID
+        {
+            get
+            {
+                return this._NameClassID;
+            }
+            set
+            {
+                this.OnNameClassIDChanging(value);
+                this.ReportPropertyChanging("NameClassID");
+                this._NameClassID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("NameClassID");
+                this.OnNameClassIDChanged();
+            }
+        }
+        private global::System.Guid _NameClassID;
+        partial void OnNameClassIDChanging(global::System.Guid value);
+        partial void OnNameClassIDChanged();
+        /// <summary>
+        /// There are no comments for Property Title in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title
+        {
+            get
+            {
+                return this._Title;
+            }
+            set
+            {
+                this.OnTitleChanging(value);
+                this.ReportPropertyChanging("Title");
+                this._Title = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Title");
+                this.OnTitleChanged();
+            }
+        }
+        private string _Title;
+        partial void OnTitleChanging(string value);
+        partial void OnTitleChanged();
+        /// <summary>
+        /// There are no comments for Property Description in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this._Description;
+            }
+            set
+            {
+                this.OnDescriptionChanging(value);
+                this.ReportPropertyChanging("Description");
+                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Description");
+                this.OnDescriptionChanged();
+            }
+        }
+        private string _Description;
+        partial void OnDescriptionChanging(string value);
+        partial void OnDescriptionChanged();
+        /// <summary>
+        /// There are no comments for NameClassProperty in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SystemData", "FK_NameClassProperty_NameClass", "NameClassProperty")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<NameClassProperty> NameClassProperty
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<NameClassProperty>("SystemData.FK_NameClassProperty_NameClass", "NameClassProperty");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<NameClassProperty>("SystemData.FK_NameClassProperty_NameClass", "NameClassProperty", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for SystemData.NameClassProperty in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// NameClassPropertyID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SystemData", Name="NameClassProperty")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class NameClassProperty : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new NameClassProperty object.
+        /// </summary>
+        /// <param name="nameClassPropertyID">Initial value of NameClassPropertyID.</param>
+        public static NameClassProperty CreateNameClassProperty(global::System.Guid nameClassPropertyID)
+        {
+            NameClassProperty nameClassProperty = new NameClassProperty();
+            nameClassProperty.NameClassPropertyID = nameClassPropertyID;
+            return nameClassProperty;
+        }
+        /// <summary>
+        /// There are no comments for Property NameClassPropertyID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid NameClassPropertyID
+        {
+            get
+            {
+                return this._NameClassPropertyID;
+            }
+            set
+            {
+                this.OnNameClassPropertyIDChanging(value);
+                this.ReportPropertyChanging("NameClassPropertyID");
+                this._NameClassPropertyID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("NameClassPropertyID");
+                this.OnNameClassPropertyIDChanged();
+            }
+        }
+        private global::System.Guid _NameClassPropertyID;
+        partial void OnNameClassPropertyIDChanging(global::System.Guid value);
+        partial void OnNameClassPropertyIDChanged();
+        /// <summary>
+        /// There are no comments for Property PropertyName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyName
+        {
+            get
+            {
+                return this._PropertyName;
+            }
+            set
+            {
+                this.OnPropertyNameChanging(value);
+                this.ReportPropertyChanging("PropertyName");
+                this._PropertyName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("PropertyName");
+                this.OnPropertyNameChanged();
+            }
+        }
+        private string _PropertyName;
+        partial void OnPropertyNameChanging(string value);
+        partial void OnPropertyNameChanged();
+        /// <summary>
+        /// There are no comments for Property PropertyType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyType
+        {
+            get
+            {
+                return this._PropertyType;
+            }
+            set
+            {
+                this.OnPropertyTypeChanging(value);
+                this.ReportPropertyChanging("PropertyType");
+                this._PropertyType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("PropertyType");
+                this.OnPropertyTypeChanged();
+            }
+        }
+        private string _PropertyType;
+        partial void OnPropertyTypeChanging(string value);
+        partial void OnPropertyTypeChanged();
+        /// <summary>
+        /// There are no comments for Property MinOccurrences in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> MinOccurrences
+        {
+            get
+            {
+                return this._MinOccurrences;
+            }
+            set
+            {
+                this.OnMinOccurrencesChanging(value);
+                this.ReportPropertyChanging("MinOccurrences");
+                this._MinOccurrences = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("MinOccurrences");
+                this.OnMinOccurrencesChanged();
+            }
+        }
+        private global::System.Nullable<int> _MinOccurrences;
+        partial void OnMinOccurrencesChanging(global::System.Nullable<int> value);
+        partial void OnMinOccurrencesChanged();
+        /// <summary>
+        /// There are no comments for Property MaxOccurrences in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> MaxOccurrences
+        {
+            get
+            {
+                return this._MaxOccurrences;
+            }
+            set
+            {
+                this.OnMaxOccurrencesChanging(value);
+                this.ReportPropertyChanging("MaxOccurrences");
+                this._MaxOccurrences = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("MaxOccurrences");
+                this.OnMaxOccurrencesChanged();
+            }
+        }
+        private global::System.Nullable<int> _MaxOccurrences;
+        partial void OnMaxOccurrencesChanging(global::System.Nullable<int> value);
+        partial void OnMaxOccurrencesChanged();
+        /// <summary>
+        /// There are no comments for Property GoverningCode in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string GoverningCode
+        {
+            get
+            {
+                return this._GoverningCode;
+            }
+            set
+            {
+                this.OnGoverningCodeChanging(value);
+                this.ReportPropertyChanging("GoverningCode");
+                this._GoverningCode = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("GoverningCode");
+                this.OnGoverningCodeChanged();
+            }
+        }
+        private string _GoverningCode;
+        partial void OnGoverningCodeChanging(string value);
+        partial void OnGoverningCodeChanged();
+        /// <summary>
+        /// There are no comments for NameClass in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SystemData", "FK_NameClassProperty_NameClass", "NameClass")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public NameClass NameClass
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<NameClass>("SystemData.FK_NameClassProperty_NameClass", "NameClass").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<NameClass>("SystemData.FK_NameClassProperty_NameClass", "NameClass").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for NameClass in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<NameClass> NameClassReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<NameClass>("SystemData.FK_NameClassProperty_NameClass", "NameClass");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<NameClass>("SystemData.FK_NameClassProperty_NameClass", "NameClass", value);
+                }
+            }
+        }
     }
 }

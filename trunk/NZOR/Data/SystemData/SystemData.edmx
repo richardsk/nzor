@@ -4,10 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SystemData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="SystemData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="SystemDataStoreContainer">
           <EntitySet Name="ConceptRelationshipType" EntityType="SystemData.Store.ConceptRelationshipType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NameClass" EntityType="SystemData.Store.NameClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NameClassProperty" EntityType="SystemData.Store.NameClassProperty" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TaxonRank" EntityType="SystemData.Store.TaxonRank" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_NameClassProperty_NameClass" Association="SystemData.Store.FK_NameClassProperty_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ConceptRelationshipType">
           <Key>
@@ -17,6 +23,26 @@
           <Property Name="Relationship" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="MinOccurences" Type="int" />
           <Property Name="MaxOccurrences" Type="int" />
+        </EntityType>
+        <EntityType Name="NameClass">
+          <Key>
+            <PropertyRef Name="NameClassID" />
+          </Key>
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" />
+          </Key>
+          <Property Name="NameClassPropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PropertyType" Type="nchar" MaxLength="10" />
+          <Property Name="MinOccurrences" Type="int" />
+          <Property Name="MaxOccurrences" Type="int" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="TaxonRank">
           <Key>
@@ -34,15 +60,30 @@
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_NameClassProperty_NameClass">
+          <End Role="NameClass" Type="SystemData.Store.NameClass" Multiplicity="1" />
+          <End Role="NameClassProperty" Type="SystemData.Store.NameClassProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NameClass">
+              <PropertyRef Name="NameClassID" />
+            </Principal>
+            <Dependent Role="NameClassProperty">
+              <PropertyRef Name="NameClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SystemData" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="NZOR_System">
           <EntitySet Name="ConceptRelationshipType" EntityType="SystemData.ConceptRelationshipType" />
           <EntitySet Name="TaxonRank" EntityType="SystemData.TaxonRank" />
-        </EntityContainer>
+          <EntitySet Name="NameClass" EntityType="SystemData.NameClass" />
+          <EntitySet Name="NameClassProperty" EntityType="SystemData.NameClassProperty" />
+          <AssociationSet Name="FK_NameClassProperty_NameClass" Association="SystemData.FK_NameClassProperty_NameClass">
+            <End Role="NameClass" EntitySet="NameClass" />
+            <End Role="NameClassProperty" EntitySet="NameClassProperty" /></AssociationSet></EntityContainer>
         <EntityType Name="ConceptRelationshipType">
           <Key>
             <PropertyRef Name="ConceptRelationshipTypeID" />
@@ -68,7 +109,26 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ModifiedDate" Type="DateTime" />
         </EntityType>
-      </Schema>
+        <EntityType Name="NameClass">
+          <Key>
+            <PropertyRef Name="NameClassID" /></Key>
+          <Property Name="NameClassID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <NavigationProperty Name="NameClassProperty" Relationship="SystemData.FK_NameClassProperty_NameClass" FromRole="NameClass" ToRole="NameClassProperty" /></EntityType>
+        <EntityType Name="NameClassProperty">
+          <Key>
+            <PropertyRef Name="NameClassPropertyID" /></Key>
+          <Property Name="NameClassPropertyID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyName" Type="String" Nullable="true" />
+          <Property Name="PropertyType" Type="String" Nullable="true" />
+          <Property Name="MinOccurrences" Type="Int32" Nullable="true" />
+          <Property Name="MaxOccurrences" Type="Int32" Nullable="true" />
+          <Property Name="GoverningCode" Type="String" Nullable="true" />
+          <NavigationProperty Name="NameClass" Relationship="SystemData.FK_NameClassProperty_NameClass" FromRole="NameClassProperty" ToRole="NameClass" /></EntityType>
+        <Association Name="FK_NameClassProperty_NameClass">
+          <End Type="SystemData.NameClass" Role="NameClass" Multiplicity="1" />
+          <End Type="SystemData.NameClassProperty" Role="NameClassProperty" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -101,7 +161,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="NameClass">
+            <EntityTypeMapping TypeName="IsTypeOf(SystemData.NameClass)">
+              <MappingFragment StoreEntitySet="NameClass">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NameClassID" ColumnName="NameClassID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NameClassProperty">
+            <EntityTypeMapping TypeName="IsTypeOf(SystemData.NameClassProperty)">
+              <MappingFragment StoreEntitySet="NameClassProperty">
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+                <ScalarProperty Name="MaxOccurrences" ColumnName="MaxOccurrences" />
+                <ScalarProperty Name="MinOccurrences" ColumnName="MinOccurrences" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_NameClassProperty_NameClass" TypeName="SystemData.FK_NameClassProperty_NameClass" StoreEntitySet="NameClassProperty">
+            <EndProperty Name="NameClassProperty">
+              <ScalarProperty Name="NameClassPropertyID" ColumnName="NameClassPropertyID" /></EndProperty>
+            <EndProperty Name="NameClass">
+              <ScalarProperty Name="NameClassID" ColumnName="NameClassID" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -121,6 +200,11 @@
     <edmx:Diagrams>
       <Diagram Name="SystemData">
         <EntityTypeShape EntityType="SystemData.ConceptRelationshipType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="SystemData.TaxonRank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="SystemData.TaxonRank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SystemData.NameClass" Width="1.5" PointX="8.5" PointY="4.625" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="SystemData.NameClassProperty" Width="1.5" PointX="5.25" PointY="4.375" Height="2.0853483072916674" />
+        <AssociationConnector Association="SystemData.FK_NameClassProperty_NameClass" >
+          <ConnectorPoint PointX="8.5" PointY="5.4211531575520837" />
+          <ConnectorPoint PointX="6.75" PointY="5.4211531575520837" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

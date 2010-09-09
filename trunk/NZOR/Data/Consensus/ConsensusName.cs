@@ -149,16 +149,19 @@ namespace NZOR.Data
         {
             NZOR.Data.Consensus.Name nm = new NZOR.Data.Consensus.Name();
 
+            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
+            NZOR.Data.Consensus.NZORConsensus consData = new NZOR.Data.Consensus.NZORConsensus();
+            
             nm.AddedDate = DateTime.Now;
             nm.FullName = provName.Tables["Name"].Rows[0]["FullName"].ToString();
             nm.GoverningCode = provName.Tables["Name"].Rows[0]["GoverningCode"].ToString();
-            nm.NameClass.NameClassID = (Guid)provName.Tables["Name"].Rows[0]["NameClassID"];
+            Guid nmCls = (Guid)provName.Tables["Name"].Rows[0]["NameClassID"];
+            nm.NameClass = (from c in consData.NameClass where c.NameClassID == nmCls select c).FirstOrDefault();
             nm.NameID = Guid.NewGuid();
             nm.OriginalOrthography = provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString();
-            nm.TaxonRank.TaxonRankID = (Guid)provName.Tables["Name"].Rows[0]["TaxonRankID"];
+            Guid rnk = (Guid)provName.Tables["Name"].Rows[0]["TaxonRankID"];
+            nm.TaxonRank = (from r in consData.TaxonRank where r.TaxonRankID == rnk select r).FirstOrDefault();
 
-            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
-            NZOR.Data.Consensus.NZORConsensus consData = new NZOR.Data.Consensus.NZORConsensus();
             consData.AddToName(nm);
 
             //properties
@@ -166,8 +169,10 @@ namespace NZOR.Data
             {
                 NZOR.Data.Consensus.NameProperty np = new NZOR.Data.Consensus.NameProperty();
 
+                np.NamePropertyID = Guid.NewGuid();
                 np.AddedDate = DateTime.Now;
-                np.NameClassProperty.NameClassPropertyID = (Guid)tpRow["NameClassPropertyID"];
+                Guid ncp = (Guid)tpRow["NameClassPropertyID"];
+                np.NameClassProperty = (from nc in consData.NameClassProperty where nc.NameClassPropertyID == ncp select nc).FirstOrDefault();
                 np.Value = tpRow["Value"].ToString();
                 if (!tpRow.IsNull("Sequence")) np.Sequence = (int)tpRow["Sequence"];
 

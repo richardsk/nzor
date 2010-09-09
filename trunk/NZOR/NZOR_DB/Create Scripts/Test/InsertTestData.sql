@@ -101,7 +101,7 @@ go
      
      --insert provider family, prov record ID = 8061AD92-E3B1-417A-BD85-CDAA834E3A7E
 INSERT INTO prov.[Name] ([NameID] ,[FullName] ,[TaxonRankID] ,[NameClassID] ,[OriginalOrthography] ,[GoverningCode] , ProviderID, ProviderRecordID, [AddedDate] ,[ProviderUpdatedDate])
-     VALUES ('C6A58A2E-315E-4EDD-91C0-8663A8584C69', 'Testaceae Smith', 'A7820DCD-0266-4300-82F5-F10F8C5D6315', '7B5CC893-C710-4119-ADE5-B00A997CEEAA', null, 'ICBN', '7B5CC893-C710-4119-ADE5-B00A997CEEAA', '8061AD92-E3B1-417A-BD85-CDAA834E3A7E', getdate(), getdate())
+     VALUES ('C6A58A2E-315E-4EDD-91C0-8663A8584C69', 'Testaceae Smith', 'A7820DCD-0266-4300-82F5-F10F8C5D6315', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', null, 'ICBN', '7B5CC893-C710-4119-ADE5-B00A997CEEAA', '8061AD92-E3B1-417A-BD85-CDAA834E3A7E', getdate(), getdate())
      
 INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
      VALUES (newid(), 'C6A58A2E-315E-4EDD-91C0-8663A8584C69', 'A1D57520-3D64-4F7D-97C8-69B449AFA280', 'family', null, null)

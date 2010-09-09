@@ -42,6 +42,7 @@ namespace NZOR.Integration
                 {
                     //insert
                     NZOR.Data.Consensus.Name newName = NZOR.Data.ConsensusName.AddConsensusName(provName);
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, newName.NameID, NZOR.Data.LinkStatus.Inserted, 0);
 
                     Result.MatchedId = newName.NameID.ToString();
                     Result.MatchedName = newName.FullName;                    

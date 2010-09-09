@@ -39,7 +39,7 @@ namespace NZOR.Matching
                 NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
 
                 //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
-                //ORDER and above - just match canonical and rank
+                //ORDER and above - just match canonical and rank 
                 if (tr.SortOrder <= 1600)
                 {
                     using (SqlConnection cnn = new SqlConnection(ConnectionString))
