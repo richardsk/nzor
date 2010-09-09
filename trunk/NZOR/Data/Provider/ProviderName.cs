@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.EntityClient;
 
 namespace NZOR.Data
 {
@@ -79,10 +80,11 @@ namespace NZOR.Data
         public static void UpdateProviderNameLink(DataSet provName, Guid? consensusNameID, LinkStatus status, int matchScore)
         {
             NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
+            Guid id = new Guid(provName.Tables["Name"].Rows[0]["NameID"].ToString());
 
-            var res = from pns in provData.Name where pns.NameID.ToString().Equals(provName.Tables["Name"].Rows[0]["NameID"].ToString()) select pns;
+            var res = from pns in provData.Name where pns.NameID == id select pns;
 
-            if (res.Count() > 0)
+            if (res != null && res.First() != null)
             {
                 NZOR.Data.Provider.Name pn = (NZOR.Data.Provider.Name)res.First();
                 pn.ConsensusNameID = consensusNameID;

@@ -7,58 +7,20 @@ using NZOR.Data;
 
 namespace NZOR.Matching
 {
-    public class NamesWithPartialAuthors : INameMatcher
+    public class NamesWithPartialAuthors : BaseMatcher
     {
-
-        private int m_Id = -1;
-        private int m_FailId = -1;
-        private int m_SuccessId = -1;
-        private int m_Threshold = 100;
 
         public NamesWithPartialAuthors()
         {
         }
 
-        public NamesWithPartialAuthors(int id, int failId, int successId, int threshold)
-        {
-            m_Id = id;
-            m_FailId = failId;
-            m_SuccessId = successId;
-            m_Threshold = threshold;
-        }
-
-        public int Id
-        {
-            get { return m_Id; }
-            set { m_Id = value; }
-        }
-
-        public int FailId
-        {
-            get { return m_FailId; }
-            set { m_FailId = value; }
-        }
-
-        public int SuccessId
-        {
-            get { return m_SuccessId; }
-            set { m_SuccessId = value; }
-        }
-
-        public int Threshold
-        {
-            get { return m_Threshold; }
-            set { m_Threshold = value; }
-        }
-
-
-        public DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn)
         {
             //todo
             return null;
         }
 
-        public void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names)
         {
             //try :
             // - matching by levenshtein
@@ -90,9 +52,9 @@ namespace NZOR.Matching
                 nameAuth = nameAuth.Replace(" et ", " & ");
                 if (nameAuth.IndexOf(" ex ") != -1) nameAuth = nameAuth.Substring(nameAuth.IndexOf(" ex ") + 4);
 
-                if (Utility.LevenshteinPercent(authors, nameAuth) < m_Threshold)
+                if (Utility.LevenshteinPercent(authors, nameAuth) < Threshold)
                 {
-                    if (Utility.LevenshteinWordsPercent(authors, nameAuth) >= m_Threshold)
+                    if (Utility.LevenshteinWordsPercent(authors, nameAuth) >= Threshold)
                     {
                         wordMatches.Add(row.NameID);
                     }
@@ -103,11 +65,11 @@ namespace NZOR.Matching
                         provCombAuth = provCombAuth.Replace(" et ", " & ");
                         if (provCombAuth.IndexOf(" ex ") != -1) provCombAuth = provCombAuth.Substring(provCombAuth.IndexOf(" ex ") + 4);
 
-                        if (Utility.LevenshteinPercent(combAuth.ToString(), provCombAuth) >= m_Threshold)
+                        if (Utility.LevenshteinPercent(combAuth.ToString(), provCombAuth) >= Threshold)
                         {
                             combMatches.Add(row.NameID);
                         }
-                        else if (Utility.LevenshteinWordsPercent(combAuth.ToString(), provCombAuth) >= m_Threshold)
+                        else if (Utility.LevenshteinWordsPercent(combAuth.ToString(), provCombAuth) >= Threshold)
                         {
                             combMatches.Add(row.NameID);
                         }

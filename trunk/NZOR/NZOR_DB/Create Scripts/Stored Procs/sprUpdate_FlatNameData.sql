@@ -26,6 +26,8 @@ AS
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
  
+		INSERT cons.FlatName
+		EXEC sprSelect_FlatNameToRoot @NameId
 
 		-- This is executed as long as the previous fetch succeeds.
 		FETCH NEXT FROM names_cursor INTO @NameId

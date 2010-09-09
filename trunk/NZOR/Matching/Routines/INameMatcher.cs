@@ -25,6 +25,11 @@ namespace NZOR.Matching
             get;
             set;
         }
+        MatchTypeSelection MatchType
+        {
+            get;
+            set;
+        }
 
         DsNameMatch GetMatchingNames(System.Data.DataSet pn);
         void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names);

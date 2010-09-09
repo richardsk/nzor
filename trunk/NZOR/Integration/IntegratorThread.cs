@@ -20,7 +20,17 @@ namespace NZOR.Integration
         public ConfigSet Config;
 
         public Matching.MatchResult Result = new NZOR.Matching.MatchResult();
-        
+
+        public IntegratorThread()
+        {
+        }
+
+        public IntegratorThread(Guid nameID, ConfigSet cs)
+        {
+            NameID = nameID;
+            Config = cs;
+        }
+
         public void ProcessName(Object stateInfo)
         {            
             if (Config != null)

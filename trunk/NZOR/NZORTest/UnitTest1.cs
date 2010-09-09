@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml;
 using System.Data;
 
+using NZOR.Integration;
+
 namespace NZORTest
 {
     /// <summary>
@@ -78,12 +80,30 @@ namespace NZORTest
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
             //doc.Load("C:\\Development\\NZOR\\trunk\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
-            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));
+            List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1); //set number 1
 
-            List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1);
-            
-            //test full match hierarchy/paths
+            ConfigSet cs = new ConfigSet();
+            cs.Routines = Integrator.LoadConfig(doc, 1);
+            cs.SetNumber = 1;
+
+            //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
+            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
             List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
+
+            Assert.AreNotEqual(0, matches.Count);
+
+            //insert name
+            IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs);
+            it.ProcessName(null);
+
+            //test Family Testaceae below Asterales (C6A58A2E-315E-4EDD-91C0-8663A8584C69)
+            it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs);
+            it.ProcessName(null);
+
+
+            //test full match hierarchy/paths
+            pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00")); 
+            matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
             Assert.AreNotEqual(0, matches.Count);
 

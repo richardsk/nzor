@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routines\BaseMatcher.cs" />
     <Compile Include="Routines\INameMatcher.cs" />
     <Compile Include="Routines\MatchResults.cs" />
     <Compile Include="Routines\NamesAtRankWithAncestor.cs" />

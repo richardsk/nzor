@@ -5,6 +5,13 @@ using System.Text;
 
 namespace NZOR.Data
 {
+    public enum MatchTypeSelection
+    {
+        ProviderData,
+        ConsensusData,
+        Both
+    }
+
     public enum LinkStatus
     {
         Unmatched,        //initial status? 
@@ -37,4 +44,5 @@ namespace NZOR.Data
     {
         public static String ParentRelationshipType = "is child of";
     }
+
 }

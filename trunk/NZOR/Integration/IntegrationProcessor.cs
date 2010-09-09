@@ -11,6 +11,8 @@ namespace NZOR.Integration
 {
     public class IntegrationProcessor
     {
+        public string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+
         //private static int maxThreadCount = 200; //max process threads
 
         /// <summary>
@@ -31,9 +33,7 @@ namespace NZOR.Integration
                 Guid nextName = GetNextNameForIntegration();
                 if (nextName != Guid.Empty)
                 {
-                    IntegratorThread it = new IntegratorThread();
-                    it.NameID = nextName;
-                    it.Config = cs;
+                    IntegratorThread it = new IntegratorThread(nextName, cs);
                     ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
 
                     int numTh = 0;
@@ -53,9 +53,9 @@ namespace NZOR.Integration
 
         private Guid GetNextNameForIntegration()
         {
+            //TODO create threads per letter, ie, one for A, B, C, D ... - to avoid possible conflicts
             Guid id = Guid.Empty;
 
-            string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = cnn.CreateCommand())

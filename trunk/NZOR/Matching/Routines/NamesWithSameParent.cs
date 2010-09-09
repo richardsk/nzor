@@ -6,52 +6,14 @@ using NZOR.Data;
 
 namespace NZOR.Matching
 {
-    public class NamesWithSameParent : INameMatcher
+    public class NamesWithSameParent : BaseMatcher
     {
-
-        private int m_Id = -1;
-        private int m_FailId = -1;
-        private int m_SuccessId = -1;
-        private int m_Threshold = -1;
 
         public NamesWithSameParent()
         {
         }
 
-        public NamesWithSameParent(int id, int failId, int successId, int threshold)
-        {
-            m_Id = id;
-            m_FailId = failId;
-            m_SuccessId = successId;
-            m_Threshold = threshold;
-        }
-
-        public int Id
-        {
-            get { return m_Id; }
-            set { m_Id = value; }
-        }
-
-        public int FailId
-        {
-            get { return m_FailId; }
-            set { m_FailId = value; }
-        }
-
-        public int SuccessId
-        {
-            get { return m_SuccessId; }
-            set { m_SuccessId = value; }
-        }
-        
-        public int Threshold
-        {
-            get { return m_Threshold; }
-            set { m_Threshold = value; }
-        }
-
-
-        public DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn)
         {
             //This routine makes sure that all names that have been selected for possible match are at the correct rank.
             //  Names that may be selected could be children of the same parent as the matching name, but this does not mean the names will be the 
@@ -59,14 +21,57 @@ namespace NZOR.Matching
 
             System.Data.DataRow parRow = NZOR.Data.ProviderName.GetNameConcept(pn.Tables["Concepts"], NZOR.Data.ConceptProperties.ParentRelationshipType);
 
+            string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+
             DsNameMatch ds = new DsNameMatch();
+            Guid parentNameID = Guid.Empty;
 
             if (parRow != null && !parRow.IsNull("ConsensusNameToID"))
             {
-                System.Guid parentId = (System.Guid)parRow["ConsensusNameToID"];
+                parentNameID = (Guid)parRow["ConsensusNameToID"];
+            }
+            else
+            {
+                //NO Parent CONCEPT - check for higher ranks
+                System.String pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical).ToString();
+                Guid rankId = (Guid)pn.Tables["Name"].Rows[0]["TaxonRankID"];
+                string govCode = pn.Tables["Name"].Rows[0]["GoverningCode"].ToString();
+                NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
+
+                //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
+                //ORDER and above - just match canonical and rank
+                if (tr.SortOrder <= 1600)
+                {
+                    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                    {
+                        cnn.Open();
+                        using (SqlCommand cmd = cnn.CreateCommand())
+                        {
+                            cmd.CommandText = "select fn.ParentNameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
+                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
+                                + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
+                                + tr.TaxonRankID.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
+                                + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
+
+                            DataSet pds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(pds);
+
+                            if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
+                            {
+                                parentNameID = (Guid)pds.Tables[0].Rows[0]["ParentNameID"];
+                            }
+                        }
+
+                        if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
+                    }
+                }
+            }
+
+            if (parentNameID != Guid.Empty)
+            {
                 String rankId = pn.Tables["Name"].Rows[0]["TaxonRankID"].ToString();
 
-                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
                     cnn.Open();
@@ -83,7 +88,7 @@ namespace NZOR.Matching
                             select distinct SeedNameID 
                             from cons.FlatName fn 
                             inner join cons.name sn on sn.nameid = fn.seednameid
-                            where sn.TaxonRankID = '" + rankId + "' and fn.NameId = '" + parentId.ToString() + "';" +
+                            where sn.TaxonRankID = '" + rankId + "' and fn.NameId = '" + parentNameID.ToString() + "';" +
                            @"                            
                             select n.* 
                             from cons.Name n 
@@ -130,7 +135,7 @@ namespace NZOR.Matching
             return ds;
         }
 
-        public void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
         {
             System.Data.DataRow parRow = NZOR.Data.ProviderName.GetNameConcept(pn.Tables["Concepts"], NZOR.Data.ConceptProperties.ParentRelationshipType);
 

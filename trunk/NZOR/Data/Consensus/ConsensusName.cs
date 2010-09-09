@@ -77,8 +77,8 @@ namespace NZOR.Data
             {
                 cmd.CommandText = "sprSelect_NamesWithConcept";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@conceptType", DbType.String).Value = conceptType;
-                cmd.Parameters.Add("@nameToID", DbType.Guid).Value = nameToID;
+                cmd.Parameters.AddWithValue("@conceptType", DbType.String).Value = conceptType;
+                cmd.Parameters.AddWithValue("@nameToID", DbType.Guid).Value = nameToID;
 
 
                 DataSet res = new DataSet();
