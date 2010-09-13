@@ -40,7 +40,9 @@ namespace NZOR.Matching
                     //try prov names 
                     names.RejectChanges();
 
-                    using (SqlConnection cnn = new SqlConnection())
+                    string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+
+                    using (SqlConnection cnn = new SqlConnection(ConnectionString))
                     {
                         for (int i = names.Name.Count - 1; i >= 0; i--)
                         {

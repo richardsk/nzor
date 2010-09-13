@@ -86,6 +86,10 @@ namespace NZORTest
             cs.Routines = Integrator.LoadConfig(doc, 1);
             cs.SetNumber = 1;
 
+            //
+            //PREREQUISITE:  Need to run Insert_Test_Data_1.sql first
+            //
+
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
             DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
             NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(pn, routines);
@@ -96,14 +100,19 @@ namespace NZORTest
             IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs);
             it.ProcessName(null);
 
+            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+
             //test Family Testaceae below Asterales (C6A58A2E-315E-4EDD-91C0-8663A8584C69)
             it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs);
             it.ProcessName(null);
+
+            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
             //test genus integration (3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1)
             it = new IntegratorThread(new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1"), cs);
             it.ProcessName(null);
 
+            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
             //test full match hierarchy/paths
             //pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00")); 

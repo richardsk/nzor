@@ -69,16 +69,48 @@ namespace NZOR.Data
             return ds;
         }
 
+        public static void UpdateFlatNameData(SqlConnection cnn, Guid nameID)
+        {
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = "delete cons.FlatName where SeedNameID = '" + nameID.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = "INSERT cons.FlatName EXEC sprSelect_FlatNameToRoot '" + nameID.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public static DsNameMatch GetNamesWithConcept(SqlConnection cnn, String conceptType, Guid nameToID)
         {
             DsNameMatch ds = new DsNameMatch();
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "sprSelect_NamesWithConcept";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@conceptType", DbType.String).Value = conceptType;
-                cmd.Parameters.AddWithValue("@nameToID", DbType.Guid).Value = nameToID;
+                cmd.CommandText = @"
+	                    declare @ids table(id uniqueidentifier)
+                    		
+                        insert @ids 
+                        select distinct n.NameID 
+                        from cons.Name n 
+                        inner join vwConsensusConcepts cc on cc.NameID = n.NameID 
+                        where Relationship = '" + conceptType + "' and NameToID = '" + nameToID.ToString() + @"'
+                        
+                        select n.* 
+                        from cons.Name n 
+                        inner join @ids i on i.id = n.NameID
+                        
+                        select np.*, ncp.PropertyName 
+                        from cons.NameProperty np 
+                        inner join @ids i on i.id = np.NameID 
+                        inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+                                        
+	                    select c.* 
+	                    from vwConsensusConcepts c 
+	                    inner join @ids i on i.id = c.NameID";
 
 
                 DataSet res = new DataSet();
@@ -191,6 +223,14 @@ namespace NZOR.Data
             }
 
             consData.SaveChanges();
+
+            //Update Flat Name data
+            using (SqlConnection cnn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString))
+            {
+                cnn.Open();
+                UpdateFlatNameData(cnn, nm.NameID);
+                cnn.Close();
+            }
 
             return nm;
         }

@@ -31,15 +31,30 @@ namespace NZOR.Data
             {
                 cnn.Open();
 
-                SqlCommand cmd = new SqlCommand("sprSelect_ProvNameMatchingData", cnn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("@provNameId", System.Data.SqlDbType.UniqueIdentifier).Value = provNameId;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
+                using (SqlCommand cmd = cnn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+	                        select * 
+	                        from prov.Name pn
+	                        inner join TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
+	                        where NameID = '" + provNameId.ToString() + @"'
+                        	
+	                        select * 
+	                        from prov.NameProperty np
+	                        inner join NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+	                        where NameID = '" + provNameId.ToString() + @"'
+                        	
+	                        select * 
+	                        from vwProviderConcepts
+	                        where NameID = '" + provNameId.ToString() + @"'";
 
-                ds.Tables[0].TableName = "Name";
-                ds.Tables[1].TableName = "NameProperty";
-                ds.Tables[2].TableName = "Concepts";
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    ds.Tables[0].TableName = "Name";
+                    ds.Tables[1].TableName = "NameProperty";
+                    ds.Tables[2].TableName = "Concepts";
+                }
             }
 
             return ds;

@@ -90,8 +90,8 @@ namespace NZOR.Matching
                             select distinct SeedNameID 
                             from cons.FlatName fn 
                             inner join cons.name sn on sn.nameid = fn.seednameid
-                            where sn.TaxonRankID = '" + rankId + "' and fn.NameId = '" + parentNameID.ToString() + "';" +
-                           @"                            
+                            where sn.TaxonRankID = '" + rankId + "' and fn.NameId = '" + parentNameID.ToString() + "';" + @"
+                            
                             select n.* 
                             from cons.Name n 
                             inner join @ids i on i.id = n.NameID;

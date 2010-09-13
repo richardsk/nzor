@@ -88,6 +88,11 @@ where FullName like 'asterales%'
 INSERT INTO [cons].[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
      VALUES (newid(), '4FCFFFDF-9C7D-4023-B586-A54776479695', @cid, '6A11B466-1907-446F-9229-D604579AA155', null, getdate(), null)
 
+go
+	--flat name
+	delete cons.FlatName where seednameid = '46E9A632-2B47-45A7-9146-03F4BB25B12F'
+    INSERT cons.FlatName EXEC sprSelect_FlatNameToRoot '46E9A632-2B47-45A7-9146-03F4BB25B12F'
+
 
 go
      
@@ -152,6 +157,10 @@ INSERT INTO [cons].[Concept] ([ConceptID] ,[NameID] ,[AccordingToReferenceID] ,[
 INSERT INTO [cons].[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
      VALUES (newid(), '2632F79D-0A26-4E2E-AD74-5C01E6F9539C', '4FCFFFDF-9C7D-4023-B586-A54776479695', '6A11B466-1907-446F-9229-D604579AA155', null, getdate(), null)
 
+go
+	--flat name
+	delete cons.FlatName where seednameid = '87C799BC-DA5F-404C-921C-5BBF12A9A52C'
+    INSERT cons.FlatName EXEC sprSelect_FlatNameToRoot '87C799BC-DA5F-404C-921C-5BBF12A9A52C'
 
 go
      
@@ -168,7 +177,7 @@ INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyI
      VALUES (newid(), '3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1', '1F64E93C-7EE8-40D7-8681-52B56060D750', 'Testgenus', null, null)
   
 INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
-     VALUES (newid(), '3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1', '006D86A8-08A5-4C1A-BC08-C07B0225E01B', 'Sm', null, null)
+     VALUES (newid(), '3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1', '006D86A8-08A5-4C1A-BC08-C07B0225E01B', 'Brown ex Sm.', null, null)
 
 go
      
