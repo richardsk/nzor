@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NZOR_Provider.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="NZOR_Provider.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="NZOR_ProviderStoreContainer">
           <EntitySet Name="ConceptRelationshipType" EntityType="NZOR_Provider.Store.ConceptRelationshipType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NameClassProperty" EntityType="NZOR_Provider.Store.NameClassProperty" store:Type="Tables" Schema="dbo" />
@@ -138,6 +138,7 @@
           <Property Name="ConsensusNameID" Type="uniqueidentifier" />
           <Property Name="LinkStatus" Type="varchar" MaxLength="15" />
           <Property Name="MatchScore" Type="int" />
+          <Property Name="MatchPath" Type="nvarchar(max)" />
           <Property Name="FullName" Type="nvarchar" MaxLength="500" />
           <Property Name="TaxonRankID" Type="uniqueidentifier" />
           <Property Name="NameClassID" Type="uniqueidentifier" Nullable="false" />
@@ -452,7 +453,8 @@
           <NavigationProperty Name="Concept" Relationship="NZOR_Provider.FK_Concept_Name" FromRole="Name" ToRole="Concept" />
           <NavigationProperty Name="NameProperty" Relationship="NZOR_Provider.FK_NameProperty_Name" FromRole="Name" ToRole="NameProperty" />
           <Property Name="LinkStatus" Type="String" Nullable="true" />
-          <Property Name="MatchScore" Type="Int32" Nullable="true" /></EntityType>
+          <Property Name="MatchScore" Type="Int32" Nullable="true" />
+          <Property Name="MatchPath" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="NameProperty">
           <Key>
             <PropertyRef Name="NamePropertyID" />
@@ -609,6 +611,7 @@
           <EntitySetMapping Name="Name">
             <EntityTypeMapping TypeName="IsTypeOf(NZOR_Provider.Name)">
               <MappingFragment StoreEntitySet="Name">
+                <ScalarProperty Name="MatchPath" ColumnName="MatchPath" />
                 <ScalarProperty Name="MatchScore" ColumnName="MatchScore" />
                 <ScalarProperty Name="LinkStatus" ColumnName="LinkStatus" />
                 <ScalarProperty Name="NameID" ColumnName="NameID" />

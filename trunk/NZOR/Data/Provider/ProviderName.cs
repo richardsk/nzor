@@ -77,7 +77,7 @@ namespace NZOR.Data
             return r;
         }
 
-        public static void UpdateProviderNameLink(DataSet provName, Guid? consensusNameID, LinkStatus status, int matchScore)
+        public static void UpdateProviderNameLink(DataSet provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
         {
             NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
             Guid id = new Guid(provName.Tables["Name"].Rows[0]["NameID"].ToString());
@@ -87,9 +87,10 @@ namespace NZOR.Data
             if (res != null && res.First() != null)
             {
                 NZOR.Data.Provider.Name pn = (NZOR.Data.Provider.Name)res.First();
-                pn.ConsensusNameID = consensusNameID;
+                pn.ConsensusNameID = nameId;
                 pn.LinkStatus = status.ToString();
                 pn.MatchScore = matchScore;
+                pn.MatchPath = matchPath;
                 provData.SaveChanges();
             }
         }

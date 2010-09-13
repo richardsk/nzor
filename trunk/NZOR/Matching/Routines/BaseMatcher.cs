@@ -64,12 +64,12 @@ namespace NZOR.Matching
             }
         }
 
-        public virtual NZOR.Data.DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public virtual NZOR.Data.DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void RemoveNonMatches(System.Data.DataSet pn, ref NZOR.Data.DsNameMatch names)
+        public virtual void RemoveNonMatches(System.Data.DataSet pn, ref NZOR.Data.DsNameMatch names, ref string matchComments)
         {
             throw new NotImplementedException();
         }

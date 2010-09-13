@@ -13,13 +13,13 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
         {
             //todo
             return null;
         }
 
-        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
         {
             object pYr = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Year);
 

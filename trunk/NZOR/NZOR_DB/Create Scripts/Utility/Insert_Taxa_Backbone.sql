@@ -1,4 +1,67 @@
-﻿--TODO - will need more data at some point
+﻿--TODO - will need more data at some point - make non-static ???
+/* obtained from the following SQL - re-run to get updated values
+
+-- RUN on NZOR_Data to insert into NZOR_Data_Test
+
+delete NZOR_Data_Test.cons.ConceptRelationship
+delete NZOR_Data_Test.cons.Concept
+delete NZOR_Data_Test.cons.NameProperty
+delete NZOR_Data_Test.cons.Name
+
+go
+
+insert NZOR_Data_Test.cons.Name
+select n.* from cons.Name n
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+where r.SortOrder <= 1600
+go
+
+insert NZOR_Data_Test.cons.NameProperty
+select np.* from cons.Name n
+inner join cons.NameProperty np on np.NameID = n.NameID
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+where r.SortOrder <= 1600
+go
+
+insert NZOR_Data_Test.cons.Concept
+select c.* 
+from cons.Name n
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+inner join cons.Concept c on c.NameID = n.NameID
+where r.SortOrder <= 1600
+go
+
+insert NZOR_Data_Test.cons.Concept
+select c.* 
+from cons.Name n
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+inner join cons.Concept c on c.NameID = n.NameID
+inner join cons.ConceptRelationship cr on cr.ToConceptID = c.ConceptID
+inner join NZOR_Data_Test.cons.Concept c2 on c2.ConceptID = cr.FromConceptID --make sure othwer name/concept exists
+left join NZOR_Data_Test.cons.Concept c3 on c3.ConceptID = c.ConceptID 
+where r.SortOrder <= 1600 and c3.ConceptID is null
+go
+
+insert NZOR_Data_Test.cons.ConceptRelationship
+select cr.* 
+from cons.Name n
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+inner join cons.Concept c on c.NameID = n.NameID
+inner join cons.ConceptRelationship cr on cr.FromConceptID = c.ConceptID
+where r.SortOrder <= 1600 
+go
+
+insert NZOR_Data_Test.cons.ConceptRelationship
+select cr.* 
+from cons.Name n
+inner join TaxonRank r on r.TaxonRankID = n.TaxonRankID
+inner join cons.Concept c on c.NameID = n.NameID
+inner join cons.ConceptRelationship cr on cr.ToConceptID = c.ConceptID
+left join NZOR_Data_Test.cons.Concept c3 on c3.ConceptID = c.ConceptID 
+where r.SortOrder <= 1600 and c3.ConceptID is null
+go
+
+*/
 
 USE [NZOR_Data_Test]
 

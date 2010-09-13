@@ -13,21 +13,21 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
         {
             //this routine only adds names
             DsNameMatch names = new DsNameMatch();
-            AddMatchingNames(pn, ref names);
+            AddMatchingNames(pn, ref names, ref matchComments);
             return names;
         }
 
-        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
         {
             //this routine only adds names, so add names under the "match" parent
-            AddMatchingNames(pn, ref names);
+            AddMatchingNames(pn, ref names, ref matchComments);
         }
 
-        private void AddMatchingNames(System.Data.DataSet pn, ref DsNameMatch names)
+        private void AddMatchingNames(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
         {
             if (names == null) names = new DsNameMatch();
 
@@ -43,6 +43,8 @@ namespace NZOR.Matching
             //Below GENUS - use the Genus (first word of the full name)
             if (tr.SortOrder > 3000)
             {
+                matchComments = "Rank below genus.  Matching first word of full name '" + fullName + "'.";
+
                 if (fullName.IndexOf(" ") != -1)
                 {
                     String parent = fullName.Substring(0, fullName.IndexOf(" "));

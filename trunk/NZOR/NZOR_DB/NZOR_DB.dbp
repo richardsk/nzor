@@ -17,7 +17,7 @@ Begin DataProject = "NZOR_DB"
          Script = "sprUpdate_FlatNameData.sql"
       End
       Begin Folder = "Test"
-         Script = "InsertTestData.sql"
+         Script = "Insert_Test_Data_1.sql"
       End
       Begin Folder = "Utility"
          Script = "Finalisation.sql"

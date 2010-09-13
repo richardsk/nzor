@@ -13,7 +13,7 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn)
+        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
         {
             //This routine makes sure that all names that have been selected for possible match are at the correct rank.
             //  Names that may be selected could be children of the same parent as the matching name, but this does not mean the names will be the 
@@ -38,6 +38,8 @@ namespace NZOR.Matching
                 string govCode = pn.Tables["Name"].Rows[0]["GoverningCode"].ToString();
                 NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
 
+                matchComments = "No parent specified.  Matching on epithet for higher level rank '" + tr.Name + "'.";
+
                 //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
                 //ORDER and above - just match canonical and rank 
                 if (tr.SortOrder <= 1600)
@@ -47,7 +49,7 @@ namespace NZOR.Matching
                         cnn.Open();
                         using (SqlCommand cmd = cnn.CreateCommand())
                         {
-                            cmd.CommandText = "select fn.ParentNameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
+                            cmd.CommandText = "select distinct fn.ParentNameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
                                 + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
                                 + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
                                 + tr.TaxonRankID.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
@@ -135,7 +137,7 @@ namespace NZOR.Matching
             return ds;
         }
 
-        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names, ref string matchComments)
         {
             System.Data.DataRow parRow = NZOR.Data.ProviderName.GetNameConcept(pn.Tables["Concepts"], NZOR.Data.ConceptProperties.ParentRelationshipType);
 

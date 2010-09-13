@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("NZOR_Provider", "FK_Reference_Provider", "Provider", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(NZOR.Data.Provider.Provider), "Reference", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(NZOR.Data.Provider.Reference))]
 
 // Original file name:
-// Generation date: 28/04/2010 12:37:08 p.m.
+// Generation date: 13/09/2010 11:41:21 a.m.
 namespace NZOR.Data.Provider
 {
     
@@ -1925,6 +1925,29 @@ namespace NZOR.Data.Provider
         private global::System.Nullable<int> _MatchScore;
         partial void OnMatchScoreChanging(global::System.Nullable<int> value);
         partial void OnMatchScoreChanged();
+        /// <summary>
+        /// There are no comments for Property MatchPath in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string MatchPath
+        {
+            get
+            {
+                return this._MatchPath;
+            }
+            set
+            {
+                this.OnMatchPathChanging(value);
+                this.ReportPropertyChanging("MatchPath");
+                this._MatchPath = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("MatchPath");
+                this.OnMatchPathChanged();
+            }
+        }
+        private string _MatchPath;
+        partial void OnMatchPathChanging(string value);
+        partial void OnMatchPathChanged();
         /// <summary>
         /// There are no comments for Provider in the schema.
         /// </summary>

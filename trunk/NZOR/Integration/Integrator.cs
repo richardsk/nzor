@@ -11,32 +11,41 @@ namespace NZOR.Integration
 {
     public class Integrator
     {
-        public static List<NameMatch> DoMatch(DataSet provName, List<INameMatcher> routines)
+        public static Data.MatchResult DoMatch(DataSet provName, List<INameMatcher> routines)
         {
             NZOR.Data.DsNameMatch results = null;
             bool done = false;
+
+            Data.MatchResult res = new NZOR.Data.MatchResult();
+            res.MatchPath = ""; // Keep audit trail match path
 
             INameMatcher nm = routines[0];
 
             while (!done)
             {
+                if (res.MatchPath.Length > 0) res.MatchPath += " : ";
+                res.MatchPath += nm.GetType().Name;
 
+                string comments = "";
                 NZOR.Data.DsNameMatch tmpRes = null;
                 if (results != null) tmpRes = (NZOR.Data.DsNameMatch)results.Copy();
 
                 if (results == null)
                 {
-                    results = nm.GetMatchingNames(provName);
+                    results = nm.GetMatchingNames(provName, ref comments);
                 }
                 else
                 {
-                    nm.RemoveNonMatches(provName, ref results);
+                    nm.RemoveNonMatches(provName, ref results, ref comments);
                 }
 
                 //get next matcher 
                 int nextId = -1;
                 if (results == null || results.Tables[0].Rows.Count == 0)
                 {
+                    res.MatchPath += " (FAIL)";
+                    if (tmpRes != null) res.MatchPath += " (Match Count = " + tmpRes.Tables[0].Rows.Count.ToString() + ")";
+                    
                     //revert to last set then go to fail id 
                     if (nm.FailId == -1)
                     {
@@ -51,8 +60,13 @@ namespace NZOR.Integration
                 }
                 else
                 {
+                    res.MatchPath += " (PASS)";
+                    res.MatchPath += " (Match Count = " + results.Tables[0].Rows.Count.ToString() + ")";
+                    
                     nextId = nm.SuccessId;
                 }
+
+                if (comments != "") res.MatchPath += " [" + comments + "]";
 
                 if (nextId != -1)
                 {
@@ -74,19 +88,25 @@ namespace NZOR.Integration
                 }
             }
 
-            List<NameMatch> names = new List<NameMatch>();
+            res.MatchPath += " : COMPLETE";
+
+            List<Data.NameMatch> names = new List<Data.NameMatch>();
             if (results != null)
             {
+                res.MatchPath += " (Match Count = " + results.Name.Count.ToString() + ")";
+
                 foreach (NZOR.Data.DsNameMatch.NameRow row in results.Name)
                 {
-                    NameMatch match = new NameMatch();
+                    Data.NameMatch match = new Data.NameMatch();
                     match.NameFull = row.FullName;
                     match.NameId = row.NameID;
                     names.Add(match);
                 }
             }
 
-            return names; 
+            res.Matches = names;
+
+            return res; 
         }
 
         public static List<INameMatcher> LoadConfig(XmlDocument configDoc, int matchSetId)

@@ -19,7 +19,7 @@ namespace NZOR.Integration
         public Guid NameID = Guid.Empty;
         public ConfigSet Config;
 
-        public Matching.MatchResult Result = new NZOR.Matching.MatchResult();
+        public Data.MatchResult Result = new NZOR.Data.MatchResult();
 
         public IntegratorThread()
         {
@@ -36,30 +36,32 @@ namespace NZOR.Integration
             if (Config != null)
             {
                 DataSet provName = Data.ProviderName.GetNameMatchData(NameID);
-                List<Matching.NameMatch> matches = Integrator.DoMatch(provName, Config.Routines);
+                Data.MatchResult res = Integrator.DoMatch(provName, Config.Routines);
 
-                if (matches.Count == 0)
+                if (res.Matches.Count == 0)
                 {
                     //insert
                     NZOR.Data.Consensus.Name newName = NZOR.Data.ConsensusName.AddConsensusName(provName);
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, newName.NameID, NZOR.Data.LinkStatus.Inserted, 0);
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, NZOR.Data.LinkStatus.Inserted, newName.NameID, 0, res.MatchPath);
 
-                    Result.MatchedId = newName.NameID.ToString();
-                    Result.MatchedName = newName.FullName;                    
-                    Result.Status = NZOR.Data.LinkStatus.Inserted;
+                    res.MatchedId = newName.NameID.ToString();
+                    res.MatchedName = newName.FullName;                    
+                    res.Status = NZOR.Data.LinkStatus.Inserted;
                 }
-                else if (matches.Count == 1)
+                else if (res.Matches.Count == 1)
                 {
                     //link 
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, matches[0].NameId, NZOR.Data.LinkStatus.Matched, matches[0].MatchScore);
-                    Result.Status = NZOR.Data.LinkStatus.Matched;
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
+                    res.Status = NZOR.Data.LinkStatus.Matched;
                 }
                 else
                 {
                     //multiple matches
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, null, NZOR.Data.LinkStatus.Multiple, 0);                    
-                    Result.Status = NZOR.Data.LinkStatus.Multiple;
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(provName, NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);                    
+                    res.Status = NZOR.Data.LinkStatus.Multiple;
                 }
+
+                Result = res;
             }
         }
     }

@@ -12,12 +12,12 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DataSet pn)
+        public override DsNameMatch GetMatchingNames(DataSet pn, ref string matchComments)
         {
             return null;
         }
 
-        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names)
+        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names, ref string matchComments)
         {
             object pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical);
 

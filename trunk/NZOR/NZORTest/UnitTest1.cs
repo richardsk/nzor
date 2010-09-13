@@ -88,9 +88,9 @@ namespace NZORTest
 
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
             DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
-            List<NZOR.Matching.NameMatch> matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
+            NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
-            Assert.AreNotEqual(0, matches.Count);
+            Assert.AreNotEqual(0, res.Matches.Count());
 
             //insert name
             IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs);
@@ -100,19 +100,23 @@ namespace NZORTest
             it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs);
             it.ProcessName(null);
 
+            //test genus integration (3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1)
+            it = new IntegratorThread(new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1"), cs);
+            it.ProcessName(null);
+
 
             //test full match hierarchy/paths
-            pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00")); 
-            matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
+            //pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00")); 
+            //res = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
-            Assert.AreNotEqual(0, matches.Count);
+            //Assert.AreNotEqual(0, res.Matches.Count());
 
 
             //test match parent
-            pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("C8F0B9CB-2B22-4649-9380-880AD0BB826F")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));            
-            matches = NZOR.Integration.Integrator.DoMatch(pn, routines);
-                
-            Assert.AreNotEqual(0, matches.Count);
+            //pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("C8F0B9CB-2B22-4649-9380-880AD0BB826F")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00"));            
+            //res = NZOR.Integration.Integrator.DoMatch(pn, routines);
+
+            //Assert.AreNotEqual(0, res.Matches.Count());
                         
         }
 
