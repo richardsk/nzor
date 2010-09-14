@@ -12,8 +12,6 @@ Begin DataProject = "NZOR_DB"
       End
       Begin Folder = "Stored Procs"
          Script = "sprSelect_FlatNameToRoot.sql"
-         Script = "sprSelect_NamesWithConcept.sql"
-         Script = "sprSelect_ProvNameMatchingData.sql"
          Script = "sprUpdate_FlatNameData.sql"
       End
       Begin Folder = "Test"

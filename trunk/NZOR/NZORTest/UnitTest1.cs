@@ -114,6 +114,14 @@ namespace NZORTest
 
             Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
+            //test species  (10A906E5-0CAB-4524-9BFC-FCD728D19060)
+            it = new IntegratorThread(new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060"), cs);
+            it.ProcessName(null);
+
+            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+
+
+
             //test full match hierarchy/paths
             //pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("0BAEEFF2-2BD4-4818-99B3-000365BF0DE3")); //118A1FE7-59E4-4C9B-83C4-01D71E6E5C00")); 
             //res = NZOR.Integration.Integrator.DoMatch(pn, routines);

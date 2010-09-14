@@ -1,5 +1,6 @@
 ﻿--TODO - will need more data at some point - make non-static ???
-/* obtained from the following SQL - re-run to get updated values
+
+/*INSERT statements below were obtained from the following SQL - re-run to get updated values, or run on DB
 
 -- RUN on NZOR_Data to insert into NZOR_Data_Test
 

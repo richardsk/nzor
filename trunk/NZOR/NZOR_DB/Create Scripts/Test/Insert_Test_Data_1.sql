@@ -191,5 +191,60 @@ INSERT INTO prov.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID]
 go
 
 
+-------------   2. simple test Species    ---------------------
+ 
+INSERT INTO [cons].[Name] ([NameID] ,[FullName] ,[TaxonRankID] ,[NameClassID] ,[OriginalOrthography] ,[GoverningCode] ,[AddedDate] ,[UpdatedDate])
+     VALUES ( '79B46D62-978E-4DFD-A634-559D399E006B', 'Testgenus testsp Smith', '20552EB6-1BF0-4073-A021-A6C7A89B7F14', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', null, 'ICBN', getdate(), null )
+     
+INSERT INTO [cons].[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+     VALUES (newid(), '79B46D62-978E-4DFD-A634-559D399E006B', 'A1D57520-3D64-4F7D-97C8-69B449AFA280', 'species', null, null, getdate(), null)
+
+INSERT INTO [cons].[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+     VALUES (newid(), '79B46D62-978E-4DFD-A634-559D399E006B', '1F64E93C-7EE8-40D7-8681-52B56060D750', 'testsp', null, null, getdate(), null)
+     
+INSERT INTO [cons].[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+     VALUES (newid(), '79B46D62-978E-4DFD-A634-559D399E006B', '006D86A8-08A5-4C1A-BC08-C07B0225E01B', 'Smith', null, null, getdate(), null)
+
+INSERT INTO [cons].[Concept] ([ConceptID] ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[UpdatedDate])
+     VALUES ('8B40DCC7-4C75-43D2-8297-59548ABE31B9', '79B46D62-978E-4DFD-A634-559D399E006B', null, null, getdate(), null)
+     
+--join to Testgenus
+INSERT INTO [cons].[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+     VALUES (newid(), '8B40DCC7-4C75-43D2-8297-59548ABE31B9', '2632F79D-0A26-4E2E-AD74-5C01E6F9539C', '6A11B466-1907-446F-9229-D604579AA155', null, getdate(), null)
+
+go
+	--flat name
+	delete cons.FlatName where seednameid = '79B46D62-978E-4DFD-A634-559D399E006B'
+    INSERT cons.FlatName EXEC sprSelect_FlatNameToRoot '79B46D62-978E-4DFD-A634-559D399E006B'
+
+go
+     
+	--provider values - 
+
+	--insert provider name to match 'Testgenus', prov record id = D3056447-38A7-43B5-B487-FF5F1ED90434
+INSERT INTO prov.[Name] ([NameID] ,[FullName] ,[TaxonRankID] ,[NameClassID] ,[OriginalOrthography] ,[GoverningCode] , ProviderID, ProviderRecordID, [AddedDate] ,[ProviderUpdatedDate])
+     VALUES ('10A906E5-0CAB-4524-9BFC-FCD728D19060', 'Testgenus testsp Smith', '20552EB6-1BF0-4073-A021-A6C7A89B7F14', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', null, 'ICBN', '7B5CC893-C710-4119-ADE5-B00A997CEEAA', 'D3056447-38A7-43B5-B487-FF5F1ED90434', getdate(), getdate())
+     
+INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
+     VALUES (newid(), '10A906E5-0CAB-4524-9BFC-FCD728D19060', 'A1D57520-3D64-4F7D-97C8-69B449AFA280', 'species', null, null)
+
+INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
+     VALUES (newid(), '10A906E5-0CAB-4524-9BFC-FCD728D19060', '1F64E93C-7EE8-40D7-8681-52B56060D750', 'testsp', null, null)
+  
+INSERT INTO prov.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
+     VALUES (newid(), '10A906E5-0CAB-4524-9BFC-FCD728D19060', '006D86A8-08A5-4C1A-BC08-C07B0225E01B', 'Smith', null, null)
+
+go
+     
+	--child of Testaceae
+INSERT INTO prov.[Concept] ([ConceptID] ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[ProviderUpdatedDate], ProviderID, ProviderRecordID)
+     VALUES ('3C608D14-757D-4E70-A895-7363C29F45B4', '10A906E5-0CAB-4524-9BFC-FCD728D19060', null, null, getdate(), getdate(), '7B5CC893-C710-4119-ADE5-B00A997CEEAA', newid()) --genus concept
+     
+INSERT INTO prov.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[RelationshipTypeID] ,[Sequence])
+     VALUES (newid(), '3C608D14-757D-4E70-A895-7363C29F45B4', '7D82F575-5C79-413A-B8AF-98D014370F39', '6A11B466-1907-446F-9229-D604579AA155', null)
+     
+go
+
+
 	
 
