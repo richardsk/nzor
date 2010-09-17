@@ -1,19 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7FBEDD12-C39C-4455-B143-28F0CA1CBE79}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		NZOR.vsmdi = NZOR.vsmdi
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration", "Integration\Integration.csproj", "{9B5C4FD6-5888-4CAB-9B79-4E9195EDA15C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matching", "Matching\Matching.csproj", "{512E38AB-3407-4299-B2B0-FE31AD7EF5A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{5DC2D3A3-AB31-4055-9BC3-81200C89B915}"
 EndProject
-Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "NZOR_DB", "NZOR_DB\NZOR_DB.dbp", "{08764081-C750-4E46-A150-D7462C2BD16E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7FBEDD12-C39C-4455-B143-28F0CA1CBE79}"
-	ProjectSection(SolutionItems) = preProject
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		NZOR.vsmdi = NZOR.vsmdi
-	EndProjectSection
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "NZOR_DB", "NZOR_DB\NZOR_DB.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZORTest", "NZORTest\NZORTest.csproj", "{09F8627F-FBDA-4F65-8060-278C1535B515}"
 EndProject
@@ -40,6 +40,8 @@ Global
 		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC2D3A3-AB31-4055-9BC3-81200C89B915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F8627F-FBDA-4F65-8060-278C1535B515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09F8627F-FBDA-4F65-8060-278C1535B515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F8627F-FBDA-4F65-8060-278C1535B515}.Release|Any CPU.ActiveCfg = Release|Any CPU
