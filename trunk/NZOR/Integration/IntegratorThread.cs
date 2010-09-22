@@ -21,6 +21,9 @@ namespace NZOR.Integration
 
         public Data.MatchResult Result = new NZOR.Data.MatchResult();
 
+        public delegate void ProcessComplete(IntegratorThread it);
+        public ProcessComplete ProcessCompleteCallback;
+
         public IntegratorThread()
         {
         }
@@ -63,6 +66,8 @@ namespace NZOR.Integration
 
                 Result = res;
             }
+
+            if (ProcessCompleteCallback != null) ProcessCompleteCallback(this);
         }
     }
 }

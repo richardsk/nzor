@@ -118,6 +118,9 @@ namespace NZOR.Integration
             {
                 XmlNodeList rules = matchSet.SelectNodes("//Rule");
 
+                String asmDir = System.Configuration.ConfigurationManager.AppSettings["MatchingAssemblyPath"];
+                if (asmDir == null) asmDir = System.IO.Directory.GetCurrentDirectory();
+
                 foreach (XmlNode ruleNode in rules)
                 {
                     try
@@ -129,8 +132,8 @@ namespace NZOR.Integration
                         String pass = ruleNode.Attributes["pass"].Value;
                         String fail = ruleNode.Attributes["fail"].Value;
 
-                        String fname = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), asm);
-                        INameMatcher nm = (INameMatcher)Activator.CreateInstanceFrom(fname, cls).Unwrap();
+                        String fname = System.IO.Path.Combine(asmDir, asm);
+                        INameMatcher nm = (NZOR.Matching.INameMatcher)Activator.CreateInstanceFrom(fname, cls).Unwrap();
                         
                         nm.Id = Int32.Parse(id);
 

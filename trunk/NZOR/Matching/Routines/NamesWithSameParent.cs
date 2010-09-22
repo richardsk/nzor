@@ -30,45 +30,48 @@ namespace NZOR.Matching
             {
                 parentNameID = (Guid)parRow["ConsensusNameToID"];
             }
-            else
-            {
-                //NO Parent CONCEPT - check for higher ranks
-                System.String pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical).ToString();
-                Guid rankId = (Guid)pn.Tables["Name"].Rows[0]["TaxonRankID"];
-                string govCode = pn.Tables["Name"].Rows[0]["GoverningCode"].ToString();
-                NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
 
-                matchComments = "No parent specified.  Matching on epithet for higher level rank '" + tr.Name + "'.";
+            //THIS FUZZY matching is now done when the provider name data is first select (to save returning to the DB multiple times)
+            // ...
+            //else
+            //{
+            //    //NO Parent CONCEPT - check for higher ranks
+            //    System.String pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical).ToString();
+            //    Guid rankId = (Guid)pn.Tables["Name"].Rows[0]["TaxonRankID"];
+            //    string govCode = pn.Tables["Name"].Rows[0]["GoverningCode"].ToString();
+            //    NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
 
-                //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
-                //ORDER and above - just match canonical and rank 
-                if (tr.SortOrder <= 1600)
-                {
-                    using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                    {
-                        cnn.Open();
-                        using (SqlCommand cmd = cnn.CreateCommand())
-                        {
-                            cmd.CommandText = "select distinct fn.ParentNameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
-                                + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
-                                + tr.TaxonRankID.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
-                                + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
+            //    matchComments = "No parent specified.  Matching on epithet for higher level rank '" + tr.Name + "'.";
 
-                            DataSet pds = new DataSet();
-                            SqlDataAdapter da = new SqlDataAdapter(cmd);
-                            da.Fill(pds);
+            //    //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
+            //    //ORDER and above - just match canonical and rank 
+            //    if (tr.SortOrder <= 1600)
+            //    {
+            //        using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            //        {
+            //            cnn.Open();
+            //            using (SqlCommand cmd = cnn.CreateCommand())
+            //            {
+            //                cmd.CommandText = "select distinct fn.ParentNameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
+            //                    + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
+            //                    + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
+            //                    + tr.TaxonRankID.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
+            //                    + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
 
-                            if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
-                            {
-                                parentNameID = (Guid)pds.Tables[0].Rows[0]["ParentNameID"];
-                            }
-                        }
+            //                DataSet pds = new DataSet();
+            //                SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //                da.Fill(pds);
 
-                        if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
-                    }
-                }
-            }
+            //                if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
+            //                {
+            //                    parentNameID = (Guid)pds.Tables[0].Rows[0]["ParentNameID"];
+            //                }
+            //            }
+
+            //            if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
+            //        }
+            //    }
+            //}
 
             if (parentNameID != Guid.Empty)
             {

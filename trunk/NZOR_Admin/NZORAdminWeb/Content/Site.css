@@ -43,7 +43,7 @@ p, ul
 {
     position:relative;
     height:8px;
-    width:100px;
+    width:200px;
     border:solid 1px gray;
     display:none;
 }

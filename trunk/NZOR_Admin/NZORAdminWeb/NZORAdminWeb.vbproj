@@ -37,8 +37,21 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NZOR.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Include\NZOR.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NZOR.Integration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Include\NZOR.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="NZOR.Matching, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Include\NZOR.Matching.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -141,6 +154,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configuration\IntegConfig.xml" />
     <Content Include="Content\jquery.ui.all.css" />
     <Content Include="Content\jquery.ui.base.css" />
     <Content Include="Content\jquery.ui.progressbar.css" />
@@ -184,12 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\NZOR\Data\Data.csproj">
-      <Project>{5DC2D3A3-AB31-4055-9BC3-81200C89B915}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,5 +1,17 @@
-﻿Public Class WorkflowController
+﻿Imports System.Xml
+
+Public Class WorkflowController
     Inherits System.Web.Mvc.Controller
+
+    Private Shared syncRoot As New Object
+
+    Private Shared m_ProviderImportFile As String = ""
+    Private Shared m_ImportProgress As Integer = 0
+    Private Shared m_IntegrationProcessor As Integration.IntegrationProcessor
+    Private Shared m_IntegrationThread As Threading.Thread
+    Private Shared m_ConsensusProgress As Integer = 0
+    Private Shared m_WebCacheProgress As Integer = 0
+
 
     '
     ' GET: /Workflow
@@ -14,6 +26,19 @@
 
     Sub RunIntegration(ByVal formValues As FormCollection)
 
+        If m_IntegrationProcessor Is Nothing Then
+            m_IntegrationProcessor = New Integration.IntegrationProcessor()
+
+            m_IntegrationThread = New Threading.Thread(New Threading.ThreadStart(AddressOf ProcessIntegration))
+            m_IntegrationThread.Start()
+        End If
+
+    End Sub
+
+    Sub StopIntegration()
+        If m_IntegrationThread IsNot Nothing Then
+            m_IntegrationThread.Abort()
+        End If
     End Sub
 
     Sub RunConsensusRefresh(ByVal formValues As FormCollection)
@@ -23,15 +48,33 @@
     Function GetProgress(ByVal id As String, ByVal formValues As FormCollection) As ContentResult
         Me.ControllerContext.HttpContext.Response.AddHeader("cache-control", "no-cache")
 
-        Dim val As Integer = 100
+        Dim val As String = "100"
 
-        If id = "Integration" Then
-            val = 50 'todo
+        If id = "Import" Then
+            val = m_ImportProgress
+        ElseIf id = "Integration" Then
+            val = m_IntegrationProcessor.Progress.ToString() + "|" + m_IntegrationProcessor.StatusText
         ElseIf id = "ConsensusRefresh" Then
-            val = 50 'todo
+            val = m_ConsensusProgress
+        ElseIf id = "WebCacheRefresh" Then
+            val = m_WebCacheProgress
         End If
 
         Return Content(val.ToString)
     End Function
+
+    Sub ProcessImport()
+
+    End Sub
+
+    Sub ProcessIntegration()
+        SyncLock (syncRoot)
+            Dim doc As New XmlDocument()
+            doc.Load(IO.Path.Combine(HttpContext.Request.PhysicalApplicationPath, "Configuration\IntegConfig.xml"))
+
+            Dim setId As Integer = CInt(ConfigurationManager.AppSettings("IntegrationSetNumber"))
+            m_IntegrationProcessor.RunIntegration(doc, setId)
+        End SyncLock
+    End Sub
 
 End Class
