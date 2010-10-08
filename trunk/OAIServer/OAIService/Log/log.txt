@@ -1775,3 +1775,213 @@ Invalid column name 'NameCreatedDate'. :    at System.Data.OleDb.OleDbDataReader
    at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 241
    at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+7/10/2010 5:15:16 p.m. : ERROR : Name cannot begin with the '/' character, hexadecimal value 0x2F. Line 1, position 7. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 178
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 89
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+7/10/2010 5:19:32 p.m. : ERROR : Name cannot begin with the '/' character, hexadecimal value 0x2F. Line 1, position 7. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 178
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 89
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 8:13:22 a.m. : ERROR : Name cannot begin with the '/' character, hexadecimal value 0x2F. Line 1, position 7. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 178
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 89
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 8:53:54 a.m. : ERROR : Name cannot begin with the ':' character, hexadecimal value 0x3A. Line 1, position 2. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 178
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 89
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:02:01 a.m. : ERROR : The given key was not present in the dictionary. :    at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 818
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:02:40 a.m. : ERROR : The given key was not present in the dictionary. :    at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 818
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:03:02 a.m. : ERROR : 'http' is an unexpected token. Expecting white space. Line 1, position 144. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ThrowExpectingWhitespace(Int32 pos)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 187
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:04:25 a.m. : ERROR : 'http' is an unexpected token. Expecting white space. Line 1, position 144. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ThrowExpectingWhitespace(Int32 pos)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 187
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:04:44 a.m. : ERROR : Name cannot begin with the '"' character, hexadecimal value 0x22. Line 1, position 258. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 187
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:06:03 a.m. : ERROR : Name cannot begin with the '"' character, hexadecimal value 0x22. Line 1, position 258. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 187
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:08:58 a.m. : ERROR : Name cannot begin with the '"' character, hexadecimal value 0x22. Line 1, position 258. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 187
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 355
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 326
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:38:35 a.m. : ERROR : The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteScalar()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 156
+   at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 244
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:38:52 a.m. : ERROR : The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteScalar()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 156
+   at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 244
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 10:42:24 a.m. : ERROR : The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteScalar()
+   at OAIServer.ListRecordsRequest.GetResultData(String set, String fromDate, String toDate) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 156
+   at OAIServer.ListRecordsRequest.GetResultData() in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 41
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 244
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 11:24:07 a.m. : ERROR : The handle is invalid.
+ :    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.ReadCore(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.FileStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at System.IO.StreamReader.ReadBuffer(Char[] userBuffer, Int32 userOffset, Int32 desiredChars, Boolean& readToUserBuffer)
+   at System.IO.StreamReader.Read(Char[] buffer, Int32 index, Int32 count)
+   at System.Xml.XmlTextReaderImpl.ReadData()
+   at System.Xml.XmlTextReaderImpl.ParseText(Int32& startPos, Int32& endPos, Int32& outOrChars)
+   at System.Xml.XmlTextReaderImpl.ParseText()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlTextReader.Read()
+   at System.Xml.Schema.XmlSchema.Read(XmlReader reader, ValidationEventHandler validationEventHandler)
+   at System.Xml.Schema.XmlSchema.Read(TextReader reader, ValidationEventHandler validationEventHandler)
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 66
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 358
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 329
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+8/10/2010 11:57:37 a.m. : ERROR : 'nzor' is an undeclared prefix. Line 1, position 2. :    at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg, Int32 lineNo, Int32 linePos)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlTextReaderImpl.Read()
+   at System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   at System.Xml.XmlDocument.Load(XmlReader reader)
+   at System.Xml.XmlDocument.LoadXml(String xml)
+   at System.Xml.XmlDocument.set_InnerXml(String value)
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1045
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 866
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 878
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1027
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 866
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 878
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1027
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 866
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 878
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 847
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 358
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 329
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123

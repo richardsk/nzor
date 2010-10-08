@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Services>
-  <Service name="plant_names">
-    <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
-    <ProviderId>NZFLORA</ProviderId>
-    <ProviderName>New Zealand Plant Names Database</ProviderName>
-    <OrganisationUrl>http://nzflora.landcareresearch.co.nz</OrganisationUrl>
-    <MetadataDate>2010-03-10T00:00:00</MetadataDate>
-    <Disclaimer>xx</Disclaimer>
+  <Service name="niwa">
+    <AdminEmail></AdminEmail>
+    <ProviderId></ProviderId>
+    <ProviderName></ProviderName>
+    <OrganisationUrl></OrganisationUrl>
+    <MetadataDate></MetadataDate>
+    <Disclaimer></Disclaimer>
     <Attribution></Attribution>
     <Licensing></Licensing>
 
@@ -19,14 +19,15 @@
     </Sets>
 
     <MetadataFormats>
-      <MetadataFormat prefix="nzor" uri="C:\Development\NZOR\Dev\OAIServer\OAIService\Config\nzor_provider.xsd" mappingFile="nzor_mapping.xml" />
+      <MetadataFormat prefix="nzor" uri="C:\inetpub\wwwroot\OaiServer\Config\nzor_provider.xsd" mappingFile="nzor_mapping.xml" />
     </MetadataFormats>
+
 
     <DataConnections>
       <DataConnection set="TaxonName">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+	      <DBConnectionString>Provider=SQLOLEDB;data source=species;user id=dbi_user;password=fishes;initial catalog=Names_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Name" alias="" pk="NameId" indexingElement="">
-          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement="">            
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement="">
           </TableJoin>
           <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="NameID" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>
@@ -53,7 +54,6 @@
           <Mapping type="DatabaseMapping" field="[Authorship]" table="1" column="Authorship" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[PublishedIn]" table="1" column="PublishedIn" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[MicroReference]" table="1" column="MicroReference" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[TypeName]" table="1" column="TypeName" columnAlias="" sql="" fixedAttributes="" />
@@ -67,14 +67,14 @@
           <Mapping type="DatabaseMapping" field="[BlockedNameId]" table="1" column="ReplacementForId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NomenclaturalStatus]" table="1" column="NomenclaturalStatus" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NomenclaturalCode]" table="1" column="NomenclaturalCode" columnAlias="" sql="" fixedAttributes="" />
-          
+
         </Mappings>
       </DataConnection>
 
       <DataConnection set="VernacularName">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=species;user id=dbi_user;password=fishes;initial catalog=Names_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Vernacular" alias="" pk="VernacularId" indexingElement="">
-          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'" indexingElement="">            
+          <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'" indexingElement="">
           </TableJoin>
           <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularId" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>
@@ -97,11 +97,11 @@
       </DataConnection>
       
       <DataConnection set="TaxonConcept">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=species;user id=dbi_user;password=fishes;initial catalog=Names_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Concept" alias="" pk="ConceptId" indexingElement="">
-          <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">            
+          <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">
           </TableJoin>
-          <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">            
+          <TableJoin id="3" name="ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">
           </TableJoin>
           <TableJoin id="4" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="ConceptId" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>
@@ -138,9 +138,9 @@
       </DataConnection>
 
       <DataConnection set="Publication">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=species;user id=dbi_user;password=fishes;initial catalog=Names_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Publication" alias="" pk="PublicationID" indexingElement="">
-          <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId" indexingElement="/DataSet/Publications/Publication/Titles/Title">            
+          <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId" indexingElement="/DataSet/Publications/Publication/Titles/Title">
           </TableJoin>
           <TableJoin id="3" name="Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="PublicationId" fkTo="DeprecatedOldId" indexingElement="">
           </TableJoin>

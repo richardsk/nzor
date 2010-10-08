@@ -218,12 +218,15 @@ namespace OAIServer
 
             string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListIdentifiersResponse.xml"));
 
-            xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
+            xml = xml.Replace(FieldMapping.GET_DATE_TIME, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
 
-            if (fromDate != null && fromDate.Length > 0) xml = xml.Replace(FieldMapping.FROM_DATE, "from=\"" + fromDate + "\"");
+            DateTime fd = DateTime.Parse(fromDate);
+            DateTime td = DateTime.Parse(toDate);
+
+            if (fromDate != null && fromDate.Length > 0) xml = xml.Replace(FieldMapping.FROM_DATE, "from=\"" + fd.ToString("yyyy-MM-dd") + "\"");
             else xml = xml.Replace(FieldMapping.FROM_DATE, "");
 
-            if (toDate != null && toDate.Length > 0) xml = xml.Replace(FieldMapping.TO_DATE, "until=\"" + toDate + "\"");
+            if (toDate != null && toDate.Length > 0) xml = xml.Replace(FieldMapping.TO_DATE, "until=\"" + td.ToString("yyyy-MM-dd") + "\"");
             else xml = xml.Replace(FieldMapping.TO_DATE, "");
 
             if (set != null && set.Length > 0) xml = xml.Replace(FieldMapping.SET, "set=\"" + set + "\"");
@@ -256,7 +259,7 @@ namespace OAIServer
                 else
                 {
                     resxml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ResumptionSnippet.xml"));
-                    resxml = resxml.Replace(FieldMapping.EXP_DATE, _session.ResumptionExpiry.ToString("s"));
+                    resxml = resxml.Replace(FieldMapping.EXP_DATE, _session.ResumptionExpiry.ToString("yyyy-MM-ddTHH:mm:ss"));
                     resxml = resxml.Replace(FieldMapping.LIST_SIZE, _session.NumRecords.ToString());
                     resxml = resxml.Replace(FieldMapping.CURSOR, _session.Cursor.ToString());
                     resxml = resxml.Replace(FieldMapping.TOKEN, _session.ResumptionToken);
@@ -305,7 +308,7 @@ namespace OAIServer
                             if (val != "")
                             {
                                 DateTime date = DateTime.Parse(val);
-                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, date.ToString("s"));
+                                Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, date.ToString("yyyy-MM-dd"));
                             }
                             else
                             {

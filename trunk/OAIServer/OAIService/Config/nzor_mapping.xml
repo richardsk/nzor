@@ -24,6 +24,7 @@
     <SchemaMapping set="TaxonName" field="[Authorship]" xpath="/DataSet/TaxonNames/TaxonName/Authorship" />
     <SchemaMapping set="TaxonName" field="[BasionymAuthors]" xpath="/DataSet/TaxonNames/TaxonName/BasionymAuthors" />
     <SchemaMapping set="TaxonName" field="[CombiningAuthors]" xpath="/DataSet/TaxonNames/TaxonName/CombiningAuthors" />
+    <SchemaMapping set="TaxonName" field="[PublishedIn]" xpath="/DataSet/TaxonNames/TaxonName/PublishedIn" />
     <SchemaMapping set="TaxonName" field="[Year]" xpath="/DataSet/TaxonNames/TaxonName/Year" />
     <SchemaMapping set="TaxonName" field="[MicroReference]" xpath="/DataSet/TaxonNames/TaxonName/MicroReference" />
     <SchemaMapping set="TaxonName" field="[TypeName]" xpath="/DataSet/TaxonNames/TaxonName/TypeName" />

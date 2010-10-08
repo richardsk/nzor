@@ -17,6 +17,7 @@ namespace OAIServer
     public class FieldMapping
     {
         public static string GET_DATE = "[GET_DATE]";
+        public static string GET_DATE_TIME = "[GET_DATE_TIME]";
         public static string BASE_URL = "[BASE_URL]";
         public static string ADMIN_EMAIL = "[ADMIN_EMAIL]";
         public static string PROVIDER_ID = "[ProviderId]";

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAIServer", "OAIServer\OAIServer.csproj", "{E4C5F358-272C-4753-92AF-045154A42A59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAIService", "OAIService\OAIService.csproj", "{9114FFC3-8D50-4F41-A058-456816BCA41D}"

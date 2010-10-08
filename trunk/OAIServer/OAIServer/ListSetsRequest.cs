@@ -21,7 +21,7 @@ namespace OAIServer
             if (rep == null) throw new OAIException(OAIError.badArgument);
 
             string xml = File.ReadAllText(Path.Combine(OAIServer.WebDir, "Responses\\ListSetsResponse.xml"));
-            xml = xml.Replace(FieldMapping.GET_DATE, DateTime.Now.ToString());
+            xml = xml.Replace(FieldMapping.GET_DATE_TIME, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
 
             string url = System.ServiceModel.OperationContext.Current.IncomingMessageHeaders.To.OriginalString;
             if (url.IndexOf("?") != -1) url = url.Substring(0, url.IndexOf("?"));

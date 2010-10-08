@@ -45,7 +45,11 @@ namespace OAIServer.Xml {
         private XmlQualifiedName rootElement;
         private string rootTargetNamespace;
         private XmlValueGen _sqlValueGen = null;
-        
+        private bool _fullyNamespaced = false;
+
+        private System.Collections.Generic.Dictionary<string, string> _namespaces = new System.Collections.Generic.Dictionary<string, string>();
+        private System.Collections.Generic.Dictionary<string, string> _xsdLocations = new System.Collections.Generic.Dictionary<string, string>();
+
         internal const string NsXsd = "http://www.w3.org/2001/XMLSchema";
         internal const string NsXsi = "http://www.w3.org/2001/XMLSchema-instance";
         internal const string NsXml = "http://www.w3.org/XML/1998/namespace";
@@ -71,6 +75,24 @@ namespace OAIServer.Xml {
 
         //internal delegate void AttributeAddedHanlder(InstanceAttribute attr, String path);
         //internal event AttributeAddedHanlder AttributeAdded;
+
+        public void AddNamespace(string prefix, string ns, string xsdLocation)
+        {
+            _namespaces.Add(prefix, ns);
+            _xsdLocations.Add(prefix, xsdLocation);
+        }
+
+        public bool FullyNamespaced
+        {
+            get
+            {
+                return _fullyNamespaced;
+            }
+            set
+            {
+                _fullyNamespaced = value;
+            }
+        }
 
         public int MaxThreshold {
             get {
@@ -750,16 +772,53 @@ namespace OAIServer.Xml {
             return null;
         }
 
+        private String GetNamespacePrefix(string fullNamespace)
+        {
+            String pref = "tns";
+
+            foreach (string key in _namespaces.Keys)
+            {
+                if (_namespaces[key] == fullNamespace)
+                {
+                    pref = key;
+                    break;
+                }
+            }
+
+            return pref;
+        }
+
         private String ProcessInstanceTree(InstanceElement rootElement) 
         {
             String xml = "";
             if (rootElement != null) 
             {
                 instanceElementsProcessed.Add(rootElement, rootElement);
+                
+                string pref = GetNamespacePrefix(rootElement.QualifiedName.Namespace);
 
-                xml += "<" + rootElement.QualifiedName.Name;
-                if (rootTargetNamespace != null) xml += " xmlns=\"" + rootTargetNamespace + "\"";
-                xml += " xmlns:xsi=\"" + NsXsi + "\">" + Environment.NewLine;
+                xml += "<";
+                bool addNS = (rootElement.QualifiedName.Namespace != null && rootElement.QualifiedName.Namespace != "" && _fullyNamespaced);
+                if (addNS) xml += pref + ":";
+                xml += rootElement.QualifiedName.Name;
+                if (rootTargetNamespace != null)
+                {
+                    if (_fullyNamespaced)
+                    {
+                        xml += " xmlns:" + pref + "=\"" + rootTargetNamespace + "\"";
+                    }
+                    else
+                    {
+                        xml += " xmlns=\"" + rootTargetNamespace + "\"";
+                    }
+                }
+                xml += " xmlns:xsi=\"" + NsXsi + "\"";
+                if (_fullyNamespaced) 
+                {
+                    string loc = _xsdLocations[pref];
+                    if (loc != null) xml += " xsi:schemaLocation=\"" + rootTargetNamespace + " " + loc + "\"";
+                }
+                xml += ">" + Environment.NewLine;
                 xml += ProcessElementAttrs(rootElement, 0);
                 xml += ProcessComment(rootElement);
                 xml += CheckIfMixed(rootElement);
@@ -789,7 +848,9 @@ namespace OAIServer.Xml {
                         group = group.Sibling;
                     }
                 }
-                xml += "</" + rootElement.QualifiedName.Name + ">" + Environment.NewLine;
+                xml += "</";
+                if (addNS) xml += pref + ":";
+                xml += rootElement.QualifiedName.Name + ">" + Environment.NewLine;
             }
             else 
             {
@@ -841,7 +902,9 @@ namespace OAIServer.Xml {
         private void AddXmlElement(InstanceElement elem, ref String xml, String value, String innerXml, String attrs)
         {
             xml += "<";
-            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
+            string pref = GetNamespacePrefix(elem.QualifiedName.Namespace);
+            bool addNS = (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && (_fullyNamespaced || elem.QualifiedName.Namespace != rootTargetNamespace));
+            if (addNS) xml += pref + ":";            
             xml += elem.QualifiedName.Name;
             xml += attrs;
             xml += ">";
@@ -874,7 +937,7 @@ namespace OAIServer.Xml {
             }
 
             xml += "</";
-            if (elem.QualifiedName.Namespace != null && elem.QualifiedName.Namespace != "" && elem.QualifiedName.Namespace != rootTargetNamespace) xml += elem.QualifiedName.Namespace + ":";
+            if (addNS) xml += pref + ":";
             xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
         }
 
@@ -915,7 +978,7 @@ namespace OAIServer.Xml {
                         more = res.MoreData;
                     }
                 }
-
+                
                 if (res != null)
                 {
                     foreach (GenValue gv in res.Values)
@@ -935,7 +998,7 @@ namespace OAIServer.Xml {
                         String innerText = "";
                         if (gv.Value != null) innerText = gv.Value.ToString();
 
-                        if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0)
+                        if (innerText.Length > 0 || innerXml.Length > 0 || attrText.Length > 0 || elem.MinOccurs > 0)
                         {
                             if (gv.FixedAttrValue != null && gv.FixedAttrValue.Length > 0) attrText += " " + gv.FixedAttrValue;
                             AddXmlElement(elem, ref xml, innerText, innerXml, attrText);
@@ -974,7 +1037,13 @@ namespace OAIServer.Xml {
                     }
 
                     String attrText = ProcessElementAttrs(elem, index);
-                    if ((childXml != null && childXml.Length > 0) || (attrText != null && attrText.Length > 0)) AddXmlElement(elem, ref xml, "", childXml, attrText);
+                    //if no values in inner xml then discard
+                    bool doAdd = true;
+                    if (childXml.Length > 0 && attrText.Length == 0)
+                    {
+                        if (ContentLength(childXml) == 0) doAdd = false;
+                    }
+                    if (doAdd && ((childXml != null && childXml.Length > 0) || (attrText != null && attrText.Length > 0))) AddXmlElement(elem, ref xml, "", childXml, attrText);
                 }
 
                 index += 1;
@@ -984,7 +1053,30 @@ namespace OAIServer.Xml {
 
             return xml;
         }
-        
+
+        private int ContentLength(string xml)
+        {
+            int len = 0;
+            int pos = xml.IndexOf("<");
+            int endPos = 0;
+            while (pos != -1)
+            {
+                pos = xml.IndexOf(">", pos);
+                if (pos != -1)
+                {
+                    endPos = xml.IndexOf("<", pos);
+                    if (endPos != -1)
+                    {
+                        len += (endPos - 1) - pos;
+
+                        pos = xml.IndexOf("<", endPos + 1);                        
+                    }
+                }
+            }
+
+            return len;
+        }
+
         private String ProcessComment(InstanceElement elem) 
         {
             if (elem.Comment.Length > 0) 
