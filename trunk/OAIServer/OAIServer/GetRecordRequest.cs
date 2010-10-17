@@ -141,7 +141,7 @@ namespace OAIServer
 
             try
             {
-                xml = xml.Replace(FieldMapping.SET_SPECS, "<setSpec>" + set + "</setSpec>");
+                xml = xml.Replace(FieldMapping.SET_SPEC, "<setSpec>" + set + "</setSpec>");
 
                 String val = GetFieldValue(set, FieldMapping.RECORD_STATUS);
                 String status = "";

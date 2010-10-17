@@ -18,6 +18,7 @@ namespace OAIServer
         public String Disclaimer = "";
         public String Attribution = "";
         public String Licensing = "";
+        public String DataSubsetId = "";
 
         public List<MetadataFormat> MetadataFormats = new List<MetadataFormat>();
         public List<String> Sets = new List<String>();
@@ -56,6 +57,8 @@ namespace OAIServer
             n = doc.SelectSingleNode("//Services/Service/Licensing");
             if (n != null) this.Licensing = n.InnerText;
 
+            n = doc.SelectSingleNode("//Services/Service/DataSubsetId");
+            if (n != null) this.DataSubsetId = n.InnerText;
 
             MetadataFormats.Clear();
             XmlNodeList ml = doc.SelectNodes("//Services/Service/MetadataFormats/MetadataFormat");

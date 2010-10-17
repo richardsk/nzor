@@ -60,17 +60,26 @@ namespace OAIServer
             ValueGenResult vgr = new ValueGenResult();
 
             MetadataFormatSet set = _mapping.GetMappedSet(path);
-            if (set == null) return vgr;
-
+            
             List<SchemaMapping> sms = _mapping.GetMappings(path);
-            if (sms != null)
+            if (sms != null && set != null)
             {
                 foreach (SchemaMapping sm in sms)
                 {
                     Object val = null;
                     vgr.MoreData |= GetFieldValue(set.Name, sm.Field, recordIndex, ref val);
-                    
-                    vgr.AddValue(val, GetFixedAttrValue(set.Name, sm.Field));                    
+
+                    vgr.AddValue(val, GetFixedAttrValue(set.Name, sm.Field));
+                }
+            }
+            else
+            {
+                List<SchemaMapping> gms = _mapping.GetGlobalMappings(path);
+
+                foreach (SchemaMapping sm in gms)
+                {
+                    Object val = OAIServer.GetFixedFieldValue(_rep.Name, sm.Field); 
+                    vgr.AddValue(val, "");
                 }
             }
 

@@ -157,6 +157,10 @@ namespace OAIServer
             {
                 val = rep.Licensing;
             }
+            else if (field == FieldMapping.DATA_SUBSET_ID)
+            {
+                val = rep.DataSubsetId;
+            }
             else if (field == FieldMapping.REPOSITORY_NAME)
             {
                 val = repository;

@@ -321,7 +321,7 @@ namespace OAIServer
                                 Utility.ReplaceXmlField(ref recordXml, FieldMapping.RECORD_DATE, "");
                             }
 
-                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.SET_SPECS, resultTable.TableName);
+                            Utility.ReplaceXmlField(ref recordXml, FieldMapping.SET_SPEC, resultTable.TableName);
 
                             //Record Metadata
                             if (status == null || status == "")

@@ -25,6 +25,7 @@ namespace OAIServer
         public static string ORGANISATION_URL = "[OrganisationUrl]";
         public static string METADATA_DATE = "[MetadataDate]";
         public static string DISCLAIMER = "[Disclaimer]";
+        public static string DATA_SUBSET_ID = "[DataSubsetId]";
         public static string LICENSING = "[Licensing]";
         public static string ATTRIBUTION = "[Attribution]";
         public static string EARLIEST_DATE = "[EARLIEST_DATE]";
@@ -33,7 +34,9 @@ namespace OAIServer
         public static string METADATA_PREFIX = "[METADATA_PREFIX]";
         public static string RECORD_STATUS = "[RECORD_STATUS]";
         public static string RECORD_DATE = "[RECORD_DATE]";
-        public static string SET_SPECS = "[SET_SPECS]";
+        public static string SET_LIST = "[SET_LIST]"; 
+        public static string SET_NAME = "[SET_NAME]";
+        public static string SET_SPEC = "[SET_SPEC]";
         public static string RECORD_METADATA = "[RECORD_METADATA]";
         public static string RECORDS = "[RECORDS]";
         public static string FROM_DATE = "[FROM_DATE]";

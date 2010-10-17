@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Services>
-  <Service name="test">
+  <Service name="nzor_test">
     <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
     <ProviderId>NZOR_TEST</ProviderId>
-    <ProviderName>NZOR Test Provider</ProviderName>
+    <ProviderName>NZOR Test</ProviderName>
     <OrganisationUrl></OrganisationUrl>
-    <MetadataDate>2010-03-10</MetadataDate>
-    <Disclaimer></Disclaimer>
+    <MetadataDate>2010-03-10T00:00:00</MetadataDate>
+    <Disclaimer>xx</Disclaimer>
     <Attribution></Attribution>
     <Licensing></Licensing>
+    <DataSubsetId>Subset_X</DataSubsetId>
 
     <Sets>
       <Set name="Metadata"/>
@@ -16,6 +17,8 @@
       <Set name="TaxonProperty"/>
       <Set name="TaxonConcept"/>
       <Set name="Publication"/>
+      <Set name="Biostatus"/>
+      <Set name="ManagementStatus"/>
     </Sets>
 
     <MetadataFormats>
@@ -32,6 +35,7 @@
           </TableJoin>
         </Table>
         <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
@@ -53,6 +57,7 @@
           <Mapping type="DatabaseMapping" field="[Authorship]" table="1" column="Authorship" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublishedIn]" table="1" column="PublishedIn" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[MicroReference]" table="1" column="MicroReference" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[TypeName]" table="1" column="TypeName" columnAlias="" sql="" fixedAttributes="" />
@@ -79,6 +84,7 @@
           </TableJoin>
         </Table>
         <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
@@ -106,6 +112,7 @@
           </TableJoin>
         </Table>
         <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
@@ -145,6 +152,7 @@
           </TableJoin>
         </Table>
         <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
           <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="PublicationID" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
@@ -178,6 +186,7 @@
         <Mappings>
           <Mapping type="FixedValueMapping" field="[ProviderId]" fixedAttributes="" value="" serviceProperty="[ProviderId]" />
           <Mapping type="FixedValueMapping" field="[ProviderName]" fixedAttributes="" value="" serviceProperty="[ProviderName]" />
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
           <Mapping type="FixedValueMapping" field="[OrganisationUrl]" fixedAttributes="" value="" serviceProperty="[OrganisationUrl]" />
           <Mapping type="FixedValueMapping" field="[MetadataDate]" fixedAttributes="" value="" serviceProperty="[MetadataDate]" />
           <Mapping type="FixedValueMapping" field="[Disclaimer]" fixedAttributes="" value="" serviceProperty="[Disclaimer]" />

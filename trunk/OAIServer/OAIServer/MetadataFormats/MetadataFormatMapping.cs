@@ -10,6 +10,7 @@ namespace OAIServer
     {
         public List<MetadataFormatSet> Sets = new List<MetadataFormatSet>();
         public List<SchemaMapping> SchemaMappings = new List<SchemaMapping>();
+        public List<SchemaMapping> GlobalMappings = new List<SchemaMapping>();
 
         public void Load(XmlNode node)
         {
@@ -26,7 +27,15 @@ namespace OAIServer
             {
                 SchemaMapping sm = new SchemaMapping();
                 sm.Load(n);
-                SchemaMappings.Add(sm);
+
+                if (sm.Set == "")
+                {
+                    GlobalMappings.Add(sm);
+                }
+                else
+                {
+                    SchemaMappings.Add(sm);
+                }
             }
 
         }
@@ -36,6 +45,21 @@ namespace OAIServer
             List<SchemaMapping> sm = new List<SchemaMapping>();
 
             foreach (SchemaMapping s in SchemaMappings)
+            {
+                if (s.XPath == xpath)
+                {
+                    sm.Add(s);
+                }
+            }
+
+            return sm;
+        }
+
+        public List<SchemaMapping> GetGlobalMappings(string xpath)
+        {
+            List<SchemaMapping> sm = new List<SchemaMapping>();
+
+            foreach (SchemaMapping s in GlobalMappings)
             {
                 if (s.XPath == xpath)
                 {

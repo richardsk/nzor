@@ -6,29 +6,6 @@
   <responseDate>[GET_DATE_TIME]</responseDate>
   <request verb="ListSets">[BASE_URL]</request>
   <ListSets>
-    <set>
-      <setSpec>TaxonName</setSpec>
-      <setName>TaxonName</setName>
-    </set>
-    <set>
-      <setSpec>TaxonConcept</setSpec>
-      <setName>TaxonConcept</setName>
-    </set>
-    <set>
-      <setSpec>Publication</setSpec>
-      <setName>Publication</setName>
-    </set>
-    <set>
-      <setSpec>TaxonProperty</setSpec>
-      <setName>TaxonProperty</setName>
-    </set>
-    <set>
-      <setSpec>Metadata</setSpec>
-      <setName>Metadata</setName>
-    </set>
-    <set>
-      <setSpec>VernacularName</setSpec>
-      <setName>VernacularName</setName>
-    </set>
+    [SET_LIST]
   </ListSets>
 </OAI-PMH>

@@ -1,5 +1,5 @@
 ﻿<header [RECORD_STATUS]>
   <identifier>[IDENTIFIER]</identifier>
   <datestamp>[RECORD_DATE]</datestamp>
-  <setSpec>[SET_SPECS]</setSpec>
+  <setSpec>[SET_SPEC]</setSpec>
 </header>

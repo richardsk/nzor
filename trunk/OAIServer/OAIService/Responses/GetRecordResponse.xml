@@ -11,7 +11,7 @@
       <header [RECORD_STATUS]>
         <identifier>[IDENTIFIER]</identifier>
         <datestamp>[RECORD_DATE]</datestamp>
-        [SET_SPECS]
+        [SET_SPEC]
       </header>
       <metadata>
         [RECORD_METADATA]
