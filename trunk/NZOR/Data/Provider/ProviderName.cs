@@ -10,20 +10,7 @@ namespace NZOR.Data
 {
     public class ProviderName
     {
-        private static String _cnnStr = "";
-
-        public static String ConnectionString
-        {
-            get 
-            {
-                if (_cnnStr == "") _cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-                return _cnnStr; 
-            }
-            set { _cnnStr = value; }
-
-        }
-        
-        public static void GetParentData(System.Data.DataSet pn)
+        public static void GetParentData(SqlConnection cnn, System.Data.DataSet pn)
         {
             //Check we have a parent concept.  If not get fuzzy matches for use in matching process
             //This routine makes sure that all names that have been selected for possible match are at the correct rank.
@@ -44,36 +31,30 @@ namespace NZOR.Data
                 System.String pnCanonical = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Canonical).ToString();
                 Guid rankId = (Guid)pn.Tables["Name"].Rows[0]["TaxonRankID"];
                 string govCode = pn.Tables["Name"].Rows[0]["GoverningCode"].ToString();
-                NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(rankId);
+                NZOR.Data.SystemData.TaxonRank tr = Data.SystemData.TaxonRankData.GetTaxonRank(cnn, rankId);
 
                 //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
                 //ORDER and above - just match canonical and rank 
                 if (tr.SortOrder <= 1600)
                 {
-                    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                    using (SqlCommand cmd = cnn.CreateCommand())
                     {
-                        cnn.Open();
-                        using (SqlCommand cmd = cnn.CreateCommand())
+                        cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
+                            + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
+                            + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
+                            + tr.TaxonRankId.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
+                            + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
+
+                        DataSet pds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(pds);
+
+                        if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
                         {
-                            cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
-                                + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
-                                + tr.TaxonRankID.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.propertyname = '"
-                                + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
-
-                            DataSet pds = new DataSet();
-                            SqlDataAdapter da = new SqlDataAdapter(cmd);
-                            da.Fill(pds);
-
-                            if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
-                            {
-                                parentNameID = (Guid)pds.Tables[0].Rows[0]["ParentNameID"];
-                                parFullName = pds.Tables[0].Rows[0]["FullName"].ToString();
-                                parRank = (Guid)pds.Tables[0].Rows[0]["TaxonRankID"];
-                            }
+                            parentNameID = (Guid)pds.Tables[0].Rows[0]["ParentNameID"];
+                            parFullName = pds.Tables[0].Rows[0]["FullName"].ToString();
+                            parRank = (Guid)pds.Tables[0].Rows[0]["TaxonRankID"];
                         }
-
-                        if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
                     }
                 }
 
@@ -84,27 +65,21 @@ namespace NZOR.Data
                     {
                         String parent = fullName.Substring(0, fullName.IndexOf(" "));
 
-                        using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                        using (SqlCommand cmd = cnn.CreateCommand())
                         {
-                            cnn.Open();
-                            using (SqlCommand cmd = cnn.CreateCommand())
+                            cmd.CommandText = "select n.NameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
+                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid where TaxonRankID = '"
+                                + NZOR.Data.SystemData.TaxonRankData.GenusRank(cnn).TaxonRankId.ToString() + "' and np.Value = '" + parent + "' and ncp.propertyname = '"
+                                + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
+
+                            DataSet pds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(pds);
+
+                            if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
                             {
-                                cmd.CommandText = "select n.NameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-                                    + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid where TaxonRankID = '"
-                                    + NZOR.Data.SystemData.TaxonRankData.GenusRank().TaxonRankID.ToString() + "' and np.Value = '" + parent + "' and ncp.propertyname = '"
-                                    + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
-
-                                DataSet pds = new DataSet();
-                                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                                da.Fill(pds);
-
-                                if (pds.Tables.Count > 0 && pds.Tables[0].Rows.Count == 1)
-                                {
-                                    parentNameID = (Guid)pds.Tables[0].Rows[0]["NameID"];
-                                }
+                                parentNameID = (Guid)pds.Tables[0].Rows[0]["NameID"];
                             }
-
-                            if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
                         }
                     }
                 }
@@ -131,7 +106,7 @@ namespace NZOR.Data
 
                     //add parent concept to parent name id
                     cRow["ConceptID"] = Guid.Empty; //not a real concept
-                    cRow["RelationshipTypeID"] = ConceptRelationshipType.ParentRelationshipTypeID();
+                    cRow["RelationshipTypeID"] = ConceptRelationshipType.ParentRelationshipTypeID(cnn);
                     cRow["Relationship"] = ConceptProperties.ParentRelationshipType;
                     cRow["NameToID"] = Guid.Empty; //dummy
                     cRow["ConsensusNameToID"] = parentNameID;
@@ -143,19 +118,15 @@ namespace NZOR.Data
             }
         }
 
-        public static System.Data.DataSet GetNameMatchData(Guid provNameId)
+        public static System.Data.DataSet GetNameMatchData(SqlConnection cnn, Guid provNameId)
         {
             //TODO SQL Transaction to prevent deadlocks!!
 
             System.Data.DataSet ds = new System.Data.DataSet();
 
-            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cnn.Open();
-
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = @"
+                cmd.CommandText = @"
 	                        select * 
 	                        from prov.Name pn
 	                        inner join TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
@@ -170,16 +141,15 @@ namespace NZOR.Data
 	                        from vwProviderConcepts
 	                        where NameID = '" + provNameId.ToString() + @"'";
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(ds);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
 
-                    ds.Tables[0].TableName = "Name";
-                    ds.Tables[1].TableName = "NameProperty";
-                    ds.Tables[2].TableName = "Concepts";
+                ds.Tables[0].TableName = "Name";
+                ds.Tables[1].TableName = "NameProperty";
+                ds.Tables[2].TableName = "Concepts";
 
-                    //if no parent concept, get "fuzzy" match parents
-                    GetParentData(ds);
-                }
+                //if no parent concept, get "fuzzy" match parents
+                GetParentData(cnn, ds);
             }
 
             return ds;
@@ -217,21 +187,17 @@ namespace NZOR.Data
             return r;
         }
 
-        public static void UpdateProviderNameLink(DataSet provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
+        public static void UpdateProviderNameLink(SqlConnection cnn, DataSet provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
         {
-            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
-            Guid id = new Guid(provName.Tables["Name"].Rows[0]["NameID"].ToString());
+            String id = provName.Tables["Name"].Rows[0]["NameID"].ToString();
 
-            var res = from pns in provData.Name where pns.NameID == id select pns;
-
-            if (res != null && res.First() != null)
+            using (SqlCommand cmd = cnn.CreateCommand())
             {
-                NZOR.Data.Provider.Name pn = (NZOR.Data.Provider.Name)res.First();
-                pn.ConsensusNameID = nameId;
-                pn.LinkStatus = status.ToString();
-                pn.MatchScore = matchScore;
-                pn.MatchPath = matchPath;
-                provData.SaveChanges();
+                cmd.CommandText = "update prov.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
+                    "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "' " : "null ") +
+                    "where NameID = '" + id + "'";
+
+                cmd.ExecuteNonQuery();
             }
         }
     }

@@ -39,25 +39,16 @@ namespace NZOR.Matching
                 names.RejectChanges();
 
                 //check prov names 
-                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+
+                for (int i = names.Name.Count - 1; i >= 0; i--)
                 {
-                    cnn.Open();
-
-                    for (int i = names.Name.Count - 1; i >= 0; i--)
+                    DsNameMatch.NameRow row = names.Name[i];
+                    if (NZOR.Data.ConsensusName.HasProviderValue(DBConnection, row.NameID, NZOR.Data.NameProperties.Year, pnYear.ToString()) == false)
                     {
-                        DsNameMatch.NameRow row = names.Name[i];
-                        if (NZOR.Data.ConsensusName.HasProviderValue(cnn, row.NameID, NZOR.Data.NameProperties.Year, pnYear.ToString()) == false)
-                        {
-                            row.Delete();
-                        }
+                        row.Delete();
                     }
-
-                    if (cnn.State != ConnectionState.Closed) cnn.Close();
-
                 }
             }
-
 
             names.AcceptChanges();
         }

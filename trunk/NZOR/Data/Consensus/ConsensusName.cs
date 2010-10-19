@@ -5,15 +5,17 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace NZOR.Data
 {
     public class ConsensusName
     {
 
+
         public static bool HasProviderValue(SqlConnection cnn, Guid nameID, String field, object value)
         {
             bool hasVal = false;
-
+            
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = "select count(NameID) from prov.Name pn " +
@@ -177,62 +179,70 @@ namespace NZOR.Data
         /// </summary>
         /// <param name="provName"></param>
         /// <returns>new consensus name</returns>
-        public static NZOR.Data.Consensus.Name AddConsensusName(DataSet provName)
+        public static DataSet AddConsensusName(SqlConnection cnn, DataSet provName)
         {
-            NZOR.Data.Consensus.Name nm = new NZOR.Data.Consensus.Name();
+            Guid nameId = Guid.NewGuid();
 
-            NZOR.Data.Provider.NZORProvider provData = new NZOR.Data.Provider.NZORProvider();
-            NZOR.Data.Consensus.NZORConsensus consData = new NZOR.Data.Consensus.NZORConsensus();
-            
-            nm.AddedDate = DateTime.Now;
-            nm.FullName = provName.Tables["Name"].Rows[0]["FullName"].ToString();
-            nm.GoverningCode = provName.Tables["Name"].Rows[0]["GoverningCode"].ToString();
-            Guid nmCls = (Guid)provName.Tables["Name"].Rows[0]["NameClassID"];
-            nm.NameClass = (from c in consData.NameClass where c.NameClassID == nmCls select c).FirstOrDefault();
-            nm.NameID = Guid.NewGuid();
-            nm.OriginalOrthography = provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString();
-            Guid rnk = (Guid)provName.Tables["Name"].Rows[0]["TaxonRankID"];
-            nm.TaxonRank = (from r in consData.TaxonRank where r.TaxonRankID == rnk select r).FirstOrDefault();
+            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, OriginalOrthography, TaxonRankID) select '" +
+                nameId.ToString() + "', '" +
+                DateTime.Now.ToString("s") + "', '" +
+                provName.Tables["Name"].Rows[0]["FullName"].ToString() + "', '" +
+                provName.Tables["Name"].Rows[0]["GoverningCode"].ToString() + "', '" +
+                provName.Tables["Name"].Rows[0]["NameClassID"].ToString() + "', '" +
+                provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString() + "', '" +
+                provName.Tables["Name"].Rows[0]["TaxonRankID"].ToString() + "'";
 
-            consData.AddToName(nm);
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
 
             //properties
             foreach (DataRow tpRow in provName.Tables["NameProperty"].Rows)
             {
-                NZOR.Data.Consensus.NameProperty np = new NZOR.Data.Consensus.NameProperty();
+                int seq = -1;
+                if (!tpRow.IsNull("Sequence")) seq = (int)tpRow["Sequence"];
+                Guid relId = Guid.Empty;
+                if (tpRow["RelatedID"] != DBNull.Value) relId = (Guid)tpRow["RelatedID"];
 
-                np.NamePropertyID = Guid.NewGuid();
-                np.AddedDate = DateTime.Now;
-                Guid ncp = (Guid)tpRow["NameClassPropertyID"];
-                np.NameClassProperty = (from nc in consData.NameClassProperty where nc.NameClassPropertyID == ncp select nc).FirstOrDefault();
-                np.Value = tpRow["Value"].ToString();
-                if (!tpRow.IsNull("Sequence")) np.Sequence = (int)tpRow["Sequence"];
+                string val = tpRow["Value"].ToString().Replace("'", "''");
 
-                if (tpRow["RelatedID"] != DBNull.Value)
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                    Guid.NewGuid().ToString() + "', '" +
+                    nameId.ToString() + "', '" +
+                    DateTime.Now.ToString("s") + "', '" +
+                    tpRow["NameClassPropertyID"].ToString() + "', '" +
+                    val + "', " +
+                    (seq == -1 ? "null, " : seq.ToString() + ", ") +
+                    (relId == Guid.Empty ? "null" : "'" + relId.ToString() + "'");
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
                 {
-                    //connect to related provider name consensus id
-                    var res = from nps in provData.Name where nps.NameID.ToString().Equals(tpRow["RelatedID"].ToString()) select nps;
-                    if (res.Count() > 0)
-                    {
-                        NZOR.Data.Provider.Name pn = res.First();
-                        np.RelatedID = pn.ConsensusNameID;
-                    }
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
                 }
-
-                nm.NameProperty.Add(np);
             }
-
-            consData.SaveChanges();
 
             //Update Flat Name data
-            using (SqlConnection cnn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString))
-            {
-                cnn.Open();
-                UpdateFlatNameData(cnn, nm.NameID);
-                cnn.Close();
-            }
+            UpdateFlatNameData(cnn, nameId);
 
-            return nm;
+            return GetName(cnn, nameId);
+        }
+
+        public static DataSet GetName(SqlConnection cnn, Guid nameId)
+        {
+            DataSet ds = null;
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = "select * from cons.Name where NameID = '" + nameId.ToString() + "'; select * from cons.NameProperty where NameID = '" + nameId.ToString() + "'";
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            return ds;
         }
     }
 }

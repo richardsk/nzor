@@ -20,15 +20,7 @@ namespace NZOR.Matching
 
             if (val != System.DBNull.Value)
             {
-                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                {
-                    cnn.Open();
-
-                    ds = NZOR.Data.ConsensusName.GetNamesWithProperty(cnn, NZOR.Data.NameProperties.Rank, val);
-
-                    if (cnn.State != System.Data.ConnectionState.Closed) cnn.Close();
-                }
+                ds = NZOR.Data.ConsensusName.GetNamesWithProperty(DBConnection, NZOR.Data.NameProperties.Rank, val);
             }
 
             return ds;

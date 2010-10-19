@@ -47,7 +47,7 @@ namespace NZOR.Matching
                         for (int i = names.Name.Count - 1; i >= 0; i--)
                         {
                             DsNameMatch.NameRow row = names.Name[i];
-                            if (ConsensusName.HasProviderValue(cnn, row.NameID, NameProperties.Authors, authors) == false)
+                            if (ConsensusName.HasProviderValue(DBConnection, row.NameID, NameProperties.Authors, authors) == false)
                             {
                                 row.Delete();
                             }

@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml;
 using System.Data;
+using System.Data.SqlClient;
 
 using NZOR.Integration;
 
@@ -21,6 +22,7 @@ namespace NZORTest
             //
             // TODO: Add constructor logic here
             //
+
         }
 
         private TestContext testContextInstance;
@@ -63,18 +65,27 @@ namespace NZORTest
         //
         #endregion
 
+
         [TestMethod]
         public void TestSystemData()
         {
-            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID());
-            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.PreferredRelationshipTypeID());
-            Assert.IsNotNull(NZOR.Data.SystemData.TaxonRankData.GenusRank());
+            string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(cnnStr);
+            cnn.Open();
 
+            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID(cnn));
+            Assert.AreNotEqual(Guid.Empty, NZOR.Data.ConceptRelationshipType.PreferredRelationshipTypeID(cnn));
+            Assert.IsNotNull(NZOR.Data.SystemData.TaxonRankData.GenusRank(cnn));
+
+            cnn.Close();
         }
 
         [TestMethod]
         public void TestMatch()
         {
+            string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(cnnStr);
+            cnn.Open();
 
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
@@ -91,31 +102,31 @@ namespace NZORTest
             //
 
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
-            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
+            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
             NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
             Assert.AreNotEqual(0, res.Matches.Count());
 
             //insert name
-            IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs);
+            IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs, cnnStr);
             it.ProcessName(null);
 
             Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
             //test Family Testaceae below Asterales (C6A58A2E-315E-4EDD-91C0-8663A8584C69)
-            it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs);
+            it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs, cnnStr);
             it.ProcessName(null);
 
             Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
             //test genus integration (3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1)
-            it = new IntegratorThread(new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1"), cs);
+            it = new IntegratorThread(new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1"), cs, cnnStr);
             it.ProcessName(null);
 
             Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
 
             //test species  (10A906E5-0CAB-4524-9BFC-FCD728D19060)
-            it = new IntegratorThread(new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060"), cs);
+            it = new IntegratorThread(new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060"), cs, cnnStr);
             it.ProcessName(null);
 
             Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
@@ -134,7 +145,8 @@ namespace NZORTest
             //res = NZOR.Integration.Integrator.DoMatch(pn, routines);
 
             //Assert.AreNotEqual(0, res.Matches.Count());
-                        
+
+            cnn.Close();
         }
 
         [TestMethod]

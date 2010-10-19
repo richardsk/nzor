@@ -2,65 +2,76 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace NZOR.Matching
 {
     public class BaseMatcher : INameMatcher
     {
-        private int m_Id = -1;
-        private int m_FailId = -1;
-        private int m_SuccessId = -1;
-        private int m_Threshold = -1;
-        private NZOR.Data.MatchTypeSelection m_MatchType = NZOR.Data.MatchTypeSelection.Both;
+        private int _Id = -1;
+        private int _FailId = -1;
+        private int _SuccessId = -1;
+        private int _Threshold = -1;
+        private NZOR.Data.MatchTypeSelection _MatchType = NZOR.Data.MatchTypeSelection.Both;
+        private SqlConnection _cnn = null;
 
         public BaseMatcher()
         {
         }
 
-        public BaseMatcher(int id, int failId, int successId, int threshold, NZOR.Data.MatchTypeSelection matchType)
+        public BaseMatcher(int id, int failId, int successId, int threshold, NZOR.Data.MatchTypeSelection matchType, SqlConnection cnn)
         {
-            m_Id = id;
-            m_FailId = failId;
-            m_SuccessId = successId;
-            m_Threshold = threshold;
-            m_MatchType = matchType;
+            _Id = id;
+            _FailId = failId;
+            _SuccessId = successId;
+            _Threshold = threshold;
+            _MatchType = matchType;
+            _cnn = cnn;
         }
 
         #region INameMatcher Members
 
         public int Id
         {
-            get { return m_Id; }
-            set { m_Id = value; }
+            get { return _Id; }
+            set { _Id = value; }
         }
 
         public int FailId
         {
-            get { return m_FailId; }
-            set { m_FailId = value; }
+            get { return _FailId; }
+            set { _FailId = value; }
         }
 
         public int SuccessId
         {
-            get { return m_SuccessId; }
-            set { m_SuccessId = value; }
+            get { return _SuccessId; }
+            set { _SuccessId = value; }
         }
 
         public int Threshold
         {
-            get { return m_Threshold; }
-            set { m_Threshold = value; }
+            get { return _Threshold; }
+            set { _Threshold = value; }
         }
 
         public NZOR.Data.MatchTypeSelection MatchType
         {
             get
             {
-                return m_MatchType;
+                return _MatchType;
             }
             set
             {
-                m_MatchType = value;
+                _MatchType = value;
+            }
+        }
+
+        protected SqlConnection DBConnection
+        {
+            get
+            {
+                return _cnn;
             }
         }
 

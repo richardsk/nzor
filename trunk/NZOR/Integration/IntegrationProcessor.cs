@@ -28,8 +28,11 @@ namespace NZOR.Integration
         public void RunIntegration(XmlDocument config, int setNumber)
         {
             bool doAnother = true;
+            
+            SqlConnection cnn = new SqlConnection(ConnectionString);
+            cnn.Open();
 
-            m_namesToProcess = GetNamesForIntegrationCount();
+            m_namesToProcess = GetNamesForIntegrationCount(cnn);
             Progress = 0;
 
             ConfigSet cs = new ConfigSet();
@@ -39,10 +42,10 @@ namespace NZOR.Integration
             while (doAnother)
             {
                 string fullName = "";
-                Guid nextName = GetNextNameForIntegration(ref fullName);
+                Guid nextName = GetNextNameForIntegration(cnn, ref fullName);
                 if (nextName != Guid.Empty)
                 {                    
-                    IntegratorThread it = new IntegratorThread(nextName, cs);
+                    IntegratorThread it = new IntegratorThread(nextName, cs, ConnectionString);
                     it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(this.ProcessComplete);
                     ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
 
@@ -82,41 +85,40 @@ namespace NZOR.Integration
             if (Progress == 100 && m_namesToProcess > Results.Count) Progress = 99; //not 100 % complete until ALL names are done
         }
 
-        private Guid GetNextNameForIntegration(ref string fullName)
+        private Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName)
         {
             Guid id = Guid.Empty;
 
-            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+
+            using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cnn.Open();
+                // ???
+                /*cmd.CommandText = "select top 1 pn.nameid " + 
+                    "from vwproviderconcepts pn " +
+                    "left join vwproviderconcepts sn on sn.relationshiptypeid = '" + NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID().ToString() + "' and sn.toconceptid = pn.toconceptid and sn.nameid <> pn.nameid " +
+                        "and (sn.linkstatus is null or sn.linkstatus <> 'Integrating') " +                        
+                    "where sn.nameid is null and pn.consensusnameid is null " +
+                    "order by pn.sortorder";*/
 
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {                    
-                    // ???
-                    /*cmd.CommandText = "select top 1 pn.nameid " + 
-                        "from vwproviderconcepts pn " +
-                        "left join vwproviderconcepts sn on sn.relationshiptypeid = '" + NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID().ToString() + "' and sn.toconceptid = pn.toconceptid and sn.nameid <> pn.nameid " +
-	                        "and (sn.linkstatus is null or sn.linkstatus <> 'Integrating') " +                        
-                        "where sn.nameid is null and pn.consensusnameid is null " +
-                        "order by pn.sortorder";*/
-
-                    cmd.CommandText = "select top 1 n.NameId, n.FullName " +
-                                        "from prov.Name n " +
-                                        "inner join prov.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
-                                        "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
-                                        "and not exists(select sfn.nameid from prov.FlatName sfn inner join prov.Name sn on sn.NameID = sfn.SeedNameID and sfn.ParentNameID = fn.ParentNameID where sn.LinkStatus = 'Integrating')";
-
-                    DataSet res = new DataSet();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(res);
-                    if (res != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
-                    {
-                        id = (Guid)res.Tables[0].Rows[0]["NameId"];
-                        fullName = res.Tables[0].Rows[0]["FullName"].ToString();
-                    }
-                    
+                cmd.CommandText = "select top 1 n.NameId, n.FullName " +
+                                    "from prov.Name n " +
+                                    "inner join prov.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
+                                    "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
+                                    "and not exists(select sfn.nameid from prov.FlatName sfn inner join prov.Name sn on sn.NameID = sfn.SeedNameID and sfn.ParentNameID = fn.ParentNameID where sn.LinkStatus = 'Integrating')";
+                
+                DataSet res = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(res);
+                if (res != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
+                {
+                    id = (Guid)res.Tables[0].Rows[0]["NameId"];
+                    fullName = res.Tables[0].Rows[0]["FullName"].ToString();
                 }
 
+            }
+
+            if (id != Guid.Empty)
+            {
                 using (SqlCommand cmd = cnn.CreateCommand())
                 {
                     cmd.CommandText = "update prov.Name set LinkStatus = 'Integrating' where NameID = '" + id.ToString() + "'";
@@ -127,20 +129,16 @@ namespace NZOR.Integration
             return id;
         }
 
-        private int GetNamesForIntegrationCount()
+        private int GetNamesForIntegrationCount(SqlConnection cnn)
         {
             int cnt = 0;
 
-            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cnn.Open();
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "select count(nameid) from prov.Name where ConsensusNameId is null";
+                cmd.CommandText = "select count(nameid) from prov.Name where ConsensusNameId is null";
 
-                    object val = cmd.ExecuteScalar();
-                    if (val != DBNull.Value) cnt = (int)val;
-                }
+                object val = cmd.ExecuteScalar();
+                if (val != DBNull.Value) cnt = (int)val;
             }
 
             return cnt;

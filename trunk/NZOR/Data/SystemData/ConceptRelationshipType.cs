@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace NZOR.Data
 {
@@ -10,24 +11,30 @@ namespace NZOR.Data
         private static Guid _parRelId = Guid.Empty;
         private static Guid _prefRelId = Guid.Empty;
 
-        public static Guid ParentRelationshipTypeID()
+        public static Guid ParentRelationshipTypeID(SqlConnection cnn)
         {
             if (_parRelId == Guid.Empty)
             {
-                NZOR.Data.SystemData.NZOR_System se = new NZOR.Data.SystemData.NZOR_System();
-                var rels = from rt in se.ConceptRelationshipType where rt.Relationship.Equals("is child of") select rt.ConceptRelationshipTypeID;
-                _parRelId = rels.First();
+                using (SqlCommand cmd = cnn.CreateCommand())
+                {
+                    cmd.CommandText = "select ConceptRelationshipTypeID from ConceptRelationshipType where Relationship = 'is child of'";
+                    object val = cmd.ExecuteScalar();
+                    if (val != DBNull.Value) _parRelId = (Guid)val;
+                }
             }
             return _parRelId;
         }
 
-        public static Guid PreferredRelationshipTypeID()
+        public static Guid PreferredRelationshipTypeID(SqlConnection cnn)
         {
             if (_prefRelId == Guid.Empty)
             {
-                NZOR.Data.SystemData.NZOR_System se = new NZOR.Data.SystemData.NZOR_System();
-                var rels = from rt in se.ConceptRelationshipType where rt.Relationship.Equals("is synonym of") select rt.ConceptRelationshipTypeID;
-                _prefRelId = rels.First();
+                using (SqlCommand cmd = cnn.CreateCommand())
+                {
+                    cmd.CommandText = "select ConceptRelationshipTypeID from ConceptRelationshipType where Relationship = 'is synonym of'";
+                    object val = cmd.ExecuteScalar();
+                    if (val != DBNull.Value) _prefRelId = (Guid)val;
+                }
             }
             return _prefRelId;
         }

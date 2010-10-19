@@ -60,11 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consensus\ConsensusName.cs" />
-    <Compile Include="Consensus\NZORConsensus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NZORConsensus.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="DBI.cs" />
     <Compile Include="DsNameMatch.cs">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -76,27 +72,13 @@
     </Compile>
     <Compile Include="Enums.cs" />
     <Compile Include="MatchResults.cs" />
-    <Compile Include="Provider\NZORProvider.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NZORProvider.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\ProviderName.cs" />
     <Compile Include="SystemData\ConceptRelationshipType.cs" />
-    <Compile Include="SystemData\SystemData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SystemData.edmx</DependentUpon>
-    </Compile>
     <Compile Include="SystemData\TaxonRank.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Consensus\NZORConsensus.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NZORConsensus.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="DsNameMatch.xsc">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
     </None>
@@ -108,14 +90,6 @@
     <None Include="DsNameMatch.xss">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
     </None>
-    <EntityDeploy Include="SystemData\SystemData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SystemData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <EntityDeploy Include="Provider\NZORProvider.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NZORProvider.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
