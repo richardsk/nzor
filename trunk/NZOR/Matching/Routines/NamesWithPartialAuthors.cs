@@ -14,21 +14,21 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
         {
             //todo
             return null;
         }
 
-        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
         {
             //try :
             // - matching by levenshtein
             // - matching removing common author bits, eg "ex"
             // - matching on combination authors
 
-            object auth = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.Authors);
-            object combAuth = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NZOR.Data.NameProperties.CombinationAuthors);
+            object auth = pn.ProviderName[0]["Authors"];
+            object combAuth = pn.ProviderName[0]["CombinationAuthors"];
 
             if (auth == System.DBNull.Value || auth.ToString().Length == 0) return;
             //succeed 

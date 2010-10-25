@@ -29,8 +29,14 @@ namespace NZOR.Matching
             get;
             set;
         }
-        
-        DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments);
-        void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments);
+
+        System.Data.SqlClient.SqlConnection DBConnection
+        {
+            get;
+            set;
+        }
+
+        DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments);
+        void RemoveNonMatches(NZOR.Data.DsIntegrationName pn, ref DsNameMatch names, ref string matchComments);
     }
 }

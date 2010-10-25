@@ -6,24 +6,23 @@ GO
 
 CREATE View vwProviderConcepts AS
 
-SELECT     prov.Name.NameID, prov.Name.ConsensusNameID, prov.Name.FullName, prov.Name.NameClassID, prov.Name.LinkStatus, 
-                      prov.Name.OriginalOrthography, prov.Name.GoverningCode, prov.Name.ProviderID, prov.Name.ProviderRecordID, prov.Name.ProviderUpdatedDate, 
-                      prov.Name.AddedDate, prov.Concept.ConceptID, prov.Concept.AccordingToReferenceID, prov.Concept.Orthography, 
-                      prov.ConceptRelationship.ConceptRelationshipID, prov.ConceptRelationship.FromConceptID, prov.ConceptRelationship.ToConceptID, 
-                      prov.ConceptRelationship.RelationshipTypeID, dbo.ConceptRelationshipType.Relationship, prov.ConceptRelationship.Sequence, 
-                      ConceptTo.ConceptID AS ConceptToID, ConceptTo.NameID AS NameToID, ConceptTo.AccordingToReferenceID AS ReferenceToID, 
-                      NameTo.FullName AS NameToFull, NameTo.LinkStatus AS NameToLinkStatus, NameTo.ProviderRecordID AS NameToProviderRecordID, 
-                      prov.Concept.ConsensusConceptID, ConceptTo.ConsensusConceptID AS ConsensusConceptToId, prov.Name.TaxonRankID, 
-                      NameTo.TaxonRankID AS TaxonRankToID, dbo.TaxonRank.Name AS RankName, dbo.TaxonRank.SortOrder, 
-                      NameTo.ConsensusNameID AS ConsensusNameToID
-FROM         prov.Concept INNER JOIN
-                      prov.ConceptRelationship ON prov.Concept.ConceptID = prov.ConceptRelationship.FromConceptID INNER JOIN
-                      prov.Name ON prov.Concept.NameID = prov.Name.NameID INNER JOIN
-                      prov.Concept AS ConceptTo ON prov.ConceptRelationship.ToConceptID = ConceptTo.ConceptID INNER JOIN
-                      prov.Name AS NameTo ON ConceptTo.NameID = NameTo.NameID INNER JOIN
+SELECT     provider.Name.NameID, provider.Name.ConsensusNameID, provider.Name.FullName, provider.Name.NameClassID, provider.Name.LinkStatus, 
+                      provider.Name.GoverningCode, provider.Name.SubDataSetID, provider.Name.ProviderRecordID, provider.Name.ProviderModifiedDate, provider.Name.AddedDate, 
+                      provider.Concept.ConceptID, provider.Concept.AccordingToReferenceID, provider.Concept.Orthography, provider.ConceptRelationship.ConceptRelationshipID, 
+                      provider.ConceptRelationship.FromConceptID, provider.ConceptRelationship.ToConceptID, provider.ConceptRelationship.ConceptRelationshipTypeID, 
+                      dbo.ConceptRelationshipType.Relationship, provider.ConceptRelationship.Sequence, ConceptTo.ConceptID AS ConceptToID, 
+                      ConceptTo.NameID AS NameToID, ConceptTo.AccordingToReferenceID AS ReferenceToID, NameTo.FullName AS NameToFull, 
+                      NameTo.LinkStatus AS NameToLinkStatus, NameTo.ProviderRecordID AS NameToProviderRecordID, provider.Concept.ConsensusConceptID, 
+                      ConceptTo.ConsensusConceptID AS ConsensusConceptToId, provider.Name.TaxonRankID, NameTo.TaxonRankID AS TaxonRankToID, 
+                      dbo.TaxonRank.Name AS RankName, dbo.TaxonRank.SortOrder, NameTo.ConsensusNameID AS ConsensusNameToID
+FROM         provider.Concept INNER JOIN
+                      provider.ConceptRelationship ON provider.Concept.ConceptID = provider.ConceptRelationship.FromConceptID INNER JOIN
+                      provider.Name ON provider.Concept.NameID = provider.Name.NameID INNER JOIN
+                      provider.Concept AS ConceptTo ON provider.ConceptRelationship.ToConceptID = ConceptTo.ConceptID INNER JOIN
+                      provider.Name AS NameTo ON ConceptTo.NameID = NameTo.NameID INNER JOIN
                       dbo.ConceptRelationshipType ON 
-                      prov.ConceptRelationship.RelationshipTypeID = dbo.ConceptRelationshipType.ConceptRelationshipTypeID INNER JOIN
-                      dbo.TaxonRank ON prov.Name.TaxonRankID = dbo.TaxonRank.TaxonRankID
+                      provider.ConceptRelationship.ConceptRelationshipTypeID = dbo.ConceptRelationshipType.ConceptRelationshipTypeID INNER JOIN
+                      dbo.TaxonRank ON provider.Name.TaxonRankID = dbo.TaxonRank.TaxonRankID
 
 GO
 

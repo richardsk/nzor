@@ -19,8 +19,8 @@ AS
 	
 	
 	SELECT @ParentId = NameToID, @NameId = n.NameId
-	FROM  prov.Name n
-	inner join vwProviderConcepts cc on cc.nameid = n.nameid and RelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
+	FROM  provider.Name n
+	inner join vwProviderConcepts cc on cc.nameid = n.nameid and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
 	WHERE n.NameId = @StartNameId
 	
 	SET @intLevel = 0
@@ -34,8 +34,8 @@ AS
 		INSERT INTO @tableResults VALUES(@NameId, @intLevel)
 		
 		SELECT @GrandParent = NameToID 
-		FROM  prov.Name n
-		inner join vwProviderConcepts cc on cc.nameid = n.nameid and RelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
+		FROM  provider.Name n
+		inner join vwProviderConcepts cc on cc.nameid = n.nameid and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
 		WHERE n.NameId = @ParentId
 		
 		SET @NameId = @ParentId
@@ -48,17 +48,18 @@ AS
 	
 	
 	
-	SELECT newid() as FlatNameID,
+	SELECT distinct
 		cc.NameToID AS ParentNameID,
 		cast(n.NameId as varchar(38)) AS NameID, 
-		(select Value from prov.NameProperty where NameID = n.NameID and NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
+		(select Value from provider.NameProperty where NameID = n.NameID and NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
 		tr.TaxonRankID AS TaxonRankID, 
 		tr.Name AS RankName, 
+		tr.SortOrder,
 		res.NameLevel AS Depth,  
 		cast(@StartNameId as varchar(38)) as SeedNameID
 	FROM  @tableResults res
-	JOIN prov.Name n ON n.NameId = res.NameId
-	inner join vwProviderConcepts cc on cc.nameid = n.nameid and RelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
+	JOIN provider.Name n ON n.NameId = res.NameId
+	inner join vwProviderConcepts cc on cc.nameid = n.nameid and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
 	LEFT JOIN dbo.TaxonRank tr ON n.TaxonRankID = tr.TaxonRankID	
 	ORDER BY res.NameLevel DESC
 

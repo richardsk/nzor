@@ -67,20 +67,24 @@ namespace NZOR.Matching
             }
         }
 
-        protected SqlConnection DBConnection
+        public SqlConnection DBConnection
         {
             get
             {
                 return _cnn;
             }
+            set
+            {
+                _cnn = value;
+            }
         }
 
-        public virtual NZOR.Data.DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
+        public virtual NZOR.Data.DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void RemoveNonMatches(System.Data.DataSet pn, ref NZOR.Data.DsNameMatch names, ref string matchComments)
+        public virtual void RemoveNonMatches(NZOR.Data.DsIntegrationName pn, ref NZOR.Data.DsNameMatch names, ref string matchComments)
         {
             throw new NotImplementedException();
         }

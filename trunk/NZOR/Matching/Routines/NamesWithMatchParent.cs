@@ -13,7 +13,7 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(System.Data.DataSet pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
         {
             //this routine only adds names
             DsNameMatch names = new DsNameMatch();
@@ -21,7 +21,7 @@ namespace NZOR.Matching
             return names;
         }
 
-        public override void RemoveNonMatches(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
         {
             //this routine only adds names, so add names under the "match" parent
             AddMatchingNames(pn, ref names, ref matchComments);

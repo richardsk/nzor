@@ -154,7 +154,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\IntegConfig.xml" />
+    <Content Include="Configuration\IntegConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\jquery.ui.all.css" />
     <Content Include="Content\jquery.ui.base.css" />
     <Content Include="Content\jquery.ui.progressbar.css" />

@@ -67,7 +67,7 @@
                     window.setTimeout(function () { getStatus(_action, _progBar, _status); }, 1000);
                 }
                 else {
-                    $(_progBar.toString()).hide();
+                    $('#integStatusBorder').hide();
                 };
             });            
         }        

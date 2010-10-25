@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 using NZOR.Integration;
+using NZOR.Data;
 
 namespace NZORTest
 {
@@ -102,8 +103,8 @@ namespace NZORTest
             //
 
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
-            DataSet pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
-            NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(pn, routines);
+            DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
+            NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(cnn, pn, routines);
 
             Assert.AreNotEqual(0, res.Matches.Count());
 

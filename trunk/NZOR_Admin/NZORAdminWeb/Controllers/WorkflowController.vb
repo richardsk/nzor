@@ -7,7 +7,6 @@ Public Class WorkflowController
 
     Private Shared m_ProviderImportFile As String = ""
     Private Shared m_ImportProgress As Integer = 0
-    Private Shared m_IntegrationProcessor As Integration.IntegrationProcessor
     Private Shared m_IntegrationThread As Threading.Thread
     Private Shared m_ConsensusProgress As Integer = 0
     Private Shared m_WebCacheProgress As Integer = 0
@@ -26,13 +25,9 @@ Public Class WorkflowController
 
     Sub RunIntegration(ByVal formValues As FormCollection)
 
-        If m_IntegrationProcessor Is Nothing Then
-            m_IntegrationProcessor = New Integration.IntegrationProcessor()
-
-            m_IntegrationThread = New Threading.Thread(New Threading.ThreadStart(AddressOf ProcessIntegration))
-            m_IntegrationThread.Start()
-        End If
-
+        m_IntegrationThread = New Threading.Thread(New Threading.ThreadStart(AddressOf ProcessIntegration))
+        m_IntegrationThread.Start()
+        
     End Sub
 
     Sub StopIntegration()
@@ -53,7 +48,7 @@ Public Class WorkflowController
         If id = "Import" Then
             val = m_ImportProgress
         ElseIf id = "Integration" Then
-            val = m_IntegrationProcessor.Progress.ToString() + "|" + m_IntegrationProcessor.StatusText
+            val = Integration.IntegrationProcessor.Progress.ToString() + "|" + Integration.IntegrationProcessor.StatusText
         ElseIf id = "ConsensusRefresh" Then
             val = m_ConsensusProgress
         ElseIf id = "WebCacheRefresh" Then
@@ -73,7 +68,7 @@ Public Class WorkflowController
             doc.Load(IO.Path.Combine(HttpContext.Request.PhysicalApplicationPath, "Configuration\IntegConfig.xml"))
 
             Dim setId As Integer = CInt(ConfigurationManager.AppSettings("IntegrationSetNumber"))
-            m_IntegrationProcessor.RunIntegration(doc, setId)
+            Integration.IntegrationProcessor.RunIntegration(doc, setId)
         End SyncLock
     End Sub
 

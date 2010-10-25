@@ -6,7 +6,7 @@ GO
 
 CREATE View vwConsensusConcepts AS
 
-SELECT     cons.Name.NameID, cons.Name.FullName, cons.Name.NameClassID, cons.Name.OriginalOrthography, cons.Name.GoverningCode, 
+SELECT     cons.Name.NameID, cons.Name.FullName, cons.Name.NameClassID, cons.Name.GoverningCode, 
                       cons.Name.AddedDate, cons.Concept.ConceptID, cons.Concept.AccordingToReferenceID, cons.Concept.Orthography, 
                       cons.ConceptRelationship.ConceptRelationshipID, cons.ConceptRelationship.FromConceptID, cons.ConceptRelationship.ToConceptID, 
                       cons.ConceptRelationship.Sequence, ConceptTo.ConceptID AS ConceptToID, ConceptTo.NameID AS NameToID, 

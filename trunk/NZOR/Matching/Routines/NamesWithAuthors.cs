@@ -11,19 +11,18 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DataSet pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
         {
             return null;
         }
 
-        public override void RemoveNonMatches(DataSet pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
         {
             //TODO :
             // - corrected authors / lookup
             // may need another table on pn dataset for Authors??
 
-            object authors = NZOR.Data.ProviderName.GetNamePropertyValue(pn.Tables["NameProperty"], NameProperties.Authors);
-
+            object authors = pn.ProviderName[0]["Authors"];
             if (authors != System.DBNull.Value)
             {
                 for (int i = names.Name.Count - 1; i >= 0; i--)
@@ -40,23 +39,15 @@ namespace NZOR.Matching
                     //try prov names 
                     names.RejectChanges();
 
-                    string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-
-                    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                    for (int i = names.Name.Count - 1; i >= 0; i--)
                     {
-                        for (int i = names.Name.Count - 1; i >= 0; i--)
+                        DsNameMatch.NameRow row = names.Name[i];
+                        if (ConsensusName.HasProviderValue(DBConnection, row.NameID, NameProperties.Authors, authors) == false)
                         {
-                            DsNameMatch.NameRow row = names.Name[i];
-                            if (ConsensusName.HasProviderValue(DBConnection, row.NameID, NameProperties.Authors, authors) == false)
-                            {
-                                row.Delete();
-                            }
+                            row.Delete();
                         }
-
-                        if (cnn.State != ConnectionState.Closed) cnn.Close();
                     }
                 }
-
             }
 
             names.AcceptChanges();

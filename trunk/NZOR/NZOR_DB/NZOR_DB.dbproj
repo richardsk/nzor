@@ -145,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Connections.txt" />
-    <NotInBuild Include="Create Scripts\Database\Create_NZOR_Data_DB.sql" />
     <NotInBuild Include="Create Scripts\Database\Empty_NZOR_Data_DB.sql" />
     <NotInBuild Include="Create Scripts\Database\Insert_NZOR_Static_Data.sql" />
     <NotInBuild Include="Create Scripts\Stored Procs\sprSelect_FlatNameToRoot.sql" />
@@ -170,6 +169,9 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Create Scripts\Stored Procs\sprUpdate_ProvFlatNameData_Omissions.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Stored Procs\sprTransfer_Integration.proc.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

@@ -18,9 +18,9 @@ namespace NZOR.Data
             
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "select count(NameID) from prov.Name pn " +
-                    " inner join prov.NameProperty np on np.NameID = pn.NameID " +
-                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.PropertyName = '" + field + "' " +
+                cmd.CommandText = "select count(NameID) from provider.Name pn " +
+                    " inner join provider.NameProperty np on np.NameID = pn.NameID " +
+                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.Name = '" + field + "' " +
                     " where pn.ConsensusNameID = '" + nameID.ToString() + "' and (np.Value is null or np.Value = '" + value.ToString() + "')";
 
                 int cnt = (int)cmd.ExecuteScalar();
@@ -38,10 +38,10 @@ namespace NZOR.Data
             {
                 cmd.CommandText = "declare @ids table(id uniqueidentifier); " +
                     "insert @ids select distinct n.NameID from cons.Name n inner join cons.NameProperty np on np.NameID = n.NameID " +
-                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.PropertyName = '" + field + "' " +
+                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.Name = '" + field + "' " +
                     " where np.Value = '" + value.ToString() + "'; " +
                     "select n.* from cons.Name n inner join @ids i on i.id = n.NameID; " +
-                    "select np.*, ncp.PropertyName from cons.NameProperty np inner join @ids i on i.id = np.NameID inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID; " +
+                    "select np.*, ncp.Name from cons.NameProperty np inner join @ids i on i.id = np.NameID inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID; " +
                     "select c.* from vwConsensusConcepts c inner join @ids i on i.id = c.NameID; ";
 
                 DataSet res = new DataSet();
@@ -105,7 +105,7 @@ namespace NZOR.Data
                         from cons.Name n 
                         inner join @ids i on i.id = n.NameID
                         
-                        select np.*, ncp.PropertyName 
+                        select np.*, ncp.Name 
                         from cons.NameProperty np 
                         inner join @ids i on i.id = np.NameID 
                         inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
@@ -148,7 +148,7 @@ namespace NZOR.Data
 
             foreach (System.Data.DataRow dr in namePropDt.Rows)
             {
-                if (dr["NameID"].ToString() == nameID.ToString() && dr["PropertyName"].ToString() == field)
+                if (dr["NameID"].ToString() == nameID.ToString() && dr["Name"].ToString() == field)
                 {
                     val = dr["Value"];
                     break;
@@ -183,13 +183,12 @@ namespace NZOR.Data
         {
             Guid nameId = Guid.NewGuid();
 
-            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, OriginalOrthography, TaxonRankID) select '" +
+            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
                 nameId.ToString() + "', '" +
                 DateTime.Now.ToString("s") + "', '" +
-                provName.Tables["Name"].Rows[0]["FullName"].ToString() + "', '" +
+                provName.Tables["Name"].Rows[0]["FullName"].ToString().Replace("'","''") + "', '" +
                 provName.Tables["Name"].Rows[0]["GoverningCode"].ToString() + "', '" +
                 provName.Tables["Name"].Rows[0]["NameClassID"].ToString() + "', '" +
-                provName.Tables["Name"].Rows[0]["OriginalOrthography"].ToString() + "', '" +
                 provName.Tables["Name"].Rows[0]["TaxonRankID"].ToString() + "'";
 
             using (SqlCommand cmd = cnn.CreateCommand())

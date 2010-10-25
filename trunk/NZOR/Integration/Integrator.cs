@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Data;
+using System.Data.SqlClient;
 
 using NZOR.Matching;
+using NZOR.Data;
 
 namespace NZOR.Integration
 {
     public class Integrator
     {
-        public static Data.MatchResult DoMatch(DataSet provName, List<INameMatcher> routines)
+        public static Data.MatchResult DoMatch(SqlConnection cnn, DsIntegrationName provName, List<INameMatcher> routines)
         {
             NZOR.Data.DsNameMatch results = null;
             bool done = false;
@@ -20,6 +22,7 @@ namespace NZOR.Integration
             res.MatchPath = ""; // Keep audit trail match path
 
             INameMatcher nm = routines[0];
+            nm.DBConnection = cnn;
 
             while (!done)
             {
@@ -76,6 +79,7 @@ namespace NZOR.Integration
                         if (m.Id == nextId)
                         {
                             nm = m;
+                            nm.DBConnection = cnn;
                             done = false;
                             break; 
                         }

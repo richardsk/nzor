@@ -26,7 +26,7 @@ AS
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
  
-		INSERT prov.FlatName
+		INSERT prov.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID)
 		EXEC sprSelect_ProvFlatNameToRoot @NameId
 
 		-- This is executed as long as the previous fetch succeeds.

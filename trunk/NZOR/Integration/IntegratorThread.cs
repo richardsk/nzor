@@ -6,6 +6,8 @@ using System.Data;
 using System.Xml;
 using System.Data.SqlClient;
 
+using NZOR.Data;
+
 namespace NZOR.Integration
 {
     public enum IntegrationOutcome
@@ -30,21 +32,21 @@ namespace NZOR.Integration
         public IntegratorThread()
         {
         }
-
+                
         public IntegratorThread(Guid nameID, ConfigSet cs, String dbCnnStr)
         {
             NameID = nameID;
             Config = cs;
             _cnn = new SqlConnection(dbCnnStr);
-            _cnn.Open();
         }
 
         public void ProcessName(Object stateInfo)
         {            
             if (Config != null)
             {
-                DataSet provName = Data.ProviderName.GetNameMatchData(_cnn, NameID);
-                Data.MatchResult res = Integrator.DoMatch(provName, Config.Routines);
+                _cnn.Open();
+                DsIntegrationName provName = Data.ProviderName.GetNameMatchData(_cnn, NameID);
+                Data.MatchResult res = Integrator.DoMatch(_cnn, provName, Config.Routines);
 
                 if (res.Matches.Count == 0)
                 {
@@ -71,6 +73,8 @@ namespace NZOR.Integration
                 }
 
                 Result = res;
+
+                _cnn.Close();
             }
 
             if (ProcessCompleteCallback != null) ProcessCompleteCallback(this);
