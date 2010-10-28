@@ -10,6 +10,37 @@ namespace NZOR.Data
 {
     public class ProviderName
     {
+        public static DataSet GetName(SqlConnection cnn, Guid provNameId)
+        {
+            DataSet ds = new DataSet();
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = @"
+	                        select * 
+	                        from provider.Name pn
+	                        inner join TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
+	                        where NameID = '" + provNameId.ToString() + @"'
+                        	
+	                        select * 
+	                        from provider.NameProperty np
+	                        inner join NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+	                        where NameID = '" + provNameId.ToString() + @"'
+                        	
+	                        select * 
+	                        from vwProviderConcepts
+	                        where NameID = '" + provNameId.ToString() + @"'";
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                
+                ds.Tables[0].TableName = "Name";
+                ds.Tables[1].TableName = "NameProperty";
+                ds.Tables[2].TableName = "Concepts";
+            }
+                
+            return ds;
+        }
 
         public static DsIntegrationName GetNameMatchData(SqlConnection cnn, Guid provNameId)
         {
@@ -131,15 +162,13 @@ namespace NZOR.Data
             return r;
         }
 
-        public static void UpdateProviderNameLink(SqlConnection cnn, DataSet provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
+        public static void UpdateProviderNameLink(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
         {
-            String id = provName.Tables["Name"].Rows[0]["NameID"].ToString();
-
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = "update provider.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
                     "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "' " : "null ") +
-                    "where NameID = '" + id + "'";
+                    "where NameID = '" + provName.NameID.ToString() + "'";
 
                 cmd.ExecuteNonQuery();
             }

@@ -51,9 +51,9 @@ namespace NZOR.Integration
                 if (res.Matches.Count == 0)
                 {
                     //insert
-                    DataSet newName = NZOR.Data.ConsensusName.AddConsensusName(_cnn, provName);
+                    DataSet newName = NZOR.Data.ConsensusName.AddConsensusName(_cnn, provName.ProviderName[0]);
                     DataRow nameRow = newName.Tables[0].Rows[0];
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath);
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath);
 
                     res.MatchedId = nameRow["NameID"].ToString();
                     res.MatchedName = nameRow["FullName"].ToString();                    
@@ -62,13 +62,13 @@ namespace NZOR.Integration
                 else if (res.Matches.Count == 1)
                 {
                     //link 
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
                     res.Status = NZOR.Data.LinkStatus.Matched;
                 }
                 else
                 {
                     //multiple matches
-                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);                    
+                    NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);                    
                     res.Status = NZOR.Data.LinkStatus.Multiple;
                 }
 

@@ -179,17 +179,17 @@ namespace NZOR.Data
         /// </summary>
         /// <param name="provName"></param>
         /// <returns>new consensus name</returns>
-        public static DataSet AddConsensusName(SqlConnection cnn, DataSet provName)
+        public static DataSet AddConsensusName(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName)
         {
             Guid nameId = Guid.NewGuid();
 
             string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
                 nameId.ToString() + "', '" +
                 DateTime.Now.ToString("s") + "', '" +
-                provName.Tables["Name"].Rows[0]["FullName"].ToString().Replace("'","''") + "', '" +
-                provName.Tables["Name"].Rows[0]["GoverningCode"].ToString() + "', '" +
-                provName.Tables["Name"].Rows[0]["NameClassID"].ToString() + "', '" +
-                provName.Tables["Name"].Rows[0]["TaxonRankID"].ToString() + "'";
+                provName.FullName.Replace("'","''") + "', '" +
+                provName.GoverningCode + "', '" +
+                provName.NameClassID.ToString() + "', '" +
+                provName.TaxonRankID.ToString() + "'";
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
@@ -197,8 +197,10 @@ namespace NZOR.Data
                 cmd.ExecuteNonQuery();
             }
 
+            DataSet provDs = ProviderName.GetName(cnn, provName.NameID);
+
             //properties
-            foreach (DataRow tpRow in provName.Tables["NameProperty"].Rows)
+            foreach (DataRow tpRow in provDs.Tables["NameProperty"].Rows)
             {
                 int seq = -1;
                 if (!tpRow.IsNull("Sequence")) seq = (int)tpRow["Sequence"];

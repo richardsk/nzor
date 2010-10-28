@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ConfigSet.cs" />
     <Compile Include="IntegrationProcessor.cs" />
+    <Compile Include="IntegrationProcessor2.cs" />
     <Compile Include="Integrator.cs" />
     <Compile Include="IntegratorThread.cs" />
     <Compile Include="Log.cs" />
