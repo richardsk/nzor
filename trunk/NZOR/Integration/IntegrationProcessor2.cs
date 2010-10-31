@@ -13,7 +13,7 @@ namespace NZOR.Integration
     {
         public static List<NZOR.Data.MatchResult> Results = new List<Data.MatchResult>();
         public static string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-
+        
         public static string StatusText = "";
         public static int MaxThreads = 20;
         public static int Progress = 0;
@@ -62,7 +62,9 @@ namespace NZOR.Integration
             Guid nextName = GetNextNameForIntegration(cnn, ref fullName);
             if (nextName != Guid.Empty)
             {
-                IntegratorThread it = new IntegratorThread(nextName, _configSet, ConnectionString);
+                IntegratorThread it = new IntegratorThread();
+                //IntegrationData data = new IntegrationData(nextName,  _configSet);
+                //it.SetupData(false, null, ds);
                 it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(ProcessComplete);
                 ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
 
@@ -82,13 +84,13 @@ namespace NZOR.Integration
             return more;
         }
 
-        private static void ProcessComplete(IntegratorThread it)
+        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result)
         {
             lock (lockKey)
             {
                 int prog = 1;
 
-                Results.Add(it.Result);
+                Results.Add(result);
                 prog = (Results.Count * 100 / _namesToProcess);
 
                 int numTh = 0;

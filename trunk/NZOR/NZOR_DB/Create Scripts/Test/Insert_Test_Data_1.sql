@@ -56,6 +56,28 @@ delete dbo.Provider where [Name] = 'Test Provider'
 
 
 go
+ 
+--insert concept for asterales? plantae?
+if (not exists(select conceptid from cons.Name pn
+	inner join vwConsensusConcepts cc on cc.NameID = pn.NameID
+	where pn.FullName like 'Asterales%' and conceptrelationshiptypeid = '6A11B466-1907-446F-9229-D604579AA155'))
+begin
+
+	INSERT INTO [cons].[Concept] ([ConceptID] ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[UpdatedDate])
+		 VALUES ('D984B42A-2B60-444D-AD72-430C9811A5F5', '63707033-44C0-4EE0-AF00-21B594DB8E55', null, null, getdate(), null) --asterales
+		 
+	INSERT INTO [cons].[Concept] ([ConceptID] ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[UpdatedDate])
+		 VALUES ('52E8DE21-5AA7-4D66-A92A-7E8BAF477986', 'AD3ADA71-589B-4160-831F-D289CBFE974D', null, null, getdate(), null) --plantae
+
+	INSERT INTO [cons].[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+		 VALUES (newid(), 'D984B42A-2B60-444D-AD72-430C9811A5F5', '52E8DE21-5AA7-4D66-A92A-7E8BAF477986', '6A11B466-1907-446F-9229-D604579AA155', null, getdate(), null)		
+
+	--plantae to root
+	INSERT INTO [cons].[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
+		 VALUES (newid(), '52E8DE21-5AA7-4D66-A92A-7E8BAF477986', 'C666C820-0894-430B-AA12-F909663CB0F4', '6A11B466-1907-446F-9229-D604579AA155', null, getdate(), null)		
+		 
+end
+
 
 --test Provider
 INSERT [dbo].[Provider] ([ProviderID], [Name], Code) VALUES (N'7B5CC893-C710-4119-ADE5-B00A997CEEAA', N'Test Provider', 'TEST')
@@ -131,8 +153,8 @@ INSERT INTO provider.[Concept] ([ConceptID], LinkStatus,[NameID] ,[AccordingToRe
 INSERT INTO provider.[Concept] ([ConceptID], LinkStatus ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[ProviderModifiedDate], SubDataSetID, ProviderRecordID)
      VALUES ('96FFB85B-7CB0-4783-9170-BEEE0DD02C3A', 'Unmatched', 'E6AB7DCC-45CD-43B1-A353-DC62BE296847', null, null, getdate(), getdate(), '38708533-E064-45A4-AB00-CDD76075C2B6', newid()) --order concept
      
-INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence])
-     VALUES (newid(), 'D1CB0D2E-6EB5-44BD-832E-26CCB381A3C2', '96FFB85B-7CB0-4783-9170-BEEE0DD02C3A', '6A11B466-1907-446F-9229-D604579AA155', null)
+INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence], InUse)
+     VALUES (newid(), 'D1CB0D2E-6EB5-44BD-832E-26CCB381A3C2', '96FFB85B-7CB0-4783-9170-BEEE0DD02C3A', '6A11B466-1907-446F-9229-D604579AA155', null, 1)
 	
 
 
@@ -185,8 +207,8 @@ go
 INSERT INTO provider.[Concept] ([ConceptID], LinkStatus ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[ProviderModifiedDate], SubDataSetID, ProviderRecordID)
      VALUES ('7D82F575-5C79-413A-B8AF-98D014370F39', 'Unmatched', '3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1', null, null, getdate(), getdate(), '38708533-E064-45A4-AB00-CDD76075C2B6', newid()) --genus concept
      
-INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence])
-     VALUES (newid(), '7D82F575-5C79-413A-B8AF-98D014370F39', 'D1CB0D2E-6EB5-44BD-832E-26CCB381A3C2', '6A11B466-1907-446F-9229-D604579AA155', null)
+INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence], InUse)
+     VALUES (newid(), '7D82F575-5C79-413A-B8AF-98D014370F39', 'D1CB0D2E-6EB5-44BD-832E-26CCB381A3C2', '6A11B466-1907-446F-9229-D604579AA155', null, 1)
      
 go
 
@@ -194,7 +216,7 @@ go
 -------------   2. simple test Species    ---------------------
  
 INSERT INTO [cons].[Name] ([NameID] ,[FullName] ,[TaxonRankID] ,[NameClassID] ,[GoverningCode] ,[AddedDate] ,[UpdatedDate])
-     VALUES ( '79B46D62-978E-4DFD-A634-559D399E006B', 'Testgenus testsp Smith', '20552EB6-1BF0-4073-A021-A6C7A89B7F14', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', 'ICBN', getdate(), null )
+     VALUES ( '79B46D62-978E-4DFD-A634-559D399E006B', 'Testgenus testsp Smith', 'C21BB221-5291-4540-94D1-55A12D1BD0AD', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', 'ICBN', getdate(), null )
      
 INSERT INTO [cons].[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence] ,[AddedDate] ,[UpdatedDate])
      VALUES (newid(), '79B46D62-978E-4DFD-A634-559D399E006B', 'A1D57520-3D64-4F7D-97C8-69B449AFA280', 'species', null, null, getdate(), null)
@@ -221,9 +243,9 @@ go
      
 	--provider values - 
 
-	--insert provider name to match 'Testgenus', prov record id = D3056447-38A7-43B5-B487-FF5F1ED90434
+	--insert provider name to match 'Testgenus testsp', prov record id = D3056447-38A7-43B5-B487-FF5F1ED90434
 INSERT INTO provider.[Name] ([NameID], LinkStatus ,[FullName] ,[TaxonRankID] ,[NameClassID] ,[GoverningCode] , SubDataSetID, ProviderRecordID, [AddedDate] ,[ProviderModifiedDate])
-     VALUES ('10A906E5-0CAB-4524-9BFC-FCD728D19060', 'Unmatched', 'Testgenus testsp Smith', '20552EB6-1BF0-4073-A021-A6C7A89B7F14', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', 'ICBN', '38708533-E064-45A4-AB00-CDD76075C2B6', 'D3056447-38A7-43B5-B487-FF5F1ED90434', getdate(), getdate())
+     VALUES ('10A906E5-0CAB-4524-9BFC-FCD728D19060', 'Unmatched', 'Testgenus testsp Smith', 'C21BB221-5291-4540-94D1-55A12D1BD0AD', 'A5233111-61A0-4AE6-9C2B-5E8E71F1473A', 'ICBN', '38708533-E064-45A4-AB00-CDD76075C2B6', 'D3056447-38A7-43B5-B487-FF5F1ED90434', getdate(), getdate())
      
 INSERT INTO provider.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPropertyID] ,[Value] ,[RelatedID] ,[Sequence])
      VALUES (newid(), '10A906E5-0CAB-4524-9BFC-FCD728D19060', 'A1D57520-3D64-4F7D-97C8-69B449AFA280', 'species', null, null)
@@ -236,12 +258,12 @@ INSERT INTO provider.[NameProperty] ([NamePropertyID] ,[NameID] ,[NameClassPrope
 
 go
      
-	--child of Testaceae
+	--child of Testgenus
 INSERT INTO provider.[Concept] ([ConceptID], LinkStatus ,[NameID] ,[AccordingToReferenceID] ,[Orthography] ,[AddedDate] ,[ProviderModifiedDate], SubDataSetID, ProviderRecordID)
-     VALUES ('3C608D14-757D-4E70-A895-7363C29F45B4', 'Unmatched', '10A906E5-0CAB-4524-9BFC-FCD728D19060', null, null, getdate(), getdate(), '38708533-E064-45A4-AB00-CDD76075C2B6', newid()) --genus concept
+     VALUES ('3C608D14-757D-4E70-A895-7363C29F45B4', 'Unmatched', '10A906E5-0CAB-4524-9BFC-FCD728D19060', null, null, getdate(), getdate(), '38708533-E064-45A4-AB00-CDD76075C2B6', newid()) --species concept
      
-INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence])
-     VALUES (newid(), '3C608D14-757D-4E70-A895-7363C29F45B4', '7D82F575-5C79-413A-B8AF-98D014370F39', '6A11B466-1907-446F-9229-D604579AA155', null)
+INSERT INTO provider.[ConceptRelationship] ([ConceptRelationshipID] ,[FromConceptID] ,[ToConceptID] ,[ConceptRelationshipTypeID] ,[Sequence], InUse)
+     VALUES (newid(), '3C608D14-757D-4E70-A895-7363C29F45B4', '7D82F575-5C79-413A-B8AF-98D014370F39', '6A11B466-1907-446F-9229-D604579AA155', null, 1)
      
 go
 

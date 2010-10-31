@@ -14,12 +14,13 @@ namespace NZOR.Matching
         private int _Threshold = -1;
         private NZOR.Data.MatchTypeSelection _MatchType = NZOR.Data.MatchTypeSelection.Both;
         private SqlConnection _cnn = null;
-
+        private bool _useDBCnn = true;
+        
         public BaseMatcher()
         {
         }
 
-        public BaseMatcher(int id, int failId, int successId, int threshold, NZOR.Data.MatchTypeSelection matchType, SqlConnection cnn)
+        public BaseMatcher(int id, int failId, int successId, int threshold, NZOR.Data.MatchTypeSelection matchType, bool useDBCnn, SqlConnection cnn)
         {
             _Id = id;
             _FailId = failId;
@@ -27,6 +28,7 @@ namespace NZOR.Matching
             _Threshold = threshold;
             _MatchType = matchType;
             _cnn = cnn;
+            _useDBCnn = useDBCnn;
         }
 
         #region INameMatcher Members
@@ -77,6 +79,12 @@ namespace NZOR.Matching
             {
                 _cnn = value;
             }
+        }
+
+        public bool UseDBConnection
+        {
+            get { return _useDBCnn; }
+            set { _useDBCnn = value; }
         }
 
         public virtual NZOR.Data.DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments)

@@ -109,28 +109,40 @@ namespace NZORTest
             Assert.AreNotEqual(0, res.Matches.Count());
 
             //insert name
-            IntegratorThread it = new NZOR.Integration.IntegratorThread(new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847"), cs, cnnStr);
+            IntegratorThread it = new NZOR.Integration.IntegratorThread();
+            Guid provNameId = new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847");
+            IntegrationData data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            it.AddNameData(data);
             it.ProcessName(null);
 
-            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+            Assert.AreEqual(NZOR.Data.LinkStatus.Matched, it.Result(provNameId).Status);
 
             //test Family Testaceae below Asterales (C6A58A2E-315E-4EDD-91C0-8663A8584C69)
-            it = new IntegratorThread(new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69"), cs, cnnStr);
+            it = new IntegratorThread();
+            provNameId = new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69");
+            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            it.AddNameData(data);
             it.ProcessName(null);
 
-            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+            Assert.AreEqual(NZOR.Data.LinkStatus.Matched, it.Result(provNameId).Status);
 
             //test genus integration (3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1)
-            it = new IntegratorThread(new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1"), cs, cnnStr);
+            it = new IntegratorThread();
+            provNameId = new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1");
+            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            it.AddNameData(data);
             it.ProcessName(null);
 
-            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+            Assert.AreEqual(NZOR.Data.LinkStatus.Matched, it.Result(provNameId).Status);
 
             //test species  (10A906E5-0CAB-4524-9BFC-FCD728D19060)
-            it = new IntegratorThread(new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060"), cs, cnnStr);
+            it = new IntegratorThread();
+            provNameId = new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060");
+            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            it.AddNameData(data);
             it.ProcessName(null);
 
-            Assert.AreEqual(it.Result.Status, NZOR.Data.LinkStatus.Matched);
+            Assert.AreEqual(NZOR.Data.LinkStatus.Matched, it.Result(provNameId).Status);
 
 
 

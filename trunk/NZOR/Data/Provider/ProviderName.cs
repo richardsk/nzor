@@ -96,10 +96,10 @@ namespace NZOR.Data
 	                mrp.Value as MicroReference, --micro ref
 	                pip.Value as PublishedIn, --published in
 	                pc.NameToID as ParentID, --parent name
-                    pc.ConsensusNameID as ParentConsensusNameID,
+                    pc.ConsensusNameToID as ParentConsensusNameID,
 	                pc.NameToFull as Parent,
 	                prc.NameToID as PreferredNameID, --pref name
-                    prc.ConsensusNameID as PreferredConsensusNameID,
+                    prc.ConsensusNameToID as PreferredConsensusNameID,
 	                prc.NameToFull as PreferredName
                 from provider.Name pn
                 inner join dbo.TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
@@ -112,9 +112,11 @@ namespace NZOR.Data
                 left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NameClassPropertyID = '6196CDC4-BACB-4172-8186-14BA494621A7'
                 left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NameClassPropertyID = '4A344D40-7448-49D6-956B-4392B33A749F'
                 left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NameClassPropertyID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
-                left join (select top 1 NameID, NameToID, NameToFull, ConsensusNameID from vwProviderConcepts where ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' and InUse = 1) pc
+                left join (select top 1 NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where NameID = '" + provNameId.ToString() + "' " +
+                    @" and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' and InUse = 1) pc 
 	                on pc.NameID = pn.NameID
-                left join (select top 1 NameID, NameToID, NameToFull, ConsensusNameID from vwProviderConcepts where ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' and InUse = 1) prc
+                left join (select top 1 NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where NameID = '" + provNameId.ToString() + "' " +
+                    @" and ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' and InUse = 1) prc
 	                on prc.NameID = pn.NameId
                 where pn.NameID = '" + provNameId.ToString() + "'";
 
@@ -306,8 +308,8 @@ namespace NZOR.Data
                         cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
                             + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
                             + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
-                            + pn.ProviderName[0].TaxonRankID.ToString() + "' and np.Value = '" + pn.ProviderName[0].Canonical + "' and ncp.name = '"
-                            + pn.ProviderName[0].Canonical + "' and n.GoverningCode = '" + pn.ProviderName[0].GoverningCode + "'";
+                            + pn.ProviderName[0].TaxonRankID.ToString() + "' and np.Value = '" + pn.ProviderName[0].Canonical + "' and ncp.name = 'Canonical' and n.GoverningCode = '" 
+                            + pn.ProviderName[0].GoverningCode + "'";
 
                         DataSet pds = new DataSet();
                         SqlDataAdapter da = new SqlDataAdapter(cmd);

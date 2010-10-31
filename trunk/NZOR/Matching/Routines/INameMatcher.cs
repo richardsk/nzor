@@ -36,6 +36,12 @@ namespace NZOR.Matching
             set;
         }
 
+        bool UseDBConnection
+        {
+            get;
+            set;
+        }
+
         DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments);
         void RemoveNonMatches(NZOR.Data.DsIntegrationName pn, ref DsNameMatch names, ref string matchComments);
     }

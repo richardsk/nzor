@@ -33,7 +33,7 @@ AS
 		
 		INSERT INTO @tableResults VALUES(@NameId, @intLevel)
 		
-		SELECT @GrandParent = NameToID 
+		SELECT top 1 @GrandParent = NameToID 
 		FROM  cons.Name n
 		inner join vwConsensusConcepts cc on cc.nameid = n.nameid and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' -- child
 		WHERE n.NameId = @ParentId
@@ -51,7 +51,7 @@ AS
 	SELECT newid() as FlatNameID,
 		cc.NameToID AS ParentNameID,
 		cast(n.NameId as varchar(38)) AS NameID, 
-		(select Value from cons.NameProperty where NameID = n.NameID and NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
+		(select top 1 Value from cons.NameProperty where NameID = n.NameID and NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
 		tr.TaxonRankID AS TaxonRankID, 
 		tr.Name AS RankName, 
 		res.NameLevel AS Depth,  

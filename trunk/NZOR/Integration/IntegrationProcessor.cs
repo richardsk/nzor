@@ -20,6 +20,7 @@ namespace NZOR.Integration
 
         private static int _namesToProcess = 0;
         private static ConfigSet _configSet = null;
+        private static List<IntegratorThread> _threads = new List<IntegratorThread>();
 
         private static object lockKey = new object();
 
@@ -59,19 +60,44 @@ namespace NZOR.Integration
             bool more = true;
 
             string fullName = "";
-            Guid nextName = GetNextNameForIntegration(cnn, ref fullName);
+            Guid parConsNameID = Guid.Empty;
+            Guid nextName = GetNextNameForIntegration(cnn, ref fullName, ref parConsNameID);
             if (nextName != Guid.Empty)
             {
-                IntegratorThread it = new IntegratorThread(nextName, _configSet, ConnectionString);
-                it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(ProcessComplete);
-                ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
+                IntegrationData data = new IntegrationData(nextName, parConsNameID, _configSet, true, ConnectionString, null);
 
-                //check threads                    
-                int numTh = 0;
-                int numOtherTh = 0;
-                ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
+                //if this name has the same parent as another name being processed, then use that thread
+                bool process = true;
+                lock (lockKey)
+                {
+                    foreach (IntegratorThread th in _threads)
+                    {
+                        foreach (IntegrationData id in th.NameData)
+                        {
+                            if (id.ParentConsNameID == parConsNameID)
+                            {
+                                th.AddNameData(data);
+                                process = false;
+                            }
+                        }
+                    }
+                }
 
-                if (numTh < 2) more = false; //leave at least 1 thread ??    
+                if (process)
+                {
+                    IntegratorThread it = new IntegratorThread();
+                    it.AddNameData(data);
+                    it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(ProcessComplete);
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
+                    _threads.Add(it);
+
+                    //check threads                    
+                    int numTh = 0;
+                    int numOtherTh = 0;
+                    ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
+
+                    if (numTh < 2) more = false; //leave at least 1 thread ??    
+                }
             }
             else
             {
@@ -82,13 +108,13 @@ namespace NZOR.Integration
             return more;
         }
 
-        private static void ProcessComplete(IntegratorThread it)
+        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result)
         {
             lock (lockKey)
             {
                 int prog = 1;
 
-                Results.Add(it.Result);
+                Results.Add(result);
                 prog = (Results.Count * 100 / _namesToProcess);
 
                 int numTh = 0;
@@ -104,6 +130,12 @@ namespace NZOR.Integration
 
                 Progress = prog;
 
+                //more names on this thread?
+                if (it.NameData.Count == 0)
+                {
+                    _threads.Remove(it);
+                }
+
                 //next name?
                 SqlConnection cnn = new SqlConnection(ConnectionString);
                 cnn.Open();
@@ -112,7 +144,7 @@ namespace NZOR.Integration
             }
         }
 
-        private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName)
+        private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName, ref Guid parentConsNameID)
         {
             Guid id = Guid.Empty;
 
@@ -127,12 +159,19 @@ namespace NZOR.Integration
                     "where sn.nameid is null and pn.consensusnameid is null " +
                     "order by pn.sortorder";*/
 
-                cmd.CommandText = "select top 1 n.NameId, n.FullName " + 
+                /*cmd.CommandText = "select top 1 n.NameId, n.FullName,  " + 
                                     "from provider.Name n " +
                                     "inner join prov.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
                                     "left join (select sfn.NameID, sfn.ParentNameID from prov.FlatName sfn inner join provider.Name sn on sn.NameID = sfn.SeedNameID and sn.LinkStatus = 'Integrating') sn on sn.ParentNameID = fn.ParentNameID and sn.NameID <> n.NameID " +
                                     "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') and sn.ParentNameID is null " +
-                                    "order by fn.SortOrder";
+                                    "order by fn.SortOrder";*/
+
+                cmd.CommandText = "select top 1 n.NameID, n.FullName, pc.ConsensusNameToID " +
+                        "from provider.Name n " +
+                        "inner join dbo.TaxonRank tr on tr.TaxonRankID = n.TaxonRankID " +
+                        "left join vwProviderConcepts pc on pc.NameID = n.NameID and pc.ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' " +
+                        "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
+                        "order by tr.SortOrder ";
                 
                 DataSet res = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -141,6 +180,7 @@ namespace NZOR.Integration
                 {
                     id = (Guid)res.Tables[0].Rows[0]["NameId"];
                     fullName = res.Tables[0].Rows[0]["FullName"].ToString();
+                    parentConsNameID = (res.Tables[0].Rows[0].IsNull("ConsensusNameToID") ? Guid.Empty : (Guid)res.Tables[0].Rows[0]["ConsensusNameToID"]);
                 }
 
             }
