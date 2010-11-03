@@ -30,8 +30,10 @@ namespace TestNZOR
 
             DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
 
-            List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1);
-            NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(cnn, pn, routines);
+            NZOR.Integration.MatchProcessor.LoadConfig(doc);
+
+            NZOR.Integration.ConfigSet cs = NZOR.Integration.MatchProcessor.GetMatchSet(1);
+            NZOR.Data.MatchResult res = NZOR.Integration.MatchProcessor.DoMatch(pn, cs.Routines, true, cnn);
 
             cnn.Close();
             

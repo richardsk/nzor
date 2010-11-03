@@ -91,27 +91,25 @@ namespace NZORTest
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
             //doc.Load("C:\\Development\\NZOR\\trunk\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
+            
+            NZOR.Integration.MatchProcessor.LoadConfig(doc);
 
-            List<NZOR.Matching.INameMatcher> routines = NZOR.Integration.Integrator.LoadConfig(doc, 1); //set number 1
-
-            ConfigSet cs = new ConfigSet();
-            cs.Routines = Integrator.LoadConfig(doc, 1);
-            cs.SetNumber = 1;
-
+            ConfigSet cs = NZOR.Integration.MatchProcessor.GetMatchSet(1); //set number 1
+            
             //
             //PREREQUISITE:  Need to run Insert_Test_Data_1.sql first
             //
 
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
             DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
-            NZOR.Data.MatchResult res = NZOR.Integration.Integrator.DoMatch(cnn, pn, routines);
+            NZOR.Data.MatchResult res = NZOR.Integration.MatchProcessor.DoMatch(pn, cs.Routines, true, cnn);
 
             Assert.AreNotEqual(0, res.Matches.Count());
 
             //insert name
             IntegratorThread it = new NZOR.Integration.IntegratorThread();
             Guid provNameId = new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847");
-            IntegrationData data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            IntegrationData data = new IntegrationData(provNameId, "Asterales", Guid.Empty, cs, true, cnnStr);
             it.AddNameData(data);
             it.ProcessName(null);
 
@@ -120,7 +118,7 @@ namespace NZORTest
             //test Family Testaceae below Asterales (C6A58A2E-315E-4EDD-91C0-8663A8584C69)
             it = new IntegratorThread();
             provNameId = new Guid("C6A58A2E-315E-4EDD-91C0-8663A8584C69");
-            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            data = new IntegrationData(provNameId, "Testaceae Smith", Guid.Empty, cs, true, cnnStr);
             it.AddNameData(data);
             it.ProcessName(null);
 
@@ -129,7 +127,7 @@ namespace NZORTest
             //test genus integration (3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1)
             it = new IntegratorThread();
             provNameId = new Guid("3CF39BEE-E713-4063-9CA5-5EB05D6CE8F1");
-            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            data = new IntegrationData(provNameId, "Testgenus", Guid.Empty, cs, true, cnnStr);
             it.AddNameData(data);
             it.ProcessName(null);
 
@@ -138,7 +136,7 @@ namespace NZORTest
             //test species  (10A906E5-0CAB-4524-9BFC-FCD728D19060)
             it = new IntegratorThread();
             provNameId = new Guid("10A906E5-0CAB-4524-9BFC-FCD728D19060");
-            data = new IntegrationData(provNameId, Guid.Empty, cs, true, cnnStr, null);
+            data = new IntegrationData(provNameId, "Testgenus testsp Smith", Guid.Empty, cs, true, cnnStr);
             it.AddNameData(data);
             it.ProcessName(null);
 
@@ -162,6 +160,8 @@ namespace NZORTest
             cnn.Close();
         }
 
+        private System.Timers.Timer _timer = new System.Timers.Timer();
+        
         [TestMethod]
         public void TestLevenshtein()
         {

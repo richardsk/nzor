@@ -7,6 +7,7 @@ using System.Xml;
 using System.Data.SqlClient;
 
 using NZOR.Data;
+using NZOR.Matching;
 
 namespace NZOR.Integration
 {
@@ -14,18 +15,18 @@ namespace NZOR.Integration
     {
         public bool UseDB = true;
         public string DBCnnStr = null;
-        public DsIntegrationName NameData = null;
         public Guid NameID = Guid.Empty;
+        public String FullName = "";
         public Guid ParentConsNameID = Guid.Empty;
         public ConfigSet Config = null;
-
+                
         /// If useDB then the dbCnnStr DB is used to get the data and check for matches, otherwise all data for matching is contained in the nameData dataset, in memory.
-        public IntegrationData(Guid nameID, Guid parentConsNameID, ConfigSet config, bool useDB, string dbCnnStr, DsIntegrationName data)
+        public IntegrationData(Guid nameID, String fullName, Guid parentConsNameID, ConfigSet config, bool useDB, string dbCnnStr)
         {
             this.UseDB = useDB;
             this.DBCnnStr = dbCnnStr;
-            this.NameData = data;
             this.NameID = nameID;
+            this.FullName = fullName;
             this.ParentConsNameID = parentConsNameID;
             this.Config = config;
         }
@@ -43,9 +44,12 @@ namespace NZOR.Integration
         private SqlConnection _cnn = null;
         private List<IntegrationData> _data = new List<IntegrationData>();
         private Dictionary<Guid, MatchResult> _results = new Dictionary<Guid, MatchResult>();
+        private Dictionary<Guid, IntegrationData> _processedNames = new Dictionary<Guid, IntegrationData>();
 
-        public delegate void ProcessComplete(IntegratorThread it, MatchResult result);
+        public delegate void ProcessComplete(IntegratorThread it, MatchResult result, Guid provNameID);
         public ProcessComplete ProcessCompleteCallback;
+
+        public static System.IO.StreamWriter LogFile = null;
 
         public IntegratorThread()
         {
@@ -70,6 +74,12 @@ namespace NZOR.Integration
             return res;
         }
 
+        public IntegrationData GetProcessedNameData(Guid provNameID)
+        {
+            IntegrationData id = _processedNames[provNameID];
+            return id;
+        }
+
         public void ProcessName(Object stateInfo)
         {
             MatchResult result = new MatchResult();
@@ -77,6 +87,7 @@ namespace NZOR.Integration
             while (_data.Count > 0)
             {
                 IntegrationData data = _data[0];
+                _processedNames.Add(data.NameID, data);
                 _data.RemoveAt(0);
 
                 if (data.Config != null)
@@ -86,7 +97,7 @@ namespace NZOR.Integration
                         _cnn = new SqlConnection(data.DBCnnStr);
                         _cnn.Open();
                         DsIntegrationName provName = Data.ProviderName.GetNameMatchData(_cnn, data.NameID);
-                        Data.MatchResult res = Integrator.DoMatch(_cnn, provName, data.Config.Routines);
+                        Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, data.UseDB, _cnn);
 
                         if (res.Matches.Count == 0)
                         {
@@ -120,11 +131,27 @@ namespace NZOR.Integration
                     else
                     {
                         //non DB version 
+                        DsIntegrationName provName = new DsIntegrationName();
+                        lock (MatchData.DataForIntegration)
+                        {
+                            DataRow[] names = MatchData.DataForIntegration.ProviderName.Select("NameID = '" + data.NameID.ToString() + "'");
+                            if (names.Count() > 0)
+                            {
+                                provName.ProviderName.ImportRow(names[0]);
+                            }
+                        }
 
+                        if (provName.ProviderName.Count > 0)
+                        {
+                            Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, false, null);
+                            
+                            result = res;
+                            _results.Add(data.NameID, res);
+                        }
                     }
                 }
                 
-                if (ProcessCompleteCallback != null) ProcessCompleteCallback(this, result);
+                if (ProcessCompleteCallback != null) ProcessCompleteCallback(this, result, data.NameID);
 
                 result = new MatchResult();
             }

@@ -42,7 +42,22 @@ namespace NZOR.Matching
                     for (int i = names.Name.Count - 1; i >= 0; i--)
                     {
                         DsNameMatch.NameRow row = names.Name[i];
-                        if (ConsensusName.HasProviderValue(DBConnection, row.NameID, NameProperties.Authors, authors) == false)
+                        bool hasValue = false;
+
+                        if (UseDBConnection)
+                        {
+                            hasValue = ConsensusName.HasProviderValue(DBConnection, row.NameID, NameProperties.Authors, authors);
+                        }
+                        else
+                        {
+                            lock (MatchData.DataForIntegration)
+                            {
+                                DataRow[] res = MatchData.DataForIntegration.ProviderName.Select("ConsensusNameID = '" + row.NameID.ToString() + "' and Authors = '" + authors + "'");
+                                hasValue = (res.Length > 0);
+                            }
+                        }
+
+                        if (!hasValue)
                         {
                             row.Delete();
                         }

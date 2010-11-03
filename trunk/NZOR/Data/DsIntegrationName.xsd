@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NZOR_IntegrationConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NZOR_IntegrationConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.NZOR.Data.Properties.Settings.GlobalReference.Default.NZOR_IntegrationConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NZOR_IntegrationConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="NZOR_IntegrationConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.NZOR.Data.Properties.Settings.GlobalReference.Default.NZOR_IntegrationConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables />
         <Sources />
@@ -58,6 +58,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="TaxonRankSort" msprop:Generator_ColumnVarNameInTable="columnTaxonRankSort" msprop:Generator_ColumnPropNameInRow="TaxonRankSort" msprop:Generator_ColumnPropNameInTable="TaxonRankSortColumn" msprop:Generator_UserColumnName="TaxonRankSort" type="xs:int" minOccurs="0" />
+              <xs:element name="MatchRuleSetID" msprop:Generator_ColumnVarNameInTable="columnMatchRuleSetID" msprop:Generator_ColumnPropNameInRow="MatchRuleSetID" msprop:Generator_ColumnPropNameInTable="MatchRuleSetIDColumn" msprop:Generator_UserColumnName="MatchRuleSetID" type="xs:int" minOccurs="0" />
               <xs:element name="Authors" msprop:Generator_ColumnVarNameInTable="columnAuthors" msprop:Generator_ColumnPropNameInRow="Authors" msprop:Generator_ColumnPropNameInTable="AuthorsColumn" msprop:Generator_UserColumnName="Authors" type="xs:string" minOccurs="0" />
               <xs:element name="GoverningCode" msprop:Generator_ColumnVarNameInTable="columnGoverningCode" msprop:Generator_ColumnPropNameInRow="GoverningCode" msprop:Generator_ColumnPropNameInTable="GoverningCodeColumn" msprop:Generator_UserColumnName="GoverningCode" minOccurs="0">
                 <xs:simpleType>
@@ -150,6 +151,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="NameClassID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnNameClassID" msprop:Generator_ColumnPropNameInRow="NameClassID" msprop:Generator_ColumnPropNameInTable="NameClassIDColumn" msprop:Generator_UserColumnName="NameClassID" type="xs:string" minOccurs="0" />
+              <xs:element name="NameClass" msprop:Generator_ColumnVarNameInTable="columnNameClass" msprop:Generator_ColumnPropNameInRow="NameClass" msprop:Generator_ColumnPropNameInTable="NameClassColumn" msprop:Generator_UserColumnName="NameClass" type="xs:string" minOccurs="0" />
               <xs:element name="TaxonRankID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnTaxonRankID" msprop:Generator_ColumnPropNameInRow="TaxonRankID" msprop:Generator_ColumnPropNameInTable="TaxonRankIDColumn" msprop:Generator_UserColumnName="TaxonRankID" type="xs:string" minOccurs="0" />
               <xs:element name="TaxonRank" msprop:Generator_ColumnVarNameInTable="columnTaxonRank" msprop:Generator_ColumnPropNameInRow="TaxonRank" msprop:Generator_ColumnPropNameInTable="TaxonRankColumn" msprop:Generator_UserColumnName="TaxonRank" minOccurs="0">
                 <xs:simpleType>
@@ -218,6 +220,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ParentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" msprop:Generator_UserColumnName="ParentID" type="xs:string" minOccurs="0" />
+              <xs:element name="ParentIDsToRoot" msprop:Generator_ColumnVarNameInTable="columnParentIDsToRoot" msprop:Generator_ColumnPropNameInRow="ParentIDsToRoot" msprop:Generator_ColumnPropNameInTable="ParentIDsToRootColumn" msprop:Generator_UserColumnName="ParentIDsToRoot" type="xs:string" minOccurs="0" />
               <xs:element name="Parent" msprop:Generator_ColumnVarNameInTable="columnParent" msprop:Generator_ColumnPropNameInRow="Parent" msprop:Generator_ColumnPropNameInTable="ParentColumn" msprop:Generator_UserColumnName="Parent" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

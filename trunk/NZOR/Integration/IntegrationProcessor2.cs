@@ -7,73 +7,94 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Xml;
 
+using NZOR.Data;
+using NZOR.Matching;
+
 namespace NZOR.Integration
 {
     public class IntegrationProcessor2
     {
         public static List<NZOR.Data.MatchResult> Results = new List<Data.MatchResult>();
-        public static string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
         
         public static string StatusText = "";
         public static int MaxThreads = 20;
         public static int Progress = 0;
 
-        private static int _namesToProcess = 0;
-        private static ConfigSet _configSet = null;
-
-        private static object lockKey = new object();
-
+        private static List<IntegratorThread> _threads = new List<IntegratorThread>();
+        
         /// <summary>
         /// Use multiple threads to process records that need integrating
         /// Individual threads will need to work with names that dont overlap with names in other threads - by working with names in different parts of the taxonomic hierarchy.
         ///   i.e. get the next provider name that has it's parent already integrated and there are no siblings of this name currenlty being integrated
         /// </summary>
-        public static void RunIntegration(XmlDocument config, int setNumber)
+        public static void RunIntegration(XmlDocument config, Data.DsIntegrationName data)
         {
             bool doAnother = true;
 
-            SqlConnection cnn = new SqlConnection(ConnectionString);
-            cnn.Open();
+            MatchData.DataForIntegration = data;
 
-            _namesToProcess = GetNamesForIntegrationCount(cnn);
             Progress = 1; //started
 
-            _configSet = new ConfigSet();
-            _configSet.Routines = Integrator.LoadConfig(config, setNumber);
-            _configSet.SetNumber = setNumber;
-
+            MatchProcessor.LoadConfig(config);
+            
             if (MaxThreads != -1 && MaxThreads < 1000) ThreadPool.SetMaxThreads(MaxThreads, 1000);
 
             while (doAnother)
             {
-                doAnother = ProcessNextName(cnn);
+                doAnother = ProcessNextName();
             }
 
-            NZOR.Data.ProviderName.PostIntegrationCleanup(cnn);
-
-            cnn.Close();
+            PostIntegrationCleanup();
         }
 
-        private static bool ProcessNextName(SqlConnection cnn)
+        private static bool ProcessNextName()
         {
             bool more = true;
-
-            string fullName = "";
-            Guid nextName = GetNextNameForIntegration(cnn, ref fullName);
-            if (nextName != Guid.Empty)
+            
+            DsIntegrationName.ProviderNameRow nextName = GetNextNameForIntegration();
+            if (nextName != null)
             {
-                IntegratorThread it = new IntegratorThread();
-                //IntegrationData data = new IntegrationData(nextName,  _configSet);
-                //it.SetupData(false, null, ds);
-                it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(ProcessComplete);
-                ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
+                ConfigSet cs = MatchProcessor.GetMatchSet(nextName.MatchRuleSetID);
+                Guid parentConsNameID = Guid.Empty;
+                if (!nextName.IsParentConsensusNameIDNull()) parentConsNameID = nextName.ParentConsensusNameID;
 
-                //check threads                    
-                int numTh = 0;
-                int numOtherTh = 0;
-                ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
+                IntegrationData data = new IntegrationData(nextName.NameID, nextName.FullName, parentConsNameID, cs, false, null);
 
-                if (numTh < 2) more = false; //leave at least 1 thread ??    
+                //if this name has the same parent as another name being processed, then use that thread
+                bool process = true;
+                lock (MatchData.DataForIntegration)
+                {
+                    foreach (IntegratorThread th in _threads)
+                    {
+                        foreach (IntegrationData id in th.NameData)
+                        {
+                            if (id.ParentConsNameID == parentConsNameID)
+                            {
+                                th.AddNameData(data);
+                                process = false;
+                                break;
+                            }
+                        }
+                        if (!process) break;
+                    }
+                }            
+
+                if (process)
+                {
+                    IntegratorThread it = new IntegratorThread();
+                    it.AddNameData(data);
+                    it.ProcessCompleteCallback = new IntegratorThread.ProcessComplete(ProcessComplete);
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(it.ProcessName));
+                    
+                    _threads.Add(it);
+
+                    //check threads                    
+                    int numTh = 0;
+                    int numOtherTh = 0;
+                    ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
+
+                    if (numTh < 2) more = false; //leave at least 1 thread ??    
+                }
             }
             else
             {
@@ -84,14 +105,14 @@ namespace NZOR.Integration
             return more;
         }
 
-        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result)
+        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result, Guid provNameID)
         {
-            lock (lockKey)
+            lock (MatchData.DataForIntegration)
             {
                 int prog = 1;
 
                 Results.Add(result);
-                prog = (Results.Count * 100 / _namesToProcess);
+                prog = (Results.Count * 100 / MatchData.DataForIntegration.ProviderName.Count);
 
                 int numTh = 0;
                 int numOtherTh = 0;
@@ -100,80 +121,57 @@ namespace NZOR.Integration
                 ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
                 ThreadPool.GetMaxThreads(out maxNumTh, out maxOtherTh);
                 int threads = maxNumTh - numTh;
-                StatusText = "Processed " + Results.Count.ToString() + " of " + _namesToProcess.ToString() + " names.  Number of running threads = " + threads.ToString();
+                StatusText = "Processed " + Results.Count.ToString() + " of " + MatchData.DataForIntegration.ProviderName.Count.ToString() + " names.  Number of running threads = " + threads.ToString();
                 if (prog == 0) Progress = 1; //at least to indicate we have started
-                if (prog == 100 && _namesToProcess > Results.Count) prog = 99; //not 100 % complete until ALL names are done
+                if (prog == 100 && MatchData.DataForIntegration.ProviderName.Count > Results.Count) prog = 99; //not 100 % complete until ALL names are done
 
                 Progress = prog;
 
+                if (IntegratorThread.LogFile != null)
+                {
+                    IntegrationData pn = it.GetProcessedNameData(provNameID);
+                    IntegratorThread.LogFile.WriteLine(pn.FullName + " : " + pn.NameID.ToString() + " : RESULT = " + result.Status.ToString() + ", " + result.MatchedName + ", " + result.MatchedId);
+                }
+
+                //more names on this thread?
+                if (it.NameData.Count == 0)
+                {
+                    _threads.Remove(it);
+                }
+
                 //next name?
-                SqlConnection cnn = new SqlConnection(ConnectionString);
-                cnn.Open();
-                ProcessNextName(cnn);
-                cnn.Close();
+                ProcessNextName();                
             }
         }
 
-        private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName)
+        private static void PostIntegrationCleanup()
         {
-            Guid id = Guid.Empty;
+        }
 
+        private static DsIntegrationName.ProviderNameRow GetNextNameForIntegration()
+        {
+            DsIntegrationName.ProviderNameRow pnRow = null;
 
-            using (SqlCommand cmd = cnn.CreateCommand())
+            lock (MatchData.DataForIntegration)
             {
-                // ???
-                /*cmd.CommandText = "select top 1 pn.nameid " + 
-                    "from vwproviderconcepts pn " +
-                    "left join vwproviderconcepts sn on sn.relationshiptypeid = '" + NZOR.Data.ConceptRelationshipType.ParentRelationshipTypeID().ToString() + "' and sn.toconceptid = pn.toconceptid and sn.nameid <> pn.nameid " +
-                        "and (sn.linkstatus is null or sn.linkstatus <> 'Integrating') " +                        
-                    "where sn.nameid is null and pn.consensusnameid is null " +
-                    "order by pn.sortorder";*/
-
-                cmd.CommandText = "select top 1 n.NameId, n.FullName " +
-                                    "from provider.Name n " +
-                                    "inner join prov.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
-                                    "left join (select sfn.NameID, sfn.ParentNameID from prov.FlatName sfn inner join provider.Name sn on sn.NameID = sfn.SeedNameID and sn.LinkStatus = 'Integrating') sn on sn.ParentNameID = fn.ParentNameID and sn.NameID <> n.NameID " +
-                                    "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') and sn.ParentNameID is null " +
-                                    "order by fn.SortOrder";
-
-                DataSet res = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(res);
-                if (res != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
+                foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
                 {
-                    id = (Guid)res.Tables[0].Rows[0]["NameId"];
-                    fullName = res.Tables[0].Rows[0]["FullName"].ToString();
-                }
+                    if (nm.IsConsensusNameIDNull() && nm.LinkStatus != "Integrating")
+                    {
+                        pnRow = nm;
 
-            }
+                        //get the parent name information
+                        Data.ProviderName.GetParentData(pnRow, MatchData.DataForIntegration);
 
-            if (id != Guid.Empty)
-            {
-                using (SqlCommand cmd = cnn.CreateCommand())
-                {
-                    cmd.CommandText = "update provider.Name set LinkStatus = 'Integrating' where NameID = '" + id.ToString() + "'";
-                    cmd.ExecuteNonQuery();
+                        pnRow.LinkStatus = "Integrating";
+                        break;
+                    }
                 }
             }
 
-            return id;
+            return pnRow;
         }
 
-        private static int GetNamesForIntegrationCount(SqlConnection cnn)
-        {
-            int cnt = 0;
-
-            using (SqlCommand cmd = cnn.CreateCommand())
-            {
-                cmd.CommandText = "select count(nameid) from provider.Name where ConsensusNameId is null";
-
-                object val = cmd.ExecuteScalar();
-                if (val != DBNull.Value) cnt = (int)val;
-            }
-
-            return cnt;
-        }
-
-
+                
     }
 }

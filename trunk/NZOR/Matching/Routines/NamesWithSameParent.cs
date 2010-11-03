@@ -31,13 +31,11 @@ namespace NZOR.Matching
             {
                 String rankId = pn.ProviderName[0].TaxonRankID.ToString();
 
-
-                    //ds = NZOR.Data.ConsensusName.GetNamesWithConcept(cnn, NZOR.Data.ConceptProperties.ParentRelationshipType, parentId);
-
-
-                using (SqlCommand cmd = DBConnection.CreateCommand())
+                if (UseDBConnection)
                 {
-                    cmd.CommandText = @"
+                    using (SqlCommand cmd = DBConnection.CreateCommand())
+                    {
+                        cmd.CommandText = @"
                             declare @ids table(id uniqueidentifier)
 		
                             insert @ids 
@@ -59,27 +57,52 @@ namespace NZOR.Matching
                             from vwConsensusConcepts c 
                             inner join @ids i on i.id = c.NameID;";
 
-                    DataSet res = new DataSet();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(res);
+                        DataSet res = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(res);
 
-                    foreach (DataRow row in res.Tables[0].Rows)
+                        foreach (DataRow row in res.Tables[0].Rows)
+                        {
+                            Guid id = (Guid)row["NameID"];
+
+                            DataRow ntRow = ConsensusName.GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType);
+                            object nameTo = DBNull.Value;
+                            if (ntRow != null && ntRow["NameToID"] != DBNull.Value) nameTo = (Guid)ntRow["NameToID"];
+
+                            ds.Name.Rows.Add(id,
+                                ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical),
+                                row["FullName"],
+                                ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank),
+                                ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors),
+                                ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.CombinationAuthors),
+                                ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Year),
+                                nameTo,
+                                100);
+                        }
+                    }
+                }
+                else
+                {
+                    DataRow[] rows = null;
+
+                    lock (MatchData.DataForIntegration)
                     {
-                        Guid id = (Guid)row["NameID"];
+                        string[] parents = 
 
-                        DataRow ntRow = ConsensusName.GetNameConcept(id, res.Tables[2], ConceptProperties.ParentRelationshipType);
-                        object nameTo = DBNull.Value;
-                        if (ntRow != null && ntRow["NameToID"] != DBNull.Value) nameTo = (Guid)ntRow["NameToID"];
+                        rows = MatchData.DataForIntegration.ConsensusName.Select("charindex('" + pn.ProviderName[0].ParentConsensusNameID.ToString() + "', ParentIDsToRoot ) <> 0");
+                    }
 
-                        ds.Name.Rows.Add(id,
-                            ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Canonical),
-                            row["FullName"],
-                            ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Rank),
-                            ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Authors),
-                            ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.CombinationAuthors),
-                            ConsensusName.GetNamePropertyValue(id, res.Tables[1], NameProperties.Year),
-                            nameTo,
-                            100);
+                    foreach (DataRow row in rows)
+                    {
+                        ds.Name.AddNameRow((Guid)row["NameID"],
+                                    row["Canonical"].ToString(),
+                                    row["FullName"].ToString(),
+                                    row["TaxonRank"].ToString(),
+                                    row["Authors"].ToString(),
+                                    row["CombinationAuthors"].ToString(),
+                                    row["Year"].ToString(),
+                                    (Guid)row["ParentID"],
+                                    100);
                     }
                 }
             }

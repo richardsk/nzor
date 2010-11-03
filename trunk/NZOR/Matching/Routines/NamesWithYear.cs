@@ -42,7 +42,21 @@ namespace NZOR.Matching
                 for (int i = names.Name.Count - 1; i >= 0; i--)
                 {
                     DsNameMatch.NameRow row = names.Name[i];
-                    if (NZOR.Data.ConsensusName.HasProviderValue(DBConnection, row.NameID, NZOR.Data.NameProperties.Year, pnYear.ToString()) == false)
+                    bool hasValue = false;
+                    if (UseDBConnection)
+                    {
+                        hasValue = NZOR.Data.ConsensusName.HasProviderValue(DBConnection, row.NameID, NZOR.Data.NameProperties.Year, pnYear.ToString());
+                    }
+                    else
+                    {
+                        lock (MatchData.DataForIntegration)
+                        {
+                            DataRow[] res = MatchData.DataForIntegration.ProviderName.Select("ConsensusNameID = '" + row.NameID.ToString() + "' and YearOnPublication = '" + pnYear + "'");
+                            hasValue = (res.Length > 0);
+                        }
+                    }
+
+                    if (!hasValue)
                     {
                         row.Delete();
                     }

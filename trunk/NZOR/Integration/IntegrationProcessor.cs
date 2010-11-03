@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Xml;
 
+using NZOR.Data;
+
 namespace NZOR.Integration
 {
     public class IntegrationProcessor
@@ -19,7 +21,6 @@ namespace NZOR.Integration
         public static int Progress = 0;
 
         private static int _namesToProcess = 0;
-        private static ConfigSet _configSet = null;
         private static List<IntegratorThread> _threads = new List<IntegratorThread>();
 
         private static object lockKey = new object();
@@ -39,10 +40,8 @@ namespace NZOR.Integration
             _namesToProcess = GetNamesForIntegrationCount(cnn);
             Progress = 1; //started
 
-            _configSet = new ConfigSet();
-            _configSet.Routines = Integrator.LoadConfig(config, setNumber);
-            _configSet.SetNumber = setNumber;
-
+            MatchProcessor.LoadConfig(config);
+            
             if (MaxThreads != -1 && MaxThreads < 1000) ThreadPool.SetMaxThreads(MaxThreads, 1000);
 
             while (doAnother)
@@ -61,10 +60,12 @@ namespace NZOR.Integration
 
             string fullName = "";
             Guid parConsNameID = Guid.Empty;
-            Guid nextName = GetNextNameForIntegration(cnn, ref fullName, ref parConsNameID);
+            int setId = -1;
+            Guid nextName = GetNextNameForIntegration(cnn, ref fullName, ref parConsNameID, ref setId);
             if (nextName != Guid.Empty)
             {
-                IntegrationData data = new IntegrationData(nextName, parConsNameID, _configSet, true, ConnectionString, null);
+                ConfigSet cs = MatchProcessor.GetMatchSet(setId);
+                IntegrationData data = new IntegrationData(nextName, fullName, parConsNameID, cs, true, ConnectionString);
 
                 //if this name has the same parent as another name being processed, then use that thread
                 bool process = true;
@@ -78,8 +79,10 @@ namespace NZOR.Integration
                             {
                                 th.AddNameData(data);
                                 process = false;
+                                break;
                             }
                         }
+                        if (!process) break;
                     }
                 }
 
@@ -108,7 +111,7 @@ namespace NZOR.Integration
             return more;
         }
 
-        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result)
+        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result, Guid provNameID)
         {
             lock (lockKey)
             {
@@ -144,7 +147,7 @@ namespace NZOR.Integration
             }
         }
 
-        private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName, ref Guid parentConsNameID)
+        private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName, ref Guid parentConsNameID, ref int matchRuleSetId)
         {
             Guid id = Guid.Empty;
 
@@ -166,7 +169,7 @@ namespace NZOR.Integration
                                     "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') and sn.ParentNameID is null " +
                                     "order by fn.SortOrder";*/
 
-                cmd.CommandText = "select top 1 n.NameID, n.FullName, pc.ConsensusNameToID " +
+                cmd.CommandText = "select top 1 n.NameID, n.FullName, pc.ConsensusNameToID, tr.MatchRuleSetID " +
                         "from provider.Name n " +
                         "inner join dbo.TaxonRank tr on tr.TaxonRankID = n.TaxonRankID " +
                         "left join vwProviderConcepts pc on pc.NameID = n.NameID and pc.ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' " +
@@ -180,6 +183,7 @@ namespace NZOR.Integration
                 {
                     id = (Guid)res.Tables[0].Rows[0]["NameId"];
                     fullName = res.Tables[0].Rows[0]["FullName"].ToString();
+                    matchRuleSetId = (int)res.Tables[0].Rows[0]["MatchRuleSetID"];
                     parentConsNameID = (res.Tables[0].Rows[0].IsNull("ConsensusNameToID") ? Guid.Empty : (Guid)res.Tables[0].Rows[0]["ConsensusNameToID"]);
                 }
 

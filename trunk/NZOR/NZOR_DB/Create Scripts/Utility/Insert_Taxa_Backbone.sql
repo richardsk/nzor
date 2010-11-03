@@ -1,4 +1,4 @@
-﻿use NZOR_Data
+﻿use NZOR_Data_Test
 
 /*
 -- RUN on NZOR_Data to insert into NZOR_Data_Test

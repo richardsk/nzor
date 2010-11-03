@@ -11,9 +11,17 @@ using NZOR.Data;
 
 namespace NZOR.Integration
 {
-    public class Integrator
+    public class MatchProcessor
     {
-        public static Data.MatchResult DoMatch(SqlConnection cnn, DsIntegrationName provName, List<INameMatcher> routines)
+        private static Dictionary<int, ConfigSet> _matchSets = null;
+
+        public static Dictionary<int, ConfigSet> MatchSets
+        {
+            get { return MatchProcessor._matchSets; }
+            set { MatchProcessor._matchSets = value; }
+        }
+
+        public static Data.MatchResult DoMatch(DsIntegrationName provName, List<INameMatcher> routines, bool useDB, SqlConnection cnn)
         {
             NZOR.Data.DsNameMatch results = null;
             bool done = false;
@@ -23,6 +31,7 @@ namespace NZOR.Integration
 
             INameMatcher nm = routines[0];
             nm.DBConnection = cnn;
+            nm.UseDBConnection = useDB;
 
             while (!done)
             {
@@ -80,6 +89,7 @@ namespace NZOR.Integration
                         {
                             nm = m;
                             nm.DBConnection = cnn;
+                            nm.UseDBConnection = useDB;
                             done = false;
                             break; 
                         }
@@ -113,14 +123,21 @@ namespace NZOR.Integration
             return res; 
         }
 
-        public static List<INameMatcher> LoadConfig(XmlDocument configDoc, int matchSetId)
+        public static ConfigSet GetMatchSet(int setNumber)
         {
-            List<INameMatcher> routines = new List<INameMatcher>();
+            return _matchSets[setNumber];
+        }
 
-            XmlNode matchSet = configDoc.SelectSingleNode("//MatchSet[@id=" + matchSetId.ToString() + "]");
-            if (matchSet != null)
+        public static void LoadConfig(XmlDocument configDoc)
+        {
+            _matchSets = new Dictionary<int, ConfigSet>();
+            XmlNodeList matchSets = configDoc.SelectNodes("//MatchSet");            
+            foreach (XmlNode matchSet in matchSets)
             {
-                XmlNodeList rules = matchSet.SelectNodes("//Rule");
+                ConfigSet set = new ConfigSet();
+                set.SetNumber = int.Parse(matchSet.Attributes["id"].Value);
+
+                XmlNodeList rules = matchSet.SelectNodes("Rule");
 
                 String asmDir = System.Configuration.ConfigurationManager.AppSettings["MatchingAssemblyPath"];
                 if (asmDir == null) asmDir = System.IO.Directory.GetCurrentDirectory();
@@ -151,7 +168,7 @@ namespace NZOR.Integration
                         if (!Int32.TryParse(fail, out f)) f = -1;
                         nm.FailId = f;
 
-                        routines.Add(nm);
+                        set.Routines.Add(nm);
                     }
                     catch (Exception ex)
                     {
@@ -159,9 +176,9 @@ namespace NZOR.Integration
                     }
 
                 }
-            }
 
-            return routines;
+                _matchSets.Add(set.SetNumber, set);
+            }
         }
     }
 }

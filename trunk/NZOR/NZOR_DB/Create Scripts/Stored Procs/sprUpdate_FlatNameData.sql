@@ -15,8 +15,10 @@ AS
 
 	-- iterate through name table
 	DECLARE names_cursor   CURSOR FORWARD_ONLY FOR
-	SELECT  NameID FROM cons.Name
-	ORDER BY NameID
+	SELECT  c.NameID 
+	FROM cons.Name c
+	inner join dbo.taxonrank tr on tr.TaxonRankID = c.TaxonRankID
+	ORDER BY tr.SortOrder
 
 	OPEN names_cursor
 	-- Perform the first fetch.

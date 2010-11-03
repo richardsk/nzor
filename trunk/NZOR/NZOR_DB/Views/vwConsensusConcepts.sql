@@ -10,7 +10,7 @@ SELECT     cons.Name.NameID, cons.Name.FullName, cons.Name.NameClassID, cons.Nam
                       cons.Name.AddedDate, cons.Concept.ConceptID, cons.Concept.AccordingToReferenceID, cons.Concept.Orthography, 
                       cons.ConceptRelationship.ConceptRelationshipID, cons.ConceptRelationship.FromConceptID, cons.ConceptRelationship.ToConceptID, 
                       cons.ConceptRelationship.Sequence, ConceptTo.ConceptID AS ConceptToID, ConceptTo.NameID AS NameToID, 
-                      ConceptTo.AccordingToReferenceID AS ReferenceToID, NameTo.FullName AS ConsensusNameToFull, cons.Name.TaxonRankID, 
+                      ConceptTo.AccordingToReferenceID AS ReferenceToID, NameTo.FullName AS NameToFull, cons.Name.TaxonRankID, 
                       NameTo.TaxonRankID AS TaxonRankToID, dbo.ConceptRelationshipType.Relationship, dbo.ConceptRelationshipType.ConceptRelationshipTypeID
 FROM         cons.Concept INNER JOIN
                       cons.ConceptRelationship ON cons.Concept.ConceptID = cons.ConceptRelationship.FromConceptID INNER JOIN

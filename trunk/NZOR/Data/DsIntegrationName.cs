@@ -2,5 +2,8 @@
     
     
     public partial class DsIntegrationName {
+        partial class ProviderNameDataTable
+        {
+        }
     }
 }

@@ -336,6 +336,8 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnTaxonRankSort;
             
+            private global::System.Data.DataColumn columnMatchRuleSetID;
+            
             private global::System.Data.DataColumn columnAuthors;
             
             private global::System.Data.DataColumn columnGoverningCode;
@@ -488,6 +490,14 @@ namespace NZOR.Data {
             public global::System.Data.DataColumn TaxonRankSortColumn {
                 get {
                     return this.columnTaxonRankSort;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MatchRuleSetIDColumn {
+                get {
+                    return this.columnMatchRuleSetID;
                 }
             }
             
@@ -676,6 +686,7 @@ namespace NZOR.Data {
                         System.Guid TaxonRankID, 
                         string TaxonRank, 
                         int TaxonRankSort, 
+                        int MatchRuleSetID, 
                         string Authors, 
                         string GoverningCode, 
                         System.Guid SubDataSetID, 
@@ -706,6 +717,7 @@ namespace NZOR.Data {
                         TaxonRankID,
                         TaxonRank,
                         TaxonRankSort,
+                        MatchRuleSetID,
                         Authors,
                         GoverningCode,
                         SubDataSetID,
@@ -756,6 +768,7 @@ namespace NZOR.Data {
                 this.columnTaxonRankID = base.Columns["TaxonRankID"];
                 this.columnTaxonRank = base.Columns["TaxonRank"];
                 this.columnTaxonRankSort = base.Columns["TaxonRankSort"];
+                this.columnMatchRuleSetID = base.Columns["MatchRuleSetID"];
                 this.columnAuthors = base.Columns["Authors"];
                 this.columnGoverningCode = base.Columns["GoverningCode"];
                 this.columnSubDataSetID = base.Columns["SubDataSetID"];
@@ -800,6 +813,8 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnTaxonRank);
                 this.columnTaxonRankSort = new global::System.Data.DataColumn("TaxonRankSort", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaxonRankSort);
+                this.columnMatchRuleSetID = new global::System.Data.DataColumn("MatchRuleSetID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMatchRuleSetID);
                 this.columnAuthors = new global::System.Data.DataColumn("Authors", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAuthors);
                 this.columnGoverningCode = new global::System.Data.DataColumn("GoverningCode", typeof(string), null, global::System.Data.MappingType.Element);
@@ -988,6 +1003,8 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnNameClassID;
             
+            private global::System.Data.DataColumn columnNameClass;
+            
             private global::System.Data.DataColumn columnTaxonRankID;
             
             private global::System.Data.DataColumn columnTaxonRank;
@@ -1015,6 +1032,8 @@ namespace NZOR.Data {
             private global::System.Data.DataColumn columnPublishedIn;
             
             private global::System.Data.DataColumn columnParentID;
+            
+            private global::System.Data.DataColumn columnParentIDsToRoot;
             
             private global::System.Data.DataColumn columnParent;
             
@@ -1076,6 +1095,14 @@ namespace NZOR.Data {
             public global::System.Data.DataColumn NameClassIDColumn {
                 get {
                     return this.columnNameClassID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NameClassColumn {
+                get {
+                    return this.columnNameClass;
                 }
             }
             
@@ -1193,6 +1220,14 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ParentIDsToRootColumn {
+                get {
+                    return this.columnParentIDsToRoot;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ParentColumn {
                 get {
                     return this.columnParent;
@@ -1256,6 +1291,7 @@ namespace NZOR.Data {
                         System.Guid NameID, 
                         string FullName, 
                         System.Guid NameClassID, 
+                        string NameClass, 
                         System.Guid TaxonRankID, 
                         string TaxonRank, 
                         int TaxonRankSort, 
@@ -1270,6 +1306,7 @@ namespace NZOR.Data {
                         string MicroReference, 
                         string PublishedIn, 
                         System.Guid ParentID, 
+                        string ParentIDsToRoot, 
                         string Parent, 
                         System.Guid PreferredNameID, 
                         string PreferredName) {
@@ -1278,6 +1315,7 @@ namespace NZOR.Data {
                         NameID,
                         FullName,
                         NameClassID,
+                        NameClass,
                         TaxonRankID,
                         TaxonRank,
                         TaxonRankSort,
@@ -1292,6 +1330,7 @@ namespace NZOR.Data {
                         MicroReference,
                         PublishedIn,
                         ParentID,
+                        ParentIDsToRoot,
                         Parent,
                         PreferredNameID,
                         PreferredName};
@@ -1320,6 +1359,7 @@ namespace NZOR.Data {
                 this.columnNameID = base.Columns["NameID"];
                 this.columnFullName = base.Columns["FullName"];
                 this.columnNameClassID = base.Columns["NameClassID"];
+                this.columnNameClass = base.Columns["NameClass"];
                 this.columnTaxonRankID = base.Columns["TaxonRankID"];
                 this.columnTaxonRank = base.Columns["TaxonRank"];
                 this.columnTaxonRankSort = base.Columns["TaxonRankSort"];
@@ -1334,6 +1374,7 @@ namespace NZOR.Data {
                 this.columnMicroReference = base.Columns["MicroReference"];
                 this.columnPublishedIn = base.Columns["PublishedIn"];
                 this.columnParentID = base.Columns["ParentID"];
+                this.columnParentIDsToRoot = base.Columns["ParentIDsToRoot"];
                 this.columnParent = base.Columns["Parent"];
                 this.columnPreferredNameID = base.Columns["PreferredNameID"];
                 this.columnPreferredName = base.Columns["PreferredName"];
@@ -1348,6 +1389,8 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnFullName);
                 this.columnNameClassID = new global::System.Data.DataColumn("NameClassID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNameClassID);
+                this.columnNameClass = new global::System.Data.DataColumn("NameClass", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNameClass);
                 this.columnTaxonRankID = new global::System.Data.DataColumn("TaxonRankID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaxonRankID);
                 this.columnTaxonRank = new global::System.Data.DataColumn("TaxonRank", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1376,6 +1419,8 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnPublishedIn);
                 this.columnParentID = new global::System.Data.DataColumn("ParentID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParentID);
+                this.columnParentIDsToRoot = new global::System.Data.DataColumn("ParentIDsToRoot", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParentIDsToRoot);
                 this.columnParent = new global::System.Data.DataColumn("Parent", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParent);
                 this.columnPreferredNameID = new global::System.Data.DataColumn("PreferredNameID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
@@ -1707,6 +1752,22 @@ namespace NZOR.Data {
                 }
                 set {
                     this[this.tableProviderName.TaxonRankSortColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int MatchRuleSetID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProviderName.MatchRuleSetIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MatchRuleSetID\' in table \'ProviderName\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProviderName.MatchRuleSetIDColumn] = value;
                 }
             }
             
@@ -2117,6 +2178,18 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMatchRuleSetIDNull() {
+                return this.IsNull(this.tableProviderName.MatchRuleSetIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMatchRuleSetIDNull() {
+                this[this.tableProviderName.MatchRuleSetIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAuthorsNull() {
                 return this.IsNull(this.tableProviderName.AuthorsColumn);
             }
@@ -2384,6 +2457,22 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NameClass {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsensusName.NameClassColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NameClass\' in table \'ConsensusName\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsensusName.NameClassColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.Guid TaxonRankID {
                 get {
                     try {
@@ -2608,6 +2697,22 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ParentIDsToRoot {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsensusName.ParentIDsToRootColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ParentIDsToRoot\' in table \'ConsensusName\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsensusName.ParentIDsToRootColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Parent {
                 get {
                     try {
@@ -2688,6 +2793,18 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNameClassIDNull() {
                 this[this.tableConsensusName.NameClassIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNameClassNull() {
+                return this.IsNull(this.tableConsensusName.NameClassColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNameClassNull() {
+                this[this.tableConsensusName.NameClassColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2856,6 +2973,18 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetParentIDNull() {
                 this[this.tableConsensusName.ParentIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsParentIDsToRootNull() {
+                return this.IsNull(this.tableConsensusName.ParentIDsToRootColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetParentIDsToRootNull() {
+                this[this.tableConsensusName.ParentIDsToRootColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
