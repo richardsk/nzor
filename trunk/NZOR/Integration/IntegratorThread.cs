@@ -65,7 +65,11 @@ namespace NZOR.Integration
 
         public void AddNameData(IntegrationData data)
         {
-            _data.Add(data);            
+            lock (_data)
+            {
+                if (!_processedNames.ContainsKey(data.NameID)) //already processed ???
+                    _data.Add(data);
+            }
         }
 
         public MatchResult Result(Guid provNameId)
@@ -76,8 +80,11 @@ namespace NZOR.Integration
 
         public IntegrationData GetProcessedNameData(Guid provNameID)
         {
-            IntegrationData id = _processedNames[provNameID];
-            return id;
+            lock (_data)
+            {
+                IntegrationData id = _processedNames[provNameID];
+                return id;
+            }
         }
 
         public void ProcessName(Object stateInfo)
@@ -86,9 +93,13 @@ namespace NZOR.Integration
             //get next data to use
             while (_data.Count > 0)
             {
-                IntegrationData data = _data[0];
-                _processedNames.Add(data.NameID, data);
-                _data.RemoveAt(0);
+                IntegrationData data = null;
+                lock (_data)
+                {
+                    data = _data[0];
+                    _processedNames.Add(data.NameID, data);
+                    _data.Remove(data);
+                }
 
                 if (data.Config != null)
                 {
@@ -96,15 +107,15 @@ namespace NZOR.Integration
                     {
                         _cnn = new SqlConnection(data.DBCnnStr);
                         _cnn.Open();
-                        DsIntegrationName provName = Data.ProviderName.GetNameMatchData(_cnn, data.NameID);
+                        DsIntegrationName.ProviderNameRow provName = Data.ProviderName.GetNameMatchData(_cnn, data.NameID);
                         Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, data.UseDB, _cnn);
 
                         if (res.Matches.Count == 0)
                         {
                             //insert
-                            DataSet newName = NZOR.Data.ConsensusName.AddConsensusName(_cnn, provName.ProviderName[0]);
+                            DataSet newName = NZOR.Data.ConsensusName.AddConsensusName(_cnn, provName);
                             DataRow nameRow = newName.Tables[0].Rows[0];
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath);
 
                             res.MatchedId = nameRow["NameID"].ToString();
                             res.MatchedName = nameRow["FullName"].ToString();
@@ -113,13 +124,13 @@ namespace NZOR.Integration
                         else if (res.Matches.Count == 1)
                         {
                             //link 
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
                             res.Status = NZOR.Data.LinkStatus.Matched;
                         }
                         else
                         {
                             //multiple matches
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName.ProviderName[0], NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);
                             res.Status = NZOR.Data.LinkStatus.Multiple;
                         }
 
@@ -131,20 +142,95 @@ namespace NZOR.Integration
                     else
                     {
                         //non DB version 
-                        DsIntegrationName provName = new DsIntegrationName();
+                        DsIntegrationName.ProviderNameRow provName = null;
                         lock (MatchData.DataForIntegration)
                         {
                             DataRow[] names = MatchData.DataForIntegration.ProviderName.Select("NameID = '" + data.NameID.ToString() + "'");
                             if (names.Count() > 0)
                             {
-                                provName.ProviderName.ImportRow(names[0]);
+                                provName = (DsIntegrationName.ProviderNameRow)names[0];
                             }
                         }
 
-                        if (provName.ProviderName.Count > 0)
+                        if (provName != null)
                         {
                             Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, false, null);
                             
+                            if (res.Matches.Count == 0)
+                            {
+                                //insert
+                                if (provName.IsParentConsensusNameIDNull() || provName.ParentConsensusNameID == Guid.Empty)
+                                {
+                                    //dont know where to put it
+                                    res.Status = LinkStatus.DataFail;
+                                    lock (MatchData.DataForIntegration)
+                                    {
+                                        provName.LinkStatus = LinkStatus.DataFail.ToString();
+                                        provName["ConsensusNameID"] = DBNull.Value;
+                                        provName.MatchPath = res.MatchPath;
+                                        provName["MatchScore"] = DBNull.Value;
+                                        provName["ParentConsensusNameID"] = DBNull.Value;
+                                    }
+
+                                    if (LogFile != null) LogFile.WriteLine("ERROR : Integration failed for name '" + provName.NameID.ToString() + "', " + provName.FullName + ".  Not enough parent taxon information.");
+                                }
+                                else
+                                {
+                                    res.Status = LinkStatus.Inserted;
+
+                                    Guid newId = Guid.NewGuid();
+                                    //basionym
+                                    object basID = DBNull.Value;
+                                    DataRow[] bas = MatchData.DataForIntegration.ProviderName.Select("NameID = '" + provName.BasionymID.ToString() + "'");
+                                    if (bas.Length > 0) basID = bas[0]["ConsensusNameID"];
+
+                                    lock (MatchData.DataForIntegration)
+                                    {
+                                        MatchData.DataForIntegration.ConsensusName.Rows.Add(newId, provName.FullName, provName.NameClassID, provName.NameClass, provName.TaxonRankID, provName.TaxonRank,
+                                            provName.TaxonRankSort, provName["Authors"], provName.GoverningCode, provName.Canonical, provName["YearOnPublication"], basID, provName["Basionym"], provName["BasionymAuthors"],
+                                            provName["CombinationAuthors"], provName["MicroReference"], provName["PublishedIn"], provName.ParentConsensusNameID, provName["ParentConsensusNameID"].ToString(), provName.Parent,
+                                            provName["PreferredConsensusNameID"], provName["PreferredName"]);
+
+                                        provName.ConsensusNameID = newId;
+                                        provName.MatchPath = res.MatchPath;
+                                        provName.LinkStatus = LinkStatus.Inserted.ToString();
+
+                                        NZOR.Data.ConsensusName.RefreshConsensusData(newId, MatchData.DataForIntegration);
+                                    }
+
+                                    res.MatchedName = provName.FullName;
+                                    res.MatchedId = newId.ToString();
+
+                                }
+                            }
+                            else if (res.Matches.Count == 1)
+                            {
+                                res.Status = LinkStatus.Matched;
+                                res.MatchedId = res.Matches[0].NameId.Value.ToString();
+                                res.MatchedName = res.Matches[0].NameFull;
+
+                                lock (MatchData.DataForIntegration)
+                                {
+                                    provName.ConsensusNameID = res.Matches[0].NameId.Value;
+                                    provName.MatchPath = res.MatchPath;
+                                    provName.LinkStatus = LinkStatus.Matched.ToString();
+
+                                    NZOR.Data.ConsensusName.RefreshConsensusData(provName.ConsensusNameID, MatchData.DataForIntegration);
+                                }
+                            }
+                            else
+                            {
+                                res.Status = LinkStatus.Multiple;
+                                lock (MatchData.DataForIntegration)
+                                {
+                                    provName.LinkStatus = LinkStatus.Multiple.ToString();
+                                    provName["ConsensusNameID"] = DBNull.Value;
+                                    provName.MatchPath = res.MatchPath;
+                                    provName["MatchScore"] = DBNull.Value;
+                                    provName["ParentConsensusNameID"] = DBNull.Value;
+                                }
+                            }
+
                             result = res;
                             _results.Add(data.NameID, res);
                         }

@@ -13,31 +13,31 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             DsNameMatch ds = new DsNameMatch();
 
             if (UseDBConnection)
             {
-                ds = NZOR.Data.ConsensusName.GetNamesWithProperty(DBConnection, NZOR.Data.NameProperties.Rank, pn.ProviderName[0].TaxonRank);
+                ds = NZOR.Data.ConsensusName.GetNamesWithProperty(DBConnection, NZOR.Data.NameProperties.Rank, pn.TaxonRank);
             }
             else
             {
                 DataRow[] rows = null;
                 lock (MatchData.DataForIntegration)
                 {
-                    rows = MatchData.DataForIntegration.ConsensusName.Select("TaxonRank = '" + pn.ProviderName[0].TaxonRank + "'");
+                    rows = MatchData.DataForIntegration.ConsensusName.Select("TaxonRank = '" + pn.TaxonRank + "'");
                 }
                 foreach (DataRow row in rows)
                 {
-                    ds.Name.AddNameRow((Guid)row["NameID"],
+                    ds.Name.Rows.Add((Guid)row["NameID"],
                                 row["Canonical"].ToString(),
                                 row["FullName"].ToString(),
                                 row["TaxonRank"].ToString(),
-                                row["Authors"].ToString(),
-                                row["CombinationAuthors"].ToString(),
-                                row["YearOnPublication"].ToString(),
-                                (Guid)row["ParentID"],
+                                row["Authors"],
+                                row["CombinationAuthors"],
+                                row["YearOnPublication"],
+                                row["ParentID"],
                                 100);
                 }
                     
@@ -46,12 +46,12 @@ namespace NZOR.Matching
             return ds;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             for (int i = names.Name.Count - 1; i >= 0; i--) 
             {
                 DsNameMatch.NameRow row = names.Name[i];
-                if (row["Rank"].ToString().Trim() != pn.ProviderName[0].TaxonRank.ToString().Trim())
+                if (row["Rank"].ToString().Trim() != pn.TaxonRank.ToString().Trim())
                 {
                     row.Delete();
                 }

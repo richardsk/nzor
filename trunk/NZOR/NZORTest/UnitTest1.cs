@@ -101,7 +101,7 @@ namespace NZORTest
             //
 
             //test Asterales test provider name (E6AB7DCC-45CD-43B1-A353-DC62BE296847)
-            DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
+            DsIntegrationName.ProviderNameRow pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("E6AB7DCC-45CD-43B1-A353-DC62BE296847")); 
             NZOR.Data.MatchResult res = NZOR.Integration.MatchProcessor.DoMatch(pn, cs.Routines, true, cnn);
 
             Assert.AreNotEqual(0, res.Matches.Count());

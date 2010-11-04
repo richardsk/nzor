@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Data;
@@ -244,6 +245,92 @@ namespace NZOR.Data
                 da.Fill(ds);
             }
             return ds;
+        }
+
+        public static void RefreshConsensusData(Guid consNameID, DsIntegrationName data)
+        {
+            DsIntegrationName.ConsensusNameRow name = (DsIntegrationName.ConsensusNameRow)(data.ConsensusName.Select("NameID = '" + consNameID.ToString() + "'")[0]);
+            DsIntegrationName.ProviderNameRow[] provRecords = (DsIntegrationName.ProviderNameRow[])data.ProviderName.Select("ConsensusNameID = '" + consNameID.ToString() + "'");
+
+            foreach (DataColumn dc in data.ConsensusName.Columns)
+            {
+                if ("NameID,NameClassID,NameClass,TaxonRankID,TaxonRank,TaxonRankSort,ParentIDsToRoot,".IndexOf(dc.ColumnName + ",") == -1)
+                {
+                    object val = GetConsensusValue(provRecords, dc.ColumnName);
+                    name[dc.ColumnName] = val;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Refresh all names that could be linked to this name (eg update Basionym for other names that have this name as their BasionymID)
+        /// and all values that this name could be linked to (eg update the Basionym of this name, depending on the BasionymID that this name has)
+        /// </summary>
+        /// <param name="consNameID"></param>
+        /// <param name="data"></param>
+        public static void RefreshNameLinks(Guid consNameID, DsIntegrationName data)
+        {
+            //TODO
+        }
+
+        private static object GetConsensusValue(DsIntegrationName.ProviderNameRow[] provRecords, string sourceCol)
+        {
+            Dictionary<object, int> vals = new Dictionary<object, int>();
+            
+            object editorVal = DBNull.Value;
+            foreach (DataRow row in provRecords)
+            {
+                //TODO - add editor type records ???
+                //if (!row.IsNull("ProviderIsEditor") && (bool)row["ProviderIsEditor"] && !row.IsNull(sourceCol))
+                //{
+                //    editorVal = row[sourceCol];
+                //    break;
+                //}
+
+                if (row[sourceCol].ToString().Length > 0)
+                {
+                    if (vals.ContainsKey(row[sourceCol]))
+                    {
+                        vals[row[sourceCol]] += 1;
+                    }
+                    else
+                    {
+                        if (!object.ReferenceEquals(row[sourceCol], DBNull.Value))
+                            vals.Add(row[sourceCol], 1);
+                    }
+                }
+            }
+
+            if (editorVal != DBNull.Value)
+                return editorVal;
+
+            //get majority value (must be > majority than next common value, ie if equal number of 2 diff values, then there is no consensus)
+            object val = DBNull.Value;
+            int maxNum = 0;
+            bool hasEqual = false;
+            foreach (object key in vals.Keys)
+            {
+                if (vals[key] > maxNum)
+                {
+                    maxNum = vals[key];
+                    val = key;
+                    hasEqual = false;
+                }
+                else if (vals[key] == maxNum)
+                {
+                    hasEqual = true;
+                }
+            }
+
+            //TODO how to handle majority issues??
+            //always return something for canonical name
+            if (sourceCol == "Canonical")
+                return val;
+
+            if (hasEqual)
+                return DBNull.Value;
+            
+            return val;
         }
     }
 }

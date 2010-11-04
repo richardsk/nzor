@@ -13,15 +13,15 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             //todo
             return null;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
-            object pYr = pn.ProviderName[0]["YearOnPublication"];
+            object pYr = pn["YearOnPublication"];
 
             if (pYr == System.DBNull.Value || pYr.ToString().Length == 0) return;
             //succeed 

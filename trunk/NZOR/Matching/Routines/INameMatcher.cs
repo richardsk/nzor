@@ -42,7 +42,7 @@ namespace NZOR.Matching
             set;
         }
 
-        DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments);
-        void RemoveNonMatches(NZOR.Data.DsIntegrationName pn, ref DsNameMatch names, ref string matchComments);
+        DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName.ProviderNameRow pn, ref string matchComments);
+        void RemoveNonMatches(NZOR.Data.DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments);
     }
 }

@@ -13,7 +13,7 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             //this routine only adds names
             DsNameMatch names = new DsNameMatch();
@@ -21,13 +21,13 @@ namespace NZOR.Matching
             return names;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             //this routine only adds names, so add names under the "match" parent
             AddMatchingNames(pn, ref names, ref matchComments);
         }
 
-        private void AddMatchingNames(System.Data.DataSet pn, ref DsNameMatch names, ref string matchComments)
+        private void AddMatchingNames(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             //PROBABLY NOT REQUIRED NOW - just add the fuzzy parent when getting provider name data
 

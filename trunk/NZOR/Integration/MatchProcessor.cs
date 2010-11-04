@@ -21,7 +21,7 @@ namespace NZOR.Integration
             set { MatchProcessor._matchSets = value; }
         }
 
-        public static Data.MatchResult DoMatch(DsIntegrationName provName, List<INameMatcher> routines, bool useDB, SqlConnection cnn)
+        public static Data.MatchResult DoMatch(DsIntegrationName.ProviderNameRow provName, List<INameMatcher> routines, bool useDB, SqlConnection cnn)
         {
             NZOR.Data.DsNameMatch results = null;
             bool done = false;

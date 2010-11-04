@@ -12,18 +12,18 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             //todo (doesnt get called at beginning really)
             return null;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             for (int i = names.Name.Count - 1; i >= 0; i--)
             {
                 DsNameMatch.NameRow row = names.Name[i];
-                if (row.Canonical.Trim() != pn.ProviderName[0].Canonical.Trim())
+                if (row.Canonical.Trim() != pn.Canonical.Trim())
                 {
                     row.Delete();
                 }

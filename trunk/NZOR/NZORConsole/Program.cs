@@ -52,6 +52,9 @@ namespace NZORConsole
                         System.Threading.Thread.Sleep(2000);
                     }
 
+                    //TODO save results to DB
+
+
                     _logFile.Close();
                 }
             }

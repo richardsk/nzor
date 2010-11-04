@@ -87,12 +87,12 @@ namespace NZOR.Matching
             set { _useDBCnn = value; }
         }
 
-        public virtual NZOR.Data.DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName pn, ref string matchComments)
+        public virtual NZOR.Data.DsNameMatch GetMatchingNames(NZOR.Data.DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void RemoveNonMatches(NZOR.Data.DsIntegrationName pn, ref NZOR.Data.DsNameMatch names, ref string matchComments)
+        public virtual void RemoveNonMatches(NZOR.Data.DsIntegrationName.ProviderNameRow pn, ref NZOR.Data.DsNameMatch names, ref string matchComments)
         {
             throw new NotImplementedException();
         }

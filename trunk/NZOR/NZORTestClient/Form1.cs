@@ -28,7 +28,7 @@ namespace TestNZOR
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
-            DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
+            DsIntegrationName.ProviderNameRow pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
 
             NZOR.Integration.MatchProcessor.LoadConfig(doc);
 
@@ -47,7 +47,7 @@ namespace TestNZOR
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Development\\NZOR\\Dev\\NZOR\\Integration\\Configuration\\IntegConfig.xml");
 
-            DsIntegrationName pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
+            DsIntegrationName.ProviderNameRow pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
 
             NZOR.Integration.IntegrationProcessor.RunIntegration(doc, 1);
 

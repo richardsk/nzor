@@ -15,12 +15,12 @@ namespace NZOR.Matching
         }
 
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             return null;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             //PROBABLY NOT REQUIRED NOW - just add the correct names in NamesWithSameParent
 

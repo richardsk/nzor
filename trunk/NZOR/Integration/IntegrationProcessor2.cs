@@ -60,24 +60,27 @@ namespace NZOR.Integration
 
                 IntegrationData data = new IntegrationData(nextName.NameID, nextName.FullName, parentConsNameID, cs, false, null);
 
-                //if this name has the same parent as another name being processed, then use that thread
                 bool process = true;
-                lock (MatchData.DataForIntegration)
+                //if this name has the same parent as another name being processed, then use that thread
+                if (parentConsNameID != Guid.Empty)
                 {
-                    foreach (IntegratorThread th in _threads)
+                    lock (MatchData.DataForIntegration)
                     {
-                        foreach (IntegrationData id in th.NameData)
+                        foreach (IntegratorThread th in _threads)
                         {
-                            if (id.ParentConsNameID == parentConsNameID)
+                            foreach (IntegrationData id in th.NameData)
                             {
-                                th.AddNameData(data);
-                                process = false;
-                                break;
+                                if (id.ParentConsNameID == parentConsNameID)
+                                {
+                                    th.AddNameData(data);
+                                    process = false;
+                                    break;
+                                }
                             }
+                            if (!process) break;
                         }
-                        if (!process) break;
                     }
-                }            
+                }
 
                 if (process)
                 {

@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 using NZOR.Data;
 
@@ -13,7 +14,7 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             //This routine makes sure that all names that have been selected for possible match are at the correct rank.
             //  Names that may be selected could be children of the same parent as the matching name, but this does not mean the names will be the 
@@ -22,14 +23,14 @@ namespace NZOR.Matching
             DsNameMatch ds = new DsNameMatch();
             Guid parentNameID = Guid.Empty;
 
-            if (!pn.ProviderName[0].IsParentConsensusNameIDNull())
+            if (!pn.IsParentConsensusNameIDNull())
             {
-                parentNameID = pn.ProviderName[0].ParentConsensusNameID;
+                parentNameID = pn.ParentConsensusNameID;
             }
             
             if (parentNameID != Guid.Empty)
             {
-                String rankId = pn.ProviderName[0].TaxonRankID.ToString();
+                String rankId = pn.TaxonRankID.ToString();
 
                 if (UseDBConnection)
                 {
@@ -83,25 +84,36 @@ namespace NZOR.Matching
                 }
                 else
                 {
-                    DataRow[] rows = null;
+                    List<DataRow> rows = new List<DataRow>();
 
                     lock (MatchData.DataForIntegration)
                     {
-                        string[] parents = 
+                        //par names [Parent Guid:Rank Guid],[Parent Guid:Rank Guid] ...
+                        //get consensus names that are at the correct rank for this provider name and have the provider name parent consensus name as part of its parent chain
+                        //
+                        
+                        foreach (DsIntegrationName.ConsensusNameRow cnRow in MatchData.DataForIntegration.ConsensusName)
+                        {
+                            if (cnRow["ParentIDsToRoot"].ToString().IndexOf("[" + pn.ParentConsensusNameID.ToString()) != -1 &&
+                                cnRow.TaxonRankID == pn.TaxonRankID)
+                            {
+                                rows.Add(cnRow);
+                            }
+                        }
 
-                        rows = MatchData.DataForIntegration.ConsensusName.Select("charindex('" + pn.ProviderName[0].ParentConsensusNameID.ToString() + "', ParentIDsToRoot ) <> 0");
+                        //rows = MatchData.DataForIntegration.ConsensusName.Select("charindex('" + pn.ParentConsensusNameID.ToString() + "', ParentIDsToRoot ) <> 0");
                     }
 
                     foreach (DataRow row in rows)
                     {
-                        ds.Name.AddNameRow((Guid)row["NameID"],
+                        ds.Name.Rows.Add((Guid)row["NameID"],
                                     row["Canonical"].ToString(),
                                     row["FullName"].ToString(),
                                     row["TaxonRank"].ToString(),
-                                    row["Authors"].ToString(),
-                                    row["CombinationAuthors"].ToString(),
-                                    row["Year"].ToString(),
-                                    (Guid)row["ParentID"],
+                                    row["Authors"],
+                                    row["CombinationAuthors"],
+                                    row["Year"],
+                                    row["ParentID"],
                                     100);
                     }
                 }
@@ -110,13 +122,13 @@ namespace NZOR.Matching
             return ds;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             DsNameMatch ds = new DsNameMatch();
 
-            if (!pn.ProviderName[0].IsParentConsensusNameIDNull())
+            if (!pn.IsParentConsensusNameIDNull())
             {
-                System.Guid parentId = pn.ProviderName[0].ParentConsensusNameID;
+                System.Guid parentId = pn.ParentConsensusNameID;
 
                 for (int i = names.Name.Count - 1; i >= 0; i--)
                 {

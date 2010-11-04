@@ -11,18 +11,18 @@ namespace NZOR.Matching
         {
         }
 
-        public override DsNameMatch GetMatchingNames(DsIntegrationName pn, ref string matchComments)
+        public override DsNameMatch GetMatchingNames(DsIntegrationName.ProviderNameRow pn, ref string matchComments)
         {
             return null;
         }
 
-        public override void RemoveNonMatches(DsIntegrationName pn, ref DsNameMatch names, ref string matchComments)
+        public override void RemoveNonMatches(DsIntegrationName.ProviderNameRow pn, ref DsNameMatch names, ref string matchComments)
         {
             //TODO :
             // - corrected authors / lookup
             // may need another table on pn dataset for Authors??
 
-            object authors = pn.ProviderName[0]["Authors"];
+            object authors = pn["Authors"];
             if (authors != System.DBNull.Value)
             {
                 for (int i = names.Name.Count - 1; i >= 0; i--)

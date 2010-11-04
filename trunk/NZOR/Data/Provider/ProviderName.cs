@@ -51,7 +51,7 @@ namespace NZOR.Data
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                    select pn.NameID,
+                    select distinct pn.NameID,
 	                pn.ConsensusNameID,
 	                pn.LinkStatus,
 	                pn.MatchScore,
@@ -137,7 +137,7 @@ namespace NZOR.Data
                 on prc.NameID = cn.NameId
                 CROSS APPLY 
 	            ( 
-		            SELECT CONVERT(VARCHAR(38), fn.NameID) + ':' AS [text()] 
+		            SELECT '[' + CONVERT(VARCHAR(38), fn.NameID) + ':' + convert(varchar(38), fn.TaxonRankID) + '],' AS [text()] 
 		            FROM cons.FlatName fn
 		            WHERE fn.SeedNameID = cn.NameID 
 		            FOR XML PATH('') 
@@ -170,7 +170,7 @@ namespace NZOR.Data
             Progress = 100;
         }
 
-        public static DsIntegrationName GetNameMatchData(SqlConnection cnn, Guid provNameId)
+        public static DsIntegrationName.ProviderNameRow GetNameMatchData(SqlConnection cnn, Guid provNameId)
         {
             //TODO SQL Transaction to prevent deadlocks!!
 
@@ -258,7 +258,9 @@ namespace NZOR.Data
                 GetParentData(cnn, ds.ProviderName[0]);
             }
 
-            return ds;
+            if (ds.ProviderName.Count == 0) return null;
+
+            return ds.ProviderName[0];
         }
 
         public static Object GetNamePropertyValue(System.Data.DataTable namePropDt, String field)
@@ -502,33 +504,47 @@ namespace NZOR.Data
                 Guid parentConsNameID = Guid.Empty;
                 String parFullName = "";
 
-                //NO Parent CONCEPT - check for higher ranks
-                int trSort = pn.TaxonRankSort;
-
-                //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
-                //ORDER and above - just match canonical and rank 
-                if (trSort <= 1600)
+                //check for parent concept
+                if (!pn.IsParentIDNull() && pn.ParentID != Guid.Empty)
                 {
-                    DataRow[] parents = allData.ConsensusName.Select("TaxonRankID = '" + pn.TaxonRankID.ToString() + "' and Canonical = '" + pn.Canonical + "' and GoverningCode = '" + pn.GoverningCode + "'");
-                    if (parents.Length > 0 && !parents[0].IsNull("ParentID")) 
+                    DsIntegrationName.ProviderNameRow parRow = (DsIntegrationName.ProviderNameRow)(allData.ProviderName.Select("NameID = '" + pn.ParentID.ToString() + "'")[0]);
+                    if (!parRow.IsConsensusNameIDNull())
                     {
-                        parentConsNameID = (Guid)parents[0]["ParentID"];
-                        parFullName = parents[0]["Parent"].ToString();
+                        parentConsNameID = parRow.PreferredConsensusNameID;
+                        parFullName = parRow.FullName;
                     }
                 }
 
-                //Below GENUS - use the Genus (first word of the full name)
-                if (trSort > 3000)
+                if (parentConsNameID == Guid.Empty)
                 {
-                    if (pn.FullName.IndexOf(" ") != -1)
+                    //NO Parent CONCEPT - check for higher ranks
+                    int trSort = pn.TaxonRankSort;
+
+                    //TODO - CHECK THIS !  - do we need to allow for Provider/Dataset preferences - ie provider specifies the location in the taxon hierarchy where names should fit
+                    //ORDER and above - just match canonical and rank 
+                    if (trSort <= 1600)
                     {
-                        parFullName = pn.FullName.Substring(0, pn.FullName.IndexOf(" "));
-
-                        DataRow[] parents = allData.ConsensusName.Select("TaxonRank = 'genus' and Canonical = '" + parFullName + "' and GoverningCode = '" + pn.GoverningCode + "'");
-
-                        if (parents.Length > 0)
+                        DataRow[] parents = allData.ConsensusName.Select("TaxonRankID = '" + pn.TaxonRankID.ToString() + "' and Canonical = '" + pn.Canonical + "' and GoverningCode = '" + pn.GoverningCode + "'");
+                        if (parents.Length > 0 && !parents[0].IsNull("ParentID"))
                         {
-                            parentConsNameID = (Guid)parents[0]["NameID"];
+                            parentConsNameID = (Guid)parents[0]["ParentID"];
+                            parFullName = parents[0]["Parent"].ToString();
+                        }
+                    }
+
+                    //Below GENUS - use the Genus (first word of the full name)
+                    if (trSort > 3000)
+                    {
+                        if (pn.FullName.IndexOf(" ") != -1)
+                        {
+                            parFullName = pn.FullName.Substring(0, pn.FullName.IndexOf(" "));
+
+                            DataRow[] parents = allData.ConsensusName.Select("TaxonRank = 'genus' and Canonical = '" + parFullName + "' and GoverningCode = '" + pn.GoverningCode + "'");
+
+                            if (parents.Length > 0)
+                            {
+                                parentConsNameID = (Guid)parents[0]["NameID"];
+                            }
                         }
                     }
                 }
