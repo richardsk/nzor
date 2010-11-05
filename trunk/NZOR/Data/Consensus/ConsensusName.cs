@@ -232,6 +232,295 @@ namespace NZOR.Data
             return GetName(cnn, nameId);
         }
 
+        public static void UpdateConsensusName(SqlConnection cnn, DsIntegrationName.ConsensusNameRow consName)
+        {
+            //update parts of provider name that can be updated
+            string sql = "update cons.Name set " +
+                "FullName = '" + consName.FullName + "', TaxonRankID = '" + consName.TaxonRankID.ToString() + "', NameClassID = '" + consName.NameClassID.ToString() + "', " +
+                "GoverningCode = '" + consName.GoverningCode + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "'" +
+                "where NameID = '" + consName.NameID.ToString() + "'";
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+
+            //properties
+            //canoncial
+            sql = "update cons.NameProperty set Value = '" + consName.Canonical + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                    "NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Canonical).ID.ToString() + "'";
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //rank
+            sql = "update cons.NameProperty set Value = '" + consName.TaxonRank + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                    "NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Rank).ID.ToString() + "'";
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //authors
+            if (!consName.IsAuthorsNull())
+            {
+                sql = "update cons.NameProperty set Value = '" + consName.Authors + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                        "NameID = '" + consName.NameID.ToString() + "' and " +
+                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "'";
+            }
+            else
+            {
+                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "'";
+            }
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //year on publication
+            if (!consName.IsYearOnPublicationNull())
+            {
+                sql = "update cons.NameProperty set Value = '" + consName.YearOnPublication + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                        "NameID = '" + consName.NameID.ToString() + "' and " +
+                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "'";
+            }
+            else
+            {
+                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "'";
+            }
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //basionym
+            if (!consName.IsBasionymNull())
+            {
+                sql = "update cons.NameProperty set Value = '" + consName.Basionym + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "', " +
+                    "RelatedID = " + (consName.IsBasionymIDNull() ? "null, " : "'" + consName.BasionymID.ToString() + "', ") + " where " +
+                        "NameID = '" + consName.NameID.ToString() + "' and " +
+                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "'";
+            }
+            else
+            {
+                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "'";
+            }
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //published in
+            if (!consName.IsPublishedInNull())
+            {
+                sql = "update cons.NameProperty set Value = '" + consName.PublishedIn + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                        "NameID = '" + consName.NameID.ToString() + "' and " +
+                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "'";
+            }
+            else
+            {
+                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "'";
+            }
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //microreference
+            if (!consName.IsMicroReferenceNull())
+            {
+                sql = "update cons.NameProperty set Value = '" + consName.MicroReference + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                        "NameID = '" + consName.NameID.ToString() + "' and " +
+                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "'";
+            }
+            else
+            {
+                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "'";
+            }
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //TODO - orthography, others ???
+
+
+            //Update Flat Name data
+            UpdateFlatNameData(cnn, consName.NameID);
+        }
+
+        public static void AddConsensusName(SqlConnection cnn, DsIntegrationName.ConsensusNameRow consName)
+        {
+            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
+                consName.NameID.ToString() + "', '" +
+                DateTime.Now.ToString("s") + "', '" +
+                consName.FullName.Replace("'", "''") + "', '" +
+                consName.GoverningCode + "', '" +
+                consName.NameClassID.ToString() + "', '" +
+                consName.TaxonRankID.ToString() + "'";
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+            
+            //properties            
+            //canoncial
+            sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                    Guid.NewGuid().ToString() + "', '" +
+                    consName.NameID.ToString() + "', '" +
+                    DateTime.Now.ToString("s") + "', '" +
+                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Canonical).ID.ToString() + "', '" +
+                    consName.Canonical + "', " +
+                    "null, " + //TODO sequence ??
+                    "null"; 
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //rank
+            sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                    Guid.NewGuid().ToString() + "', '" +
+                    consName.NameID.ToString() + "', '" +
+                    DateTime.Now.ToString("s") + "', '" +
+                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Rank).ID.ToString() + "', '" +
+                    consName.TaxonRank + "', " +
+                    "null, " + //TODO sequence ??
+                    "null";
+
+            using (SqlCommand npCmd = cnn.CreateCommand())
+            {
+                npCmd.CommandText = sql;
+                npCmd.ExecuteNonQuery();
+            }
+
+            //authors
+            if (!consName.IsAuthorsNull())
+            {
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                        Guid.NewGuid().ToString() + "', '" +
+                        consName.NameID.ToString() + "', '" +
+                        DateTime.Now.ToString("s") + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "', '" +
+                        consName.Authors + "', " +
+                        "null, " + //TODO sequence ??
+                        "null";
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
+                {
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
+                }
+            }
+
+            //year on publication
+            if (!consName.IsYearOnPublicationNull())
+            {
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                        Guid.NewGuid().ToString() + "', '" +
+                        consName.NameID.ToString() + "', '" +
+                        DateTime.Now.ToString("s") + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "', '" +
+                        consName.YearOnPublication + "', " +
+                        "null, " + //TODO sequence ??
+                        "null";
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
+                {
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
+                }
+            }
+
+            //basionym
+            if (!consName.IsBasionymNull())
+            {
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                        Guid.NewGuid().ToString() + "', '" +
+                        consName.NameID.ToString() + "', '" +
+                        DateTime.Now.ToString("s") + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "', '" +
+                        consName.Basionym + "', " +
+                        "null, " + //TODO sequence ??
+                        (consName.IsBasionymIDNull() ? "null" : "'" + consName.BasionymID.ToString() + "'");
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
+                {
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
+                }
+            }
+            
+            //published in
+            if (!consName.IsPublishedInNull())
+            {
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                        Guid.NewGuid().ToString() + "', '" +
+                        consName.NameID.ToString() + "', '" +
+                        DateTime.Now.ToString("s") + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "', '" +
+                        consName.PublishedIn + "', " +
+                        "null, " + //TODO sequence ??
+                        "null";
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
+                {
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
+                }
+            }
+            
+            //microreference
+            if (!consName.IsMicroReferenceNull())
+            {
+                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                        Guid.NewGuid().ToString() + "', '" +
+                        consName.NameID.ToString() + "', '" +
+                        DateTime.Now.ToString("s") + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "', '" +
+                        consName.MicroReference + "', " +
+                        "null, " + //TODO sequence ??
+                        "null";
+
+                using (SqlCommand npCmd = cnn.CreateCommand())
+                {
+                    npCmd.CommandText = sql;
+                    npCmd.ExecuteNonQuery();
+                }
+            }
+
+            //TODO - orthography, others ???
+
+            //Update Flat Name data
+            UpdateFlatNameData(cnn, consName.NameID);
+        }
+
         public static DataSet GetName(SqlConnection cnn, Guid nameId)
         {
             DataSet ds = null;
@@ -323,8 +612,8 @@ namespace NZOR.Data
             }
 
             //TODO how to handle majority issues??
-            //always return something for canonical name
-            if (sourceCol == "Canonical")
+            //always return something for canonical / full name / rank
+            if (sourceCol == "Canonical" || sourceCol == "FullName")
                 return val;
 
             if (hasEqual)

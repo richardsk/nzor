@@ -111,7 +111,7 @@ namespace NZOR.Integration
             return more;
         }
 
-        private static void ProcessComplete(IntegratorThread it, Data.MatchResult result, Guid provNameID)
+        private static void ProcessComplete(IntegratorThread it, IntegrationData data, Data.MatchResult result, bool threadFinished)
         {
             lock (lockKey)
             {
@@ -134,7 +134,7 @@ namespace NZOR.Integration
                 Progress = prog;
 
                 //more names on this thread?
-                if (it.NameData.Count == 0)
+                if (threadFinished)
                 {
                     _threads.Remove(it);
                 }

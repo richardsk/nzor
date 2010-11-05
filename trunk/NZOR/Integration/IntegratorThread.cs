@@ -46,10 +46,10 @@ namespace NZOR.Integration
         private Dictionary<Guid, MatchResult> _results = new Dictionary<Guid, MatchResult>();
         private Dictionary<Guid, IntegrationData> _processedNames = new Dictionary<Guid, IntegrationData>();
 
-        public delegate void ProcessComplete(IntegratorThread it, MatchResult result, Guid provNameID);
+        public delegate void ProcessComplete(IntegratorThread it, IntegrationData intData, Data.MatchResult result, bool threadFinished);
         public ProcessComplete ProcessCompleteCallback;
 
-        public static System.IO.StreamWriter LogFile = null;
+        public static System.IO.TextWriter LogFile = null;
 
         public IntegratorThread()
         {
@@ -237,7 +237,7 @@ namespace NZOR.Integration
                     }
                 }
                 
-                if (ProcessCompleteCallback != null) ProcessCompleteCallback(this, result, data.NameID);
+                if (ProcessCompleteCallback != null) ProcessCompleteCallback(this, data, result, (NameData.Count == 0));
 
                 result = new MatchResult();
             }

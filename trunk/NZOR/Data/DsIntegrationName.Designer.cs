@@ -316,6 +316,8 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnNameID;
             
+            private global::System.Data.DataColumn columnProcessed;
+            
             private global::System.Data.DataColumn columnConsensusNameID;
             
             private global::System.Data.DataColumn columnLinkStatus;
@@ -410,6 +412,14 @@ namespace NZOR.Data {
             public global::System.Data.DataColumn NameIDColumn {
                 get {
                     return this.columnNameID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProcessedColumn {
+                get {
+                    return this.columnProcessed;
                 }
             }
             
@@ -676,6 +686,7 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProviderNameRow AddProviderNameRow(
                         System.Guid NameID, 
+                        bool Processed, 
                         System.Guid ConsensusNameID, 
                         string LinkStatus, 
                         int MatchScore, 
@@ -707,6 +718,7 @@ namespace NZOR.Data {
                 ProviderNameRow rowProviderNameRow = ((ProviderNameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NameID,
+                        Processed,
                         ConsensusNameID,
                         LinkStatus,
                         MatchScore,
@@ -758,6 +770,7 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnNameID = base.Columns["NameID"];
+                this.columnProcessed = base.Columns["Processed"];
                 this.columnConsensusNameID = base.Columns["ConsensusNameID"];
                 this.columnLinkStatus = base.Columns["LinkStatus"];
                 this.columnMatchScore = base.Columns["MatchScore"];
@@ -793,6 +806,8 @@ namespace NZOR.Data {
             private void InitClass() {
                 this.columnNameID = new global::System.Data.DataColumn("NameID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNameID);
+                this.columnProcessed = new global::System.Data.DataColumn("Processed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcessed);
                 this.columnConsensusNameID = new global::System.Data.DataColumn("ConsensusNameID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnConsensusNameID);
                 this.columnLinkStatus = new global::System.Data.DataColumn("LinkStatus", typeof(string), null, global::System.Data.MappingType.Element);
@@ -849,6 +864,7 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnPreferredConsensusNameID);
                 this.columnPreferredName = new global::System.Data.DataColumn("PreferredName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreferredName);
+                this.columnProcessed.AllowDBNull = false;
                 this.columnLinkStatus.MaxLength = 15;
                 this.columnMatchPath.MaxLength = 2147483647;
                 this.columnFullName.MaxLength = 500;
@@ -1592,6 +1608,17 @@ namespace NZOR.Data {
                 }
                 set {
                     this[this.tableProviderName.NameIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Processed {
+                get {
+                    return ((bool)(this[this.tableProviderName.ProcessedColumn]));
+                }
+                set {
+                    this[this.tableProviderName.ProcessedColumn] = value;
                 }
             }
             

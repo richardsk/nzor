@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consensus\ConsensusName.cs" />
-    <Compile Include="DBI.cs" />
+    <Compile Include="Integration.cs" />
     <Compile Include="DsIntegrationName.cs">
       <DependentUpon>DsIntegrationName.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\ProviderName.cs" />
     <Compile Include="SystemData\ConceptRelationshipType.cs" />
+    <Compile Include="SystemData\NameClass.cs" />
     <Compile Include="SystemData\TaxonRank.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,6 +45,7 @@ namespace NZORConsole
                     _logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
                     IntegratorThread.LogFile = _logFile;
 
+                    data.AcceptChanges();
                     IntegrationProcessor2.RunIntegration(doc, data);
 
                     while (NZOR.Integration.IntegrationProcessor2.Progress != 100)
@@ -53,7 +54,9 @@ namespace NZORConsole
                     }
 
                     //TODO save results to DB
-
+                    cnn.Open();
+                    NZOR.Data.Integration.SaveIntegrationData(cnn, data);
+                    cnn.Close();
 
                     _logFile.Close();
                 }
@@ -63,16 +66,23 @@ namespace NZORConsole
 
         static void  Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine(NZOR.Integration.IntegrationProcessor2.StatusText);
-         
-            if (NZOR.Integration.IntegrationProcessor2.Progress == 100)
+            if (NZOR.Data.Integration.Progress == 100)
             {
+                //finished
                 Console.WriteLine("Completed");
                 Console.WriteLine("Press a key to exit");
                 Console.ReadKey();
             }
+            else if (NZOR.Integration.IntegrationProcessor2.Progress == 100)
+            {
+                //up to saving
+                Console.WriteLine("Saving data ... " + NZOR.Data.Integration.Progress.ToString() + "%");
+                _t.Start();
+            }
             else
             {
+                //still integrating
+                Console.WriteLine(NZOR.Integration.IntegrationProcessor2.StatusText);
                 _t.Start();
             }
         }

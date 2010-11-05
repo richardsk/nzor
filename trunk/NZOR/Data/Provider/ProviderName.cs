@@ -12,6 +12,45 @@ namespace NZOR.Data
     {
         public static int Progress = 0; //for async processes
 
+
+        public static void UpdateProviderName(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName)
+        {
+            //update parts of provider name that can be updated
+            string sql = "update provider.Name set " +
+                "ConsensusNameID = " + (provName.IsConsensusNameIDNull() ? "null, " : "'" + provName.ConsensusNameID.ToString() + "', ") +
+                "LinkStatus = " + (provName.IsLinkStatusNull() ? "null, " : "'" + provName.LinkStatus + "', ") +
+                "MatchScore = " + (provName.IsMatchScoreNull() ? "null, " : provName.MatchScore.ToString() + ", ") +
+                "MatchPath = " + (provName.IsMatchPathNull() ? "null " : "'" + provName.MatchPath + "' ") +
+                "where NameID = '" + provName.NameID.ToString() + "'";
+                
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+
+            //properties   - Note can not update properties - must be imported
+            
+            //Update Flat Name data
+            UpdateFlatNameData(cnn, provName.NameID);
+        }
+
+        public static void UpdateFlatNameData(SqlConnection cnn, Guid nameID)
+        {
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = "delete prov.FlatName where SeedNameID = '" + nameID.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+
+            using (SqlCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = "INSERT prov.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID) " +
+                    "EXEC sprSelect_ProvFlatNameToRoot '" + nameID.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public static DataSet GetName(SqlConnection cnn, Guid provNameId)
         {
             DataSet ds = new DataSet();
@@ -51,7 +90,8 @@ namespace NZOR.Data
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                    select distinct pn.NameID,
+                    select distinct top 2000 pn.NameID,
+                    0 as Processed,
 	                pn.ConsensusNameID,
 	                pn.LinkStatus,
 	                pn.MatchScore,
@@ -202,6 +242,7 @@ namespace NZOR.Data
 
                 cmd.CommandText = @"
                     select pn.NameID,
+                    0 as Processed,
 	                pn.ConsensusNameID,
 	                pn.LinkStatus,
 	                pn.MatchScore,
