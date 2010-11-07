@@ -233,6 +233,8 @@ namespace NZOR.Integration
 
                             result = res;
                             _results.Add(data.NameID, res);
+
+                            provName.Processed = true;
                         }
                     }
                 }

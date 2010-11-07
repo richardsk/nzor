@@ -29,24 +29,33 @@ namespace NZORConsole
                     _t.Interval = 8000;
                     _t.Start();
 
+
+                    _logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
+                    IntegratorThread.LogFile = _logFile;
+
                     XmlDocument doc = new XmlDocument();
                     doc.Load(args[1]);
                     
-                    //DB version
+                    // ----- DB version -----
                     IntegrationProcessor.MaxThreads = 1; //try one name at a time
                     NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
 
-                    //non db version
+                    while (NZOR.Integration.IntegrationProcessor.Progress != 100)
+                    {
+                        System.Threading.Thread.Sleep(2000);
+                    }
+
+                    // ----- end of DB version -----
+
+
+                    // ----- non db version -----
                     //string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
                     //SqlConnection cnn = new SqlConnection(cnnStr);
                     
                     //cnn.Open();
                     //DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
                     //cnn.Close();
-
-                    //_logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
-                    //IntegratorThread.LogFile = _logFile;
-
+                    
                     //data.AcceptChanges();
                     //IntegrationProcessor2.RunIntegration(doc, data);
 
@@ -59,6 +68,8 @@ namespace NZORConsole
                     //cnn.Open();
                     //NZOR.Data.Integration.SaveIntegrationData(cnn, data);
                     //cnn.Close();
+
+                    // ----- end of non DB version  -----
 
                     _logFile.Close();
                 }

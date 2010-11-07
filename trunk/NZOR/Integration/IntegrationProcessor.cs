@@ -42,7 +42,7 @@ namespace NZOR.Integration
 
             MatchProcessor.LoadConfig(config);
             
-            if (MaxThreads != -1 && MaxThreads < 1000) ThreadPool.SetMaxThreads(MaxThreads, 1000);
+            //if (MaxThreads != -1 && MaxThreads < 1000) ThreadPool.SetMaxThreads(MaxThreads, 1000);
 
             while (doAnother)
             {
@@ -99,7 +99,7 @@ namespace NZOR.Integration
                     int numOtherTh = 0;
                     ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
 
-                    if (numTh < 2) more = false; //leave at least 1 thread ??    
+                    if (numTh < 2 || _threads.Count >= MaxThreads) more = false; //leave at least 1 thread ??    
                 }
             }
             else
@@ -120,14 +120,7 @@ namespace NZOR.Integration
                 Results.Add(result);
                 prog = (Results.Count * 100 / _namesToProcess);
 
-                int numTh = 0;
-                int numOtherTh = 0;
-                int maxNumTh = 0;
-                int maxOtherTh = 0;
-                ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
-                ThreadPool.GetMaxThreads(out maxNumTh, out maxOtherTh);
-                int threads = maxNumTh - numTh;
-                StatusText = "Processed " + Results.Count.ToString() + " of " + _namesToProcess.ToString() + " names.  Number of running threads = " + threads.ToString();
+                StatusText = "Processed " + Results.Count.ToString() + " of " + _namesToProcess.ToString() + " names.  Number of running threads = " + _threads.Count.ToString();
                 if (prog == 0) Progress = 1; //at least to indicate we have started
                 if (prog == 100 && _namesToProcess > Results.Count) prog = 99; //not 100 % complete until ALL names are done
 

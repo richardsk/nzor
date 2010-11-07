@@ -49,7 +49,7 @@ namespace TestNZOR
 
             DsIntegrationName.ProviderNameRow pn = NZOR.Data.ProviderName.GetNameMatchData(cnn, new Guid("88441283-026F-4EB2-9925-00556C4D2ABE"));
 
-            NZOR.Integration.IntegrationProcessor.RunIntegration(doc, 1);
+            NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
 
             cnn.Close();
         }
