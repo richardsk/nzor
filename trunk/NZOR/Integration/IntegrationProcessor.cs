@@ -30,7 +30,7 @@ namespace NZOR.Integration
         /// Individual threads will need to work with names that dont overlap with names in other threads - by working with names in different parts of the taxonomic hierarchy.
         ///   i.e. get the next provider name that has it's parent already integrated and there are no siblings of this name currenlty being integrated
         /// </summary>
-        public static void RunIntegration(XmlDocument config, int setNumber)
+        public static void RunIntegration(XmlDocument config)
         {
             bool doAnother = true;
             
