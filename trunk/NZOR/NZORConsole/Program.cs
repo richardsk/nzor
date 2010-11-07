@@ -32,31 +32,33 @@ namespace NZORConsole
                     XmlDocument doc = new XmlDocument();
                     doc.Load(args[1]);
                     
-                    //NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
+                    //DB version
+                    IntegrationProcessor.MaxThreads = 1; //try one name at a time
+                    NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
 
                     //non db version
-                    string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-                    SqlConnection cnn = new SqlConnection(cnnStr);
+                    //string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+                    //SqlConnection cnn = new SqlConnection(cnnStr);
                     
-                    cnn.Open();
-                    DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
-                    cnn.Close();
+                    //cnn.Open();
+                    //DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
+                    //cnn.Close();
 
-                    _logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
-                    IntegratorThread.LogFile = _logFile;
+                    //_logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
+                    //IntegratorThread.LogFile = _logFile;
 
-                    data.AcceptChanges();
-                    IntegrationProcessor2.RunIntegration(doc, data);
+                    //data.AcceptChanges();
+                    //IntegrationProcessor2.RunIntegration(doc, data);
 
-                    while (NZOR.Integration.IntegrationProcessor2.Progress != 100)
-                    {
-                        System.Threading.Thread.Sleep(2000);
-                    }
+                    //while (NZOR.Integration.IntegrationProcessor2.Progress != 100)
+                    //{
+                    //    System.Threading.Thread.Sleep(2000);
+                    //}
 
-                    //TODO save results to DB
-                    cnn.Open();
-                    NZOR.Data.Integration.SaveIntegrationData(cnn, data);
-                    cnn.Close();
+                    ////save results to DB
+                    //cnn.Open();
+                    //NZOR.Data.Integration.SaveIntegrationData(cnn, data);
+                    //cnn.Close();
 
                     _logFile.Close();
                 }
