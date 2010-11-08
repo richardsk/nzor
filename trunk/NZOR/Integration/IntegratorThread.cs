@@ -19,9 +19,10 @@ namespace NZOR.Integration
         public String FullName = "";
         public Guid ParentConsNameID = Guid.Empty;
         public ConfigSet Config = null;
+        public Guid IntegrationBatchID = Guid.Empty;
                 
         /// If useDB then the dbCnnStr DB is used to get the data and check for matches, otherwise all data for matching is contained in the nameData dataset, in memory.
-        public IntegrationData(Guid nameID, String fullName, Guid parentConsNameID, ConfigSet config, bool useDB, string dbCnnStr)
+        public IntegrationData(Guid nameID, String fullName, Guid parentConsNameID, ConfigSet config, bool useDB, string dbCnnStr, Guid batchID)
         {
             this.UseDB = useDB;
             this.DBCnnStr = dbCnnStr;
@@ -29,6 +30,7 @@ namespace NZOR.Integration
             this.FullName = fullName;
             this.ParentConsNameID = parentConsNameID;
             this.Config = config;
+            this.IntegrationBatchID = batchID;
         }
     }
 
@@ -115,7 +117,7 @@ namespace NZOR.Integration
                             //insert
                             DataSet newName = NZOR.Data.ConsensusName.AddConsensusName(_cnn, provName);
                             DataRow nameRow = newName.Tables[0].Rows[0];
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Inserted, (Guid?)nameRow["NameID"], 0, res.MatchPath, data.IntegrationBatchID);
 
                             res.MatchedId = nameRow["NameID"].ToString();
                             res.MatchedName = nameRow["FullName"].ToString();
@@ -124,13 +126,13 @@ namespace NZOR.Integration
                         else if (res.Matches.Count == 1)
                         {
                             //link 
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Matched, res.Matches[0].NameId, res.Matches[0].MatchScore, res.MatchPath, data.IntegrationBatchID);
                             res.Status = NZOR.Data.LinkStatus.Matched;
                         }
                         else
                         {
                             //multiple matches
-                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath);
+                            NZOR.Data.ProviderName.UpdateProviderNameLink(_cnn, provName, NZOR.Data.LinkStatus.Multiple, null, 0, res.MatchPath, data.IntegrationBatchID);
                             res.Status = NZOR.Data.LinkStatus.Multiple;
                         }
 
@@ -154,6 +156,8 @@ namespace NZOR.Integration
 
                         if (provName != null)
                         {
+                            provName.IntegrationBatchID = data.IntegrationBatchID; //processed
+
                             Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, false, null);
                             
                             if (res.Matches.Count == 0)
@@ -234,7 +238,6 @@ namespace NZOR.Integration
                             result = res;
                             _results.Add(data.NameID, res);
 
-                            provName.Processed = true;
                         }
                     }
                 }

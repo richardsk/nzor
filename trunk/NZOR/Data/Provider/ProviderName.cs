@@ -336,12 +336,13 @@ namespace NZOR.Data
             return r;
         }
 
-        public static void UpdateProviderNameLink(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath)
+        public static void UpdateProviderNameLink(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath, Guid integrationBatchId)
         {
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = "update provider.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
-                    "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "' " : "null ") +
+                    "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "', " : "null, ") +
+                    "IntegrationBatchID = '" + integrationBatchId.ToString() + "' " + 
                     "where NameID = '" + provName.NameID.ToString() + "'";
 
                 cmd.ExecuteNonQuery();

@@ -20,6 +20,7 @@ namespace NZOR.Integration
         public static int MaxThreads = 20;
         public static int Progress = 0;
 
+        private static Guid _thisBatchID = Guid.Empty;
         private static int _namesToProcess = 0;
         private static List<IntegratorThread> _threads = new List<IntegratorThread>();
 
@@ -36,7 +37,8 @@ namespace NZOR.Integration
             
             SqlConnection cnn = new SqlConnection(ConnectionString);
             cnn.Open();
-            
+
+            _thisBatchID = Guid.NewGuid();
             _namesToProcess = GetNamesForIntegrationCount(cnn);
             Progress = 1; //started
 
@@ -65,7 +67,7 @@ namespace NZOR.Integration
             if (nextName != Guid.Empty)
             {
                 ConfigSet cs = MatchProcessor.GetMatchSet(setId);
-                IntegrationData data = new IntegrationData(nextName, fullName, parConsNameID, cs, true, ConnectionString);
+                IntegrationData data = new IntegrationData(nextName, fullName, parConsNameID, cs, true, ConnectionString, _thisBatchID);
 
                 //if this name has the same parent as another name being processed, then use that thread
                 bool process = true;
@@ -166,7 +168,8 @@ namespace NZOR.Integration
                         "from provider.Name n " +
                         "inner join dbo.TaxonRank tr on tr.TaxonRankID = n.TaxonRankID " +
                         "left join vwProviderConcepts pc on pc.NameID = n.NameID and pc.ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' " +
-                        "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
+                        "where n.ConsensusNameID is null and n.IntegrationBatchID <> '" + _thisBatchID.ToString() + "' and " +
+                        " (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
                         "order by tr.SortOrder ";
                 
                 DataSet res = new DataSet();

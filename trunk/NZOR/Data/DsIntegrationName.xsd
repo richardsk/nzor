@@ -18,8 +18,8 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="NameID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnNameID" msprop:Generator_ColumnPropNameInRow="NameID" msprop:Generator_ColumnPropNameInTable="NameIDColumn" msprop:Generator_UserColumnName="NameID" type="xs:string" minOccurs="0" />
-              <xs:element name="Processed" msprop:Generator_ColumnVarNameInTable="columnProcessed" msprop:Generator_ColumnPropNameInRow="Processed" msprop:Generator_ColumnPropNameInTable="ProcessedColumn" msprop:Generator_UserColumnName="Processed" type="xs:boolean" />
               <xs:element name="ConsensusNameID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnConsensusNameID" msprop:Generator_ColumnPropNameInRow="ConsensusNameID" msprop:Generator_ColumnPropNameInTable="ConsensusNameIDColumn" msprop:Generator_UserColumnName="ConsensusNameID" type="xs:string" minOccurs="0" />
+              <xs:element name="IntegrationBatchID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnIntegrationBatchID" msprop:Generator_ColumnPropNameInRow="IntegrationBatchID" msprop:Generator_ColumnPropNameInTable="IntegrationBatchIDColumn" msprop:Generator_UserColumnName="IntegrationBatchID" type="xs:string" minOccurs="0" />
               <xs:element name="LinkStatus" msprop:Generator_ColumnVarNameInTable="columnLinkStatus" msprop:Generator_ColumnPropNameInRow="LinkStatus" msprop:Generator_ColumnPropNameInTable="LinkStatusColumn" msprop:Generator_UserColumnName="LinkStatus" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

@@ -20,6 +20,7 @@ namespace NZOR.Integration
         public static int MaxThreads = 20;
         public static int Progress = 0;
 
+        private static Guid _thisBatchID = Guid.Empty;
         private static List<IntegratorThread> _threads = new List<IntegratorThread>();
         
         /// <summary>
@@ -31,6 +32,8 @@ namespace NZOR.Integration
         {
             bool doAnother = true;
 
+            _thisBatchID = Guid.NewGuid();
+            
             MatchData.DataForIntegration = data;
 
             Progress = 1; //started
@@ -58,7 +61,7 @@ namespace NZOR.Integration
                 Guid parentConsNameID = Guid.Empty;
                 if (!nextName.IsParentConsensusNameIDNull()) parentConsNameID = nextName.ParentConsensusNameID;
 
-                IntegrationData data = new IntegrationData(nextName.NameID, nextName.FullName, parentConsNameID, cs, false, null);
+                IntegrationData data = new IntegrationData(nextName.NameID, nextName.FullName, parentConsNameID, cs, false, null, _thisBatchID);
 
                 bool process = true;
                 //if this name has the same parent as another name being processed, then use that thread
@@ -151,7 +154,7 @@ namespace NZOR.Integration
             {
                 foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
                 {
-                    if (nm.IsConsensusNameIDNull() &&  !nm.Processed &&
+                    if (nm.IsConsensusNameIDNull() &&  nm.IntegrationBatchID != _thisBatchID &&
                         nm.LinkStatus != Data.LinkStatus.Integrating.ToString() && 
                         nm.LinkStatus != Data.LinkStatus.Discarded.ToString() && 
                         nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&

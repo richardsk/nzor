@@ -316,9 +316,9 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnNameID;
             
-            private global::System.Data.DataColumn columnProcessed;
-            
             private global::System.Data.DataColumn columnConsensusNameID;
+            
+            private global::System.Data.DataColumn columnIntegrationBatchID;
             
             private global::System.Data.DataColumn columnLinkStatus;
             
@@ -417,17 +417,17 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ProcessedColumn {
+            public global::System.Data.DataColumn ConsensusNameIDColumn {
                 get {
-                    return this.columnProcessed;
+                    return this.columnConsensusNameID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ConsensusNameIDColumn {
+            public global::System.Data.DataColumn IntegrationBatchIDColumn {
                 get {
-                    return this.columnConsensusNameID;
+                    return this.columnIntegrationBatchID;
                 }
             }
             
@@ -686,8 +686,8 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProviderNameRow AddProviderNameRow(
                         System.Guid NameID, 
-                        bool Processed, 
                         System.Guid ConsensusNameID, 
+                        System.Guid IntegrationBatchID, 
                         string LinkStatus, 
                         int MatchScore, 
                         string MatchPath, 
@@ -718,8 +718,8 @@ namespace NZOR.Data {
                 ProviderNameRow rowProviderNameRow = ((ProviderNameRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NameID,
-                        Processed,
                         ConsensusNameID,
+                        IntegrationBatchID,
                         LinkStatus,
                         MatchScore,
                         MatchPath,
@@ -770,8 +770,8 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnNameID = base.Columns["NameID"];
-                this.columnProcessed = base.Columns["Processed"];
                 this.columnConsensusNameID = base.Columns["ConsensusNameID"];
+                this.columnIntegrationBatchID = base.Columns["IntegrationBatchID"];
                 this.columnLinkStatus = base.Columns["LinkStatus"];
                 this.columnMatchScore = base.Columns["MatchScore"];
                 this.columnMatchPath = base.Columns["MatchPath"];
@@ -806,10 +806,10 @@ namespace NZOR.Data {
             private void InitClass() {
                 this.columnNameID = new global::System.Data.DataColumn("NameID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNameID);
-                this.columnProcessed = new global::System.Data.DataColumn("Processed", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProcessed);
                 this.columnConsensusNameID = new global::System.Data.DataColumn("ConsensusNameID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnConsensusNameID);
+                this.columnIntegrationBatchID = new global::System.Data.DataColumn("IntegrationBatchID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIntegrationBatchID);
                 this.columnLinkStatus = new global::System.Data.DataColumn("LinkStatus", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLinkStatus);
                 this.columnMatchScore = new global::System.Data.DataColumn("MatchScore", typeof(int), null, global::System.Data.MappingType.Element);
@@ -864,7 +864,6 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnPreferredConsensusNameID);
                 this.columnPreferredName = new global::System.Data.DataColumn("PreferredName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreferredName);
-                this.columnProcessed.AllowDBNull = false;
                 this.columnLinkStatus.MaxLength = 15;
                 this.columnMatchPath.MaxLength = 2147483647;
                 this.columnFullName.MaxLength = 500;
@@ -1613,17 +1612,6 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Processed {
-                get {
-                    return ((bool)(this[this.tableProviderName.ProcessedColumn]));
-                }
-                set {
-                    this[this.tableProviderName.ProcessedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.Guid ConsensusNameID {
                 get {
                     try {
@@ -1635,6 +1623,22 @@ namespace NZOR.Data {
                 }
                 set {
                     this[this.tableProviderName.ConsensusNameIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.Guid IntegrationBatchID {
+                get {
+                    try {
+                        return ((global::System.Guid)(this[this.tableProviderName.IntegrationBatchIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IntegrationBatchID\' in table \'ProviderName\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProviderName.IntegrationBatchIDColumn] = value;
                 }
             }
             
@@ -2093,6 +2097,18 @@ namespace NZOR.Data {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetConsensusNameIDNull() {
                 this[this.tableProviderName.ConsensusNameIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIntegrationBatchIDNull() {
+                return this.IsNull(this.tableProviderName.IntegrationBatchIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIntegrationBatchIDNull() {
+                this[this.tableProviderName.IntegrationBatchIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
