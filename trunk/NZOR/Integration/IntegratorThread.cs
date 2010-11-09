@@ -71,6 +71,10 @@ namespace NZOR.Integration
             {
                 if (!_processedNames.ContainsKey(data.NameID)) //already processed ???
                     _data.Add(data);
+                else
+                {
+                    int i = 0;
+                }
             }
         }
 
@@ -241,8 +245,14 @@ namespace NZOR.Integration
                         }
                     }
                 }
-                
-                if (ProcessCompleteCallback != null) ProcessCompleteCallback(this, data, result, (NameData.Count == 0));
+
+                if (ProcessCompleteCallback != null)
+                {
+                    lock (_data)
+                    {
+                        ProcessCompleteCallback(this, data, result, (_data.Count == 0));
+                    }
+                }
 
                 result = new MatchResult();
             }

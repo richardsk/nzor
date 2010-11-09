@@ -20,7 +20,8 @@ namespace NZOR.Data
                 "ConsensusNameID = " + (provName.IsConsensusNameIDNull() ? "null, " : "'" + provName.ConsensusNameID.ToString() + "', ") +
                 "LinkStatus = " + (provName.IsLinkStatusNull() ? "null, " : "'" + provName.LinkStatus + "', ") +
                 "MatchScore = " + (provName.IsMatchScoreNull() ? "null, " : provName.MatchScore.ToString() + ", ") +
-                "MatchPath = " + (provName.IsMatchPathNull() ? "null " : "'" + provName.MatchPath + "' ") +
+                "MatchPath = " + (provName.IsMatchPathNull() ? "null, " : "'" + provName.MatchPath + "', ") +
+                "ModifiedDate = getdate() " +
                 "where NameID = '" + provName.NameID.ToString() + "'";
                 
             using (SqlCommand cmd = cnn.CreateCommand())
@@ -90,8 +91,7 @@ namespace NZOR.Data
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                    select distinct top 2000 pn.NameID,
-                    0 as Processed,
+                    select distinct pn.NameID,
 	                pn.ConsensusNameID,
 	                pn.LinkStatus,
 	                pn.MatchScore,
@@ -242,7 +242,6 @@ namespace NZOR.Data
 
                 cmd.CommandText = @"
                     select pn.NameID,
-                    0 as Processed,
 	                pn.ConsensusNameID,
 	                pn.LinkStatus,
 	                pn.MatchScore,
@@ -342,7 +341,7 @@ namespace NZOR.Data
             {
                 cmd.CommandText = "update provider.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
                     "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "', " : "null, ") +
-                    "IntegrationBatchID = '" + integrationBatchId.ToString() + "' " + 
+                    "IntegrationBatchID = '" + integrationBatchId.ToString() + "', ModifiedDate = getdate() " + 
                     "where NameID = '" + provName.NameID.ToString() + "'";
 
                 cmd.ExecuteNonQuery();

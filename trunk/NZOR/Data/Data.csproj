@@ -88,7 +88,7 @@
     <Compile Include="SystemData\TaxonRank.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="SystemData\App.Config" />
     <None Include="DsNameMatch.xsc">
       <DependentUpon>DsNameMatch.xsd</DependentUpon>
     </None>

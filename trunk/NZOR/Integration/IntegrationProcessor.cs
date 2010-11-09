@@ -11,7 +11,7 @@ using NZOR.Data;
 
 namespace NZOR.Integration
 {
-    public class IntegrationProcessor
+    public class IntegrationProcessor 
     {
         public static List<NZOR.Data.MatchResult> Results = new List<Data.MatchResult>();
         public static string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
@@ -71,20 +71,23 @@ namespace NZOR.Integration
 
                 //if this name has the same parent as another name being processed, then use that thread
                 bool process = true;
-                lock (lockKey)
+                if (parConsNameID != Guid.Empty)
                 {
-                    foreach (IntegratorThread th in _threads)
+                    lock (lockKey)
                     {
-                        foreach (IntegrationData id in th.NameData)
+                        foreach (IntegratorThread th in _threads)
                         {
-                            if (id.ParentConsNameID == parConsNameID)
+                            foreach (IntegrationData id in th.NameData)
                             {
-                                th.AddNameData(data);
-                                process = false;
-                                break;
+                                if (id.ParentConsNameID == parConsNameID)
+                                {
+                                    th.AddNameData(data);
+                                    process = false;
+                                    break;
+                                }
                             }
+                            if (!process) break;
                         }
-                        if (!process) break;
                     }
                 }
 
@@ -124,7 +127,10 @@ namespace NZOR.Integration
 
                 StatusText = "Processed " + Results.Count.ToString() + " of " + _namesToProcess.ToString() + " names.  Number of running threads = " + _threads.Count.ToString();
                 if (prog == 0) Progress = 1; //at least to indicate we have started
-                if (prog == 100 && _namesToProcess > Results.Count) prog = 99; //not 100 % complete until ALL names are done
+                if (prog == 100)
+                {
+                    if (_namesToProcess > Results.Count) prog = 99; //not 100 % complete until ALL names are done
+                }
 
                 Progress = prog;
 
@@ -145,7 +151,6 @@ namespace NZOR.Integration
         private static Guid GetNextNameForIntegration(SqlConnection cnn, ref string fullName, ref Guid parentConsNameID, ref int matchRuleSetId)
         {
             Guid id = Guid.Empty;
-
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
@@ -168,10 +173,10 @@ namespace NZOR.Integration
                         "from provider.Name n " +
                         "inner join dbo.TaxonRank tr on tr.TaxonRankID = n.TaxonRankID " +
                         "left join vwProviderConcepts pc on pc.NameID = n.NameID and pc.ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' " +
-                        "where n.ConsensusNameID is null and n.IntegrationBatchID <> '" + _thisBatchID.ToString() + "' and " +
+                        "where n.ConsensusNameID is null and (n.IntegrationBatchID is null or n.IntegrationBatchID <> '" + _thisBatchID.ToString() + "') and " +
                         " (n.LinkStatus is null or n.LinkStatus <> 'Integrating') " +
                         "order by tr.SortOrder ";
-                
+
                 DataSet res = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(res);

@@ -17,11 +17,12 @@ namespace NZOR.Integration
         public static List<NZOR.Data.MatchResult> Results = new List<Data.MatchResult>();
         
         public static string StatusText = "";
-        public static int MaxThreads = 20;
+        public static int MaxThreads = 100;
         public static int Progress = 0;
 
         private static Guid _thisBatchID = Guid.Empty;
         private static List<IntegratorThread> _threads = new List<IntegratorThread>();
+        private static int _namesToProcess = -1;
         
         /// <summary>
         /// Use multiple threads to process records that need integrating
@@ -46,8 +47,6 @@ namespace NZOR.Integration
             {
                 doAnother = ProcessNextName();
             }
-
-            PostIntegrationCleanup();
         }
 
         private static bool ProcessNextName()
@@ -99,12 +98,11 @@ namespace NZOR.Integration
                     int numOtherTh = 0;
                     ThreadPool.GetAvailableThreads(out numTh, out numOtherTh);
 
-                    if (numTh < 2) more = false; //leave at least 1 thread ??    
+                    if (numTh < 2 || _threads.Count >= MaxThreads) more = false; //leave at least 1 thread ??    
                 }
             }
             else
             {
-                Progress = 100; //done
                 more = false;
             }
 
@@ -118,18 +116,30 @@ namespace NZOR.Integration
                 int prog = 1;
 
                 Results.Add(result);
-                prog = (Results.Count * 100 / MatchData.DataForIntegration.ProviderName.Count);
-
-                StatusText = "Processed " + Results.Count.ToString() + " of " + MatchData.DataForIntegration.ProviderName.Count.ToString() + " names.  Number of running threads = " + _threads.Count.ToString();
-                if (prog == 0) Progress = 1; //at least to indicate we have started
-                if (prog == 100 && MatchData.DataForIntegration.ProviderName.Count > Results.Count) prog = 99; //not 100 % complete until ALL names are done
-
-                Progress = prog;
 
                 if (IntegratorThread.LogFile != null)
                 {
                     IntegratorThread.LogFile.WriteLine(intData.FullName + " : " + intData.NameID.ToString() + " : RESULT = " + result.Status.ToString() + ", " + result.MatchedName + ", " + result.MatchedId);
                 }
+                
+                prog = (Results.Count * 100 / NamesForIntegrationCount());
+
+                StatusText = "Processed " + Results.Count.ToString() + " of " + NamesForIntegrationCount().ToString() + " names.  Number of running threads = " + _threads.Count.ToString();
+                if (prog == 0) Progress = 1; //at least to indicate we have started
+                if (prog == 100)
+                {
+                    if (NamesForIntegrationCount() > Results.Count)
+                    {
+                        prog = 99; //not 100 % complete until ALL names are done
+                    }
+                    else
+                    {
+                        //realy done
+                        PostIntegrationCleanup();
+                    }
+                }
+
+                Progress = prog;
 
                 //more names on this thread?
                 if (threadFinished)
@@ -144,6 +154,7 @@ namespace NZOR.Integration
 
         private static void PostIntegrationCleanup()
         {
+            //TODO ??
         }
 
         private static DsIntegrationName.ProviderNameRow GetNextNameForIntegration()
@@ -154,7 +165,7 @@ namespace NZOR.Integration
             {
                 foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
                 {
-                    if (nm.IsConsensusNameIDNull() &&  nm.IntegrationBatchID != _thisBatchID &&
+                    if (nm.IsConsensusNameIDNull() &&  nm["IntegrationBatchID"].ToString() != _thisBatchID.ToString() &&
                         nm.LinkStatus != Data.LinkStatus.Integrating.ToString() && 
                         nm.LinkStatus != Data.LinkStatus.Discarded.ToString() && 
                         nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
@@ -172,6 +183,24 @@ namespace NZOR.Integration
             }
 
             return pnRow;
+        }
+
+        private static int NamesForIntegrationCount()
+        {
+            if (_namesToProcess == -1)
+            {
+                foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
+                {
+                    if (nm.IsConsensusNameIDNull() &&
+                        nm.LinkStatus != Data.LinkStatus.Discarded.ToString() &&
+                        nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
+                        nm.LinkStatus != Data.LinkStatus.Inserted.ToString())
+                    {
+                        _namesToProcess++;
+                    }
+                }
+            }
+            return _namesToProcess;
         }
 
                 

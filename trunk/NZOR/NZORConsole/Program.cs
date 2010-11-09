@@ -33,43 +33,7 @@ namespace NZORConsole
                     _logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
                     IntegratorThread.LogFile = _logFile;
 
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(args[1]);
-                    
-                    // ----- DB version -----
-                    IntegrationProcessor.MaxThreads = 1; //try one name at a time
-                    NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
-
-                    while (NZOR.Integration.IntegrationProcessor.Progress != 100)
-                    {
-                        System.Threading.Thread.Sleep(2000);
-                    }
-
-                    // ----- end of DB version -----
-
-
-                    // ----- non db version -----
-                    //string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-                    //SqlConnection cnn = new SqlConnection(cnnStr);
-                    
-                    //cnn.Open();
-                    //DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
-                    //cnn.Close();
-                    
-                    //data.AcceptChanges();
-                    //IntegrationProcessor2.RunIntegration(doc, data);
-
-                    //while (NZOR.Integration.IntegrationProcessor2.Progress != 100)
-                    //{
-                    //    System.Threading.Thread.Sleep(2000);
-                    //}
-
-                    ////save results to DB
-                    //cnn.Open();
-                    //NZOR.Data.Integration.SaveIntegrationData(cnn, data);
-                    //cnn.Close();
-
-                    // ----- end of non DB version  -----
+                    RunIntegration(args[1]);
 
                     _logFile.Close();
                 }
@@ -77,25 +41,84 @@ namespace NZORConsole
 
         }
 
+        static int Progress()
+        {
+            //return IntegrationProcessor.Progress;
+            return IntegrationProcessor2.Progress; //non-db
+        }
+
+        static int SaveProgress()
+        {
+            //return 100;
+            return Integration.Progress; //non-db
+        }
+
+        static String Status()
+        {
+            //return IntegrationProcessor.StatusText;
+            return IntegrationProcessor2.StatusText; //non-db
+        }
+
+        static void RunIntegration(string configFilePath)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(configFilePath);
+
+            // ----- DB version -----
+            //IntegrationProcessor.MaxThreads = 100; //try one name at a time
+            //NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
+
+            //while (Progress() != 100)
+            //{
+            //    System.Threading.Thread.Sleep(2000);
+            //}
+
+            // ----- end of DB version -----
+
+
+            // ----- non db version -----
+            string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(cnnStr);
+
+            cnn.Open();
+            DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
+            cnn.Close();
+
+            data.AcceptChanges();
+            IntegrationProcessor2.RunIntegration(doc, data);
+
+            while (Progress() != 100)
+            {
+                System.Threading.Thread.Sleep(2000);
+            }
+
+            //save results to DB
+            cnn.Open();
+            NZOR.Data.Integration.SaveIntegrationData(cnn, data);
+            cnn.Close();
+
+            // ----- end of non DB version  -----
+        }
+
         static void  Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (NZOR.Data.Integration.Progress == 100)
+            if (SaveProgress() == 100 && Progress() == 100)
             {
                 //finished
                 Console.WriteLine("Completed");
                 Console.WriteLine("Press a key to exit");
                 Console.ReadKey();
             }
-            else if (NZOR.Integration.IntegrationProcessor2.Progress == 100)
+            else if (Progress() == 100)
             {
                 //up to saving
-                Console.WriteLine("Saving data ... " + NZOR.Data.Integration.Progress.ToString() + "%");
+                Console.WriteLine("Saving data ... " + SaveProgress().ToString() + "%");
                 _t.Start();
             }
             else
             {
                 //still integrating
-                Console.WriteLine(NZOR.Integration.IntegrationProcessor2.StatusText);
+                Console.WriteLine(Status());
                 _t.Start();
             }
         }

@@ -9,7 +9,8 @@ namespace NZOR.Data
     {
         public int NumberInserted = 0;
         public int NumberUpdated = 0;
-        public int ProviderNamesUpdated = 0;
+        public int ProviderNamesIntegrated = 0;
+        public int ProviderNamesWithErrors = 0;
         public List<String> Errors = new List<string>();
     }
 
@@ -47,7 +48,15 @@ namespace NZOR.Data
                 if (pnRow.RowState == System.Data.DataRowState.Modified)
                 {
                     ProviderName.UpdateProviderName(cnn, pnRow);
-                    isr.ProviderNamesUpdated++;
+                    if (pnRow.LinkStatus == LinkStatus.DataFail.ToString() || pnRow.LinkStatus == LinkStatus.Multiple.ToString() || pnRow.LinkStatus == LinkStatus.MultipleParent.ToString() ||
+                        pnRow.LinkStatus == LinkStatus.ParentMissing.ToString() || pnRow.LinkStatus == LinkStatus.ParentNotIntegrated.ToString())
+                    {
+                        isr.ProviderNamesWithErrors++;
+                    }
+                    else
+                    {
+                        isr.ProviderNamesIntegrated++;
+                    }
                 }
 
                 done++;
