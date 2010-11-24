@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Data.SqlClient;
@@ -10,32 +9,37 @@ using NZOR.Integration;
 
 namespace NZORConsole
 {
-    class Program
+    public class Program
     {
         static System.Timers.Timer _t = new System.Timers.Timer();
-        static System.IO.StreamWriter _logFile = null;
-        
-        static void Main(string[] args)
+                
+        public static void Main(string[] args)
         {
-            if (args.Length != 2)
+            if (args.Length != 3)
             {
-                Console.WriteLine("Usage : NZORConsole.exe [action] [config file] : where [action] can be Integrate, [config file] is the NZOR Integration Rule Set config file.");                
+                Console.WriteLine("Usage : NZORConsole.exe [action] [config file] [data file] : where [action] can be Integrate, [config file] is the NZOR Integration Rules config file and [data file] is the data file to process.");                
             }
             else
             {
                 if (args[0].ToUpper() == "INTEGRATE")
                 {
-                    _t.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
-                    _t.Interval = 8000;
-                    _t.Start();
+                    try
+                    {
+                        _t.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
+                        _t.Interval = 8000;
+                        _t.Start();
 
+                        RunIntegration(args[1], args[2]);
 
-                    _logFile = System.IO.File.CreateText(@"C:\Development\NZOR\Dev\NZOR\NZORConsole\log.txt");
-                    IntegratorThread.LogFile = _logFile;
+                        //log
+                        System.IO.File.WriteAllLines("log.txt", IntegratorThread.Log);
 
-                    RunIntegration(args[1]);
-
-                    _logFile.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.IO.File.WriteAllLines("log.txt", IntegratorThread.Log);
+                        System.IO.File.AppendAllText("log.txt", DateTime.Now.ToString() + " : ERROR running integration : " + ex.Message + " : " + ex.StackTrace);
+                    }
                 }
             }
 
@@ -59,11 +63,8 @@ namespace NZORConsole
             return IntegrationProcessor2.StatusText; //non-db
         }
 
-        static void RunIntegration(string configFilePath)
+        static void RunIntegration(string configFilePath, string dataFilePath)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(configFilePath);
-
             // ----- DB version -----
             //IntegrationProcessor.MaxThreads = 100; //try one name at a time
             //NZOR.Integration.IntegrationProcessor.RunIntegration(doc);
@@ -77,15 +78,14 @@ namespace NZORConsole
 
 
             // ----- non db version -----
-            string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
-            SqlConnection cnn = new SqlConnection(cnnStr);
+            //string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
+            //SqlConnection cnn = new SqlConnection(cnnStr);
 
-            cnn.Open();
-            DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
-            cnn.Close();
-
-            data.AcceptChanges();
-            IntegrationProcessor2.RunIntegration(doc, data);
+            //cnn.Open();
+            //DsIntegrationName data = ProviderName.GetAllDataForIntegration(cnn);
+            //cnn.Close();
+            
+            IntegrationProcessor2.RunIntegration(configFilePath, dataFilePath);
 
             while (Progress() != 100)
             {
@@ -93,10 +93,10 @@ namespace NZORConsole
             }
 
             //save results to DB
-            cnn.Open();
-            NZOR.Data.Integration.SaveIntegrationData(cnn, data);
-            cnn.Close();
-
+            //cnn.Open();
+            //NZOR.Data.Integration.SaveIntegrationData(cnn, data);
+            //cnn.Close();
+            
             // ----- end of non DB version  -----
         }
 

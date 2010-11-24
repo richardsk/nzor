@@ -51,7 +51,7 @@ namespace NZOR.Integration
         public delegate void ProcessComplete(IntegratorThread it, IntegrationData intData, Data.MatchResult result, bool threadFinished);
         public ProcessComplete ProcessCompleteCallback;
 
-        public static System.IO.TextWriter LogFile = null;
+        public static List<String> Log = new List<string>();
 
         public IntegratorThread()
         {
@@ -155,13 +155,12 @@ namespace NZOR.Integration
                             if (names.Count() > 0)
                             {
                                 provName = (DsIntegrationName.ProviderNameRow)names[0];
+                                provName.IntegrationBatchID = data.IntegrationBatchID; //processed
                             }
                         }
 
                         if (provName != null)
                         {
-                            provName.IntegrationBatchID = data.IntegrationBatchID; //processed
-
                             Data.MatchResult res = MatchProcessor.DoMatch(provName, data.Config.Routines, false, null);
                             
                             if (res.Matches.Count == 0)
@@ -180,20 +179,23 @@ namespace NZOR.Integration
                                         provName["ParentConsensusNameID"] = DBNull.Value;
                                     }
 
-                                    if (LogFile != null) LogFile.WriteLine("ERROR : Integration failed for name '" + provName.NameID.ToString() + "', " + provName.FullName + ".  Not enough parent taxon information.");
+                                    Log.Add(DateTime.Now.ToString() + ": ERROR : Integration failed for name '" + provName.NameID.ToString() + "', " + provName.FullName + ".  Not enough parent taxon information.");
                                 }
                                 else
                                 {
                                     res.Status = LinkStatus.Inserted;
-
+                                    
                                     Guid newId = Guid.NewGuid();
                                     //basionym
-                                    object basID = DBNull.Value;
-                                    DataRow[] bas = MatchData.DataForIntegration.ProviderName.Select("NameID = '" + provName.BasionymID.ToString() + "'");
-                                    if (bas.Length > 0) basID = bas[0]["ConsensusNameID"];
-
                                     lock (MatchData.DataForIntegration)
                                     {
+                                        object basID = DBNull.Value;
+                                        if (!provName.IsBasionymIDNull())
+                                        {
+                                            DataRow[] bas = MatchData.DataForIntegration.ProviderName.Select("NameID = '" + provName.BasionymID.ToString() + "'");
+                                            if (bas.Length > 0) basID = bas[0]["ConsensusNameID"];
+                                        }
+
                                         MatchData.DataForIntegration.ConsensusName.Rows.Add(newId, provName.FullName, provName.NameClassID, provName.NameClass, provName.TaxonRankID, provName.TaxonRank,
                                             provName.TaxonRankSort, provName["Authors"], provName.GoverningCode, provName.Canonical, provName["YearOnPublication"], basID, provName["Basionym"], provName["BasionymAuthors"],
                                             provName["CombinationAuthors"], provName["MicroReference"], provName["PublishedIn"], provName.ParentConsensusNameID, provName["ParentConsensusNameID"].ToString(), provName.Parent,
@@ -204,10 +206,10 @@ namespace NZOR.Integration
                                         provName.LinkStatus = LinkStatus.Inserted.ToString();
 
                                         NZOR.Data.ConsensusName.RefreshConsensusData(newId, MatchData.DataForIntegration);
-                                    }
 
-                                    res.MatchedName = provName.FullName;
-                                    res.MatchedId = newId.ToString();
+                                        res.MatchedName = provName.FullName;
+                                        res.MatchedId = newId.ToString();
+                                    }
 
                                 }
                             }

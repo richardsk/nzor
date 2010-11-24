@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
+using System.Data;
 
 namespace NZOR.Data
 {
@@ -17,6 +19,34 @@ namespace NZOR.Data
     public class Integration
     {
         public static int Progress = 0;
+
+        /// <summary>
+        /// Dataset file in binary format
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static DsIntegrationName LoadDataFile(string filePath)
+        {
+            DsIntegrationName data = new DsIntegrationName();
+
+            data.RemotingFormat = SerializationFormat.Binary;
+
+            IFormatter fmt = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            System.IO.Stream str = new System.IO.FileStream(filePath, System.IO.FileMode.Open);
+            data = (DsIntegrationName)fmt.Deserialize(str);
+            str.Close();
+
+            return data;
+        }
+
+        public static void SaveDataFile(DsIntegrationName data, string filePath)
+        {
+            data.RemotingFormat = SerializationFormat.Binary;
+            IFormatter fmt = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            System.IO.Stream str = new System.IO.FileStream(filePath, System.IO.FileMode.Create);
+            fmt.Serialize(str, data);
+            str.Close();
+        }
 
         public static IntegrationSaveResult SaveIntegrationData(SqlConnection cnn, DsIntegrationName data)
         {
