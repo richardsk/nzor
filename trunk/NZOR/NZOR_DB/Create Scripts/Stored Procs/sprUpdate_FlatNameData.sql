@@ -16,7 +16,7 @@ AS
 	-- iterate through name table
 	DECLARE names_cursor   CURSOR FORWARD_ONLY FOR
 	SELECT  c.NameID 
-	FROM cons.Name c
+	FROM consensus.Name c
 	inner join dbo.taxonrank tr on tr.TaxonRankID = c.TaxonRankID
 	ORDER BY tr.SortOrder
 

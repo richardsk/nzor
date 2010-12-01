@@ -9,7 +9,7 @@ CREATE Procedure sprUpdate_ProvFlatNameData
 AS
 
 	-- clear table
-	truncate table prov.FlatName
+	truncate table provider.FlatName
 
 	DECLARE @NameId uniqueidentifier
 
@@ -27,7 +27,7 @@ AS
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
  
-		INSERT prov.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID)
+		INSERT provider.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID)
 		EXEC sprSelect_ProvFlatNameToRoot @NameId
 
 		-- This is executed as long as the previous fetch succeeds.

@@ -14,7 +14,7 @@ AS
 	DECLARE names_cursor   CURSOR FORWARD_ONLY FOR
 	SELECT  pn.NameID FROM prov.Name pn
 	inner join dbo.taxonrank tr on tr.taxonrankid = pn.taxonrankid
-	left join prov.FlatName fn on fn.seednameid = pn.nameid	
+	left join provider.FlatName fn on fn.seednameid = pn.nameid	
 	where fn.nameid is null
 	ORDER BY tr.sortorder
 
@@ -26,7 +26,7 @@ AS
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
  
-		INSERT prov.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID)
+		INSERT provider.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID)
 		EXEC sprSelect_ProvFlatNameToRoot @NameId
 
 		-- This is executed as long as the previous fetch succeeds.

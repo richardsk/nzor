@@ -6,18 +6,18 @@ GO
 
 CREATE View vwConsensusConcepts AS
 
-SELECT     cons.Name.NameID, cons.Name.FullName, cons.Name.NameClassID, cons.Name.GoverningCode, 
-                      cons.Name.AddedDate, cons.Concept.ConceptID, cons.Concept.AccordingToReferenceID, cons.Concept.Orthography, 
-                      cons.ConceptRelationship.ConceptRelationshipID, cons.ConceptRelationship.FromConceptID, cons.ConceptRelationship.ToConceptID, 
-                      cons.ConceptRelationship.Sequence, ConceptTo.ConceptID AS ConceptToID, ConceptTo.NameID AS NameToID, 
-                      ConceptTo.AccordingToReferenceID AS ReferenceToID, NameTo.FullName AS NameToFull, cons.Name.TaxonRankID, 
+SELECT     consensus.Name.NameID, consensus.Name.FullName, consensus.Name.NameClassID, consensus.Name.GoverningCode, 
+                      consensus.Name.AddedDate, consensus.Concept.ConceptID, consensus.Concept.AccordingToReferenceID, consensus.Concept.Orthography, 
+                      consensus.ConceptRelationship.ConceptRelationshipID, consensus.ConceptRelationship.FromConceptID, consensus.ConceptRelationship.ToConceptID, 
+                      consensus.ConceptRelationship.Sequence, ConceptTo.ConceptID AS ConceptToID, ConceptTo.NameID AS NameToID, 
+                      ConceptTo.AccordingToReferenceID AS ReferenceToID, NameTo.FullName AS NameToFull, consensus.Name.TaxonRankID, 
                       NameTo.TaxonRankID AS TaxonRankToID, dbo.ConceptRelationshipType.Relationship, dbo.ConceptRelationshipType.ConceptRelationshipTypeID
-FROM         cons.Concept INNER JOIN
-                      cons.ConceptRelationship ON cons.Concept.ConceptID = cons.ConceptRelationship.FromConceptID INNER JOIN
-                      cons.Name ON cons.Concept.NameID = cons.Name.NameID INNER JOIN
-                      cons.Concept AS ConceptTo ON cons.ConceptRelationship.ToConceptID = ConceptTo.ConceptID INNER JOIN
-                      cons.Name AS NameTo ON ConceptTo.NameID = NameTo.NameID INNER JOIN
-                      dbo.ConceptRelationshipType ON cons.ConceptRelationship.ConceptRelationshipTypeID = dbo.ConceptRelationshipType.ConceptRelationshipTypeID
+FROM         consensus.Concept INNER JOIN
+                      consensus.ConceptRelationship ON consensus.Concept.ConceptID = consensus.ConceptRelationship.FromConceptID INNER JOIN
+                      consensus.Name ON consensus.Concept.NameID = consensus.Name.NameID INNER JOIN
+                      consensus.Concept AS ConceptTo ON consensus.ConceptRelationship.ToConceptID = ConceptTo.ConceptID INNER JOIN
+                      consensus.Name AS NameTo ON ConceptTo.NameID = NameTo.NameID INNER JOIN
+                      dbo.ConceptRelationshipType ON consensus.ConceptRelationship.ConceptRelationshipTypeID = dbo.ConceptRelationshipType.ConceptRelationshipTypeID
 
 GO
 

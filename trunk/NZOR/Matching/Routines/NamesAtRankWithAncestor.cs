@@ -51,13 +51,13 @@ namespace NZOR.Matching
 //                            where TaxonRankID = '" + rankId + "' and NameId = '" + row.NameID.ToString() + "';" +
 //                           @"                            
 //                            select n.* 
-//                            from cons.Name n 
+//                            from consensus.Name n 
 //                            inner join @ids i on i.id = n.NameID;
 //                            
 //                            select np.*, ncp.PropertyName 
-//                            from cons.NameProperty np 
+//                            from consensus.NameProperty np 
 //                            inner join @ids i on i.id = np.NameID 
-//                            inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID;
+//                            inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID;
 //                                            
 //	                        select c.* 
 //	                        from vwConsensusConcepts c 

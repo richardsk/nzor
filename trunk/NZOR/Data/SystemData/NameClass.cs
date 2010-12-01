@@ -8,7 +8,7 @@ using System.Data;
 
 namespace NZOR.Data
 {
-    public class NameClassProperty
+    public class NamePropertyType
     {
         public static string YearOnPublication = "YearOnPublication";
         public static string Basionym = "Basionym";
@@ -31,7 +31,7 @@ namespace NZOR.Data
         public int MaxOccurrences = -1;
         public String GoverningCode = "";
 
-        public NameClassProperty(Guid id, String name, String propType, int minOcc, int maxOcc, String govCode)
+        public NamePropertyType(Guid id, String name, String propType, int minOcc, int maxOcc, String govCode)
         {
             this.ID = id;
             this.Name = name;
@@ -47,11 +47,11 @@ namespace NZOR.Data
     #region "Static Mambers"
         public static Dictionary<Guid, NameClass> NameClasses = null;
        
-        public static NameClassProperty GetPropertyOfClassType(SqlConnection cnn, Guid nameClassID, String propertyName)
+        public static NamePropertyType GetPropertyOfClassType(SqlConnection cnn, Guid nameClassID, String propertyName)
         {
             if (NameClasses == null) Load(cnn);
 
-            NameClassProperty ncp = null;
+            NamePropertyType ncp = null;
 
             foreach (NameClass nc in NameClasses.Values)
             {
@@ -71,7 +71,7 @@ namespace NZOR.Data
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "select * from dbo.NameClass; select * from dbo.NameClassProperty";
+                cmd.CommandText = "select * from dbo.NameClass; select * from dbo.NamePropertyType";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -85,7 +85,7 @@ namespace NZOR.Data
                                 
                 foreach (DataRow ncpr in ds.Tables[1].Rows)
                 {
-                    NameClassProperty ncp = new NameClassProperty((Guid)ncpr["NameClassPropertyID"], ncpr["Name"].ToString(), ncpr["Type"].ToString(),
+                    NamePropertyType ncp = new NamePropertyType((Guid)ncpr["NamePropertyTypeID"], ncpr["Name"].ToString(), ncpr["Type"].ToString(),
                         (int)(ncpr.IsNull("MinOccurrences") ? -1 : (int)ncpr["MinOccurrences"]),
                         (int)(ncpr.IsNull("MaxOccurrences") ? -1 : (int)ncpr["MaxOccurrences"]),
                         ncpr["GoverningCode"].ToString());
@@ -100,7 +100,7 @@ namespace NZOR.Data
         public Guid ID = Guid.Empty;
         public String Name = "";
         public String Description = "";
-        public Dictionary<Guid, NameClassProperty> Properties = new Dictionary<Guid,NameClassProperty>();
+        public Dictionary<Guid, NamePropertyType> Properties = new Dictionary<Guid,NamePropertyType>();
 
         public NameClass(Guid id, String name, String desc)
         {
@@ -109,11 +109,11 @@ namespace NZOR.Data
             this.Description = desc;
         }
 
-        public NameClassProperty GetProperty(String name)
+        public NamePropertyType GetProperty(String name)
         {
-            NameClassProperty ncp = null;
+            NamePropertyType ncp = null;
 
-            foreach (NameClassProperty n in Properties.Values)
+            foreach (NamePropertyType n in Properties.Values)
             {
                 if (n.Name == name)
                 {

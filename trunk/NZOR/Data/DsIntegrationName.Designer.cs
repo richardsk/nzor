@@ -344,7 +344,7 @@ namespace NZOR.Data {
             
             private global::System.Data.DataColumn columnGoverningCode;
             
-            private global::System.Data.DataColumn columnSubDataSetID;
+            private global::System.Data.DataColumn columnDataSourceID;
             
             private global::System.Data.DataColumn columnCanonical;
             
@@ -529,9 +529,9 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SubDataSetIDColumn {
+            public global::System.Data.DataColumn DataSourceIDColumn {
                 get {
-                    return this.columnSubDataSetID;
+                    return this.columnDataSourceID;
                 }
             }
             
@@ -700,7 +700,7 @@ namespace NZOR.Data {
                         int MatchRuleSetID, 
                         string Authors, 
                         string GoverningCode, 
-                        System.Guid SubDataSetID, 
+                        System.Guid DataSourceID, 
                         string Canonical, 
                         string YearOnPublication, 
                         System.Guid BasionymID, 
@@ -732,7 +732,7 @@ namespace NZOR.Data {
                         MatchRuleSetID,
                         Authors,
                         GoverningCode,
-                        SubDataSetID,
+                        DataSourceID,
                         Canonical,
                         YearOnPublication,
                         BasionymID,
@@ -784,7 +784,7 @@ namespace NZOR.Data {
                 this.columnMatchRuleSetID = base.Columns["MatchRuleSetID"];
                 this.columnAuthors = base.Columns["Authors"];
                 this.columnGoverningCode = base.Columns["GoverningCode"];
-                this.columnSubDataSetID = base.Columns["SubDataSetID"];
+                this.columnDataSourceID = base.Columns["DataSourceID"];
                 this.columnCanonical = base.Columns["Canonical"];
                 this.columnYearOnPublication = base.Columns["YearOnPublication"];
                 this.columnBasionymID = base.Columns["BasionymID"];
@@ -834,8 +834,8 @@ namespace NZOR.Data {
                 base.Columns.Add(this.columnAuthors);
                 this.columnGoverningCode = new global::System.Data.DataColumn("GoverningCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGoverningCode);
-                this.columnSubDataSetID = new global::System.Data.DataColumn("SubDataSetID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSubDataSetID);
+                this.columnDataSourceID = new global::System.Data.DataColumn("DataSourceID", typeof(global::System.Guid), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataSourceID);
                 this.columnCanonical = new global::System.Data.DataColumn("Canonical", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCanonical);
                 this.columnYearOnPublication = new global::System.Data.DataColumn("YearOnPublication", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1836,17 +1836,17 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.Guid SubDataSetID {
+            public System.Guid DataSourceID {
                 get {
                     try {
-                        return ((global::System.Guid)(this[this.tableProviderName.SubDataSetIDColumn]));
+                        return ((global::System.Guid)(this[this.tableProviderName.DataSourceIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SubDataSetID\' in table \'ProviderName\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataSourceID\' in table \'ProviderName\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableProviderName.SubDataSetIDColumn] = value;
+                    this[this.tableProviderName.DataSourceIDColumn] = value;
                 }
             }
             
@@ -2257,14 +2257,14 @@ namespace NZOR.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSubDataSetIDNull() {
-                return this.IsNull(this.tableProviderName.SubDataSetIDColumn);
+            public bool IsDataSourceIDNull() {
+                return this.IsNull(this.tableProviderName.DataSourceIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSubDataSetIDNull() {
-                this[this.tableProviderName.SubDataSetIDColumn] = global::System.Convert.DBNull;
+            public void SetDataSourceIDNull() {
+                this[this.tableProviderName.DataSourceIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

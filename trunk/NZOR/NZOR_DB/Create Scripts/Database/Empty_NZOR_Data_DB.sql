@@ -1,15 +1,15 @@
 ﻿use NZOR_Data_Test
  
   --cons
-delete cons.ConceptRelationship
-delete cons.Concept
+delete consensus.ConceptRelationship
+delete consensus.Concept
 delete cons.FlatName
-delete cons.NameProperty
-delete cons.TaxonPropertyValue
-delete cons.TaxonProperty
-delete cons.ReferenceField
-delete cons.Reference
-delete cons.Name
+delete consensus.NameProperty
+--delete consensus.TaxonPropertyValue
+--delete consensus.TaxonProperty
+delete consensus.ReferenceField
+delete consensus.Reference
+delete consensus.Name
   
   
   --prov
@@ -27,7 +27,7 @@ delete provider.Name
 delete dbo.ConceptRelationshipType
 delete dbo.GeoRegion
 delete dbo.GeoRegionSchema
-delete dbo.NameClassProperty
+delete dbo.NamePropertyType
 delete dbo.NameClass
 delete dbo.NamePropertyLookup
 delete dbo.SubDataSet

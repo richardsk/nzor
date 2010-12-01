@@ -22,7 +22,7 @@ go
 
 
 insert into provider.Name(
-	NameID, LinkStatus, ProviderRecordId, SubDataSetID, FullName, 
+	NameID, LinkStatus, ProviderRecordId, DataSourceID, FullName, 
 	GoverningCode, ProviderModifiedDate, AddedDate, NameClassId, TaxonRankID)
 select NameId, 'Unmatched', NameGUID, '38708533-E064-45A4-AB00-CDD76075C2B6', --test provider
 	FullName, GoverningCode,
@@ -35,11 +35,11 @@ go
 
 
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId,
+	NamePropertyId, NameID, NamePropertyTypeID,
 	Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty where Name = 'Year'),
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType where Name = 'Year'),
 	pna.NameYearOfPublication 
 from #Name na 
 	inner join proserver01.Plantnames.dbo.tblName pna on na.NameGuid = pna.NameGuid
@@ -49,11 +49,11 @@ where pna.NameYearOfPublication is not null
 go
 
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId,
+	NamePropertyId, NameID, NamePropertyTypeID,
 	Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty where Name = 'Authors'),
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType where Name = 'Authors'),
 	nukuna.NameAuthors 
 from proserver01.Plantnames.dbo.tblName nukuna inner join
 	#Name na on nukuna.NameGuid = na.NameGuid
@@ -63,11 +63,11 @@ where nukuna.NameAuthors is not null
 go
 
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId,
+	NamePropertyId, NameID, NamePropertyTypeID,
 	Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType
 		where Name = 'MicroReference'),
 	nukuna.NamePage 
 from proserver01.Plantnames.dbo.tblName nukuna inner join
@@ -78,11 +78,11 @@ where nukuna.NamePage is not null
 go
 		
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId,
+	NamePropertyId, NameID, NamePropertyTypeID,
 	Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType
 		where Name = 'Rank'),
 	tr.TaxonRankName
 from proserver01.Plantnames.dbo.tblName nukuna inner join
@@ -93,10 +93,10 @@ from proserver01.Plantnames.dbo.tblName nukuna inner join
 go
 		
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId, Value)
+	NamePropertyId, NameID, NamePropertyTypeID, Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType
 		where Name = 'Canonical'),
 	nukuna.NameCanonical 
 from proserver01.Plantnames.dbo.tblName nukuna inner join
@@ -105,10 +105,10 @@ from proserver01.Plantnames.dbo.tblName nukuna inner join
 go	
 
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId, Value, ProviderRelatedID)
+	NamePropertyId, NameID, NamePropertyTypeID, Value, ProviderRelatedID)
 select newid(), 
 	na.nameid, 
-	(Select NameClassPropertyId from dbo.NameClassProperty
+	(Select NamePropertyTypeID from dbo.NamePropertyType
 		where Name = 'PublishedIn'),
 	ref.ReferenceGenCitation,
 	nukuna.NameReferenceFk 
@@ -121,12 +121,12 @@ go
 
  
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId,
+	NamePropertyId, NameID, NamePropertyTypeID,
 	Value, ProviderRelatedID)
 select newid(), 
 	na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty where Name = 'Basionym'),
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType where Name = 'Basionym'),
 	nukub.NameFull,
 	nukuna.NameBasionymFk
 from proserver01.Plantnames.dbo.tblName nukuna inner join
@@ -138,10 +138,10 @@ go
 
 
 insert into provider.NameProperty(
-	NamePropertyId, NameID, NameClassPropertyId, Value)
+	NamePropertyId, NameID, NamePropertyTypeID, Value)
 select newid(), na.nameid, 
-	(Select NameClassPropertyId from
-		dbo.NameClassProperty
+	(Select NamePropertyTypeID from
+		dbo.NamePropertyType
 		where Name = 'Orthography'),
 	nukuna.NameOrthographyVariant 
 from proserver01.Plantnames.dbo.tblName nukuna inner join
@@ -164,7 +164,7 @@ set pn.TaxonRankID = tr.TaxonRankID
 from provider.Name pn 
 inner join provider.NameProperty np on np.NameID = pn.NameID
 inner join dbo.TaxonRank tr on tr.Name = np.Value
-where np.NameClassPropertyID = 'A1D57520-3D64-4F7D-97C8-69B449AFA280' and pn.TaxonRankID is null
+where np.NamePropertyTypeID = 'A1D57520-3D64-4F7D-97C8-69B449AFA280' and pn.TaxonRankID is null
 
 go
 
@@ -185,7 +185,7 @@ select pna.NameId as NameId,
 	Bib.BibliographyNameFk as ProviderNameId,
 	bib.BibliographyExplicit,
 	bib.BibliographyNotes,
-	(select SubDataSetID from
+	(select DataSourceID from
 		SubDataSet where Code='TEST_DS') as ProviderId
 	into #Concept
 	from proserver01.PlantNames.dbo.tblBibliography bib
@@ -222,7 +222,7 @@ go
 
 insert into provider.Concept(ConceptID, LinkStatus, NameID,
 	Orthography, ProviderRecordID, ProviderModifiedDate, AddedDate,
-	ProviderNameId, ProviderReferenceId, SubDataSetID)
+	ProviderNameId, ProviderReferenceId, DataSourceID)
 select ConceptId, 'Unmatched', NameID, Orthography, ProviderRecordId, ProviderModifiedDate,
 		AddedDate, providerNameId, ProviderReferenceId, ProviderId
 	from #concept

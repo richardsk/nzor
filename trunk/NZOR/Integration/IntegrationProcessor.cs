@@ -164,8 +164,8 @@ namespace NZOR.Integration
 
                 /*cmd.CommandText = "select top 1 n.NameId, n.FullName,  " + 
                                     "from provider.Name n " +
-                                    "inner join prov.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
-                                    "left join (select sfn.NameID, sfn.ParentNameID from prov.FlatName sfn inner join provider.Name sn on sn.NameID = sfn.SeedNameID and sn.LinkStatus = 'Integrating') sn on sn.ParentNameID = fn.ParentNameID and sn.NameID <> n.NameID " +
+                                    "inner join provider.Flatname fn on fn.seednameid = n.NameID and fn.depth = 0 " +
+                                    "left join (select sfn.NameID, sfn.ParentNameID from provider.FlatName sfn inner join provider.Name sn on sn.NameID = sfn.SeedNameID and sn.LinkStatus = 'Integrating') sn on sn.ParentNameID = fn.ParentNameID and sn.NameID <> n.NameID " +
                                     "where n.ConsensusNameID is null and (n.LinkStatus is null or n.LinkStatus <> 'Integrating') and sn.ParentNameID is null " +
                                     "order by fn.SortOrder";*/
 

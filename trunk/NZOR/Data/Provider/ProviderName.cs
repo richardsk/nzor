@@ -40,13 +40,13 @@ namespace NZOR.Data
         {
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "delete prov.FlatName where SeedNameID = '" + nameID.ToString() + "'";
+                cmd.CommandText = "delete provider.FlatName where SeedNameID = '" + nameID.ToString() + "'";
                 cmd.ExecuteNonQuery();
             }
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "INSERT prov.FlatName(ParentNameID, NameID, Canonical, TaxonRankID, RankName, SortOrder, Depth, SeedNameID) " +
+                cmd.CommandText = "INSERT provider.FlatName(ParentNameID, NameID, CanonicalName, TaxonRankID, RankName, SortOrder, Depth, SeedNameID) " +
                     "EXEC sprSelect_ProvFlatNameToRoot '" + nameID.ToString() + "'";
                 cmd.ExecuteNonQuery();
             }
@@ -66,7 +66,7 @@ namespace NZOR.Data
                         	
 	                        select * 
 	                        from provider.NameProperty np
-	                        inner join NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+	                        inner join NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
 	                        where NameID = '" + provNameId.ToString() + @"'
                         	
 	                        select * 
@@ -105,7 +105,7 @@ namespace NZOR.Data
                     tr.MatchRuleSetID,
                     ap.Value as Authors,
 	                pn.GoverningCode,	
-	                pn.SubDataSetID,
+	                pn.DataSourceID,
 	                cp.Value as Canonical, --canonical
 	                yp.Value as YearOnPublication, --year on pub
 	                bp.RelatedID as BasionymID, --basionym
@@ -123,14 +123,14 @@ namespace NZOR.Data
                 from provider.Name pn
                 inner join dbo.TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
                 inner join dbo.NameClass nc on nc.NameClassID = pn.NameClassID
-                inner join provider.NameProperty cp on cp.NameID = pn.NameID and cp.NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
-                left join provider.NameProperty yp on yp.NameID = pn.NameID and yp.NameClassPropertyID = '4EC79307-E41A-4540-8647-03EF48795435'
-                left join provider.NameProperty bp on bp.NameID = pn.NameID and bp.NameClassPropertyID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
-                left join provider.NameProperty ap on ap.NameID = pn.NameID and ap.NameClassPropertyID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
-                left join provider.NameProperty bap on bap.NameID = pn.NameID and bap.NameClassPropertyID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
-                left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NameClassPropertyID = '6196CDC4-BACB-4172-8186-14BA494621A7'
-                left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NameClassPropertyID = '4A344D40-7448-49D6-956B-4392B33A749F'
-                left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NameClassPropertyID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
+                inner join provider.NameProperty cp on cp.NameID = pn.NameID and cp.NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
+                left join provider.NameProperty yp on yp.NameID = pn.NameID and yp.NamePropertyTypeID = '4EC79307-E41A-4540-8647-03EF48795435'
+                left join provider.NameProperty bp on bp.NameID = pn.NameID and bp.NamePropertyTypeID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
+                left join provider.NameProperty ap on ap.NameID = pn.NameID and ap.NamePropertyTypeID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
+                left join provider.NameProperty bap on bap.NameID = pn.NameID and bap.NamePropertyTypeID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
+                left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NamePropertyTypeID = '6196CDC4-BACB-4172-8186-14BA494621A7'
+                left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NamePropertyTypeID = '4A344D40-7448-49D6-956B-4392B33A749F'
+                left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NamePropertyTypeID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
                 left join (select NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' and InUse = 1) pc 
 	                on pc.NameID = pn.NameID
                 left join (select NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' and InUse = 1) prc
@@ -160,17 +160,17 @@ namespace NZOR.Data
                 (select top 1 pc.NameToFull) as Parent,
                 (select top 1 prc.NameToID) as PreferredNameID, --pref name
                 (select top 1 prc.NameToFull) as PreferredName
-            from cons.Name cn                
+            from consensus.Name cn                
             left join dbo.TaxonRank tr on tr.TaxonRankID = cn.TaxonRankID
             left join dbo.NameClass nc on nc.NameClassID = cn.NameClassID
-            left join cons.NameProperty cp on cp.NameID = cn.NameID and cp.NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
-            left join cons.NameProperty yp on yp.NameID = cn.NameID and yp.NameClassPropertyID = '4EC79307-E41A-4540-8647-03EF48795435'
-            left join cons.NameProperty bp on bp.NameID = cn.NameID and bp.NameClassPropertyID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
-            left join cons.NameProperty ap on ap.NameID = cn.NameID and ap.NameClassPropertyID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
-            left join cons.NameProperty bap on bap.NameID = cn.NameID and bap.NameClassPropertyID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
-            left join cons.NameProperty cap on cap.NameID = cn.NameID and cap.NameClassPropertyID = '6196CDC4-BACB-4172-8186-14BA494621A7'
-            left join cons.NameProperty mrp on mrp.NameID = cn.NameID and mrp.NameClassPropertyID = '4A344D40-7448-49D6-956B-4392B33A749F'
-            left join cons.NameProperty pip on pip.NameID = cn.NameID and pip.NameClassPropertyID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
+            left join consensus.NameProperty cp on cp.NameID = cn.NameID and cp.NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
+            left join consensus.NameProperty yp on yp.NameID = cn.NameID and yp.NamePropertyTypeID = '4EC79307-E41A-4540-8647-03EF48795435'
+            left join consensus.NameProperty bp on bp.NameID = cn.NameID and bp.NamePropertyTypeID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
+            left join consensus.NameProperty ap on ap.NameID = cn.NameID and ap.NamePropertyTypeID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
+            left join consensus.NameProperty bap on bap.NameID = cn.NameID and bap.NamePropertyTypeID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
+            left join consensus.NameProperty cap on cap.NameID = cn.NameID and cap.NamePropertyTypeID = '6196CDC4-BACB-4172-8186-14BA494621A7'
+            left join consensus.NameProperty mrp on mrp.NameID = cn.NameID and mrp.NamePropertyTypeID = '4A344D40-7448-49D6-956B-4392B33A749F'
+            left join consensus.NameProperty pip on pip.NameID = cn.NameID and pip.NamePropertyTypeID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
             left join (select NameID, NameToID, NameToFull from vwconsensusConcepts where ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155') pc 
                 on pc.NameID = cn.NameID
             left join (select NameID, NameToID, NameToFull from vwconsensusConcepts where ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' ) prc
@@ -226,7 +226,7 @@ namespace NZOR.Data
 //                        	
 //	                        select * 
 //	                        from provider.NameProperty np
-//	                        inner join NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+//	                        inner join NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
 //	                        where NameID = '" + provNameId.ToString() + @"'
 //                        	
 //	                        select * 
@@ -255,7 +255,7 @@ namespace NZOR.Data
                     tr.MatchRuleSetID,
                     ap.Value as Authors,
 	                pn.GoverningCode,	
-	                pn.SubDataSetID,
+	                pn.DataSourceID,
 	                cp.Value as Canonical, --canonical
 	                yp.Value as YearOnPublication, --year on pub
 	                bp.RelatedID as BasionymID, --basionym
@@ -273,14 +273,14 @@ namespace NZOR.Data
                 from provider.Name pn
                 inner join dbo.TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
                 inner join dbo.NameClass nc on nc.NameClassID = pn.NameClassID
-                inner join provider.NameProperty cp on cp.NameID = pn.NameID and cp.NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
-                left join provider.NameProperty yp on yp.NameID = pn.NameID and yp.NameClassPropertyID = '4EC79307-E41A-4540-8647-03EF48795435'
-                left join provider.NameProperty bp on bp.NameID = pn.NameID and bp.NameClassPropertyID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
-                left join provider.NameProperty ap on ap.NameID = pn.NameID and ap.NameClassPropertyID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
-                left join provider.NameProperty bap on bap.NameID = pn.NameID and bap.NameClassPropertyID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
-                left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NameClassPropertyID = '6196CDC4-BACB-4172-8186-14BA494621A7'
-                left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NameClassPropertyID = '4A344D40-7448-49D6-956B-4392B33A749F'
-                left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NameClassPropertyID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
+                inner join provider.NameProperty cp on cp.NameID = pn.NameID and cp.NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
+                left join provider.NameProperty yp on yp.NameID = pn.NameID and yp.NamePropertyTypeID = '4EC79307-E41A-4540-8647-03EF48795435'
+                left join provider.NameProperty bp on bp.NameID = pn.NameID and bp.NamePropertyTypeID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
+                left join provider.NameProperty ap on ap.NameID = pn.NameID and ap.NamePropertyTypeID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
+                left join provider.NameProperty bap on bap.NameID = pn.NameID and bap.NamePropertyTypeID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
+                left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NamePropertyTypeID = '6196CDC4-BACB-4172-8186-14BA494621A7'
+                left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NamePropertyTypeID = '4A344D40-7448-49D6-956B-4392B33A749F'
+                left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NamePropertyTypeID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
                 left join (select top 1 NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where NameID = '" + provNameId.ToString() + "' " +
                     @" and ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' and InUse = 1) pc 
 	                on pc.NameID = pn.NameID
@@ -377,8 +377,8 @@ namespace NZOR.Data
         //        {
         //            using (SqlCommand cmd = cnn.CreateCommand())
         //            {
-        //                cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-        //                    + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
+        //                cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
+        //                    + " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID "
         //                    + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
         //                    + tr.TaxonRankId.ToString() + "' and np.Value = '" + pnCanonical + "' and ncp.name = '"
         //                    + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
@@ -405,8 +405,8 @@ namespace NZOR.Data
 
         //                using (SqlCommand cmd = cnn.CreateCommand())
         //                {
-        //                    cmd.CommandText = "select n.NameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-        //                        + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid where TaxonRankID = '"
+        //                    cmd.CommandText = "select n.NameID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
+        //                        + " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID where TaxonRankID = '"
         //                        + NZOR.Data.SystemData.TaxonRankData.GenusRank(cnn).TaxonRankId.ToString() + "' and np.Value = '" + parent + "' and ncp.name = '"
         //                        + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
 
@@ -436,7 +436,7 @@ namespace NZOR.Data
         //            cRow["NameClassID"] = pn.Tables[0].Rows[0]["NameClassID"];
         //            cRow["LinkStatus"] = pn.Tables[0].Rows[0]["LinkStatus"];
         //            cRow["GoverningCode"] = pn.Tables[0].Rows[0]["GoverningCode"];
-        //            cRow["SubDataSetID"] = pn.Tables[0].Rows[0]["SubDataSetID"];
+        //            cRow["DataSourceID"] = pn.Tables[0].Rows[0]["DataSourceID"];
         //            cRow["ProviderRecordID"] = pn.Tables[0].Rows[0]["ProviderRecordID"];
         //            cRow["ProviderModifiedDate"] = pn.Tables[0].Rows[0]["ProviderModifiedDate"];
         //            cRow["AddedDate"] = DateTime.Now;
@@ -477,8 +477,8 @@ namespace NZOR.Data
                 {
                     using (SqlCommand cmd = cnn.CreateCommand())
                     {
-                        cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-                            + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid "
+                        cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
+                            + " inner join dbo.namepropertytype ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID "
                             + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
                             + pn.TaxonRankID.ToString() + "' and np.Value = '" + pn.Canonical + "' and ncp.name = 'Canonical' and n.GoverningCode = '" 
                             + pn.GoverningCode + "'";
@@ -505,8 +505,8 @@ namespace NZOR.Data
 
                         using (SqlCommand cmd = cnn.CreateCommand())
                         {
-                            cmd.CommandText = "select n.NameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid where TaxonRankID = '"
+                            cmd.CommandText = "select n.NameID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
+                                + " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID where TaxonRankID = '"
                                 + NZOR.Data.SystemData.TaxonRankData.GenusRank(cnn).TaxonRankId.ToString() + "' and np.Value = '" + parFullName + "' and ncp.name = '"
                                 + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + pn.GoverningCode + "'";
 

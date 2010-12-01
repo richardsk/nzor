@@ -7,7 +7,7 @@ GO
 CREATE VIEW [dbo].[vwProviderConcepts]
 AS
 SELECT     provider.Name.NameID, provider.Name.ConsensusNameID, provider.Name.FullName, provider.Name.NameClassID, provider.Name.LinkStatus, 
-                      provider.Name.GoverningCode, provider.Name.SubDataSetID, provider.Name.ProviderRecordID, provider.Name.ProviderModifiedDate, 
+                      provider.Name.GoverningCode, provider.Name.DataSourceID, provider.Name.ProviderRecordID, provider.Name.ProviderModifiedDate, 
                       provider.Name.AddedDate, provider.Concept.ConceptID, provider.Concept.AccordingToReferenceID, provider.Concept.Orthography, 
                       provider.ConceptRelationship.ConceptRelationshipID, provider.ConceptRelationship.FromConceptID, provider.ConceptRelationship.ToConceptID, 
                       provider.ConceptRelationship.ConceptRelationshipTypeID, dbo.ConceptRelationshipType.Relationship, provider.ConceptRelationship.Sequence, 

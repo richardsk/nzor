@@ -202,19 +202,22 @@ namespace NZOR.Integration
             {
                 foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
                 {
-                    if (nm.IsConsensusNameIDNull() &&  nm["IntegrationBatchID"].ToString() != _thisBatchID.ToString() &&
-                        nm.LinkStatus != Data.LinkStatus.Integrating.ToString() && 
-                        nm.LinkStatus != Data.LinkStatus.Discarded.ToString() && 
-                        nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
-                        nm.LinkStatus != Data.LinkStatus.Inserted.ToString())
+                    if (nm.IsConsensusNameIDNull() && nm["IntegrationBatchID"].ToString() != _thisBatchID.ToString())
                     {
-                        pnRow = nm;
+                        if (nm.IsLinkStatusNull() || (
+                            nm.LinkStatus != Data.LinkStatus.Integrating.ToString() &&
+                            nm.LinkStatus != Data.LinkStatus.Discarded.ToString() &&
+                            nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
+                            nm.LinkStatus != Data.LinkStatus.Inserted.ToString()))
+                        {
+                            pnRow = nm;
 
-                        //get the parent name information
-                        Data.ProviderName.GetParentData(pnRow, MatchData.DataForIntegration);
+                            //get the parent name information
+                            Data.ProviderName.GetParentData(pnRow, MatchData.DataForIntegration);
 
-                        pnRow.LinkStatus = "Integrating";
-                        break;
+                            pnRow.LinkStatus = "Integrating";
+                            break;
+                        }
                     }
                 }
             }
@@ -229,12 +232,15 @@ namespace NZOR.Integration
                 _namesToProcess = 0;
                 foreach (Data.DsIntegrationName.ProviderNameRow nm in MatchData.DataForIntegration.ProviderName)
                 {
-                    if (nm.IsConsensusNameIDNull() &&
-                        nm.LinkStatus != Data.LinkStatus.Discarded.ToString() &&
-                        nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
-                        nm.LinkStatus != Data.LinkStatus.Inserted.ToString())
+                    if (nm.IsConsensusNameIDNull())
                     {
-                        _namesToProcess++;
+                        if (nm.IsLinkStatusNull() ||
+                            (nm.LinkStatus != Data.LinkStatus.Discarded.ToString() &&
+                            nm.LinkStatus != Data.LinkStatus.Matched.ToString() &&
+                            nm.LinkStatus != Data.LinkStatus.Inserted.ToString()))
+                        {
+                            _namesToProcess++;
+                        }
                     }
                 }
             }

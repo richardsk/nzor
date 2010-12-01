@@ -56,8 +56,8 @@ namespace NZOR.Matching
 //                        cnn.Open();
 //                        using (SqlCommand cmd = cnn.CreateCommand())
 //                        {
-//                            cmd.CommandText = "select n.NameID from cons.Name n inner join cons.nameproperty np on np.nameid = n.nameid "
-//                                + " inner join dbo.nameclassproperty ncp on ncp.nameclasspropertyid = np.nameclasspropertyid where TaxonRankID = '"
+//                            cmd.CommandText = "select n.NameID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
+//                                + " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID where TaxonRankID = '"
 //                                + NZOR.Data.SystemData.TaxonRankData.GenusRank().TaxonRankID.ToString() + "' and np.Value = '" + parent + "' and ncp.propertyname = '"
 //                                + NZOR.Data.NameProperties.Canonical + "' and n.GoverningCode = '" + govCode + "'";
 
@@ -90,13 +90,13 @@ namespace NZOR.Matching
 //                    {
 //                        cmd.CommandText = @"                       
 //                            select n.* 
-//                            from cons.Name n 
+//                            from consensus.Name n 
 //                            inner join cons.FlatName fn on fn.NameID = n.NameID
 //                            where fn.ParentNameID = '" + parentId + "'; " + @"                            
 //                            select np.*, ncp.PropertyName 
-//                            from cons.NameProperty np  
+//                            from consensus.NameProperty np  
 //                            inner join cons.FlatName fn on fn.NameID = np.NameID
-//                            inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+//                            inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
 //                            where fn.ParentNameID = '" + parentId + "'; " + @"                                            
 //                            select c.* 
 //                            from vwConsensusConcepts c  

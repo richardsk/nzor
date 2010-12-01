@@ -21,7 +21,7 @@ namespace NZOR.Data
             {
                 cmd.CommandText = "select count(NameID) from provider.Name pn " +
                     " inner join provider.NameProperty np on np.NameID = pn.NameID " +
-                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.Name = '" + field + "' " +
+                    " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID and ncp.Name = '" + field + "' " +
                     " where pn.ConsensusNameID = '" + nameID.ToString() + "' and (np.Value is null or np.Value = '" + value.ToString() + "')";
 
                 int cnt = (int)cmd.ExecuteScalar();
@@ -38,11 +38,11 @@ namespace NZOR.Data
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = "declare @ids table(id uniqueidentifier); " +
-                    "insert @ids select distinct n.NameID from cons.Name n inner join cons.NameProperty np on np.NameID = n.NameID " +
-                    " inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID and ncp.Name = '" + field + "' " +
+                    "insert @ids select distinct n.NameID from consensus.Name n inner join consensus.NameProperty np on np.NameID = n.NameID " +
+                    " inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID and ncp.Name = '" + field + "' " +
                     " where np.Value = '" + value.ToString() + "'; " +
-                    "select n.* from cons.Name n inner join @ids i on i.id = n.NameID; " +
-                    "select np.*, ncp.Name from cons.NameProperty np inner join @ids i on i.id = np.NameID inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID; " +
+                    "select n.* from consensus.Name n inner join @ids i on i.id = n.NameID; " +
+                    "select np.*, ncp.Name from consensus.NameProperty np inner join @ids i on i.id = np.NameID inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID; " +
                     "select c.* from vwConsensusConcepts c inner join @ids i on i.id = c.NameID; ";
 
                 DataSet res = new DataSet();
@@ -98,18 +98,18 @@ namespace NZOR.Data
                     		
                         insert @ids 
                         select distinct n.NameID 
-                        from cons.Name n 
+                        from consensus.Name n 
                         inner join vwConsensusConcepts cc on cc.NameID = n.NameID 
                         where Relationship = '" + conceptType + "' and NameToID = '" + nameToID.ToString() + @"'
                         
                         select n.* 
-                        from cons.Name n 
+                        from consensus.Name n 
                         inner join @ids i on i.id = n.NameID
                         
                         select np.*, ncp.Name 
-                        from cons.NameProperty np 
+                        from consensus.NameProperty np 
                         inner join @ids i on i.id = np.NameID 
-                        inner join dbo.NameClassProperty ncp on ncp.NameClassPropertyID = np.NameClassPropertyID
+                        inner join dbo.NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
                                         
 	                    select c.* 
 	                    from vwConsensusConcepts c 
@@ -184,7 +184,7 @@ namespace NZOR.Data
         {
             Guid nameId = Guid.NewGuid();
 
-            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
+            string sql = "insert consensus.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
                 nameId.ToString() + "', '" +
                 DateTime.Now.ToString("s") + "', '" +
                 provName.FullName.Replace("'","''") + "', '" +
@@ -210,11 +210,11 @@ namespace NZOR.Data
 
                 string val = tpRow["Value"].ToString().Replace("'", "''");
 
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                     Guid.NewGuid().ToString() + "', '" +
                     nameId.ToString() + "', '" +
                     DateTime.Now.ToString("s") + "', '" +
-                    tpRow["NameClassPropertyID"].ToString() + "', '" +
+                    tpRow["NamePropertyTypeID"].ToString() + "', '" +
                     val + "', " +
                     (seq == -1 ? "null, " : seq.ToString() + ", ") +
                     (relId == Guid.Empty ? "null" : "'" + relId.ToString() + "'");
@@ -235,9 +235,9 @@ namespace NZOR.Data
         public static void UpdateConsensusName(SqlConnection cnn, DsIntegrationName.ConsensusNameRow consName)
         {
             //update parts of provider name that can be updated
-            string sql = "update cons.Name set " +
+            string sql = "update consensus.Name set " +
                 "FullName = '" + consName.FullName + "', TaxonRankID = '" + consName.TaxonRankID.ToString() + "', NameClassID = '" + consName.NameClassID.ToString() + "', " +
-                "GoverningCode = '" + consName.GoverningCode + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "'" +
+                "GoverningCode = '" + consName.GoverningCode + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "'" +
                 "where NameID = '" + consName.NameID.ToString() + "'";
 
             using (SqlCommand cmd = cnn.CreateCommand())
@@ -248,9 +248,9 @@ namespace NZOR.Data
 
             //properties
             //canoncial
-            sql = "update cons.NameProperty set Value = '" + consName.Canonical + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+            sql = "update consensus.NameProperty set Value = '" + consName.Canonical + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                     "NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Canonical).ID.ToString() + "'";
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Canonical).ID.ToString() + "'";
 
             using (SqlCommand npCmd = cnn.CreateCommand())
             {
@@ -259,9 +259,9 @@ namespace NZOR.Data
             }
 
             //rank
-            sql = "update cons.NameProperty set Value = '" + consName.TaxonRank + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+            sql = "update consensus.NameProperty set Value = '" + consName.TaxonRank + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                     "NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Rank).ID.ToString() + "'";
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Rank).ID.ToString() + "'";
 
             using (SqlCommand npCmd = cnn.CreateCommand())
             {
@@ -272,14 +272,14 @@ namespace NZOR.Data
             //authors
             if (!consName.IsAuthorsNull())
             {
-                sql = "update cons.NameProperty set Value = '" + consName.Authors + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                sql = "update consensus.NameProperty set Value = '" + consName.Authors + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                         "NameID = '" + consName.NameID.ToString() + "' and " +
-                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "'";
+                        "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Authors).ID.ToString() + "'";
             }
             else
             {
-                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "'";
+                sql = "delete consensus.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Authors).ID.ToString() + "'";
             }
 
             using (SqlCommand npCmd = cnn.CreateCommand())
@@ -291,14 +291,14 @@ namespace NZOR.Data
             //year on publication
             if (!consName.IsYearOnPublicationNull())
             {
-                sql = "update cons.NameProperty set Value = '" + consName.YearOnPublication + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                sql = "update consensus.NameProperty set Value = '" + consName.YearOnPublication + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                         "NameID = '" + consName.NameID.ToString() + "' and " +
-                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "'";
+                        "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.YearOnPublication).ID.ToString() + "'";
             }
             else
             {
-                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "'";
+                sql = "delete consensus.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.YearOnPublication).ID.ToString() + "'";
             }
 
             using (SqlCommand npCmd = cnn.CreateCommand())
@@ -310,15 +310,15 @@ namespace NZOR.Data
             //basionym
             if (!consName.IsBasionymNull())
             {
-                sql = "update cons.NameProperty set Value = '" + consName.Basionym + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "', " +
+                sql = "update consensus.NameProperty set Value = '" + consName.Basionym + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "', " +
                     "RelatedID = " + (consName.IsBasionymIDNull() ? "null, " : "'" + consName.BasionymID.ToString() + "', ") + " where " +
                         "NameID = '" + consName.NameID.ToString() + "' and " +
-                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "'";
+                        "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Basionym).ID.ToString() + "'";
             }
             else
             {
-                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "'";
+                sql = "delete consensus.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Basionym).ID.ToString() + "'";
             }
             using (SqlCommand npCmd = cnn.CreateCommand())
             {
@@ -329,14 +329,14 @@ namespace NZOR.Data
             //published in
             if (!consName.IsPublishedInNull())
             {
-                sql = "update cons.NameProperty set Value = '" + consName.PublishedIn + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                sql = "update consensus.NameProperty set Value = '" + consName.PublishedIn + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                         "NameID = '" + consName.NameID.ToString() + "' and " +
-                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "'";
+                        "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.PublishedIn).ID.ToString() + "'";
             }
             else
             {
-                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "'";
+                sql = "delete consensus.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.PublishedIn).ID.ToString() + "'";
             }
 
             using (SqlCommand npCmd = cnn.CreateCommand())
@@ -348,14 +348,14 @@ namespace NZOR.Data
             //microreference
             if (!consName.IsMicroReferenceNull())
             {
-                sql = "update cons.NameProperty set Value = '" + consName.MicroReference + "', UpdatedDate = '" + DateTime.Now.ToString("s") + "' where " +
+                sql = "update consensus.NameProperty set Value = '" + consName.MicroReference + "', ModifiedDate = '" + DateTime.Now.ToString("s") + "' where " +
                         "NameID = '" + consName.NameID.ToString() + "' and " +
-                        "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "'";
+                        "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.MicroReference).ID.ToString() + "'";
             }
             else
             {
-                sql = "delete cons.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
-                    "NameClassPropertyID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "'";
+                sql = "delete consensus.NameProperty where NameID = '" + consName.NameID.ToString() + "' and " +
+                    "NamePropertyTypeID = '" + NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.MicroReference).ID.ToString() + "'";
             }
 
             using (SqlCommand npCmd = cnn.CreateCommand())
@@ -373,7 +373,7 @@ namespace NZOR.Data
 
         public static void AddConsensusName(SqlConnection cnn, DsIntegrationName.ConsensusNameRow consName)
         {
-            string sql = "insert cons.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
+            string sql = "insert consensus.Name(NameID, AddedDate, FullName, GoverningCode, NameClassID, TaxonRankID) select '" +
                 consName.NameID.ToString() + "', '" +
                 DateTime.Now.ToString("s") + "', '" +
                 consName.FullName.Replace("'", "''") + "', '" +
@@ -389,11 +389,11 @@ namespace NZOR.Data
             
             //properties            
             //canoncial
-            sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+            sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                     Guid.NewGuid().ToString() + "', '" +
                     consName.NameID.ToString() + "', '" +
                     DateTime.Now.ToString("s") + "', '" +
-                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Canonical).ID.ToString() + "', '" +
+                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Canonical).ID.ToString() + "', '" +
                     consName.Canonical + "', " +
                     "null, " + //TODO sequence ??
                     "null"; 
@@ -405,11 +405,11 @@ namespace NZOR.Data
             }
 
             //rank
-            sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+            sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                     Guid.NewGuid().ToString() + "', '" +
                     consName.NameID.ToString() + "', '" +
                     DateTime.Now.ToString("s") + "', '" +
-                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Rank).ID.ToString() + "', '" +
+                    NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Rank).ID.ToString() + "', '" +
                     consName.TaxonRank + "', " +
                     "null, " + //TODO sequence ??
                     "null";
@@ -423,11 +423,11 @@ namespace NZOR.Data
             //authors
             if (!consName.IsAuthorsNull())
             {
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                         Guid.NewGuid().ToString() + "', '" +
                         consName.NameID.ToString() + "', '" +
                         DateTime.Now.ToString("s") + "', '" +
-                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Authors).ID.ToString() + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Authors).ID.ToString() + "', '" +
                         consName.Authors + "', " +
                         "null, " + //TODO sequence ??
                         "null";
@@ -442,11 +442,11 @@ namespace NZOR.Data
             //year on publication
             if (!consName.IsYearOnPublicationNull())
             {
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                         Guid.NewGuid().ToString() + "', '" +
                         consName.NameID.ToString() + "', '" +
                         DateTime.Now.ToString("s") + "', '" +
-                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.YearOnPublication).ID.ToString() + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.YearOnPublication).ID.ToString() + "', '" +
                         consName.YearOnPublication + "', " +
                         "null, " + //TODO sequence ??
                         "null";
@@ -461,11 +461,11 @@ namespace NZOR.Data
             //basionym
             if (!consName.IsBasionymNull())
             {
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                         Guid.NewGuid().ToString() + "', '" +
                         consName.NameID.ToString() + "', '" +
                         DateTime.Now.ToString("s") + "', '" +
-                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.Basionym).ID.ToString() + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.Basionym).ID.ToString() + "', '" +
                         consName.Basionym + "', " +
                         "null, " + //TODO sequence ??
                         (consName.IsBasionymIDNull() ? "null" : "'" + consName.BasionymID.ToString() + "'");
@@ -480,11 +480,11 @@ namespace NZOR.Data
             //published in
             if (!consName.IsPublishedInNull())
             {
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                         Guid.NewGuid().ToString() + "', '" +
                         consName.NameID.ToString() + "', '" +
                         DateTime.Now.ToString("s") + "', '" +
-                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.PublishedIn).ID.ToString() + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.PublishedIn).ID.ToString() + "', '" +
                         consName.PublishedIn + "', " +
                         "null, " + //TODO sequence ??
                         "null";
@@ -499,11 +499,11 @@ namespace NZOR.Data
             //microreference
             if (!consName.IsMicroReferenceNull())
             {
-                sql = "insert cons.NameProperty(NamePropertyID, NameID, AddedDate, NameClassPropertyID, Value, Sequence, RelatedID) select '" +
+                sql = "insert consensus.NameProperty(NamePropertyID, NameID, AddedDate, NamePropertyTypeID, Value, Sequence, RelatedID) select '" +
                         Guid.NewGuid().ToString() + "', '" +
                         consName.NameID.ToString() + "', '" +
                         DateTime.Now.ToString("s") + "', '" +
-                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NameClassProperty.MicroReference).ID.ToString() + "', '" +
+                        NameClass.GetPropertyOfClassType(cnn, consName.NameClassID, NamePropertyType.MicroReference).ID.ToString() + "', '" +
                         consName.MicroReference + "', " +
                         "null, " + //TODO sequence ??
                         "null";
@@ -527,7 +527,7 @@ namespace NZOR.Data
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "select * from cons.Name where NameID = '" + nameId.ToString() + "'; select * from cons.NameProperty where NameID = '" + nameId.ToString() + "'";
+                cmd.CommandText = "select * from consensus.Name where NameID = '" + nameId.ToString() + "'; select * from consensus.NameProperty where NameID = '" + nameId.ToString() + "'";
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 ds = new DataSet();

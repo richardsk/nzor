@@ -51,7 +51,7 @@ AS
 	SELECT distinct
 		cc.NameToID AS ParentNameID,
 		cast(n.NameId as varchar(38)) AS NameID, 
-		(select Value from provider.NameProperty where NameID = n.NameID and NameClassPropertyID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
+		(select Value from provider.NameProperty where NameID = n.NameID and NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750') AS Canonical, 
 		tr.TaxonRankID AS TaxonRankID, 
 		tr.Name AS RankName, 
 		tr.SortOrder,

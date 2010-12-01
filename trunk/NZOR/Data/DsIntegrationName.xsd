@@ -68,7 +68,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SubDataSetID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnSubDataSetID" msprop:Generator_ColumnPropNameInRow="SubDataSetID" msprop:Generator_ColumnPropNameInTable="SubDataSetIDColumn" msprop:Generator_UserColumnName="SubDataSetID" type="xs:string" minOccurs="0" />
+              <xs:element name="DataSourceID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDataSourceID" msprop:Generator_ColumnPropNameInRow="DataSourceID" msprop:Generator_ColumnPropNameInTable="DataSourceIDColumn" msprop:Generator_UserColumnName="DataSourceID" type="xs:string" minOccurs="0" />
               <xs:element name="Canonical" msprop:Generator_ColumnVarNameInTable="columnCanonical" msprop:Generator_ColumnPropNameInRow="Canonical" msprop:Generator_ColumnPropNameInTable="CanonicalColumn" msprop:Generator_UserColumnName="Canonical" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
