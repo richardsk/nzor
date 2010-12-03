@@ -818,8 +818,9 @@ namespace OAIServer.Xml {
                     string loc = _xsdLocations[pref];
                     if (loc != null) xml += " xsi:schemaLocation=\"" + rootTargetNamespace + " " + loc + "\"";
                 }
+                bool hasContent = false;
                 xml += ">" + Environment.NewLine;
-                xml += ProcessElementAttrs(rootElement, 0);
+                xml += ProcessElementAttrs(rootElement, 0, ref hasContent);
                 xml += ProcessComment(rootElement);
                 xml += CheckIfMixed(rootElement);
                 xml += Environment.NewLine;
@@ -844,7 +845,8 @@ namespace OAIServer.Xml {
                     while (group != null) 
                     {
                         bool moreData = false;
-                        xml += ProcessGroup(group, ref moreData);
+                        hasContent = false;
+                        xml += ProcessGroup(group, ref moreData, ref hasContent);
                         group = group.Sibling;
                     }
                 }
@@ -859,11 +861,11 @@ namespace OAIServer.Xml {
             return xml;
         }
         
-        private String ProcessGroup(InstanceGroup grp, ref bool moreData) 
+        private String ProcessGroup(InstanceGroup grp, ref bool moreData, ref bool hasContent) 
         {
             if(grp is InstanceElement) 
             {
-                return ProcessElement((InstanceElement)grp, ref moreData);
+                return ProcessElement((InstanceElement)grp, ref moreData, ref hasContent);
             }
             else //Its a group node of sequence or choice
             { 
@@ -875,7 +877,7 @@ namespace OAIServer.Xml {
                         InstanceGroup childGroup = grp.Child;
                         while (childGroup != null) 
                         {
-                            innerXml += ProcessGroup(childGroup, ref moreData);
+                            innerXml += ProcessGroup(childGroup, ref moreData, ref hasContent);
                             childGroup = childGroup.Sibling;
                         }
                 //    }
@@ -941,7 +943,7 @@ namespace OAIServer.Xml {
             xml += elem.QualifiedName.Name + ">" + Environment.NewLine;
         }
 
-        private String ProcessElement(InstanceElement elem, ref bool moreData) 
+        private String ProcessElement(InstanceElement elem, ref bool moreData, ref bool hasContent) 
         {
             String xml = "";
             if (instanceElementsProcessed[elem] != null) 
@@ -981,6 +983,8 @@ namespace OAIServer.Xml {
                 
                 if (res != null)
                 {
+                    if (res.HasDynamicData) hasContent = true;
+
                     foreach (GenValue gv in res.Values)
                     {
                         String innerXml = "";
@@ -989,12 +993,12 @@ namespace OAIServer.Xml {
                             InstanceGroup childGroup = elem.Child;
                             while (childGroup != null)
                             {
-                                innerXml += ProcessGroup(childGroup, ref moreData);
+                                innerXml += ProcessGroup(childGroup, ref moreData, ref hasContent);
                                 childGroup = childGroup.Sibling;
                             }
                         }
 
-                        String attrText = ProcessElementAttrs(elem, index);
+                        String attrText = ProcessElementAttrs(elem, index, ref hasContent);
                         String innerText = "";
                         if (gv.Value != null) innerText = gv.Value.ToString();
 
@@ -1015,6 +1019,7 @@ namespace OAIServer.Xml {
                 {
 
                     String childXml = "";
+                    bool childContent = false;
                     if (elem.ValueGenerator == null)
                     {
                         InstanceGroup childGroup = elem.Child;
@@ -1024,7 +1029,7 @@ namespace OAIServer.Xml {
                             int grpIndex = 0;
                             while (more)
                             {
-                                childXml += ProcessGroup(childGroup, ref more);
+                                childXml += ProcessGroup(childGroup, ref more, ref childContent);
                                 grpIndex++;
                                 if (more && childGroup.MaxOccurs < grpIndex)
                                 {
@@ -1035,13 +1040,16 @@ namespace OAIServer.Xml {
                             childGroup = childGroup.Sibling;
                         }
                     }
+                    
+                    String attrText = ProcessElementAttrs(elem, index, ref childContent);
 
-                    String attrText = ProcessElementAttrs(elem, index);
+                    if (childContent) hasContent = true;
+
                     //if no values in inner xml then discard
                     bool doAdd = true;
                     if (childXml.Length > 0 && attrText.Length == 0)
                     {
-                        if (ContentLength(childXml) == 0) doAdd = false;
+                        if (!childContent && ContentLength(childXml) == 0) doAdd = false;
                     }
                     if (doAdd && ((childXml != null && childXml.Length > 0) || (attrText != null && attrText.Length > 0))) AddXmlElement(elem, ref xml, "", childXml, attrText);
                 }
@@ -1101,7 +1109,7 @@ namespace OAIServer.Xml {
             return xml;
         }
 
-        private String ProcessElementAttrs(InstanceElement elem, int recordIndex) 
+        private String ProcessElementAttrs(InstanceElement elem, int recordIndex, ref bool hasContent) 
         {
             String xml = "";
             if(elem.XsiType != XmlQualifiedName.Empty) 
@@ -1135,6 +1143,7 @@ namespace OAIServer.Xml {
                     {
                         ValueGenResult res = attr.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
                         if (res.Values.Count > 0 && res.Values[0] != null && res.Values[0].Value != null) val = res.Values[0].Value.ToString(); // can only be one attr                
+                        if (val != "") hasContent = true;
                     }
 
                     if (val != null && val.Length > 0)

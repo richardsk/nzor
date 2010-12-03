@@ -166,6 +166,14 @@ namespace NZOR.Integration
                             if (res.Matches.Count == 0)
                             {
                                 //insert
+                                //for Kingdoms, insert under root
+                                if (provName.TaxonRank.ToUpper() == "KINGDOM" && (provName.IsParentConsensusNameIDNull() || provName.ParentConsensusNameID == Guid.Empty))
+                                {
+                                    DataRow[] root = MatchData.DataForIntegration.ConsensusName.Select("FullName='ROOT'");
+                                    provName.ParentConsensusNameID = (Guid)root[0]["NameID"];
+                                    provName.Parent = root[0]["FullName"].ToString();
+                                }
+
                                 if (provName.IsParentConsensusNameIDNull() || provName.ParentConsensusNameID == Guid.Empty)
                                 {
                                     //dont know where to put it

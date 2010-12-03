@@ -22,6 +22,7 @@ namespace OAIServer
     {
         public List<GenValue> Values = new List<GenValue>();
         public bool MoreData = false;
+        public bool HasDynamicData = false;
 
         public void AddValue(Object val, String attrVals)
         {
@@ -68,6 +69,7 @@ namespace OAIServer
                 {
                     Object val = null;
                     vgr.MoreData |= GetFieldValue(set.Name, sm.Field, recordIndex, ref val);
+                    if (val != null && val.ToString().Length > 0) vgr.HasDynamicData = true;
 
                     vgr.AddValue(val, GetFixedAttrValue(set.Name, sm.Field));
                 }
@@ -78,7 +80,9 @@ namespace OAIServer
 
                 foreach (SchemaMapping sm in gms)
                 {
-                    Object val = OAIServer.GetFixedFieldValue(_rep.Name, sm.Field); 
+                    Object val = OAIServer.GetFixedFieldValue(_rep.Name, sm.Field);
+
+                    if (val != null && val.ToString().Length > 0) vgr.HasDynamicData = true;
                     vgr.AddValue(val, "");
                 }
             }

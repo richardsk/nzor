@@ -46,7 +46,7 @@ namespace NZOR.Data.SystemData
             }
             return _genusRank;
         }
-
+        
         public static SystemData.TaxonRank GetTaxonRank(SqlConnection cnn, Guid taxonRankID)
         {
             TaxonRank tr = null;

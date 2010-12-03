@@ -27,7 +27,7 @@
 
     <DataConnections>
       <DataConnection set="TaxonName">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver02\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Name" alias="" pk="NameId" indexingElement="">
           <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="OAI.TableName='Name'" indexingElement="">            
           </TableJoin>
@@ -76,7 +76,7 @@
       </DataConnection>
 
       <DataConnection set="VernacularName">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver02\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Vernacular" alias="" pk="VernacularId" indexingElement="">
           <TableJoin id="2" name="OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="OAI.TableName='Vernacular'" indexingElement="">            
           </TableJoin>
@@ -102,7 +102,7 @@
       </DataConnection>
       
       <DataConnection set="TaxonConcept">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver02\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Concept" alias="" pk="ConceptId" indexingElement="">
           <TableJoin id="2" name="ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="ConceptId" fkTo="FromConceptId" indexingElement="">            
           </TableJoin>
@@ -144,7 +144,7 @@
       </DataConnection>
 
       <DataConnection set="Publication">
-        <DBConnectionString>Provider=SQLOLEDB;data source=devserver04\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
+        <DBConnectionString>Provider=SQLOLEDB;data source=devserver02\sql2005;integrated security=SSPI;initial catalog=PlantName_Cache;persist security info=true</DBConnectionString>
         <Table id="1" name="Publication" alias="" pk="PublicationID" indexingElement="">
           <TableJoin id="2" name="PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId" indexingElement="/DataSet/Publications/Publication/Titles/Title">            
           </TableJoin>

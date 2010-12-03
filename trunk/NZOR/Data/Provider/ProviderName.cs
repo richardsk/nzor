@@ -181,7 +181,7 @@ namespace NZOR.Data
 		            FROM cons.FlatName fn
 		            WHERE fn.SeedNameID = cn.NameID 
 		            FOR XML PATH('') 
-	            ) ids (list); ";
+	            ) ids (list); "; //parent names [Parent Guid:Rank Guid],[Parent Guid:Rank Guid] ...
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.TableMappings.Add("Table", "ProviderName");

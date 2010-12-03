@@ -1985,3 +1985,13 @@ Invalid column name 'NameCreatedDate'. :    at System.Data.OleDb.OleDbDataReader
    at OAIServer.ListRecordsRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 358
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 329
    at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+2/12/2010 4:28:00 p.m. : ERROR : String reference not set to an instance of a String.
+Parameter name: s :    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.DateTime.Parse(String s)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 225
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+2/12/2010 4:29:28 p.m. : ERROR : String reference not set to an instance of a String.
+Parameter name: s :    at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.DateTime.Parse(String s)
+   at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 225
+   at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123

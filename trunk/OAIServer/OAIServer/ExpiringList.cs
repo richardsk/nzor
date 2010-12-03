@@ -72,7 +72,7 @@ namespace OAIServer
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 el = (ExpiringList)bf.Deserialize(fs);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
             }
 
@@ -101,7 +101,7 @@ namespace OAIServer
                 bf.Serialize(fs, this);
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
             }
 

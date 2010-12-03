@@ -221,8 +221,10 @@ namespace OAIServer
 
             xml = xml.Replace(FieldMapping.GET_DATE_TIME, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"));
 
-            DateTime fd = DateTime.Parse(fromDate);
-            DateTime td = DateTime.Parse(toDate);
+            DateTime fd = DateTime.MinValue;
+            DateTime td = DateTime.MinValue;
+            if (fromDate != null) fd = DateTime.Parse(fromDate);
+            if (toDate != null) td = DateTime.Parse(toDate);
 
             if (fromDate != null && fromDate.Length > 0) xml = xml.Replace(FieldMapping.FROM_DATE, "from=\"" + fd.ToString("yyyy-MM-dd") + "\"");
             else xml = xml.Replace(FieldMapping.FROM_DATE, "");
