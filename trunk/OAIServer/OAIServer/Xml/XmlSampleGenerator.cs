@@ -983,8 +983,7 @@ namespace OAIServer.Xml {
                 
                 if (res != null)
                 {
-                    if (res.HasDynamicData) hasContent = true;
-
+                    bool childContent = false;
                     foreach (GenValue gv in res.Values)
                     {
                         String innerXml = "";
@@ -993,12 +992,12 @@ namespace OAIServer.Xml {
                             InstanceGroup childGroup = elem.Child;
                             while (childGroup != null)
                             {
-                                innerXml += ProcessGroup(childGroup, ref moreData, ref hasContent);
+                                innerXml += ProcessGroup(childGroup, ref moreData, ref childContent);
                                 childGroup = childGroup.Sibling;
                             }
                         }
 
-                        String attrText = ProcessElementAttrs(elem, index, ref hasContent);
+                        String attrText = ProcessElementAttrs(elem, index, ref childContent);
                         String innerText = "";
                         if (gv.Value != null) innerText = gv.Value.ToString();
 
@@ -1008,6 +1007,8 @@ namespace OAIServer.Xml {
                             AddXmlElement(elem, ref xml, innerText, innerXml, attrText);
                         }
                     }
+
+                    if (res.HasDynamicData || childContent) hasContent = true;
 
                     if (more && elem.MaxOccurs < index)
                     {
