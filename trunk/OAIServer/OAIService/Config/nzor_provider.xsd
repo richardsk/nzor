@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Nick Spencer (Landcare Research) -->
-<xs:schema xmlns="http://www.nzor.org.nz/schema/provider/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nzor.org.nz/schema/provider/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns="http://www.nzor.org.nz/schema/provider/1.01" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.nzor.org.nz/schema/provider/1.01" targetNamespace="http://www.nzor.org.nz/schema/provider/1.01" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:element name="DataSet">
 		<xs:annotation>
 			<xs:documentation>NZOR data set from Providers</xs:documentation>
@@ -201,10 +201,10 @@ The type of date can be modified to indicate this is the actual date of publicat
 															</xs:choice>
 														</xs:complexType>
 													</xs:element>
-													<xs:element name="links" minOccurs="0">
+													<xs:element name="Links" minOccurs="0">
 														<xs:complexType>
 															<xs:sequence>
-																<xs:element name="link" maxOccurs="unbounded">
+																<xs:element name="Link" maxOccurs="unbounded">
 																	<xs:complexType>
 																		<xs:simpleContent>
 																			<xs:extension base="xs:string">
@@ -392,8 +392,8 @@ The type of date can be modified to indicate this is the actual date of publicat
 							</xs:element>
 							<xs:element name="TaxonConcepts" minOccurs="0">
 								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="TaxonConcept" maxOccurs="unbounded">
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="TaxonConcept">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="Name">
@@ -419,94 +419,53 @@ The type of date can be modified to indicate this is the actual date of publicat
 															<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:choice minOccurs="0">
-														<xs:element name="Relationships">
-															<xs:complexType>
-																<xs:sequence>
-																	<xs:element name="AcceptedConcept" minOccurs="0">
-																		<xs:complexType>
-																			<xs:attribute name="ref" type="xs:string" use="required"/>
-																			<xs:attribute name="inUse" type="xs:boolean" use="required"/>
-																		</xs:complexType>
-																	</xs:element>
-																	<xs:element name="ParentConcept" minOccurs="0">
-																		<xs:complexType>
-																			<xs:attribute name="ref" type="xs:string" use="required"/>
-																			<xs:attribute name="inUse" type="xs:boolean" use="required"/>
-																		</xs:complexType>
-																	</xs:element>
-																	<xs:element name="HigherClassification" type="xs:string"/>
-																	<xs:element name="RelatedConcept" minOccurs="0" maxOccurs="unbounded">
-																		<xs:annotation>
-																			<xs:documentation>required for anamorph/teleomorph; hybrids</xs:documentation>
-																		</xs:annotation>
-																		<xs:complexType>
-																			<xs:sequence>
-																				<xs:element name="InUse" type="xs:boolean"/>
-																			</xs:sequence>
-																			<xs:attribute name="ref" type="xs:string" use="required"/>
-																			<xs:attribute name="type" use="required">
-																				<xs:annotation>
-																					<xs:documentation>the concept is the *type* for the related concept</xs:documentation>
-																				</xs:annotation>
-																				<xs:simpleType>
-																					<xs:restriction base="xs:string">
-																						<xs:enumeration value="is parent of"/>
-																						<xs:enumeration value="is vernacular for"/>
-																						<xs:enumeration value="is child of"/>
-																						<xs:enumeration value="has vernacular of"/>
-																						<xs:enumeration value="is anamorph of"/>
-																						<xs:enumeration value="is teleomorph of"/>
-																						<xs:enumeration value="is hybrid parent for"/>
-																						<xs:enumeration value="is hybrid child of"/>
-																						<xs:enumeration value="is synonym of"/>
-																					</xs:restriction>
-																				</xs:simpleType>
-																			</xs:attribute>
-																			<xs:attribute name="rank" type="xs:string" use="required"/>
-																		</xs:complexType>
-																	</xs:element>
-																</xs:sequence>
-															</xs:complexType>
-														</xs:element>
-														<xs:element name="Applications">
-															<xs:annotation>
-																<xs:documentation>For vernacular useages</xs:documentation>
-															</xs:annotation>
-															<xs:complexType>
-																<xs:sequence>
-																	<xs:element name="Application" maxOccurs="unbounded">
-																		<xs:complexType>
-																			<xs:sequence>
-																				<xs:element name="Gender" type="xs:string" minOccurs="0"/>
-																				<xs:element name="PartOfTaxon" type="xs:string" minOccurs="0"/>
-																				<xs:element name="LifeStage" type="xs:string" minOccurs="0"/>
-																				<xs:element name="GeoRegion" minOccurs="0">
-																					<xs:complexType>
-																						<xs:simpleContent>
-																							<xs:extension base="xs:string">
-																								<xs:attribute name="geographicSchema" type="xs:string"/>
-																							</xs:extension>
-																						</xs:simpleContent>
-																					</xs:complexType>
-																				</xs:element>
-																				<xs:element name="InUse" type="xs:boolean"/>
-																			</xs:sequence>
-																			<xs:attribute name="conceptRef" type="xs:string" use="required"/>
-																			<xs:attribute name="type">
-																				<xs:simpleType>
-																					<xs:restriction base="xs:string">
-																						<xs:enumeration value="is vernacular for"/>
-																						<xs:enumeration value="is trade name for"/>
-																					</xs:restriction>
-																				</xs:simpleType>
-																			</xs:attribute>
-																		</xs:complexType>
-																	</xs:element>
-																</xs:sequence>
-															</xs:complexType>
-														</xs:element>
-													</xs:choice>
+													<xs:element name="Relationships">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="AcceptedConcept" minOccurs="0">
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required"/>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="ParentConcept" minOccurs="0">
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required"/>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="HigherClassification" type="xs:string"/>
+																<xs:element name="RelatedConcept" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>required for anamorph/teleomorph; hybrids</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required"/>
+																		<xs:attribute name="type" use="required">
+																			<xs:annotation>
+																				<xs:documentation>the concept is the *type* for the related concept</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="is parent of"/>
+																					<xs:enumeration value="is vernacular for"/>
+																					<xs:enumeration value="is child of"/>
+																					<xs:enumeration value="has vernacular of"/>
+																					<xs:enumeration value="is anamorph of"/>
+																					<xs:enumeration value="is teleomorph of"/>
+																					<xs:enumeration value="is hybrid parent for"/>
+																					<xs:enumeration value="is hybrid child of"/>
+																					<xs:enumeration value="is synonym of"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="rank" type="xs:string" use="required"/>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string" use="required"/>
 												<xs:attribute name="createdDate" type="xs:dateTime">
@@ -521,7 +480,108 @@ The type of date can be modified to indicate this is the actual date of publicat
 												</xs:attribute>
 											</xs:complexType>
 										</xs:element>
-									</xs:sequence>
+										<xs:element name="VernacularConcept">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Name">
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="nameRefType">
+																	<xs:attribute name="scientific" type="xs:boolean" use="required"/>
+																</xs:extension>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AccordingTo">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Rank" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Applications">
+														<xs:annotation>
+															<xs:documentation>For vernacular useages</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Application" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Gender" type="xs:string" minOccurs="0"/>
+																			<xs:element name="PartOfTaxon" type="xs:string" minOccurs="0"/>
+																			<xs:element name="LifeStage" type="xs:string" minOccurs="0"/>
+																			<xs:element name="GeoRegion" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="geographicSchema" type="xs:string"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="conceptRef" type="xs:string" use="required"/>
+																		<xs:attribute name="type">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="is vernacular for"/>
+																					<xs:enumeration value="is trade name for"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NameBasedConcept">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Name">
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="nameRefType"/>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AccordingTo">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AcceptedName" type="nameRefType" minOccurs="0"/>
+													<xs:element name="ParentName" type="nameRefType" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="TaxonProperties" minOccurs="0">

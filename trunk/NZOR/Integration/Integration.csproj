@@ -61,6 +61,9 @@
     <Compile Include="ConfigSet.cs" />
     <Compile Include="IntegrationProcessor.cs" />
     <Compile Include="IntegrationProcessor2.cs" />
+    <Compile Include="Mapping\ColumnMapping.cs" />
+    <Compile Include="Mapping\CSVIntegrationProcessor.cs" />
+    <Compile Include="Mapping\IntegrationMapping.cs" />
     <Compile Include="MatchProcessor.cs" />
     <Compile Include="IntegratorThread.cs" />
     <Compile Include="Log.cs" />
@@ -79,6 +82,7 @@
       <Name>Matching</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

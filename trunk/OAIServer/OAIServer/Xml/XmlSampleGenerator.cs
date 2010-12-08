@@ -836,7 +836,8 @@ namespace OAIServer.Xml {
                     }
                     else if (generateValues) 
                     {
-                        xml += rootElement.ValueGenerator.GetValue(0, FindXPath(rootElement));
+                        ValueGenResult res = rootElement.ValueGenerator.GetValue(0, FindXPath(rootElement));
+                        if (res != null && res.Values.Count > 0) xml += res.Values[0].Value;
                     }
                 }
                 else 
@@ -977,7 +978,7 @@ namespace OAIServer.Xml {
                     else 
                     {
                         res = elem.ValueGenerator.GetValue(index, FindXPath(elem));
-                        more = res.MoreData;
+                        if (res != null) more = res.MoreData;
                     }
                 }
                 
@@ -1143,7 +1144,7 @@ namespace OAIServer.Xml {
                     else if (attr.ValueGenerator != null)
                     {
                         ValueGenResult res = attr.ValueGenerator.GetValue(recordIndex, FindXPath(attr));
-                        if (res.Values.Count > 0 && res.Values[0] != null && res.Values[0].Value != null) val = res.Values[0].Value.ToString(); // can only be one attr                
+                        if (res != null && res.Values.Count > 0 && res.Values[0] != null && res.Values[0].Value != null) val = res.Values[0].Value.ToString(); // can only be one attr                
                         if (val != "") hasContent = true;
                     }
 

@@ -1995,3 +1995,89 @@ Parameter name: s :    at System.DateTimeParse.Parse(String s, DateTimeFormatInf
    at System.DateTime.Parse(String s)
    at OAIServer.ListRecordsRequest.GetResultXml(String repository, String metadataPrefix, String set, String fromDate, String toDate, String resumptionToken) in C:\Development\NZOR\Dev\OAIServer\OAIServer\ListRecordsRequest.cs:line 225
    at OAIService.OAIPMHService.ListRecords(String repository, String from, String until, String set, String resumptionToken, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 123
+6/12/2010 5:20:18 p.m. : ERROR : Invalid column name 'ModifiedDate'.
+Invalid column name 'CreatedDate'.
+Invalid column name 'ModifiedDate'.
+Invalid column name 'TaxonConceptId'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 77
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 27
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 118
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
+6/12/2010 5:21:11 p.m. : ERROR : Invalid column name 'TaxonConceptId'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 77
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 27
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 118
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
+6/12/2010 5:41:42 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 980
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 849
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 201
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 174
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
+6/12/2010 5:42:58 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.Xml.XmlSampleGenerator.ProcessElementAttrs(InstanceElement elem, Int32 recordIndex, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1146
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1045
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 849
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 201
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 174
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
+6/12/2010 5:47:03 p.m. : ERROR : Object reference not set to an instance of an object. :    at OAIServer.Xml.XmlSampleGenerator.ProcessElementAttrs(InstanceElement elem, Int32 recordIndex, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1146
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1045
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessElement(InstanceElement elem, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 1033
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 868
+   at OAIServer.Xml.XmlSampleGenerator.ProcessGroup(InstanceGroup grp, Boolean& moreData, Boolean& hasContent) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 880
+   at OAIServer.Xml.XmlSampleGenerator.ProcessInstanceTree(InstanceElement rootElement) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 849
+   at OAIServer.Xml.XmlSampleGenerator.WriteXml(XmlWriter writer) in C:\Development\NZOR\Dev\OAIServer\OAIServer\Xml\XmlSampleGenerator.cs:line 186
+   at OAIServer.MetadataFormat.ProcessResults(DataSet results, RepositoryConfig rep, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\MetadataFormats\MetadataFormat.cs:line 90
+   at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 201
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 174
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59

@@ -63,7 +63,7 @@ namespace OAIServer
             MetadataFormatSet set = _mapping.GetMappedSet(path);
             
             List<SchemaMapping> sms = _mapping.GetMappings(path);
-            if (sms != null && set != null)
+            if (sms != null && set != null && sms.Count > 0)
             {
                 foreach (SchemaMapping sm in sms)
                 {
@@ -78,12 +78,19 @@ namespace OAIServer
             {
                 List<SchemaMapping> gms = _mapping.GetGlobalMappings(path);
 
-                foreach (SchemaMapping sm in gms)
+                if (gms == null || gms.Count == 0)
                 {
-                    Object val = OAIServer.GetFixedFieldValue(_rep.Name, sm.Field);
+                    vgr = null; //not found
+                }
+                else
+                {
+                    foreach (SchemaMapping sm in gms)
+                    {
+                        Object val = OAIServer.GetFixedFieldValue(_rep.Name, sm.Field);
 
-                    if (val != null && val.ToString().Length > 0) vgr.HasDynamicData = true;
-                    vgr.AddValue(val, "");
+                        if (val != null && val.ToString().Length > 0) vgr.HasDynamicData = true;
+                        vgr.AddValue(val, "");
+                    }
                 }
             }
 
