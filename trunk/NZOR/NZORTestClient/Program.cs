@@ -18,11 +18,23 @@ namespace TestNZOR
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
+            //TestIntegrate();
+
+            TestCSVIntegrate();
+        }
+
+        private static void TestCSVIntegrate()
+        {
+
+        }
+
+        private static void TestIntegrate()
+        {
             string cnnStr = System.Configuration.ConfigurationManager.ConnectionStrings["NZOR"].ConnectionString;
             SqlConnection cnn = new SqlConnection(cnnStr);
 
             cnn.Open();
-            NZOR.Data.DsIntegrationName data = NZOR.Data.ProviderName.GetAllDataForIntegration(cnn);
+            NZOR.Data.DsIntegrationName data = NZOR.Data.Integration.GetAllDataForIntegration(cnn);
             cnn.Close();
 
             string f = @"C:\Development\NZOR\Dev\NZOR\Integration\data.dat";

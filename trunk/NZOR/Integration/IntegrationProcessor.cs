@@ -51,7 +51,7 @@ namespace NZOR.Integration
                 doAnother = ProcessNextName(cnn);
             }
 
-            NZOR.Data.ProviderName.PostIntegrationCleanup(cnn);
+            NZOR.Data.Integration.PostIntegrationCleanup(cnn);
 
             cnn.Close();            
         }

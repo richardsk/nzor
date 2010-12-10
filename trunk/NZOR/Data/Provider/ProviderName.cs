@@ -23,7 +23,7 @@ namespace NZOR.Data
                 "MatchPath = " + (provName.IsMatchPathNull() ? "null, " : "'" + provName.MatchPath + "', ") +
                 "ModifiedDate = getdate() " +
                 "where NameID = '" + provName.NameID.ToString() + "'";
-                
+
             using (SqlCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = sql;
@@ -31,7 +31,7 @@ namespace NZOR.Data
             }
 
             //properties   - Note can not update properties - must be imported
-            
+
             //Update Flat Name data
             UpdateFlatNameData(cnn, provName.NameID);
         }
@@ -75,139 +75,13 @@ namespace NZOR.Data
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
-                
+
                 ds.Tables[0].TableName = "Name";
                 ds.Tables[1].TableName = "NameProperty";
                 ds.Tables[2].TableName = "Concepts";
             }
-                
-            return ds;
-        }
-
-        public static DsIntegrationName GetAllDataForIntegration(SqlConnection cnn)
-        {
-            DsIntegrationName ds = new DsIntegrationName();
-
-            using (SqlCommand cmd = cnn.CreateCommand())
-            {
-                cmd.CommandText = @"
-                    select distinct pn.NameID,
-	                pn.ConsensusNameID,
-	                pn.LinkStatus,
-	                pn.MatchScore,
-	                pn.MatchPath,
-	                pn.FullName,
-	                pn.NameClassID,
-	                nc.Name as NameClass,
-                    tr.TaxonRankID,
-	                tr.Name as TaxonRank,
-	                tr.SortOrder as TaxonRankSort,
-                    tr.MatchRuleSetID,
-                    ap.Value as Authors,
-	                pn.GoverningCode,	
-	                pn.DataSourceID,
-	                cp.Value as Canonical, --canonical
-	                yp.Value as YearOnPublication, --year on pub
-	                bp.RelatedID as BasionymID, --basionym
-	                bp.Value as Basionym, 
-	                bap.Value as BasionymAuthors, --basionym authors
-	                cap.Value as CombinationAuthors, --comb authors
-	                mrp.Value as MicroReference, --micro ref
-	                pip.Value as PublishedIn, --published in
-	                (select top 1 pc.NameToID) as ParentID, --parent name
-                    (select top 1 pc.ConsensusNameToID) as ParentConsensusNameID,
-	                (select top 1 pc.NameToFull) as Parent,
-	                (select top 1 prc.NameToID) as PreferredNameID, --pref name
-                    (select top 1 prc.ConsensusNameToID) as PreferredConsensusNameID,
-	                (select top 1 prc.NameToFull) as PreferredName
-                from provider.Name pn
-                inner join dbo.TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
-                inner join dbo.NameClass nc on nc.NameClassID = pn.NameClassID
-                inner join provider.NameProperty cp on cp.NameID = pn.NameID and cp.NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
-                left join provider.NameProperty yp on yp.NameID = pn.NameID and yp.NamePropertyTypeID = '4EC79307-E41A-4540-8647-03EF48795435'
-                left join provider.NameProperty bp on bp.NameID = pn.NameID and bp.NamePropertyTypeID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
-                left join provider.NameProperty ap on ap.NameID = pn.NameID and ap.NamePropertyTypeID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
-                left join provider.NameProperty bap on bap.NameID = pn.NameID and bap.NamePropertyTypeID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
-                left join provider.NameProperty cap on cap.NameID = pn.NameID and cap.NamePropertyTypeID = '6196CDC4-BACB-4172-8186-14BA494621A7'
-                left join provider.NameProperty mrp on mrp.NameID = pn.NameID and mrp.NamePropertyTypeID = '4A344D40-7448-49D6-956B-4392B33A749F'
-                left join provider.NameProperty pip on pip.NameID = pn.NameID and pip.NamePropertyTypeID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
-                left join (select NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155' and InUse = 1) pc 
-	                on pc.NameID = pn.NameID
-                left join (select NameID, NameToID, NameToFull, ConsensusNameToID from vwProviderConcepts where ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' and InUse = 1) prc
-	                on prc.NameID = pn.NameId
-                order by tr.SortOrder;
-
-                
-                select cn.NameID,
-                cn.FullName,
-                cn.NameClassID,
-                nc.Name as NameClass,
-                tr.TaxonRankID,
-                tr.Name as TaxonRank,
-                tr.SortOrder as TaxonRankSort,
-                ap.Value as Authors,
-                cn.GoverningCode,	
-                cp.Value as Canonical, --canonical
-                yp.Value as YearOnPublication, --year on pub
-                bp.RelatedID as BasionymID, --basionym
-                bp.Value as Basionym, 
-                bap.Value as BasionymAuthors, --basionym authors
-                cap.Value as CombinationAuthors, --comb authors
-                mrp.Value as MicroReference, --micro ref
-                pip.Value as PublishedIn, --published in
-                (select top 1 pc.NameToID) as ParentID, --parent name
-                ids.list as ParentIDsToRoot,
-                (select top 1 pc.NameToFull) as Parent,
-                (select top 1 prc.NameToID) as PreferredNameID, --pref name
-                (select top 1 prc.NameToFull) as PreferredName
-            from consensus.Name cn                
-            left join dbo.TaxonRank tr on tr.TaxonRankID = cn.TaxonRankID
-            left join dbo.NameClass nc on nc.NameClassID = cn.NameClassID
-            left join consensus.NameProperty cp on cp.NameID = cn.NameID and cp.NamePropertyTypeID = '1F64E93C-7EE8-40D7-8681-52B56060D750'
-            left join consensus.NameProperty yp on yp.NameID = cn.NameID and yp.NamePropertyTypeID = '4EC79307-E41A-4540-8647-03EF48795435'
-            left join consensus.NameProperty bp on bp.NameID = cn.NameID and bp.NamePropertyTypeID = 'F496FBCC-8DA6-4CA1-9884-11BD9B5DF63B'
-            left join consensus.NameProperty ap on ap.NameID = cn.NameID and ap.NamePropertyTypeID = '006D86A8-08A5-4C1A-BC08-C07B0225E01B'
-            left join consensus.NameProperty bap on bap.NameID = cn.NameID and bap.NamePropertyTypeID = '6272B3D0-C91B-4FD4-A714-662B10FA6E68'
-            left join consensus.NameProperty cap on cap.NameID = cn.NameID and cap.NamePropertyTypeID = '6196CDC4-BACB-4172-8186-14BA494621A7'
-            left join consensus.NameProperty mrp on mrp.NameID = cn.NameID and mrp.NamePropertyTypeID = '4A344D40-7448-49D6-956B-4392B33A749F'
-            left join consensus.NameProperty pip on pip.NameID = cn.NameID and pip.NamePropertyTypeID = 'DEDC63F0-FB2A-420B-9932-786B4347DA45'
-            left join (select NameID, NameToID, NameToFull from vwconsensusConcepts where ConceptRelationshipTypeID = '6A11B466-1907-446F-9229-D604579AA155') pc 
-                on pc.NameID = cn.NameID
-            left join (select NameID, NameToID, NameToFull from vwconsensusConcepts where ConceptRelationshipTypeID = '0CA79AB3-E213-4F51-88B9-4CE01F735A1D' ) prc
-                on prc.NameID = cn.NameId
-                CROSS APPLY 
-	            ( 
-		            SELECT '[' + CONVERT(VARCHAR(38), fn.NameID) + ':' + convert(varchar(38), fn.TaxonRankID) + '],' AS [text()] 
-		            FROM cons.FlatName fn
-		            WHERE fn.SeedNameID = cn.NameID 
-		            FOR XML PATH('') 
-	            ) ids (list); "; //parent names [Parent Guid:Rank Guid],[Parent Guid:Rank Guid] ...
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.TableMappings.Add("Table", "ProviderName");
-                da.TableMappings.Add("Table1", "ConsensusName");
-
-                da.Fill(ds);
-
-                //if no parent concept, get "fuzzy" match parents
-                // -- do during integration
-                //GetParentDataAll(cnn, ds);
-            }
 
             return ds;
-        }
-
-        private static void GetParentDataAll(SqlConnection cnn, NZOR.Data.DsIntegrationName pn)
-        {
-            Progress = 0;
-            int total = 0;
-            foreach (DsIntegrationName.ProviderNameRow row in pn.ProviderName)
-            {
-                GetParentData(cnn, row);
-                total++;
-                Progress = total * 100 / pn.ProviderName.Count;
-            }
-            Progress = 100;
         }
 
         public static DsIntegrationName.ProviderNameRow GetNameMatchData(SqlConnection cnn, Guid provNameId)
@@ -218,27 +92,27 @@ namespace NZOR.Data
 
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-//                cmd.CommandText = @"
-//	                        select * 
-//	                        from provider.Name pn
-//	                        inner join TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
-//	                        where NameID = '" + provNameId.ToString() + @"'
-//                        	
-//	                        select * 
-//	                        from provider.NameProperty np
-//	                        inner join NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
-//	                        where NameID = '" + provNameId.ToString() + @"'
-//                        	
-//	                        select * 
-//	                        from vwProviderConcepts
-////	                        where NameID = '" + provNameId.ToString() + @"'";
+                //                cmd.CommandText = @"
+                //	                        select * 
+                //	                        from provider.Name pn
+                //	                        inner join TaxonRank tr on tr.TaxonRankID = pn.TaxonRankID
+                //	                        where NameID = '" + provNameId.ToString() + @"'
+                //                        	
+                //	                        select * 
+                //	                        from provider.NameProperty np
+                //	                        inner join NamePropertyType ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID
+                //	                        where NameID = '" + provNameId.ToString() + @"'
+                //                        	
+                //	                        select * 
+                //	                        from vwProviderConcepts
+                ////	                        where NameID = '" + provNameId.ToString() + @"'";
 
-//                SqlDataAdapter da = new SqlDataAdapter(cmd);
-//                da.Fill(ds);
+                //                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                //                da.Fill(ds);
 
-//                ds.Tables[0].TableName = "Name";
-//                ds.Tables[1].TableName = "NameProperty";
-//                ds.Tables[2].TableName = "Concepts";
+                //                ds.Tables[0].TableName = "Name";
+                //                ds.Tables[1].TableName = "NameProperty";
+                //                ds.Tables[2].TableName = "Concepts";
 
                 cmd.CommandText = @"
                     select pn.NameID,
@@ -302,51 +176,19 @@ namespace NZOR.Data
 
             return ds.ProviderName[0];
         }
-
-        public static Object GetNamePropertyValue(System.Data.DataTable namePropDt, String field)
+        private static void GetParentDataAll(SqlConnection cnn, NZOR.Data.DsIntegrationName pn)
         {
-            Object val = DBNull.Value;
-
-            foreach (System.Data.DataRow dr in namePropDt.Rows)
+            Progress = 0;
+            int total = 0;
+            foreach (DsIntegrationName.ProviderNameRow row in pn.ProviderName)
             {
-                if (dr["Name"].ToString() == field)
-                {
-                    val = dr["Value"];
-                    break;
-                }
+                GetParentData(cnn, row);
+                total++;
+                Progress = total * 100 / pn.ProviderName.Count;
             }
-
-            return val;
+            Progress = 100;
         }
 
-        public static System.Data.DataRow GetNameConcept(System.Data.DataTable conceptsDt, String conceptType)
-        {
-            System.Data.DataRow r = null;
-
-            foreach (System.Data.DataRow dr in conceptsDt.Rows)
-            {
-                if (dr["Relationship"].ToString() == conceptType)
-                {
-                    r = dr;
-                    break;
-                }
-            }
-
-            return r;
-        }
-
-        public static void UpdateProviderNameLink(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath, Guid integrationBatchId)
-        {
-            using (SqlCommand cmd = cnn.CreateCommand())
-            {
-                cmd.CommandText = "update provider.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
-                    "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "', " : "null, ") +
-                    "IntegrationBatchID = '" + integrationBatchId.ToString() + "', ModifiedDate = getdate() " + 
-                    "where NameID = '" + provName.NameID.ToString() + "'";
-
-                cmd.ExecuteNonQuery();
-            }
-        }
 
         //public static void GetParentData(SqlConnection cnn, System.Data.DataSet pn)
         //{
@@ -480,7 +322,7 @@ namespace NZOR.Data
                         cmd.CommandText = "select distinct fn.ParentNameID, n.FullName, n.TaxonRankID from consensus.Name n inner join consensus.nameproperty np on np.nameid = n.nameid "
                             + " inner join dbo.namepropertytype ncp on ncp.NamePropertyTypeID = np.NamePropertyTypeID "
                             + " inner join cons.FlatName fn on fn.NameID = n.NameID where n.TaxonRankID = '"
-                            + pn.TaxonRankID.ToString() + "' and np.Value = '" + pn.Canonical + "' and ncp.name = 'Canonical' and n.GoverningCode = '" 
+                            + pn.TaxonRankID.ToString() + "' and np.Value = '" + pn.Canonical + "' and ncp.name = 'Canonical' and n.GoverningCode = '"
                             + pn.GoverningCode + "'";
 
                         DataSet pds = new DataSet();
@@ -600,31 +442,46 @@ namespace NZOR.Data
             }
         }
 
-
-        public static void PostIntegrationCleanup(SqlConnection cnn)
+        public static Object GetNamePropertyValue(System.Data.DataTable namePropDt, String field)
         {
-            //reset all provider records with status "Integrating", to "Unmatched"
-            //TODO other stuff?
+            Object val = DBNull.Value;
 
+            foreach (System.Data.DataRow dr in namePropDt.Rows)
+            {
+                if (dr["Name"].ToString() == field)
+                {
+                    val = dr["Value"];
+                    break;
+                }
+            }
+
+            return val;
+        }
+
+        public static System.Data.DataRow GetNameConcept(System.Data.DataTable conceptsDt, String conceptType)
+        {
+            System.Data.DataRow r = null;
+
+            foreach (System.Data.DataRow dr in conceptsDt.Rows)
+            {
+                if (dr["Relationship"].ToString() == conceptType)
+                {
+                    r = dr;
+                    break;
+                }
+            }
+
+            return r;
+        }
+
+        public static void UpdateProviderNameLink(SqlConnection cnn, DsIntegrationName.ProviderNameRow provName, LinkStatus status, Guid? nameId, int matchScore, string matchPath, Guid integrationBatchId)
+        {
             using (SqlCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = "update provider.Name set LinkStatus = 'Unmatched', MatchScore = null, MatchPath = null, ConsensusNameID = null " +
-                    "where LinkStatus = 'Integrating'";
-
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "update provider.Concept set LinkStatus = 'Unmatched', MatchScore = null, ConsensusConceptID = null " +
-                    "where LinkStatus = 'Integrating'";
-
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "update provider.Reference set LinkStatus = 'Unmatched', MatchScore = null, ConsensusReferenceID = null " +
-                    "where LinkStatus = 'Integrating'";
-
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "update prov.TaxonProperty set LinkStatus = 'Unmatched', MatchScore = null, ConsensusTaxonPropertyID = null " +
-                    "where LinkStatus = 'Integrating'";
+                cmd.CommandText = "update provider.Name set LinkStatus = '" + status.ToString() + "', MatchScore = " + matchScore.ToString() + ", MatchPath = '" + matchPath +
+                    "', ConsensusNameID = " + (nameId.HasValue ? "'" + nameId.Value.ToString() + "', " : "null, ") +
+                    "IntegrationBatchID = '" + integrationBatchId.ToString() + "', ModifiedDate = getdate() " +
+                    "where NameID = '" + provName.NameID.ToString() + "'";
 
                 cmd.ExecuteNonQuery();
             }
