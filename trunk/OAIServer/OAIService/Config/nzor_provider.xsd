@@ -234,6 +234,16 @@ The type of date can be modified to indicate this is the actual date of publicat
 															<xs:enumeration value="Journal"/>
 															<xs:enumeration value="Article"/>
 															<xs:enumeration value="Thesis"/>
+															<xs:enumeration value="Magazine"/>
+															<xs:enumeration value="Report"/>
+															<xs:enumeration value="Abstract"/>
+															<xs:enumeration value="Pamphlet"/>
+															<xs:enumeration value="Electronic source"/>
+															<xs:enumeration value="Serial"/>
+															<xs:enumeration value="Generic"/>
+															<xs:enumeration value="Unpublished"/>
+															<xs:enumeration value="Catalog"/>
+															<xs:enumeration value="In press"/>
 														</xs:restriction>
 													</xs:simpleType>
 												</xs:attribute>
@@ -396,12 +406,10 @@ The type of date can be modified to indicate this is the actual date of publicat
 										<xs:element name="TaxonConcept">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name">
+													<xs:element name="TaxonName">
 														<xs:complexType>
 															<xs:complexContent>
-																<xs:extension base="nameRefType">
-																	<xs:attribute name="scientific" type="xs:boolean" use="required"/>
-																</xs:extension>
+																<xs:extension base="nameRefType"/>
 															</xs:complexContent>
 														</xs:complexType>
 													</xs:element>
@@ -434,7 +442,6 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
 																	</xs:complexType>
 																</xs:element>
-																<xs:element name="HigherClassification" type="xs:string"/>
 																<xs:element name="RelatedConcept" minOccurs="0" maxOccurs="unbounded">
 																	<xs:annotation>
 																		<xs:documentation>required for anamorph/teleomorph; hybrids</xs:documentation>
@@ -483,12 +490,13 @@ The type of date can be modified to indicate this is the actual date of publicat
 										<xs:element name="VernacularConcept">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name">
+													<xs:element name="VernacularName">
+														<xs:annotation>
+															<xs:documentation>The verbatim text as cited in the source reference (AccordingTo).  The attribute ref refers to a VernacularName</xs:documentation>
+														</xs:annotation>
 														<xs:complexType>
 															<xs:complexContent>
-																<xs:extension base="nameRefType">
-																	<xs:attribute name="scientific" type="xs:boolean" use="required"/>
-																</xs:extension>
+																<xs:extension base="nameRefType"/>
 															</xs:complexContent>
 														</xs:complexType>
 													</xs:element>
@@ -528,7 +536,11 @@ The type of date can be modified to indicate this is the actual date of publicat
 																				</xs:complexType>
 																			</xs:element>
 																		</xs:sequence>
-																		<xs:attribute name="conceptRef" type="xs:string" use="required"/>
+																		<xs:attribute name="conceptRef" type="xs:string" use="required">
+																			<xs:annotation>
+																				<xs:documentation>Reference to a TaxonConcept</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
 																		<xs:attribute name="type">
 																			<xs:simpleType>
 																				<xs:restriction base="xs:string">
@@ -577,8 +589,27 @@ The type of date can be modified to indicate this is the actual date of publicat
 														</xs:complexType>
 													</xs:element>
 													<xs:element name="AcceptedName" type="nameRefType" minOccurs="0"/>
-													<xs:element name="ParentName" type="nameRefType" minOccurs="0"/>
+													<xs:element name="ParentName" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="nameRefType">
+																	<xs:attribute name="rank" type="xs:string"/>
+																</xs:extension>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
 												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
 											</xs:complexType>
 										</xs:element>
 									</xs:choice>
@@ -616,17 +647,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																	<xs:complexType>
 																		<xs:simpleContent>
 																			<xs:extension base="xs:string">
-																				<xs:attribute name="geographicSchema">
-																					<xs:simpleType>
-																						<xs:restriction base="xs:string">
-																							<xs:enumeration value="ISO Country"/>
-																							<xs:enumeration value="TDWG Regions"/>
-																							<xs:enumeration value="Ecological Districts"/>
-																							<xs:enumeration value="Ecological Regions"/>
-																							<xs:enumeration value="Provincal Boundaries"/>
-																						</xs:restriction>
-																					</xs:simpleType>
-																				</xs:attribute>
+																				<xs:attribute name="geographicSchema" type="xs:string" use="required"/>
 																			</xs:extension>
 																		</xs:simpleContent>
 																	</xs:complexType>
@@ -644,7 +665,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
-																<xs:element name="Origin">
+																<xs:element name="Origin" minOccurs="0">
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">
 																			<xs:enumeration value="Unknown"/>
@@ -660,7 +681,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		<xs:restriction base="xs:string">
 																			<xs:enumeration value="Unknown"/>
 																			<xs:enumeration value="Absent"/>
-																			<xs:enumeration value="Eradicated"/>
+																			<xs:enumeration value="Eradicated/Destroyed"/>
 																			<xs:enumeration value="Extinct"/>
 																			<xs:enumeration value="Recorded in error"/>
 																			<xs:enumeration value="Recorded Historically"/>
@@ -668,6 +689,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																			<xs:enumeration value="Recent Extinction"/>
 																			<xs:enumeration value="Border Intercept"/>
 																			<xs:enumeration value="Present"/>
+																			<xs:enumeration value="Sometimes Present"/>
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
@@ -717,23 +739,13 @@ The type of date can be modified to indicate this is the actual date of publicat
 																	<xs:complexType>
 																		<xs:simpleContent>
 																			<xs:extension base="xs:string">
-																				<xs:attribute name="geographicSchema">
-																					<xs:simpleType>
-																						<xs:restriction base="xs:string">
-																							<xs:enumeration value="ISO Country"/>
-																							<xs:enumeration value="TDWG Regions"/>
-																							<xs:enumeration value="Ecological Districts"/>
-																							<xs:enumeration value="Ecological Regions"/>
-																							<xs:enumeration value="Provincal Boundaries"/>
-																						</xs:restriction>
-																					</xs:simpleType>
-																				</xs:attribute>
+																				<xs:attribute name="geographicSchema" type="xs:string" use="required"/>
 																			</xs:extension>
 																		</xs:simpleContent>
 																	</xs:complexType>
 																</xs:element>
-																<xs:element name="Biome" type="biomeType"/>
-																<xs:element name="Action">
+																<xs:element name="Biome" type="biomeType" minOccurs="0"/>
+																<xs:element name="Action" minOccurs="0">
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">
 																			<xs:enumeration value="Prevention"/>
@@ -747,7 +759,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
-																<xs:element name="Outcome">
+																<xs:element name="Outcome" minOccurs="0">
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">
 																			<xs:enumeration value="Successful"/>
@@ -759,7 +771,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
-																<xs:element name="ActionStatus">
+																<xs:element name="ActionStatus" minOccurs="0">
 																	<xs:simpleType>
 																		<xs:restriction base="xs:string">
 																			<xs:enumeration value="Proposed"/>
@@ -769,7 +781,7 @@ The type of date can be modified to indicate this is the actual date of publicat
 																		</xs:restriction>
 																	</xs:simpleType>
 																</xs:element>
-																<xs:element name="Status">
+																<xs:element name="Status" minOccurs="0">
 																	<xs:annotation>
 																		<xs:documentation>Legal status (not fully enumerated)</xs:documentation>
 																	</xs:annotation>

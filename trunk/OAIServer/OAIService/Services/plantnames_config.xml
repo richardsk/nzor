@@ -67,8 +67,10 @@
           <Mapping type="DatabaseMapping" field="[BasionymNameId]" table="1" column="BasionymID" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[LaterHomonymOf]" table="1" column="LaterHomonymOf" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[LaterHomonymOfId]" table="1" column="LaterHomonymOfId" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[BlockedName]" table="1" column="ReplacementFor" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[BlockedNameId]" table="1" column="ReplacementForId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedName]" table="1" column="BlockedName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedNameId]" table="1" column="BlockedNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RecombinedName]" table="1" column="RecombinedName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RecombinedNameId]" table="1" column="RecombinedNameId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NomenclaturalStatus]" table="1" column="NomenclaturalStatus" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[NomenclaturalCode]" table="1" column="NomenclaturalCode" columnAlias="" sql="" fixedAttributes="" />
           
@@ -127,7 +129,6 @@
           <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="ParentConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptProviderId]" table="1" column="" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="ParentConceptInUse" columnAlias="" sql="" fixedAttributes="" />
-          <Mapping type="DatabaseMapping" field="[HigherClassification]" table="1" column="HigherClassification" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RelatedConceptInUse]" table="2" column="InUse" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RelatedConceptId]" table="2" column="ToConceptId" columnAlias="" sql="" fixedAttributes="" />
           <Mapping type="DatabaseMapping" field="[RelatedConceptType]" table="2" column="Type" columnAlias="" sql="" fixedAttributes="" />

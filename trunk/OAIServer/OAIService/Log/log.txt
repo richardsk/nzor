@@ -2081,3 +2081,16 @@ Invalid column name 'TaxonConceptId'. :    at System.Data.OleDb.OleDbDataReader.
    at OAIServer.GetRecordRequest.GetRecordMetadata(String metadataPrefix, String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 201
    at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 174
    at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
+10/12/2010 2:46:33 p.m. : ERROR : Invalid column name 'ReplacementForId'.
+Invalid column name 'ReplacementFor'. :    at System.Data.OleDb.OleDbDataReader.ProcessResults(OleDbHResult hr)
+   at System.Data.OleDb.OleDbDataReader.NextResult()
+   at System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   at System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at OAIServer.GetRecordRequest.GetResultData(String id, String set) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 77
+   at OAIServer.GetRecordRequest.GetResultData(String id) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 27
+   at OAIServer.GetRecordRequest.GetResultXml(String repository, String id, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIServer\GetRecordRequest.cs:line 118
+   at OAIService.OAIPMHService.GetRecord(String repository, String identifier, String metadataPrefix) in C:\Development\NZOR\Dev\OAIServer\OAIService\OAIPMHService.svc.cs:line 59
