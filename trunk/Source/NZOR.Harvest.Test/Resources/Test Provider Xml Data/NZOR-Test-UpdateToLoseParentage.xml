@@ -1,0 +1,39 @@
+﻿<!--
+This dataset should be imported after the NZOR-Test-BaseDataSet.xml dataset.
+The import contains an update for a name that has a parent concept link where another provider name (C3C5E3C6-7984-4262-BD6A-FC6214E2B09F) was relying on this parent link for 
+positioning in the classification hierarchy.  This reliant name should be left hanging with no parent.
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.landcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Usage>
+      <Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+
+    <TaxonNames>
+
+      <TaxonName id="B10B57CF-0E55-48CB-8B03-54DE42A8A6FA" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis L.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors/>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year/>
+        <MicroReference/>
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+    </TaxonNames>
+  </DataSource>
+</DataSet>

@@ -1,0 +1,265 @@
+<!--
+
+Test Integration Data Set
+Need to test:
+- standard integration
+- un integration of a provider name
+- un integration of a provider name that is "not allowed" to be un integrated
+
+This import dataset should result in the following database records:
+
+provider.Reference
+  - record for Species Plantarum, ProviderRecordId = 85F0C3AC-EE86-4BF7-895A-E342D0ED0986, ReferenceType = Book
+  
+provider.ReferenceProperty
+  - records for the provider record 85F0C3AC-EE86-4BF7-895A-E342D0ED0986 - Author, Date, Citation, Title (x2)
+  
+provider.Name
+  - record for Asterales, ProviderRecordId = FE087528-E01F-4706-AADE-BC3377AD5457, NameClass = ScientificName, Rank = order, GoverningCode = ICBN
+  - record for Compositae, ProviderRecordId = 053A6CA7-2EA3-4E55-817D-47C66971D643, NameClass = ScientificName, Rank = family, GoverningCode = ICBN
+  - record for Anthemis L., ProviderRecordId = C4DC0AA4-DEA7-4A56-B82F-35CBF03A2A9B, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN, no parent concept, but has children
+  - record for Anthemis, ProviderRecordId = 5BCE967B-9094-4F8E-8E6B-5BB06AF4DF2E, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN, has parent concept, but no children
+  - record for Anthemis nobilis L., ProviderRecordId = 43A9E9D0-7EAD-4491-B17A-955E7709FCDB, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Anthemis nobilis, ProviderRecordId = 9865E8CC-EB5C-447F-8961-03A47C0A5B35, NameClass = ScientificName, Rank = species, GoverningCode = ICBN - will match the one above, no concepts
+  - record for Anthemis nobilis var. cupiana, ProviderRecordId = A45F8E5B-3498-4CC7-8D7F-00A61BA1CF88 - sub specific name
+  - record for Anthemis nobilis subsp. cupiana, ProviderrecordId = 23F6CF13-BF2A-423A-8C5F-BA1CDCAAC66D - sub specific name, should match name above
+  
+provider.NameProperty
+  - records for provider record FE087528-E01F-4706-AADE-BC3377AD5457 - Rank, Canonical
+  - records for provider record 053A6CA7-2EA3-4E55-817D-47C66971D643 - Rank, Canonical
+  - records for provider record C4DC0AA4-DEA7-4A56-B82F-35CBF03A2A9B - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication
+  - records for provider record 5BCE967B-9094-4F8E-8E6B-5BB06AF4DF2E - Rank, Canonical, YearOfPublication
+  - records for provider record 43A9E9D0-7EAD-4491-B17A-955E7709FCDB - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication
+  - records for provider record 9865E8CC-EB5C-447F-8961-03A47C0A5B35 - Rank, Canonical, YearOfPublication
+  - records for provider record A45F8E5B-3498-4CC7-8D7F-00A61BA1CF88 - Rank, Canonical
+  - records for provider record 23F6CF13-BF2A-423A-8C5F-BA1CDCAAC66D - Rank, Canonical
+  
+provider.Concept & relationships
+  - record with ProviderRecordId = 46BDCDEE-548F-4EBF-A2E5-8B0418B9EC3C
+  - record with ProviderRecordId = A3F411BF-24AB-48B2-9719-B42636F18249
+  - record with ProviderRecordId = EAD3E6F2-BB88-49E8-9C7B-58F864D82D0F
+  - record with ProviderRecordId = 8E585BA2-E6D2-4A53-9B21-5A07125035E7
+  - record with ProviderRecordId = 82ACFF74-B243-4E4D-A319-2AD29166AEA5
+  - record with ProviderRecordId = 748392DF-B69C-4EFF-9E44-9C67C1C3A55B
+  
+Integration should end up with 4 consensus names.  All names except 9865E8CC-EB5C-447F-8961-03A47C0A5B35 cannot be un integrated until the reliant names are un integrated.
+43A9E9D0-7EAD-4491-B17A-955E7709FCDB has no child names, but 9865E8CC-EB5C-447F-8961-03A47C0A5B35 is relying on this provider name+concepts to define its parentage.
+5BCE967B-9094-4F8E-8E6B-5BB06AF4DF2E has no child names but C4DC0AA4-DEA7-4A56-B82F-35CBF03A2A9B are relying on the parent link to 053A6CA7-2EA3-4E55-817D-47C66971D643 to be there, so 
+these names will need un integrating first.
+
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.lanedcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test_2">
+    <Usage>
+      <Disclaimer>none</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+
+    <Publications>
+      <Publication id="85F0C3AC-EE86-4BF7-895A-E342D0ED0986" type="Book" createdDate="2004-04-15T09:46:34.133" modifiedDate="2008-08-11T14:22:37.387">
+        <Citation>Linnaeus, C. 1753: &lt;I&gt;Species Plantarum.&lt;/I&gt;</Citation>
+        <Authors>
+          <Simple>Linnaeus, C.</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">1753</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Species Plantarum</Title>
+          <Title level="1" type="abbreviation">Sp. Pl.</Title>
+        </Titles>
+        <Volume />
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>      
+    </Publications>
+
+    <TaxonNames>
+      <TaxonName id="FE087528-E01F-4706-AADE-BC3377AD5457">
+        <FullName>Asterales</FullName>
+        <Rank>order</Rank>
+        <CanonicalName>Asterales</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="053A6CA7-2EA3-4E55-817D-47C66971D643" createdDate="2002-03-13T14:49:37" modifiedDate="2006-09-22T13:34:15.090">
+        <FullName>Compositae</FullName>
+        <Rank>family</Rank>
+        <CanonicalName>Compositae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="C4DC0AA4-DEA7-4A56-B82F-35CBF03A2A9B" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis L.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</PublishedIn>
+        <Year>1753</Year>
+        <MicroReference>893</MicroReference>
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="5BCE967B-9094-4F8E-8E6B-5BB06AF4DF2E" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="43A9E9D0-7EAD-4491-B17A-955E7709FCDB" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="9865E8CC-EB5C-447F-8961-03A47C0A5B35" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="A45F8E5B-3498-4CC7-8D7F-00A61BA1CF88" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis var. cupiana</FullName>
+        <Rank>variety</Rank>
+        <CanonicalName>cupiana</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year/>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="23F6CF13-BF2A-423A-8C5F-BA1CDCAAC66D" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis subsp. cupiana</FullName>
+        <Rank>subspecies</Rank>
+        <CanonicalName>cupiana</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year/>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+    </TaxonNames>
+
+    <TaxonConcepts>
+      <TaxonConcept id="46BDCDEE-548F-4EBF-A2E5-8B0418B9EC3C" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="FE087528-E01F-4706-AADE-BC3377AD5457">Asterales</TaxonName>
+        <AccordingTo ref="46BDCDEE-548F-4EBF-A2E5-8B0418B9EC3C">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="C8F1A295-76E5-4969-ADA6-A2E21B352EA1" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="A3F411BF-24AB-48B2-9719-B42636F18249" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="053A6CA7-2EA3-4E55-817D-47C66971D643">Compositae</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="A3F411BF-24AB-48B2-9719-B42636F18249" inUse="true" />
+          <ParentConcept ref="46BDCDEE-548F-4EBF-A2E5-8B0418B9EC3C" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="EAD3E6F2-BB88-49E8-9C7B-58F864D82D0F" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="5BCE967B-9094-4F8E-8E6B-5BB06AF4DF2E">Anthemis</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="EAD3E6F2-BB88-49E8-9C7B-58F864D82D0F" inUse="true" />
+          <ParentConcept ref="A3F411BF-24AB-48B2-9719-B42636F18249" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="3A2B857C-C175-421F-B605-EEC4B42C20AB" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="C4DC0AA4-DEA7-4A56-B82F-35CBF03A2A9B">Anthemis L.</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="3A2B857C-C175-421F-B605-EEC4B42C20AB" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="8E585BA2-E6D2-4A53-9B21-5A07125035E7" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="43A9E9D0-7EAD-4491-B17A-955E7709FCDB">Anthemis nobilis L.</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="8E585BA2-E6D2-4A53-9B21-5A07125035E7" inUse="true" />
+          <ParentConcept ref="3A2B857C-C175-421F-B605-EEC4B42C20AB" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="82ACFF74-B243-4E4D-A319-2AD29166AEA5" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="A45F8E5B-3498-4CC7-8D7F-00A61BA1CF88">Anthemis nobilis var. cupiana</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <ParentConcept ref="8E585BA2-E6D2-4A53-9B21-5A07125035E7" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="748392DF-B69C-4EFF-9E44-9C67C1C3A55B" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="23F6CF13-BF2A-423A-8C5F-BA1CDCAAC66D">Anthemis nobilis subsp. cupiana</TaxonName>
+        <AccordingTo ref="85F0C3AC-EE86-4BF7-895A-E342D0ED0986">Linnaeus, C. 1753: Species Plantarum.</AccordingTo>
+        <Relationships>
+          <ParentConcept ref="8E585BA2-E6D2-4A53-9B21-5A07125035E7" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+
+    </TaxonConcepts>
+
+  </DataSource>
+</DataSet>

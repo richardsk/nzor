@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Development\NZOR\Provider\OAIServer\Deploy" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="11/28/2011 11:06:23" />
+    <file relUrl="Responses/IdentifyResponse.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Config/nzor_mapping.xml" publishTime="06/07/2012 15:46:17" />
+    <file relUrl="Services/niwa_config.xml" publishTime="04/24/2012 10:20:01" />
+    <file relUrl="Services/nzibnames_config.xml" publishTime="06/07/2012 15:47:45" />
+    <file relUrl="Responses/HeaderSnippet.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Responses/GetRecordResponse.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="bin/OAIServer.pdb" publishTime="07/02/2012 16:56:18" />
+    <file relUrl="Services/hostednames_config.xml" publishTime="06/07/2012 15:47:22" />
+    <file relUrl="Services/testnames2_config.xml" publishTime="06/07/2012 15:17:31" />
+    <file relUrl="Responses/ListIdentifiersResponse.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Responses/ResumptionSnippet.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Responses/ListMetadataFormatsResponse.xml" publishTime="06/07/2012 15:09:37" />
+    <file relUrl="Responses/ListRecordsResponse.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Services/nzacnames_config.xml" publishTime="06/07/2012 15:47:45" />
+    <file relUrl="bin/OAIService.pdb" publishTime="07/02/2012 16:56:19" />
+    <file relUrl="Responses/ListSetsSnippet.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="OAIPMHService.svc" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Global.asax" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Services/funginames_config.xml" publishTime="06/07/2012 15:17:52" />
+    <file relUrl="Services/plantnames_config.xml" publishTime="06/07/2012 15:47:45" />
+    <file relUrl="Responses/ListSetsResponse.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="bin/OAIService.dll" publishTime="07/02/2012 16:56:19" />
+    <file relUrl="Responses/RecordSnippet.xml" publishTime="07/18/2011 11:20:55" />
+    <file relUrl="Services/testnames_config.xml" publishTime="06/07/2012 15:47:45" />
+    <file relUrl="bin/OAIServer.dll" publishTime="07/02/2012 16:56:18" />
+  </publishProfile>
+</publishData>

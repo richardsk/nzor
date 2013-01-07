@@ -1,0 +1,727 @@
+﻿@{
+    ViewBag.Title = "NZOR Demonstration Web Site";
+}
+<h2>
+    Home
+</h2>
+<div class="infoPanel">
+    <p>
+        The New Zealand Organisms Register (NZOR) provides access to primary information on the names of organisms which occur in New Zealand. For more information on NZOR see our main web pages. <a href='http://www.nzor.org.nz'>NZOR.ORG.NZ</a>
+    </p>
+    <p>
+        This website demonstrates the use of the NZOR <a href='http://data.nzor.org.nz'>web-services</a>. The site shows you how to use the services to search for names, explore the data content and provide feedback to data providers. 
+        You may also upload a file containing a list of names and the NZOR service will attempt to match that list to NZOR data and return examples of the associated NZOR data.
+This website is not intended to be the primary interface to NZOR data. NZOR is an information infrastructure to allow the embedding of these data into end-user data management systems. NZOR data content is dynamically harvested from a federated array of taxonomic data providers. 
+    </p>
+    <p><b>NZOR data content and data provider status (@ViewBag.LastStatsDate)</b></p>
+
+    <div>
+        <table class="statsGroup">
+        
+        @if (ViewBag.Statistics != null)
+        {
+            <tr><th class="statsHeader" colspan="2">Number of:</th></tr>
+            
+            NZOR.Publish.Model.Administration.Statistic stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "NZORNameCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td width="270px">&nbsp;&nbsp;&nbsp;&nbsp;Taxon Names in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "NZORConceptCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Taxon Concepts in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "NZORReferenceCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;References in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "NZORAcceptedNameCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Accepted Taxon Names in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "NZORSynonymCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Synonyms in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VernacularNameCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Vernacular Names in NZOR</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PresentInNZCount").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Taxa present in New Zealand</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+            
+            <tr class="statsSpacer"><td colspan="2"><br /></td></tr>
+            
+            <tr>
+            <td colspan="2" style="padding:0 0 0 0; border-style:none;">
+            <table id="statsTable">
+            <tr>
+            <th>Species group</th><th>Total</th><th>Present</th><th>Indigenous</th><th>Endemic</th><th>Introduced</th><th>Not set</th>
+            </tr>
+            <tr>
+            <td>Plantae</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>            
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "PlantaeSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+
+        
+            <tr>
+            <td>Fungi</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "FungiSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        
+            <tr>
+            <td>Animalia</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "AnimaliaSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        
+            <tr>
+            <td>Bacteria</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BacteriaSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+
+        
+            <tr>
+            <td>Viroid</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ViroidSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+
+        
+            <tr>
+            <td>Chromista</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ChromistaSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        
+            <tr>
+            <td>Virus</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "VirusSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        
+            <tr>
+            <td>Mollicute</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "MollicuteSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        
+            <tr>
+            <td>Protozoa</td>
+            <td class="statsCell">
+            @{                
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesCount").FirstOrDefault();
+            if (stat != null)
+            {                
+                    @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{                 
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesPresentCount").FirstOrDefault();
+            if (stat != null)
+            {
+                        @stat.Value                
+            }
+            }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesIndigenousCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+            </td>
+            <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesEndemicCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+        @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesIntroducedCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value                
+            }
+        }
+        </td>
+        <td class="statsCell">
+            @{
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProtozoaSpeciesNoBiostatusCount").FirstOrDefault();
+            if (stat != null)
+            {
+                @stat.Value
+            }
+        }
+        </td>
+        </tr>
+        </table>
+        </td>
+            </tr>
+            
+            <tr class="statsSpacer"><td colspan="2"><br /></td></tr>
+            
+            <tr><th class="statsHeader" colspan="2">Number of taxon names from provider:</th></tr>
+            
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProviderNameCountNZFUNGI").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;NZ Fungi</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProviderNameCountNZFLORA").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;NZ Flora</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProviderNameCountNZAC").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;NZ Arthropod Collection</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProviderNameCountNZIB").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;NZ Inventory of Biodiversity</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "ProviderNameCountNZOR_Hosted").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;NZOR hosted datasets</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+            
+            
+            <tr class="statsSpacer"><td colspan="2"><br /></td></tr>
+            
+            <tr><th colspan="2" class="statsHeader">Number of taxa explicitly labelled with biome:</th></tr>
+            
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BiomeNameCountMarine").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Marine</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BiomeNameCountBrackish").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Brackish</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BiomeNameCountFreshwater").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Freshwater</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+            stat = ((List<NZOR.Publish.Model.Administration.Statistic>)ViewBag.Statistics).Where(s => s.Name == "BiomeNameCountTerrestrial").FirstOrDefault();
+            if (stat != null)
+            {
+                <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Terrestrial</td>
+                <td>@stat.Value</td>
+                </tr>
+            }
+
+
+
+        }
+        </table>
+    </div>
+   <div style="font-size: 0.8em; color: Gray;margin-top:16px;">
+    Current Version: @ViewBag.Version&nbsp;(@ViewBag.InformationalVersion)
+    <br />
+    Web Service Url: <a style="text-decoration: none;" href="@ViewBag.WebServiceUrl" target="_blank">@ViewBag.WebServiceUrl</a>
+</div>
+
+</div>
+<br />

@@ -1,0 +1,69 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="/">
+                    New Zealand Organism Register Web API
+                </a>
+        </div>
+        <div class="float-right" style="margin-top: 10px;">
+            <img src="@Url.Content("~/images/nzor-logo.png")" alt="NZOR" />
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>
+                    Welcome to the NZOR Web API
+                </h1>
+                <h2>
+                </h2>
+            </hgroup>
+            <p>
+                The NZOR Web Application Programming Interface is a publically accessible service
+                    that enables applications to use data from the core NZOR repository. The API is
+                    designed to be as RESTful as possible so each resource as a unique URI and well
+                    known HTTP verbs are used to specifiy the action to perform on that resource.
+            </p>
+            <p>
+                Version: @Model.Version
+                <span style="font-size: 0.8em; color: Gray;">(@Model.Description)</span>
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <h3>We suggest the following steps:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>
+                    Check out the documentation
+                </h5>
+                Full documentation can be found on our wiki.
+                    <p>
+                        <a href="http://confluence.landcareresearch.co.nz/display/nzor/home" target="_blank">
+                            http://confluence.landcareresearch.co.nz/display/nzor/home
+                        </a>
+                    </p>
+            </li>
+            <li class="two">
+                <h5>
+                    Use the API
+                </h5>
+                Build something.
+            </li>
+            <li class="three">
+                <h5>
+                    Let us know
+                </h5>
+                Get in touch and let us know how you've used the web services to create something.
+                    <p>
+                        <a href="mailto:techsupport.nzor@landcareresearch.co.nz?subject=NZOR Web API">
+                            techsupport.nzor@landcareresearch.co.nz
+                        </a>
+                    </p>
+            </li>
+        </ol>
+    </section>
+</div>

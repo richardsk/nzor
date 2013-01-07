@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "NZIBName_Cache", "NZIBName_Cache.ssmssqlproj", "{FE857DFC-85A8-4A1F-A44B-DE87C9D83817}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = $/Provider/Initial\u0020Data/NZIB\u0020Names\u0020Cache
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:SourceGear\u0020Vault\u0020Classic\u0020Client
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = NZIBName_Cache.ssmssqlproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE857DFC-85A8-4A1F-A44B-DE87C9D83817}.Default|Default.ActiveCfg = Default
+		{00000000-0000-0000-0000-000000000000}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

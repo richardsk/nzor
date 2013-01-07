@@ -1,0 +1,9 @@
+SCC = This is a source code control file
+
+[NZOR.Service.Setup.vdproj]
+SCC_Aux_Path = https://vault.landcareresearch.co.nz/VaultService|richardsk:39
+SCC_Project_Name = $/Source/NZOR.Server.Setup
+
+[NZOR.Server.Setup.vdproj]
+SCC_Aux_Path = https://vault.landcareresearch.co.nz/VaultService|richardsk:39
+SCC_Project_Name = $/Source/NZOR.Server.Setup

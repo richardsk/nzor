@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet>
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <TaxonNames>
+      <VernacularName id="Test Vernacular ID" isTradeName="true" createdDate="2010-10-01T10:01:25" modifiedDate="2010-10-02T10:11:25">
+        <FullName>
+          Test Vernacular Full Name
+        </FullName>
+        <PublishedIn ref="Test PublishedIn ref">
+          Test PublishedIn
+        </PublishedIn>
+        <Language>
+          Test Language
+        </Language>
+        <Country>
+          Test Country
+        </Country>
+      </VernacularName>
+    </TaxonNames>
+  </DataSource>
+</DataSet>

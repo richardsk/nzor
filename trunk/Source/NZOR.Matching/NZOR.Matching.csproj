@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{27839874-827E-43AB-966D-7A13682FE5B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NZOR.Matching</RootNamespace>
+    <AssemblyName>NZOR.Matching</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigSet.cs" />
+    <Compile Include="MatchResults.cs" />
+    <Compile Include="NameParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Routines\BaseMatcher.cs" />
+    <Compile Include="Routines\INameMatcher.cs" />
+    <Compile Include="Routines\IReferenceMatcher.cs" />
+    <Compile Include="Routines\MatchData.cs" />
+    <Compile Include="Routines\NamesAtRankWithAncestor.cs" />
+    <Compile Include="Routines\NamesWithAuthors.cs" />
+    <Compile Include="Routines\NamesWithExactCanonical.cs" />
+    <Compile Include="Routines\NamesWithMatchParent.cs" />
+    <Compile Include="Routines\NamesWithPartialAuthors.cs" />
+    <Compile Include="Routines\NamesWithPartialCanonical.cs" />
+    <Compile Include="Routines\NamesWithPartialYear.cs" />
+    <Compile Include="Routines\NamesWithRank.cs" />
+    <Compile Include="Routines\NamesWithRankAndCanonical.cs" />
+    <Compile Include="Routines\NamesWithRankAndPartialCanonical.cs" />
+    <Compile Include="Routines\NamesWithSameFullName.cs" />
+    <Compile Include="Routines\NamesWithSameParent.cs" />
+    <Compile Include="Routines\NamesWithSameValidity.cs" />
+    <Compile Include="Routines\NamesWithSimilarFullName.cs" />
+    <Compile Include="Routines\NamesWithYear.cs" />
+    <Compile Include="Routines\ReferencesWithCitation.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NZOR.Data.Sql\NZOR.Data.Sql.csproj">
+      <Project>{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}</Project>
+      <Name>NZOR.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Data\NZOR.Data.csproj">
+      <Project>{061130AA-ADE0-453E-A08D-C5FD81F65B58}</Project>
+      <Name>NZOR.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

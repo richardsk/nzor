@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "HostedName_Cache", "HostedName_Cache.ssmssqlproj", "{4CBCAEAE-2DD1-4679-B850-4BDDCC855CDD}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = $/Provider/Initial\u0020Data/HostedName_Cache
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:SourceGear\u0020Vault\u0020Classic\u0020Client
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = HostedName_Cache.ssmssqlproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CBCAEAE-2DD1-4679-B850-4BDDCC855CDD}.Default|Default.ActiveCfg = Default
+		{00000000-0000-0000-0000-000000000000}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

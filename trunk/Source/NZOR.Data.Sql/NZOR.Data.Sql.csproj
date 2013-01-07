@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NZOR.Data.Sql</RootNamespace>
+    <AssemblyName>NZOR.Data.Sql</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Integration\Integration.cs" />
+    <Compile Include="Integration\Matching.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Consensus\AnnotationRepository.cs" />
+    <Compile Include="Repositories\Common\AuthorRepository.cs" />
+    <Compile Include="Repositories\Common\DeprecatedRepository.cs" />
+    <Compile Include="Repositories\Common\LookUpRepository.cs" />
+    <Compile Include="Repositories\Consensus\ConceptRepository.cs" />
+    <Compile Include="Repositories\Consensus\NameRepository.cs" />
+    <Compile Include="Repositories\Consensus\ReferenceRepository.cs" />
+    <Compile Include="Repositories\Consensus\TaxonPropertyRepository.cs" />
+    <Compile Include="Repositories\Provider\AnnotationRepository.cs" />
+    <Compile Include="Repositories\Provider\ConceptRepository.cs" />
+    <Compile Include="Repositories\Provider\NameRepository.cs" />
+    <Compile Include="Repositories\Provider\ReferenceRepository.cs" />
+    <Compile Include="Repositories\Provider\TaxonPropertyRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Helpers\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\NameClass-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\NamePropertyType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\ReferencePropertyType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\ReferenceType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\TaxonRank-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-UPDATE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NameProperties-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NameProperty-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-UPDATE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ReferenceProperties-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ReferenceProperty-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\ConceptRelationshipType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-UPDATE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptRelationships-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptRelationship-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptApplications-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptApplication-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\ConceptApplicationType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-INTEGRATION.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-INTEGRATION.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\NamePropertyTypeByClass-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameProperty-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameProperties-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameProperties-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\NameProperties-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-GETByNameAndRef.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptRelationship-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptApplications-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptRelationships-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptApplication-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-GetByName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptRelationship-GETByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptApplication-GETByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptApplication-GETByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\ConceptRelationship-GETByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ReferenceProperty-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ReferenceProperty-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\ReferenceProperties-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Reference-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Reference-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\ReferenceProperty-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Reference-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-INTEGRATION.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTByName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-GET.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\GeoRegion-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-UpdateLinks.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTConceptsByNameAndAccTo.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTProviderConcepts.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-LISTRelated.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTRelated.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-LISTByConsensusName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-GET.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameProperty-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameChildren-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\ConceptApplication-GetRelated.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-SEARCH.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NZIB XML Initial Dataset.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\NZFLORA XML Initial Dataset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTConceptsByName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-GETByProviderId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-CanUnintegrate.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NZFUNGI XML Initial Dataset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-INTEGRATION-FirstCharacterAtRank.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-INTEGRATION-NonCharactersAtRank.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-INTEGRATION-AboveFamily.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Reference-INTEGRATION.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonProperty-GetByName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonPropertyValue-GetByTaxonProperty.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameSynonyms-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Common\TaxonPropertyClass-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Common\TaxonPropertyType-LIST.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonProperty-GetByName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonPropertyValue-GetByTaxonProperty.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonProperty-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonProperty-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonPropertyValue-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonPropertyValue-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonProperty-GetByConsensusName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonPropertyValue-INSERT.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonProperty-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonProperty-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\TaxonPropertyValue-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-LIST-ByConsensusReference.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NZOR Test XML Initial Dataset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NZOR Test 2 XML Initial Dataset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\StackedName-GETByName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-GETForProviderConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-SETInUseConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\NameProperty-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\SelectProviderConceptConflicts.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\NameProperties-LISTByConsensusName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\GetPreferredDataSource.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\InsertConsensusBackbone.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\SelectProviderDataConflicts.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\ClearConsensusData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-UpdateFullName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Integration\ClearProviderData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\NZAC XML Initial Dataset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-LISTModifiedSince.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-GETForDatasource.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Provider\Reference-CreateForDataSource.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Sql\Integration\GetNameAttachmentPoint.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Sql\Common\Deprecated-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-LISTByBrokeredName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-LIST.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-LISTByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Annotation-LISTByName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Annotation-GET.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Annotation-UPDATE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Annotation-INSERT.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Annotation-LISTByConcept.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Annotation-LISTByName.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\PostIntegrationCleanup.sql" />
+    <Content Include="Resources\Sql\Provider\Concept-GETByProviderId.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\NZOR_Hosted XML Initial Dataset.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Name-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\ProcessConceptConflicts.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\TaxonProperty-GetByDataSource.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-LISTModifiedSince.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Concept-DELETE.sql" />
+    <EmbeddedResource Include="Resources\Sql\Integration\ClearProviderDataForDS.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-GETRelated.sql" />
+    <EmbeddedResource Include="Resources\Sql\Provider\Concept-GETByNameAndRef.sql" />
+    <EmbeddedResource Include="Resources\Sql\Consensus\Name-DELETE.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NZOR.Admin.Data.Sql\NZOR.Admin.Data.Sql.csproj">
+      <Project>{CEEAB84A-707C-4600-B0D1-A592F7D910EE}</Project>
+      <Name>NZOR.Admin.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Admin.Data\NZOR.Admin.Data.csproj">
+      <Project>{F9FB0639-F1A0-4923-A395-0CADA68FB69C}</Project>
+      <Name>NZOR.Admin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Data\NZOR.Data.csproj">
+      <Project>{061130AA-ADE0-453E-A08D-C5FD81F65B58}</Project>
+      <Name>NZOR.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

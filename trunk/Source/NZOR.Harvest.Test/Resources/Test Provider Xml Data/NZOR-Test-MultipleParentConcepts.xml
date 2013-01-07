@@ -1,0 +1,110 @@
+﻿<!--
+This dataset should be imported after the NZOR-Test-BaseDataSet.xml dataset.
+This dataset contains data to test multiple parent concepts issues.
+The import should result in the following changes to the data in the database:
+
+provider.Name
+  - Add record with ProviderRecordId = 8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2, name with multiple parent concepts and no matching child names so should fail integration
+  - Add record with ProviderRecordId = 240AC4B2-AF94-4EFA-9115-DC70BD625BB8, name with multiple parent concepts and a single matching child name so should match/integrate
+  
+provider.NameProperty
+  - Name Properties for Provider Record Id 8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2
+  - Name Properties for Provider Record Id 240AC4B2-AF94-4EFA-9115-DC70BD625BB8
+
+provider.Concept
+   - 2 Concepts (ids = 30F915EB-29A4-48A8-BAD4-336685DC11D4, 40C8BBAC-C994-41A7-9DCD-7633D3937279) for provider name Id 8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2
+   - 2 Concepts (ids = 2A37627C-F5B2-4BE4-996F-5BDDE488856B, 70AA078D-61AB-4A13-BAD0-8693BC92511E) for provider name Id 240AC4B2-AF94-4EFA-9115-DC70BD625BB8
+   
+provider.ConceptRelationship
+  - Parent ConceptRelationship for provider concept Id 30F915EB-29A4-48A8-BAD4-336685DC11D4
+  - Parent ConceptRelationship for provider concept Id 40C8BBAC-C994-41A7-9DCD-7633D3937279
+  - Parent ConceptRelationship for provider concept Id 2A37627C-F5B2-4BE4-996F-5BDDE488856B
+  - Parent ConceptRelationship for provider concept Id 70AA078D-61AB-4A13-BAD0-8693BC92511E
+
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.lanedcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Usage>
+      <Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+
+    <TaxonNames>
+
+      <TaxonName id="8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis missus L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>missus</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1754</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="240AC4B2-AF94-4EFA-9115-DC70BD625BB8" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+    </TaxonNames>
+
+    <TaxonConcepts>
+
+      <TaxonConcept id="30F915EB-29A4-48A8-BAD4-336685DC11D4" createdDate="2011-02-04T16:03:00">
+        <TaxonName ref="8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2" >Anthemis missus L.</TaxonName>
+        <AccordingTo />
+        <Relationships>
+          <ParentConcept ref="177C1B23-9145-45C1-9A97-DEDD02455A8B" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="40C8BBAC-C994-41A7-9DCD-7633D3937279" createdDate="2011-02-04T16:03:00">
+        <TaxonName ref="8D03B9C1-DE3E-4DD8-99C4-01035CE70FC2" >Anthemis missus L.</TaxonName>
+        <AccordingTo />
+        <Relationships>
+          <ParentConcept ref="1B7BCC9E-8EC7-4DBC-A932-A94995E377D2" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="2A37627C-F5B2-4BE4-996F-5BDDE488856B" createdDate="2011-02-04T16:03:00">
+        <TaxonName ref="240AC4B2-AF94-4EFA-9115-DC70BD625BB8" >Anthemis nobilis L.</TaxonName>
+        <AccordingTo />
+        <Relationships>
+          <ParentConcept ref="177C1B23-9145-45C1-9A97-DEDD02455A8B" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="70AA078D-61AB-4A13-BAD0-8693BC92511E" createdDate="2011-02-04T16:03:00">
+        <TaxonName ref="240AC4B2-AF94-4EFA-9115-DC70BD625BB8" >Anthemis nobilis L.</TaxonName>
+        <AccordingTo />
+        <Relationships>
+          <ParentConcept ref="1B7BCC9E-8EC7-4DBC-A932-A94995E377D2" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+
+    </TaxonConcepts>
+
+  </DataSource>
+</DataSet>

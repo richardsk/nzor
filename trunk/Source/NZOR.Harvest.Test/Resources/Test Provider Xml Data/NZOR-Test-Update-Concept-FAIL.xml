@@ -1,0 +1,60 @@
+﻿<!--
+This dataset should be imported after the NZOR-Test-BaseDataSet.xml dataset.
+The import contains two concepts with different Ids and are for the same DataSource, Name and Reference - this should result in a failure.
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.landcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Usage>
+      <Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+
+    <TaxonNames>
+
+      <TaxonName id="674B58C2-75F9-407D-AF1C-6F5F822E9AC2" modifiedDate="2008-08-13T11:51:46.603">
+        <FullName>Chamaemelum Mill.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Chamaemelum</CanonicalName>
+        <Authorship>Mill.</Authorship>
+        <BasionymAuthors>Mill.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="FEDCA5B7-31B1-47CB-8894-306A5B9526C0">Miller, P. 1754: The Gardeners Dictionary.4 ed.  3.  London, </PublishedIn>
+        <Year>1754</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+    </TaxonNames>
+
+    <TaxonConcepts>
+
+      <TaxonConcept id="F30795C4-A500-4E25-AC72-542CBA460838" createdDate="2011-01-11T11:11:11.11">
+        <TaxonName ref="674B58C2-75F9-407D-AF1C-6F5F822E9AC2">Chamaemelum Mill.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Dodgy DB X</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="F30795C4-A500-4E25-AC72-542CBA460838" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="674B58C2-75F9-407D-AF1C-6F5F822E9AC2">Chamaemelum Mill.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E" inUse="true" />
+          <ParentConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+    </TaxonConcepts>
+
+  </DataSource>
+</DataSet>

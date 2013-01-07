@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Web.Admin", "NZOR.Web.Admin\NZOR.Web.Admin.csproj", "{2A35FCDB-BBF3-402C-BF86-399CF25B3DAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Admin.Data", "..\NZOR.Admin.Data\NZOR.Admin.Data.csproj", "{F9FB0639-F1A0-4923-A395-0CADA68FB69C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Admin.Data.Sql", "..\NZOR.Admin.Data.Sql\NZOR.Admin.Data.Sql.csproj", "{CEEAB84A-707C-4600-B0D1-A592F7D910EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Data", "..\NZOR.Data\NZOR.Data.csproj", "{061130AA-ADE0-453E-A08D-C5FD81F65B58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Data.Sql", "..\NZOR.Data.Sql\NZOR.Data.Sql.csproj", "{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 6
+		SccProjectUniqueName0 = ..\\NZOR.Admin.Data\\NZOR.Admin.Data.csproj
+		SccProjectName0 = $/Source/NZOR.Admin.Data
+		SccLocalPath0 = ..\\NZOR.Admin.Data
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\NZOR.Admin.Data.Sql\\NZOR.Admin.Data.Sql.csproj
+		SccProjectName1 = $/Source/NZOR.Admin.Data.Sql
+		SccLocalPath1 = ..\\NZOR.Admin.Data.Sql
+		CanCheckoutShared = false
+		SccProjectUniqueName2 = ..\\NZOR.Data\\NZOR.Data.csproj
+		SccProjectName2 = $/Source/NZOR.Data
+		SccLocalPath2 = ..\\NZOR.Data
+		CanCheckoutShared = false
+		SccProjectUniqueName3 = ..\\NZOR.Data.Sql\\NZOR.Data.Sql.csproj
+		SccProjectName3 = $/Source/NZOR.Data.Sql
+		SccLocalPath3 = ..\\NZOR.Data.Sql
+		CanCheckoutShared = false
+		SccLocalPath4 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName5 = NZOR.Web.Admin\\NZOR.Web.Admin.csproj
+		SccLocalPath5 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection5 = NZOR.Web.Admin\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A35FCDB-BBF3-402C-BF86-399CF25B3DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A35FCDB-BBF3-402C-BF86-399CF25B3DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A35FCDB-BBF3-402C-BF86-399CF25B3DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A35FCDB-BBF3-402C-BF86-399CF25B3DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

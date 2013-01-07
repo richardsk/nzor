@@ -1,0 +1,315 @@
+﻿@using NZOR.Publish.Model;
+@using NZOR.Publish.Model.Search;
+@using NZOR.Publish.Model.Search.Names;
+@model NZOR.Web.ViewData.SearchViewModel
+@{
+    ViewBag.Title = "Search NZOR";
+}
+<style>
+    .ui-autocomplete-loading
+    {
+        background: white url('../../Content/themes/base/images/ui-anim_basic_16x16.gif') right center no-repeat;
+    }
+    #Query
+    {
+        width: 25em;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#Query").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    url: "/search/GetSearchAutoComplete",
+                    dataType: "json",
+                    data: {
+                        prefix: request.term,
+                        take: 10
+                    },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item,
+                                value: item
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 2
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Query").focus();
+        $("#Query").keydown(function (event) {
+            if (event.which == 13) {
+                ReloadSearch();
+            }
+        });
+    });
+
+    (function ($) {
+        $.GetQueryParameterValues = function (name) {
+            var pairs = location.search.substring(1).split('&');
+            var values = [];
+
+            for (var i = 0; i < pairs.length; i++) {
+                var parameter = pairs[i].split('=');
+                if (parameter[0] == name) {
+                    values.push(parameter[1]);
+                }
+            }
+
+            if (values.length > 0) {
+                return values;
+            } else {
+                return undefined;
+            }
+        };
+    })(jQuery);
+
+    function AddFacet(facet) {
+        var query = $.GetQueryParameterValues("query");
+        var orderby = $.GetQueryParameterValues("orderby");
+        var useFuzzyMatching = $('#UseFuzzyMatching').is(':checked');
+        var pageSize = $('#PageSize').val();
+        var filterQueries = $.GetQueryParameterValues("filterquery");
+        var parameters = [];
+
+        query = encodeURI(query).replace(new RegExp('%C2%20', 'g'), '%20')
+
+        parameters.push('query=' + query);
+        parameters.push('orderby=' + orderby);
+        parameters.push('pagesize=' + pageSize);
+        parameters.push('usefuzzymatching=' + useFuzzyMatching);
+
+        if (filterQueries == null) {
+            filterQueries = [];
+        }
+
+        var index = $.inArray(facet, filterQueries);
+
+        if (index < 0) {
+            filterQueries.push(facet);
+        }
+
+        if (filterQueries != null) {
+            parameters.push('filterquery=' + filterQueries.join("&filterquery="));
+        }
+
+        var url = "/search?" + parameters.join("&");
+
+        window.open(url, '_self');
+    }
+
+    function RemoveFacet(facet) {
+        var query = $.GetQueryParameterValues("query");
+        var orderby = $.GetQueryParameterValues("orderby");
+        var useFuzzyMatching = $('#UseFuzzyMatching').is(':checked');
+        var pageSize = $('#PageSize').val();
+        var filterQueries = $.GetQueryParameterValues("filterquery");
+        var parameters = [];
+
+        query = encodeURI(query).replace(new RegExp('%C2%20', 'g'), '%20')
+
+        parameters.push('query=' + query);
+        parameters.push('orderby=' + orderby);
+        parameters.push('pagesize=' + pageSize);
+        parameters.push('usefuzzymatching=' + useFuzzyMatching);
+
+        if (filterQueries == null) {
+            filterQueries = [];
+        }
+
+        var index = $.inArray(facet, filterQueries);
+
+        if (index >= 0) {
+            filterQueries.splice(index, 1);
+        }
+
+        if (filterQueries != null && filterQueries.length > 0) {
+            parameters.push('filterquery=' + filterQueries.join("&filterquery="));
+        }
+
+        var url = "/search?" + parameters.join("&");
+
+        window.open(url, '_self');
+    }
+
+    function ReloadSearch() {
+        var query = $('#Query').val();
+        var useFuzzyMatching = $('#UseFuzzyMatching').is(':checked');
+        var pageSize = $('#PageSize').val();
+        if (!pageSize) pageSize = 50;
+        var filterQueries = $.GetQueryParameterValues("filterquery");
+        var orderby = $('#OrderBy').val();
+        if (orderby == undefined) {
+            orderby = 'fullnamesort';
+        }
+
+        var parameters = [];
+
+        query = encodeURI(query).replace(new RegExp('%C2%20', 'g'), '%20')
+
+        parameters.push('query=' + query);
+        parameters.push('pagesize=' + pageSize);
+        parameters.push('usefuzzymatching=' + useFuzzyMatching);
+        parameters.push('orderby=' + orderby);
+
+        if (filterQueries != null) {
+            parameters.push('filterquery=' + filterQueries.join("&filterquery="));
+        }
+
+        var url = "/search?" + parameters.join("&");
+
+        window.open(url, '_self');
+    }
+</script>
+<h2>
+    Search
+</h2>
+<div class="centred">
+    Search text: @Html.TextBoxFor(o => o.Query, new { @class = "search-textbox" })
+    &nbsp;Use fuzzy matching:&nbsp;@Html.CheckBoxFor(o => o.UseFuzzyMatching, null)
+    &nbsp;
+    <input type="button" value="search" onclick="ReloadSearch()" />
+</div>
+@if (Model != null && Model.SearchResponse != null)
+{ 
+    <div style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: Gray;
+        padding-bottom: 18px; margin-bottom: 16px;">
+    </div>
+    <table style="width: 100%; margin-bottom: 16px;">
+        <tr>
+            <td>
+                @if (Model.SearchResponse.Total == 0)
+                {
+                    @:No results
+                }
+                else if (Model.SearchResponse.Total == 1)
+                {
+                    @:Showing result 1 of 1
+                }
+                else
+                {
+                    @Model.SearchResponse.Total @:Results (Page @Model.SearchResponse.Page of @Model.LastPage)
+                }
+                &nbsp;&nbsp;
+                @if (Model.Page > 1)
+                {
+                    @Html.ActionLink("First", "search", new { query = Model.Query, page = 1, pagesize = Model.PageSize, orderby = Model.OrderBy, UseFuzzyMatching = Model.UseFuzzyMatching }, new { @class = "pager-active", title = "First" })
+                    @Html.ActionLink("Prev", "search", new { query = Model.Query, page = Model.Page - 1, pagesize = Model.PageSize, orderby = Model.OrderBy, UseFuzzyMatching = Model.UseFuzzyMatching }, new { @class = "pager-active", title = "Back" })
+                }
+                else
+                {
+                    <span class="pager-inactive">First</span><span class="pager-inactive">Prev</span>
+                }
+                &nbsp;
+                @if (Model.Page < @Model.LastPage)
+                {
+                    @Html.ActionLink("Next", "search", new { query = Model.Query, page = Model.Page + 1, pagesize = Model.PageSize, orderby = Model.OrderBy, UseFuzzyMatching = Model.UseFuzzyMatching }, new { @class = "pager-active", title = "Next" })
+                    @Html.ActionLink("Last", "search", new { query = Model.Query, page = Model.LastPage, pagesize = Model.PageSize, orderby = Model.OrderBy, UseFuzzyMatching = Model.UseFuzzyMatching }, new { @class = "pager-active", title = "Last" })
+                }
+                else
+                {
+                    <span class="pager-inactive">Next</span><span class="pager-inactive">Last</span>
+                }
+            </td>
+            <td style="text-align: right">
+                Results per page:&nbsp;@Html.DropDownListFor(o => o.PageSize, Model.PageSizes, new { @class = "search-dropdown", onchange = "ReloadSearch()" })
+                &nbsp; Order by:&nbsp;@Html.DropDownListFor(o => o.OrderBy, Model.OrderBys, new { @class = "search-dropdown", onchange = "ReloadSearch()" })
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="vertical-align: top">
+                <div id="SearchFilters" class="search-window">
+                    <div style="font-weight: bold;">
+                        Refine Results
+                    </div>
+                    @if (Model.SearchResponse.FilterQueries.Any())
+                    {
+                        <div class="refine-heading">
+                            Current Filters
+                        </div>
+                        foreach (var filterQuery in Model.SearchResponse.FilterQueries)
+                        {
+                        @filterQuery.DisplayName @:= @filterQuery.Text
+                    <a title="Remove facet" href="javascript:RemoveFacet('@filterQuery.FieldName:@filterQuery.Text');">X</a><br />
+                        }
+                    }
+                    @foreach (var filterField in Model.SearchResponse.FilterFields.Where(o => !Model.SearchResponse.FilterQueries.Any(q => q.FieldName == o.FieldName)))
+                    {
+                        <div class="refine-heading">
+                            @filterField.DisplayName
+                        </div>
+                        foreach (var filterTerm in filterField.FilterTerms)
+                        {
+                        <a href="javascript:AddFacet('@filterField.FieldName:@filterTerm.Text')">
+                            @filterTerm.Text (@filterTerm.HitCount)
+                        </a>
+                        <br />
+                        }
+                    }
+                    @if (Model.SearchResponse.MatchingTerms.Any())
+                    {
+                        <div class="refine-heading">
+                            Did You Mean?
+                        </div>
+                        <p>
+                            @foreach (MatchingTerm matchingTerm in Model.SearchResponse.MatchingTerms)
+                            {
+                                @Html.ActionLink(matchingTerm.Text + " (" + matchingTerm.HitCount + ")", "Search", new { query = matchingTerm.Text, refine = true }, null);
+                                <br />
+                            }
+                        </p>
+                    }
+                </div>
+            </td>
+            <td style="vertical-align: top">
+                <div id="SearchResults" class="search-window">
+                    <table style="width: 100%;">
+                        <tr style="font-weight: bold;">
+                            <td style="width: 500px;">
+                                Name
+                            </td>
+                            <td style="width: 110px;">
+                                Rank
+                            </td>
+                            <td style="width: 70px;">
+                                Code
+                            </td>
+                            <td style="width: 70px;">
+                                Score
+                            </td>
+                        </tr>
+                        @foreach (var result in Model.SearchResponse.Results)
+                        {
+                            <tr>
+                                <td style="padding-top: 4px;">
+                                    <a href="@Url.Action("detail", "names", new { id = result.Name.NameId })">
+                                        @Html.Raw(String.IsNullOrEmpty(result.Name.FullName) ? result.Name.PartialName : result.Name.FullName)
+                                    </a>
+                                </td>
+                                <td style="padding-top: 4px;">
+                                    @result.Name.Rank
+                                </td>
+                                <td style="padding-top: 4px;">
+                                    @result.Name.GoverningCode
+                                </td>
+                                <td style="padding-top: 4px;">
+                                    @result.Score.ToString("0.0")
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+}

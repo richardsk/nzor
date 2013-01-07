@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet>
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <Publications>
+      <Publication id="Test Id" type="Book" modifiedDate="2010-10-06T10:11:25">
+        <Citation>Catalogue of Life</Citation>
+        <Identifiers>
+          <Identifier type="doie">
+            Test Identifier 1
+          </Identifier>
+          <Identifier type="doi">
+            Test Identifier 2
+          </Identifier>
+        </Identifiers>
+        <Dates>
+          <Date type="of publication">2010</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Catalogue of Life</Title>
+        </Titles>
+      </Publication>
+    </Publications>
+    <TaxonNames>
+      <TaxonName createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <NameFull>Hippidae</NameFull>
+        <Rank>Family</Rank>
+        <CanonicalName>
+          <Simple>Test Simple</Simple>
+          <Uninomial>Test Uninomial</Uninomial>
+          <Genus>Test Genus</Genus>
+          <InfragenericEpithet>Test InfragenericEpithet</InfragenericEpithet>
+          <SpecificEpithet>Test SpecificEpithet</SpecificEpithet>
+          <InfraspecificEpithet>Test InfraspecificEpithet</InfraspecificEpithet>
+          <CultivarNameGroup>Test CultivarNameGroup</CultivarNameGroup>
+        </CanonicalName>
+        <Authorship>Test Authorship</Authorship>
+        <BasionymAuthors>Test BasionymAuthors</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="Test PublishedIn ref">Test PublishedIn</PublishedIn>
+        <Year>Test Year</Year>
+        <MicroReference>Test MicroReference</MicroReference>
+        <TypeName ref="Test TypeName ref">Test TypeName</TypeName>
+        <Orthography>Test Orthography</Orthography>
+        <Basionym ref="Test Basionym ref">Test Basionym</Basionym>
+        <LaterHomonymOf ref="Test LaterHomonymOf ref">Test LaterHomonymOf</LaterHomonymOf>
+        <ReplacementFor>
+          <BlockedName ref="Test BlockedName ref">Test BlockedName</BlockedName>
+          <RecombinedName ref="Test RecombinedName ref">Test RecombinedName</RecombinedName>
+        </ReplacementFor>
+        <NomenclaturalStatus>Test NomenclaturalStatus</NomenclaturalStatus>
+        <NomenclaturalCode>Test</NomenclaturalCode>
+      </TaxonName>
+    </TaxonNames>
+  </DataSource>
+</DataSet>

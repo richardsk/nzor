@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http.Filters;
+using System.Web.Http;
+
+namespace NZOR.Web.Service.Filters
+{
+    public class ExceptionHandlerFilter : ExceptionFilterAttribute
+    {
+        public override void OnException(HttpActionExecutedContext actionExecutedContext)
+        {
+            if (actionExecutedContext.Exception != null)
+            {
+                var exception = actionExecutedContext.Exception;
+
+                if (actionExecutedContext.Exception is HttpResponseException)
+                {
+                    var httpException = (HttpResponseException)exception;
+
+                    actionExecutedContext.Response = new System.Net.Http.HttpResponseMessage<HttpResponseException>(httpException);
+                }
+                else
+                {
+                    actionExecutedContext.Result = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+                    actionExecutedContext.Result.Content = new System.Net.Http.StringContent("This error message has been logged.");
+                }
+            }
+            else
+            {
+                base.OnException(actionExecutedContext);
+            }
+        }
+    }
+}

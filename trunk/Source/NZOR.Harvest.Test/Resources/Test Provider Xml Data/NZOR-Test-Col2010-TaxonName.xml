@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL></OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <TaxonNames>
+      <TaxonName id="33937EA5-ED2A-4F2F-9881-EE0688C3F901" qualityCode="Validated Secondary Source" createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Test Simple</CanonicalName>
+        <Authorship>Test Authorship</Authorship>
+        <BasionymAuthors>Test BasionymAuthors</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="Test PublishedIn ref">Test PublishedIn</PublishedIn>
+        <Year>Test Year</Year>
+        <MicroReference>Test MicroReference</MicroReference>
+        <TypeName ref="Test TypeName ref">Test TypeName</TypeName>
+        <Orthography>Test Orthography</Orthography>
+        <Basionym ref="Test Basionym ref">Test Basionym</Basionym>
+        <LaterHomonymOf ref="Test LaterHomonymOf ref">Test LaterHomonymOf</LaterHomonymOf>
+        <ReplacementFor>
+          <BlockedName ref="Test BlockedName ref">Test BlockedName</BlockedName>
+          <RecombinedName ref="Test RecombinedName ref">Test RecombinedName</RecombinedName>
+        </ReplacementFor>
+        <NomenclaturalStatus>Test NomenclaturalStatus</NomenclaturalStatus>
+        <NomenclaturalCode>Test</NomenclaturalCode>
+        <IsRecombination>true</IsRecombination>
+      </TaxonName>
+      <TaxonName id="49FF36C1-9D32-4F23-B017-54A880507F65" qualityCode="Validated Secondary Source" createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Test Simple</CanonicalName>
+        <Authorship>Test Authorship</Authorship>
+        <BasionymAuthors>Test BasionymAuthors</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="Test PublishedIn ref">Test PublishedIn</PublishedIn>
+        <Year>Test Year</Year>
+        <MicroReference>Test MicroReference</MicroReference>
+        <TypeName ref="Test TypeName ref">Test TypeName</TypeName>
+        <Orthography>Test Orthography</Orthography>
+        <Basionym ref="Test Basionym ref">Test Basionym</Basionym>
+        <LaterHomonymOf ref="Test LaterHomonymOf ref">Test LaterHomonymOf</LaterHomonymOf>
+        <ReplacementFor>
+          <BlockedName ref="Test BlockedName ref">Test BlockedName</BlockedName>
+          <RecombinedName ref="Test RecombinedName ref">Test RecombinedName</RecombinedName>
+        </ReplacementFor>
+        <NomenclaturalStatus>Test NomenclaturalStatus</NomenclaturalStatus>
+        <NomenclaturalCode>Test</NomenclaturalCode>        
+      </TaxonName>
+      <TaxonName id="EBB47621-3E09-4DD9-86AF-4549E24FA3AD" qualityCode="Validated Secondary Source" createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Test Simple</CanonicalName>
+        <Authorship>(Bas) Test Authorship</Authorship>
+        <BasionymAuthors>Bas</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="Test PublishedIn ref">Test PublishedIn</PublishedIn>
+        <Year>Test Year</Year>
+        <MicroReference>Test MicroReference</MicroReference>
+        <TypeName ref="Test TypeName ref">Test TypeName</TypeName>
+        <Orthography>Test Orthography</Orthography>
+        <LaterHomonymOf ref="Test LaterHomonymOf ref">Test LaterHomonymOf</LaterHomonymOf>
+        <ReplacementFor>
+          <BlockedName ref="Test BlockedName ref">Test BlockedName</BlockedName>
+          <RecombinedName ref="Test RecombinedName ref">Test RecombinedName</RecombinedName>
+        </ReplacementFor>
+        <NomenclaturalStatus>Test NomenclaturalStatus</NomenclaturalStatus>
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="F72A51BA-9F80-489E-8324-52FAE83D250A" qualityCode="Validated Secondary Source" createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Test Simple</CanonicalName>
+        <Authorship>(Test Authorship)</Authorship>
+        <BasionymAuthors/>
+        <CombiningAuthors />
+        <PublishedIn ref="Test PublishedIn ref">Test PublishedIn</PublishedIn>
+        <Year>Test Year</Year>
+        <MicroReference>Test MicroReference</MicroReference>
+        <TypeName ref="Test TypeName ref">Test TypeName</TypeName>
+        <Orthography>Test Orthography</Orthography>
+        <Basionym ref="Test Basionym ref">Test Basionym</Basionym>
+        <LaterHomonymOf ref="Test LaterHomonymOf ref">Test LaterHomonymOf</LaterHomonymOf>
+        <ReplacementFor>
+          <BlockedName ref="Test BlockedName ref">Test BlockedName</BlockedName>
+          <RecombinedName ref="Test RecombinedName ref">Test RecombinedName</RecombinedName>
+        </ReplacementFor>
+        <NomenclaturalStatus>Test NomenclaturalStatus</NomenclaturalStatus>
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+    </TaxonNames>
+    <Annotations>
+      <Annotation id="testAnn1" type="nomenclatural status" createdDate="2012-01-02T12:44:22">
+        <Taxon nameRef="33937EA5-ED2A-4F2F-9881-EE0688C3F901"/>
+        <AnnotationText>nom. inval.</AnnotationText>
+        <AccordingTo ref="Test PublishedIn ref" />
+      </Annotation>
+    </Annotations>
+  </DataSource>
+</DataSet>

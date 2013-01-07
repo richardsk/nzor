@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>[GET_DATE_TIME]</responseDate>
+  <request verb="Identify">[BASE_URL]</request>
+  <Identify>
+    <repositoryName>[REPOSITORY_NAME]</repositoryName>
+    <baseURL>[BASE_URL]</baseURL>
+    <protocolVersion>2.0</protocolVersion>
+    <adminEmail>[ADMIN_EMAIL]</adminEmail>
+    <earliestDatestamp>[EARLIEST_DATE]</earliestDatestamp>
+    <deletedRecord>persistent</deletedRecord>
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+    <!--add any description elements here-->
+  </Identify>
+</OAI-PMH>

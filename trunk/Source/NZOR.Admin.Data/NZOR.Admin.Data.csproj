@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9FB0639-F1A0-4923-A395-0CADA68FB69C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NZOR.Admin.Data</RootNamespace>
+    <AssemblyName>NZOR.Admin.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\AttachmentPoint.cs" />
+    <Compile Include="Entities\BrokeredName.cs" />
+    <Compile Include="Entities\DataSource.cs" />
+    <Compile Include="Entities\DataSourceEndpoint.cs" />
+    <Compile Include="Datasets\DsAttachmentPoint.Designer.cs">
+      <DependentUpon>DsAttachmentPoint.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\ExternalLookupService.cs" />
+    <Compile Include="Entities\Feedback.cs" />
+    <Compile Include="Entities\Matching\Match.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\NameRequest.cs" />
+    <Compile Include="Entities\NZORRecordType.cs" />
+    <Compile Include="Entities\NZORStatistics.cs" />
+    <Compile Include="Entities\ProviderStatistics.cs" />
+    <Compile Include="Entities\ScheduledTask.cs" />
+    <Compile Include="Entities\Provider.cs" />
+    <Compile Include="Entities\Setting.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Lookups\ProviderLookUp.cs" />
+    <Compile Include="Process\ProcessResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IAdminRepository.cs" />
+    <Compile Include="Repositories\IExternalLookupRepository.cs" />
+    <Compile Include="Repositories\IFeedbackRepository.cs" />
+    <Compile Include="Repositories\IProviderRepository.cs" />
+    <Compile Include="Repositories\IScheduledTaskRepository.cs" />
+    <Compile Include="Repositories\Matching\IMatchRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Datasets\DsAttachmentPoint.xsc">
+      <DependentUpon>DsAttachmentPoint.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\DsAttachmentPoint.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsAttachmentPoint.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Datasets\DsAttachmentPoint.xss">
+      <DependentUpon>DsAttachmentPoint.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

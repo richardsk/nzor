@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Name Details</h1>
+<div class="details">
+	<div class="data-pair">
+		<span class="display-label">Local Id:</span> <span class="display-field">{{ name.id }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">NZOR Id:</span> <span class="display-field"><a href='http://demo.nzor.org.nz/names/{{ name.nzor_id }}' target='_blank'>{{ name.nzor_id }}</a></span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Full Name:</span> <span class="display-field">{{ name.full_name }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Taxon Rank:</span> <span class="display-field">{{ name.taxon_rank }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Authors:</span> <span class="display-field">{{ name.authors }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Year:</span> <span class="display-field">{{ name.year }}</span>
+	</div>
+	{% if name.parent_name %}
+	<div class="data-pair">
+		<span class="display-label">Parent Name:</span> 
+		<span class="display-field"><a href='../{{ name.parent_name.id }}'>{{ name.parent_name }}</a></span>
+	</div>
+	{% endif %}
+	{% if name.accepted_name %}
+	<div class="data-pair">
+		<span class="display-label">Accepted Name:</span> 
+		<span class="display-field"><a href='../{{ name.accepted_name.id }}'>{{ name.accepted_name }}</a></span>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

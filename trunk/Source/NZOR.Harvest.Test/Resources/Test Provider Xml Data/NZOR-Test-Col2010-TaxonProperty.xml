@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nzor="http://www.nzor.org.nz/schema/provider/103">
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <Publications>
+      <Publication id="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4" type="Book">
+        <Citation>Catalogue of Life</Citation>
+        <Dates>
+          <Date type="of publication">2010</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Catalogue of Life</Title>
+        </Titles>
+      </Publication>
+    </Publications>
+    <TaxonNames>
+      <TaxonName id="33937EA5-ED2A-4F2F-9881-EE0688C3F901" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Hippidae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+    </TaxonNames>
+    
+    <TaxonProperties>
+      <BiostatusValues>
+        <Biostatus id="Test Taxon Property Id 1" createdDate="2002-12-03T14:44:49" modifiedDate="2004-12-21T15:51:51">
+          <Taxon nameRef="33937EA5-ED2A-4F2F-9881-EE0688C3F901" />
+          <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+          <Region geographicSchema="NZ Botanical Region">New Zealand</Region>
+          <EnvironmentalContext>Wild</EnvironmentalContext>
+          <Origin>Endemic</Origin>
+          <Occurrence>Present</Occurrence>
+        </Biostatus>
+      </BiostatusValues>
+    </TaxonProperties>
+    
+  </DataSource>
+</DataSet>

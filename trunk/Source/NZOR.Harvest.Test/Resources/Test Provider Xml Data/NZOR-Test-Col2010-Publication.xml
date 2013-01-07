@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet>
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <Publications>
+      <Publication id="Test Id 1" parentPublicationRef="Test Parent Reference Id" type="Book" createdDate="2010-10-05T10:01:25" modifiedDate="2010-10-06T10:11:25">
+        <Citation>Catalogue of Life</Citation>
+        <Identifiers>
+          <Identifier type="doi">
+            Test Identifier 1
+          </Identifier>
+          <Identifier type="doi">
+            Test Identifier 2
+          </Identifier>
+        </Identifiers>
+        <Authors>
+          <Simple>
+            Test Simple Author
+          </Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">
+            2010
+          </Date>
+          <Date type="on publication">
+            2010
+          </Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">
+            Catalogue of Life
+          </Title>
+        </Titles>
+        <Editors>
+          <Simple>
+            Test Simple Editor
+          </Simple>
+        </Editors>
+        <Volume>
+          Test Volume
+        </Volume>
+        <Issue>
+          Test Issue
+        </Issue>
+        <Edition>
+          Test Edition
+        </Edition>
+        <Pages>
+          <Page type="start">
+            22
+          </Page>
+          <Page type ="end">
+            123
+          </Page>
+        </Pages>
+        <Publisher>
+          <Name>
+            Test Publisher Name
+          </Name>
+          <City>
+            Test Publisher City
+          </City>
+        </Publisher>
+        <Keywords>
+          <Simple>
+            Test Simple Keywords
+          </Simple>
+        </Keywords>
+        <Links>
+          <Link type="url">
+            Test Link 1
+          </Link>
+          <Link type="url">
+            Test Link 2
+          </Link>
+          <Link type="url">
+            Test Link 3
+          </Link>
+        </Links>
+      </Publication>
+      <Publication id="Test Id 2" parentPublicationRef="Test Parent Reference Id" type="Book" createdDate="2010-10-04T10:01:25" modifiedDate="2010-10-04T10:11:25">
+        <Citation>Another publication with less data but extended authors, editors, and keywords</Citation>
+        <Authors>
+          <Author type="primary">
+            Test Author 1
+          </Author>
+          <Author type="secondary">
+            Test Author 2
+          </Author>
+        </Authors>
+        <Dates>
+          <Date type="of publication">
+            2010
+          </Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">
+            Catalogue of Life
+          </Title>
+        </Titles>
+        <Editors>
+          <Editor>
+            Test Editor 1
+          </Editor>
+          <Editor>
+            Test Editor 2
+          </Editor>
+          <Editor>
+            Test Editor 3
+          </Editor>
+        </Editors>
+        <Keywords>
+          <Keyword>
+            Test Keyword 1
+          </Keyword>
+          <Keyword>
+            Test Keyword 2
+          </Keyword>
+          <Keyword>
+            Test Keyword 3
+          </Keyword>
+        </Keywords>
+      </Publication>
+    </Publications>
+  </DataSource>
+</DataSet>

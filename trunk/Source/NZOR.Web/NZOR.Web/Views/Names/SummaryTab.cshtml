@@ -1,0 +1,214 @@
+﻿@using NZOR.Publish.Model.Concepts
+@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+else
+{
+    <div class="data-pair">
+        <span class="display-label">NZOR Name ID:</span> <span class="display-field">@Html.Raw(Model.Name.NameId.ToString())</span>
+    </div>
+@*Preferred Name*@
+    if (Model.AcceptedConceptRelationships != null && Model.AcceptedConceptRelationships.Any())
+    {
+    <div class="data-pair">
+        <span class="display-label">Status:</span>
+        @{
+        Relationship acceptedConcept = null;
+        foreach (var acl in Model.AcceptedConceptRelationships)
+        {
+            if (acl.IsActive)
+            {
+                acceptedConcept = acl;
+                break;
+            }
+        }
+        if (acceptedConcept != null)
+        {
+            if (acceptedConcept.ToConcept.Name.NameId == Model.Name.NameId)
+            {
+            <span class="display-field">Preferred name (NZOR Concept ID: @Html.Raw(acceptedConcept.ToConcept.ConceptId.ToString()))</span>
+            }
+            else
+            {
+            <span class="display-field">Synonym of @Html.ActionLink(HttpUtility.HtmlDecode(@acceptedConcept.ToConcept.Name.FullName), "detail", new { id = @acceptedConcept.ToConcept.Name.NameId })
+                (NZOR Concept ID: @Html.Raw(acceptedConcept.ToConcept.ConceptId.ToString()))
+            </span>
+            }
+        }
+        else
+        {
+            <span class="display-field">Unknown</span>
+        }
+        }
+    </div>
+    }
+    
+@*NomenclaturalStatus*@
+    string status = Model.Name.NomenclaturalStatus;
+    foreach (NZOR.Publish.Model.Common.Annotation ann in Model.Name.Annotations)
+    {
+        if (ann.AnnotationType.ToLower() != "nzib species inquirende" && ann.AnnotationType.ToLower() != "nzib doubtful record" 
+            && ann.AnnotationType.ToLower() != "taxonomic status" && ann.AnnotationType.ToLower() != "pro parte"
+                 && ann.AnnotationType.ToLower() != "incertae sedis")
+        {
+            if (!status.Contains(ann.AnnotationText))
+            {
+                if (status.Length > 0)
+                {
+                    status += ", ";
+                }
+                status += ann.AnnotationText;
+            }
+        }
+    }
+    if (!String.IsNullOrWhiteSpace(status))
+    {
+    <div class="data-pair">
+        <span class="display-label">Nomenclatural Comment:</span>      
+        <span class="display-field">@Html.Raw(status)</span>        
+    </div>
+    }        
+@*TaxonomicStatus*@
+    string taxStatus = "";
+    foreach (NZOR.Publish.Model.Common.Annotation ann in Model.Name.Annotations)
+    {
+        if (ann.AnnotationType.ToLower() == "nzib species inquirende" || ann.AnnotationType.ToLower() == "nzib doubtful record")
+        {
+            if (!taxStatus.Contains(ann.AnnotationType))
+            {
+                if (taxStatus.Length > 0)
+                {
+                    taxStatus += ", ";
+                }
+                taxStatus += ann.AnnotationType;
+            }
+        }
+        else if (ann.AnnotationType.ToLower() == "taxonomic status" || ann.AnnotationType.ToLower() == "pro parte"
+                 || ann.AnnotationType.ToLower() == "incertae sedis")
+        {
+            if (!taxStatus.Contains(ann.AnnotationText))
+            {
+                if (taxStatus.Length > 0)
+                {
+                    taxStatus += ", ";
+                }
+                taxStatus += ann.AnnotationText;
+            }
+        }
+    }
+    if (!String.IsNullOrWhiteSpace(taxStatus))
+    {
+    <div class="data-pair">
+        <span class="display-label">Taxonomic Comment:</span>        
+        <span class="display-field">@Html.Raw(taxStatus)</span>        
+    </div>
+    }    
+@*Classification*@
+    if (Model.Name.ClassificationHierarchy != null && Model.Name.ClassificationHierarchy.Any())
+    {
+    <div class="data-pair">
+        <span class="display-label">Classification:</span>
+        @foreach (var nameLink in Model.Name.ClassificationHierarchy)
+        {
+            if (nameLink.Rank != "none" & nameLink.NameId != Model.Name.NameId)
+            {      
+            <br />
+            <span class="display-sublabel">@nameLink.Rank: </span>
+            <span class="display-field">
+                <a href="@Url.Action("detail", new { id = nameLink.NameId })">
+                    @Html.Raw(nameLink.PartialName)
+                </a>
+            </span>
+            }
+        }
+        <br />
+        <span class="display-sublabel">@Model.Name.Rank: </span><span class="display-field">
+            @Html.Raw(Model.Name.FullName)
+        </span>
+    </div>
+    }
+@*Synonyms*@
+    if (Model.SynonymConceptRelationships != null && Model.SynonymConceptRelationships.Any())
+    {
+    <div class="data-pair">
+        <span class="display-label">Synonyms:</span>
+        @{
+        var done = new List<Guid>();
+        foreach (var cl in Model.SynonymConceptRelationships.OrderBy(s => s.FromConcept.Name.FullName))
+        {
+            if (cl.FromConcept.Name.NameId != Model.Name.NameId && !done.Contains(cl.FromConcept.Name.NameId) && cl.IsActive)
+            {
+                done.Add(cl.FromConcept.Name.NameId);
+            <br />
+            <span class="display-field">
+                <a href='/names/@cl.FromConcept.Name.NameId'>@Html.Raw(cl.FromConcept.Name.FullName)</a></span>
+            }
+        }
+        }
+    </div>
+    }
+@*Providers*@
+    <div class="data-pair">
+        <span class="display-label">Providers:</span>
+        @if (Model.Name.ProviderNames != null && Model.Name.ProviderNames.Any())
+        {
+            foreach (var providerName in Model.Name.ProviderNames)
+            {
+            <br />        
+            <span class="display-field">@providerName.ProviderCode</span>
+            }
+        }
+    </div> 
+@*Biostatus*@
+        if (Model.Name.Biostatuses.Any())
+        {
+    <div class="data-pair">
+        <span class="display-label">Biostatus:</span>
+        <br />
+        @foreach (var biostatus in Model.Name.Biostatuses)
+        {
+            foreach (var Value in biostatus.GeoSchema)
+            {
+            <span class="display-sublabel">Geo Schema:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            foreach (var Value in biostatus.GeoRegion)
+            {
+            <span class="display-sublabel">Geo Region:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            foreach (var Value in biostatus.Biome)
+            {
+            <span class="display-sublabel">Biome:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            foreach (var Value in biostatus.Origin)
+            {
+            <span class="display-sublabel">Origin:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            foreach (var Value in biostatus.Occurrence)
+            {
+            <span class="display-sublabel">Occurrence:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            foreach (var Value in biostatus.EnvironmentalContext)
+            {
+            <span class="display-sublabel">Environmental Context:</span>  
+            <span class="display-field">@Value</span>
+            <br />    
+            }
+            <br />
+        }
+    </div>
+        }
+}

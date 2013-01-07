@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="batchmatch" EntityType="Model.Store.batchmatch" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="biostatusoption" EntityType="Model.Store.biostatusoption" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="harvest" EntityType="Model.Store.harvest" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="harvestscope" EntityType="Model.Store.harvestscope" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="harvestscopebiostatus" EntityType="Model.Store.harvestscopebiostatus" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="harvestscopename" EntityType="Model.Store.harvestscopename" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="name" EntityType="Model.Store.name" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="nameprovider" EntityType="Model.Store.nameprovider" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="namerequest" EntityType="Model.Store.namerequest" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="provider" EntityType="Model.Store.provider" store:Type="Tables" Schema="consumer" />
+          <EntitySet Name="settings" EntityType="Model.Store.settings" store:Type="Tables" Schema="consumer" />
+        </EntityContainer>
+        <EntityType Name="batchmatch">
+          <Key>
+            <PropertyRef Name="MatchId" />
+          </Key>
+          <Property Name="MatchId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="DateSubmitted" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="250" />
+          <Property Name="Filename" Type="varchar" MaxLength="250" />
+          <Property Name="DownloadUrl" Type="varchar" MaxLength="250" />
+          <Property Name="ResultsFile" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="biostatusoption">
+          <Key>
+            <PropertyRef Name="BiostatusOptionId" />
+          </Key>
+          <Property Name="BiostatusOptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HarvestScopeId" Type="int" Nullable="false" />
+          <Property Name="Present" Type="bit" />
+          <Property Name="Absent" Type="bit" />
+          <Property Name="Uncertain" Type="bit" />
+        </EntityType>
+        <EntityType Name="harvest">
+          <Key>
+            <PropertyRef Name="HarvestId" />
+          </Key>
+          <Property Name="HarvestId" Type="int" Nullable="false" />
+          <Property Name="ServiceUrl" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="IntervalDays" Type="int" />
+          <Property Name="LastHarvest" Type="datetime" />
+          <Property Name="HarvestScopeId" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="100" />
+          <Property Name="LastHarvestStopPage" Type="int" />
+          <Property Name="LastHarvestNameCount" Type="int" />
+        </EntityType>
+        <EntityType Name="harvestscope">
+          <Key>
+            <PropertyRef Name="HarvestScopeId" />
+          </Key>
+          <Property Name="HarvestScopeId" Type="int" Nullable="false" />
+          <Property Name="AcceptedNamesOnly" Type="bit" />
+        </EntityType>
+        <EntityType Name="harvestscopebiostatus">
+          <Key>
+            <PropertyRef Name="HarvestScopeId" />
+            <PropertyRef Name="BiostatusOptionId" />
+          </Key>
+          <Property Name="HarvestScopeId" Type="int" Nullable="false" />
+          <Property Name="BiostatusOptionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="harvestscopename">
+          <Key>
+            <PropertyRef Name="HarvestScopeNameId" />
+          </Key>
+          <Property Name="HarvestScopeNameId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HarvestScopeId" Type="int" />
+          <Property Name="NZORNameId" Type="varchar" MaxLength="250" />
+          <Property Name="FullName" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="name">
+          <Key>
+            <PropertyRef Name="NZORId" />
+          </Key>
+          <Property Name="NZORId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="FullName" Type="varchar" MaxLength="300" />
+          <Property Name="TaxonRank" Type="varchar" MaxLength="100" />
+          <Property Name="GoverningCode" Type="varchar" MaxLength="100" />
+          <Property Name="Authors" Type="varchar" MaxLength="200" />
+          <Property Name="Year" Type="varchar" MaxLength="100" />
+          <Property Name="AcceptedNameId" Type="varchar" MaxLength="250" />
+          <Property Name="ParentNameId" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="nameprovider">
+          <Key>
+            <PropertyRef Name="NZORId" />
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="NZORId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ProviderId" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="namerequest">
+          <Key>
+            <PropertyRef Name="NameRequestId" />
+          </Key>
+          <Property Name="NameRequestId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="FullName" Type="varchar" MaxLength="250" />
+          <Property Name="DateRequested" Type="datetime" />
+          <Property Name="BatchMatchId" Type="varchar" MaxLength="250" />
+          <Property Name="Status" Type="varchar" MaxLength="250" />
+          <Property Name="ProviderNameResults" Type="longtext" />
+        </EntityType>
+        <EntityType Name="provider">
+          <Key>
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Name="ProviderId" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Url" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Value" Type="varchar" MaxLength="500" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="ConsumerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HarvestScopes" EntityType="Model.HarvestScope" />
+          <EntitySet Name="HarvestScopeBiostatus" EntityType="Model.HarvestScopeBiostatus" />
+          <EntitySet Name="HarvestScopeNames" EntityType="Model.HarvestScopeName" />
+          <EntitySet Name="NameProviders" EntityType="Model.NameProvider" />
+          <EntitySet Name="Providers" EntityType="Model.Provider" />
+          <EntitySet Name="Settings" EntityType="Model.Setting" />
+          <EntitySet Name="Names" EntityType="Model.Name" />
+          <EntitySet Name="BiostatusOptions" EntityType="Model.BiostatusOption" />
+          <EntitySet Name="Harvests" EntityType="Model.Harvest" />
+          <EntitySet Name="BatchMatches" EntityType="Model.BatchMatch" />
+          <EntitySet Name="NameRequests" EntityType="Model.NameRequest" />
+        </EntityContainer>
+        <EntityType Name="HarvestScope">
+          <Key>
+            <PropertyRef Name="HarvestScopeId" />
+          </Key>
+          <Property Type="Int32" Name="HarvestScopeId" Nullable="false" />
+          <Property Type="Boolean" Name="AcceptedNamesOnly" />
+        </EntityType>
+        <EntityType Name="HarvestScopeBiostatus">
+          <Key>
+            <PropertyRef Name="HarvestScopeId" />
+            <PropertyRef Name="BiostatusOptionId" />
+          </Key>
+          <Property Type="Int32" Name="HarvestScopeId" Nullable="false" />
+          <Property Type="Int32" Name="BiostatusOptionId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HarvestScopeName">
+          <Key>
+            <PropertyRef Name="HarvestScopeNameId" />
+          </Key>
+          <Property Type="Int32" Name="HarvestScopeNameId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="HarvestScopeId" />
+          <Property Type="String" Name="NZORNameId" />
+          <Property Type="String" Name="FullName" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NameProvider">
+          <Key>
+            <PropertyRef Name="NZORId" />
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Type="String" Name="NZORId" Nullable="false" />
+          <Property Type="String" Name="ProviderId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ProviderId" />
+          </Key>
+          <Property Type="String" Name="ProviderId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Url" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Type="Int32" Name="SettingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" />
+          <Property Type="String" Name="Value" />
+        </EntityType>
+        <EntityType Name="Name">
+          <Key>
+            <PropertyRef Name="NZORId" />
+          </Key>
+          <Property Type="String" Name="NZORId" Nullable="false" />
+          <Property Type="String" Name="FullName" Unicode="true" />
+          <Property Type="String" Name="TaxonRank" />
+          <Property Type="String" Name="GoverningCode" />
+          <Property Type="String" Name="Authors" Unicode="true" />
+          <Property Type="String" Name="Year" />
+          <Property Type="String" Name="AcceptedNameId" />
+          <Property Type="String" Name="ParentNameId" />
+        </EntityType>
+        <EntityType Name="BiostatusOption">
+          <Key>
+            <PropertyRef Name="BiostatusOptionId" />
+          </Key>
+          <Property Type="Int32" Name="BiostatusOptionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="HarvestScopeId" Nullable="false" />
+          <Property Type="Boolean" Name="Present" />
+          <Property Type="Boolean" Name="Absent" />
+          <Property Type="Boolean" Name="Uncertain" />
+        </EntityType>
+        <EntityType Name="Harvest">
+          <Key>
+            <PropertyRef Name="HarvestId" />
+          </Key>
+          <Property Type="Int32" Name="HarvestId" Nullable="false" />
+          <Property Type="String" Name="ServiceUrl" Nullable="false" />
+          <Property Type="Int32" Name="IntervalDays" />
+          <Property Type="DateTime" Name="LastHarvest" />
+          <Property Type="Int32" Name="HarvestScopeId" />
+          <Property Type="String" Name="Status" />
+          <Property Type="Int32" Name="LastHarvestStopPage" />
+          <Property Type="Int32" Name="LastHarvestNameCount" />
+        </EntityType>
+        <EntityType Name="BatchMatch">
+          <Key>
+            <PropertyRef Name="MatchId" />
+          </Key>
+          <Property Type="String" Name="MatchId" Nullable="false" />
+          <Property Type="DateTime" Name="DateSubmitted" />
+          <Property Type="String" Name="Status" />
+          <Property Type="String" Name="Filename" />
+          <Property Type="String" Name="DownloadUrl" />
+          <Property Type="String" Name="ResultsFile" />
+        </EntityType>
+        <EntityType Name="NameRequest">
+          <Key>
+            <PropertyRef Name="NameRequestId" />
+          </Key>
+          <Property Type="String" Name="NameRequestId" Nullable="false" />
+          <Property Type="String" Name="FullName" />
+          <Property Type="DateTime" Name="DateRequested" />
+          <Property Type="String" Name="BatchMatchId" />
+          <Property Type="String" Name="Status" />
+          <Property Type="String" Name="ProviderNameResults" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model" />
+        <Alias Key="Target" Value="Model.Store" />
+        <EntityContainerMapping CdmEntityContainer="ConsumerEntities" StorageEntityContainer="ModelStoreContainer">
+          <EntitySetMapping Name="HarvestScopes">
+            <EntityTypeMapping TypeName="Model.HarvestScope">
+              <MappingFragment StoreEntitySet="harvestscope">
+                <ScalarProperty Name="AcceptedNamesOnly" ColumnName="AcceptedNamesOnly" />
+                <ScalarProperty Name="HarvestScopeId" ColumnName="HarvestScopeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HarvestScopeBiostatus">
+            <EntityTypeMapping TypeName="Model.HarvestScopeBiostatus">
+              <MappingFragment StoreEntitySet="harvestscopebiostatus">
+                <ScalarProperty Name="BiostatusOptionId" ColumnName="BiostatusOptionId" />
+                <ScalarProperty Name="HarvestScopeId" ColumnName="HarvestScopeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HarvestScopeNames">
+            <EntityTypeMapping TypeName="Model.HarvestScopeName">
+              <MappingFragment StoreEntitySet="harvestscopename">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="NZORNameId" ColumnName="NZORNameId" />
+                <ScalarProperty Name="HarvestScopeId" ColumnName="HarvestScopeId" />
+                <ScalarProperty Name="HarvestScopeNameId" ColumnName="HarvestScopeNameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameProviders">
+            <EntityTypeMapping TypeName="Model.NameProvider">
+              <MappingFragment StoreEntitySet="nameprovider">
+                <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+                <ScalarProperty Name="NZORId" ColumnName="NZORId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="Model.Provider">
+              <MappingFragment StoreEntitySet="provider">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProviderId" ColumnName="ProviderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="Model.Setting">
+              <MappingFragment StoreEntitySet="settings">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Names">
+            <EntityTypeMapping TypeName="Model.Name">
+              <MappingFragment StoreEntitySet="name">
+                <ScalarProperty Name="ParentNameId" ColumnName="ParentNameId" />
+                <ScalarProperty Name="AcceptedNameId" ColumnName="AcceptedNameId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Authors" ColumnName="Authors" />
+                <ScalarProperty Name="GoverningCode" ColumnName="GoverningCode" />
+                <ScalarProperty Name="TaxonRank" ColumnName="TaxonRank" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="NZORId" ColumnName="NZORId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BiostatusOptions">
+            <EntityTypeMapping TypeName="Model.BiostatusOption">
+              <MappingFragment StoreEntitySet="biostatusoption">
+                <ScalarProperty Name="Uncertain" ColumnName="Uncertain" />
+                <ScalarProperty Name="Absent" ColumnName="Absent" />
+                <ScalarProperty Name="Present" ColumnName="Present" />
+                <ScalarProperty Name="HarvestScopeId" ColumnName="HarvestScopeId" />
+                <ScalarProperty Name="BiostatusOptionId" ColumnName="BiostatusOptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Harvests">
+            <EntityTypeMapping TypeName="Model.Harvest">
+              <MappingFragment StoreEntitySet="harvest">
+                <ScalarProperty Name="LastHarvestNameCount" ColumnName="LastHarvestNameCount" />
+                <ScalarProperty Name="LastHarvestStopPage" ColumnName="LastHarvestStopPage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HarvestScopeId" ColumnName="HarvestScopeId" />
+                <ScalarProperty Name="LastHarvest" ColumnName="LastHarvest" />
+                <ScalarProperty Name="IntervalDays" ColumnName="IntervalDays" />
+                <ScalarProperty Name="ServiceUrl" ColumnName="ServiceUrl" />
+                <ScalarProperty Name="HarvestId" ColumnName="HarvestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BatchMatches">
+            <EntityTypeMapping TypeName="Model.BatchMatch">
+              <MappingFragment StoreEntitySet="batchmatch">
+                <ScalarProperty Name="ResultsFile" ColumnName="ResultsFile" />
+                <ScalarProperty Name="DownloadUrl" ColumnName="DownloadUrl" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="MatchId" ColumnName="MatchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameRequests">
+            <EntityTypeMapping TypeName="Model.NameRequest">
+              <MappingFragment StoreEntitySet="namerequest">
+                <ScalarProperty Name="ProviderNameResults" ColumnName="ProviderNameResults" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BatchMatchId" ColumnName="BatchMatchId" />
+                <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="NameRequestId" ColumnName="NameRequestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model" >
+        <EntityTypeShape EntityType="Model.HarvestScope" Width="1.5" PointX="5.125" PointY="5.375" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="Model.HarvestScopeBiostatus" Width="1.875" PointX="4.75" PointY="0.75" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="Model.HarvestScopeName" Width="1.5" PointX="5" PointY="3.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model.NameProvider" Width="1.5" PointX="7.125" PointY="4" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="Model.Provider" Width="1.5" PointX="9.375" PointY="4" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.Setting" Width="1.5" PointX="9.5" PointY="1.25" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.Name" Width="1.5" PointX="7.25" PointY="0.875" Height="2.5571907552083353" />
+        <EntityTypeShape EntityType="Model.BiostatusOption" Width="1.5" PointX="0.625" PointY="1.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Model.Harvest" Width="1.5" PointX="2.875" PointY="0.75" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Model.BatchMatch" Width="1.5" PointX="0.75" PointY="4.375" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="Model.NameRequest" Width="1.5" PointX="2.875" PointY="4.25" Height="2.1725878906250031" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Permissions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:Microsoft.VisualStudio.Data.Schema.Permissions" Version="1.0">
+
+
+  <PermissionStatement Action ="GRANT">
+    <Permission>EXECUTE</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="sprSelect_StackedNameToRoot" Schema ="consensus" Type ="OBJECT"/>
+  </PermissionStatement>
+  <PermissionStatement Action ="GRANT">
+    <Permission>EXECUTE</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="sprSelect_StackedNameToRoot" Schema ="provider" Type ="OBJECT"/>
+  </PermissionStatement>
+
+  <PermissionStatement Action ="GRANT">
+    <Permission>EXECUTE</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="sprUpdate_StackedNameData" Schema ="consensus" Type ="OBJECT"/>
+  </PermissionStatement>
+  <PermissionStatement Action ="GRANT">
+    <Permission>EXECUTE</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="sprUpdate_StackedNameData" Schema ="provider" Type ="OBJECT"/>
+  </PermissionStatement>
+  <PermissionStatement Action ="GRANT">
+    <Permission>EXECUTE</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="sprUpdate_StackedNameDataOmissions" Schema ="provider" Type ="OBJECT"/>
+  </PermissionStatement>
+
+
+  <PermissionStatement Action ="GRANT">
+    <Permission>SELECT</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="vwConcepts" Schema ="consensus" Type ="OBJECT"/>
+  </PermissionStatement>
+  <PermissionStatement Action ="GRANT">
+    <Permission>SELECT</Permission>
+    <Grantee>PUBLIC</Grantee>
+    <Object Name ="vwConcepts" Schema ="provider" Type ="OBJECT"/>
+  </PermissionStatement>
+
+
+</Permissions>

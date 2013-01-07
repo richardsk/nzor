@@ -1,0 +1,47 @@
+﻿<NZORIntegration>
+  <MatchingSets>
+    <MatchSet id="1">
+      <!-- Species level -->
+      <Rule id="1" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithSameParent" threshold="100" pass="2" fail=""/>
+      <Rule id="2" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithRank" threshold="100" pass="3" fail=""/>
+      <Rule id="3" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithExactCanonical" threshold="100" pass="4" fail="7"/>
+      <Rule id="4" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="90" pass="5" fail="10"/>
+      <Rule id="5" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithAuthors" threshold="90" pass="" fail="11"/>
+      <Rule id="7" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="100" pass="8" fail="9"/>
+      <Rule id="8" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialCanonical" threshold="90" pass="5" fail=""/>
+      <Rule id="9" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="8" fail=""/>
+      <Rule id="10" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="5" fail=""/>
+      <Rule id="11" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialAuthors" threshold="90" pass="" fail=""/>
+    </MatchSet>
+    <MatchSet id="2">
+      <!-- genus and above -->
+      <Rule id="1" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithRankAndCanonical" threshold="100" pass="4" fail="2"/>
+      <Rule id="2" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithRankAndPartialCanonical" threshold="90" pass="3" fail=""/>
+      <Rule id="3" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithExactCanonical" threshold="100" pass="4" fail="6"/>
+      <Rule id="4" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="90" pass="5" fail="9"/>
+      <Rule id="5" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithAuthors" threshold="90" pass="" fail="10"/>
+      <Rule id="6" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="100" pass="7" fail="8"/>
+      <Rule id="7" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialCanonical" threshold="90" pass="5" fail=""/>
+      <Rule id="8" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="7" fail=""/>
+      <Rule id="9" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="5" fail=""/>
+      <Rule id="10" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialAuthors" threshold="90" pass="" fail=""/>
+    </MatchSet>
+    <MatchSet id="3">
+      <!-- vernaculars -->
+      <Rule id="1" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithSameFullName" threshold="100" pass="" fail="2"/>
+      <Rule id="2" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithSimilarFullName" threshold="95" pass="" fail=""/>
+    </MatchSet>
+    <MatchSet id="4">
+      <!-- sub species level -->
+      <Rule id="1" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithSameParent" threshold="100" pass="2" fail=""/>
+      <Rule id="2" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithExactCanonical" threshold="100" pass="3" fail="5"/>
+      <Rule id="3" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="90" pass="4" fail="8"/>
+      <Rule id="4" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithAuthors" threshold="90" pass="" fail="9"/>
+      <Rule id="5" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithYear" threshold="100" pass="6" fail="7"/>
+      <Rule id="6" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialCanonical" threshold="90" pass="4" fail=""/>
+      <Rule id="7" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="6" fail=""/>
+      <Rule id="8" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialYear" threshold="90" pass="4" fail=""/>
+      <Rule id="9" assembly="NZOR.Matching.dll" class="NZOR.Matching.NamesWithPartialAuthors" threshold="90" pass="" fail=""/>
+    </MatchSet>
+  </MatchingSets>
+</NZORIntegration>

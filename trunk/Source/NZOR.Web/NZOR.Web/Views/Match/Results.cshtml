@@ -1,0 +1,192 @@
+﻿@model NZOR.Web.ViewModels.Matching.MatchViewModel
+@{
+    ViewBag.Title = "Batch Match - Step 2 of 2";
+}
+@section  ScriptContent {
+    <script type="text/javascript">
+        function CheckEmail(emailStr) {
+            var checkTLD = 1;
+            var knownDomsPat = /^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum)$/;
+            var emailPat = /^(.+)@@(.+)$/;
+            var specialChars = "\\(\\)><@@,;:\\\\\\\"\\.\\[\\]";
+            var validChars = "\[^\\s" + specialChars + "\]";
+            var quotedUser = "(\"[^\"]*\")";
+            var ipDomainPat = /^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/;
+            var atom = validChars + '+';
+            var word = "(" + atom + "|" + quotedUser + ")";
+            var userPat = new RegExp("^" + word + "(\\." + word + ")*$");
+            var domainPat = new RegExp("^" + atom + "(\\." + atom + ")*$");
+            var matchArray = emailStr.match(emailPat);
+
+            if (matchArray == null) {
+                alert("The email address seems to be invalid");
+                return false;
+            }
+            var user = matchArray[1];
+            var domain = matchArray[2];
+
+            for (i = 0; i < user.length; i++) {
+                if (user.charCodeAt(i) > 127) {
+                    alert("Ths username contains invalid characters.");
+                    return false;
+                }
+            }
+
+            for (i = 0; i < domain.length; i++) {
+                if (domain.charCodeAt(i) > 127) {
+                    alert("Ths domain name contains invalid characters.");
+                    return false;
+                }
+            }
+
+            if (user.match(userPat) == null) {
+                alert("The username seems to be invalid.");
+                return false;
+            }
+
+            var IPArray = domain.match(ipDomainPat);
+            if (IPArray != null) {
+                for (var i = 1; i <= 4; i++) {
+                    if (IPArray[i] > 255) {
+                        alert("Destination IP address is invalid!");
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            var atomPat = new RegExp("^" + atom + "$");
+            var domArr = domain.split(".");
+            var len = domArr.length;
+            for (i = 0; i < len; i++) {
+                if (domArr[i].search(atomPat) == -1) {
+                    alert("The domain name seems to be invalid.");
+                    return false;
+                }
+            }
+
+            if (checkTLD && domArr[domArr.length - 1].length != 2 &&
+        domArr[domArr.length - 1].search(knownDomsPat) == -1) {
+                alert("The address must end in a well-known domain or two letter " + "country.");
+                return false;
+            }
+
+
+            if (len < 2) {
+                alert("This address is missing a hostname!");
+                return false;
+            }
+            
+            return true;
+        }
+
+        function brokerNamesChange() {
+            var val = 'readonly';
+            if ($('#brokerNames').is(':checked')) val = null;            
+            $('#apiKey').attr('readonly', val);
+        }
+    </script>
+}
+<h2>
+    Batch Match</h2>
+    @Html.ValidationMessage(String.Empty)
+<h4>
+    Download results (Step 2 of 2)</h4>
+<p>
+    <span class="display-label">Input file: </span><span class="display-field">
+        @Session["displayFilename"]
+    </span>
+</p>
+@if (Model != null)
+{
+    <p>
+        Following is a preview of the first 10 matches.</p>
+    if (Model != null)
+    {
+        using (Html.BeginForm("download", "match", FormMethod.Post))
+        {
+    <p>
+        <input type="checkbox" id="doExternalLookup" name="doExternalLookup" /> Search external services for names not in NZOR        
+        <br />
+    </p>
+    <p>
+
+        Send full results as a CSV file by email to:
+        <input type="text" maxlength="40" style="width: 20em; height: 1.5em;" name="emailAddress"
+            id="emailAddress" onchange="$('#go')[0].disabled=false" />
+        <input type="submit" id="go" value="Go" onclick="return CheckEmail( $('#emailAddress')[0].value );" />
+    </p>
+        }
+    }
+    <table class="tblMatch" style="width: 880px;">
+        <tr>
+            <th style="width: 100px">
+                Provided ID
+            </th>
+            <th style="width: 250px">
+                Provided Name
+            </th>
+            <th style="width: 250px">
+                Matched Name
+            </th>
+            <th style="width: 50px">
+                Score
+            </th>
+            <th style="width: 200px;">
+                External Sites
+            </th>
+        </tr>
+        @foreach (var nameMatchResult in Model.NameMatchResults)
+        {
+            if (nameMatchResult.NameMatches.Count == 0)
+            {
+                <tr>
+                    <td>
+                        @nameMatchResult.SubmittedId
+                    </td>
+                    <td>
+                        @nameMatchResult.SubmittedScientificName
+                    </td>
+                    <td>
+                        No match
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var nameMatch in nameMatchResult.NameMatches)
+                {
+                <tr>
+                    <td>
+                        @nameMatchResult.SubmittedId
+                    </td>
+                    <td>
+                        @nameMatchResult.SubmittedScientificName
+                    </td>
+                    <td>
+                        @Html.ActionLink(@nameMatch.Name.FullName, "detail", "names", new { id = nameMatch.Name.NameId }, null)
+                    </td>
+                    <td>
+                        @nameMatch.Score.ToString("0.0")
+                    </td>
+                    <td style="text-align: center;">
+                        @foreach (var externalLookup in nameMatch.ExternalLookups)
+                        {
+                            if (externalLookup.Type.Equals("HTML", StringComparison.OrdinalIgnoreCase))
+                            {
+                            <a target='_blank' href='@externalLookup.SearchUrl'>
+                                @NzorHelpers.GetExternalLookupImage(externalLookup.OrganisationName)
+                            </a>
+                            }
+                        }
+                    </td>
+                </tr>
+                }
+            }
+        }
+    </table>          
+}

@@ -1,0 +1,93 @@
+﻿<!--
+This dataset should be imported after the NZOR-Test-BaseDataSet.xml dataset.
+The import should result in the following changes to the data in the database:
+
+provider.Name
+  - Update record with ProviderRecordId = B9E3460B-AFF5-440B-AFE2-37C59F4E2779, change Year from 1753 to 1754
+  
+ provider.Concept
+   - Update record with ProviderNameID = B9E3460B-AFF5-440B-AFE2-37C59F4E2779.  As this is a name based concept, delete all provider.Concept and relationships for this name.  
+     Replace with the new details (the name is now a preferred name, ie the AcceptedNameId = self). 
+
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.lanedcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Usage>
+      <Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+
+    <TaxonNames>
+
+      <TaxonName id="B9E3460B-AFF5-440B-AFE2-37C59F4E2779" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1754</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+    </TaxonNames>
+
+    <TaxonConcepts>
+
+      <NameBasedConcept>
+        <TaxonNameUse createdDate="2011-02-04T16:03:31.907" modifiedDate="2011-02-04T16:03:31.907">
+          <Name ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779" />
+          <AcceptedName ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779" inUse="true" />
+          <ParentName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+
+      <NameBasedConcept>
+        <TaxonNameUse createdDate="2011-02-04T16:03:31.907" modifiedDate="2011-02-04T16:03:31.907">
+          <Name ref="27A5F632-3172-4EF8-BE8B-A01D1CC314A5" />
+          <AcceptedName ref="CB1B0F9E-021A-4726-8826-D5B775A89AC3" inUse="true" />
+          <ParentName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+
+      <NameBasedConcept>
+        <VernacularUse>
+          <VernacularName ref="AD5D06EA-CD2F-485D-AE98-CBCBE2FB7C83">Roman Chamomile</VernacularName>
+          <Applications>
+            <Application inUse="true">
+              <TaxonName ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</TaxonName>
+              <GeoRegion geographicSchema="ISO Country">New Zealand</GeoRegion>
+            </Application>
+            <Application inUse="true">
+              <TaxonName ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</TaxonName>
+              <GeoRegion geographicSchema="ISO Country">Ireland</GeoRegion>
+            </Application>
+          </Applications>
+        </VernacularUse>
+      </NameBasedConcept>
+      
+    </TaxonConcepts>
+
+    <TaxonProperties>
+      <BiostatusValues>
+        <Biostatus createdDate="2011-02-04T16:03:31.907">
+          <Taxon nameRef="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</Taxon>
+          <Region geographicSchema="ISO Country">New Zealand</Region>
+          <Occurrence>Sometimes Present</Occurrence>
+        </Biostatus>
+      </BiostatusValues>
+    </TaxonProperties>    
+
+  </DataSource>
+</DataSet>

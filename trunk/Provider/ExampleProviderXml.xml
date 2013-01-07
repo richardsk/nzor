@@ -1,0 +1,860 @@
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.nzor.org.nz/schema/provider/102 http://www.nzor.org.nz/schema/provider/102/nzor_provider.xsd" xmlns="http://www.nzor.org.nz/schema/provider/102">
+	<Metadata>
+		<Provider id="NZFUNGI">
+			<Name>NZFUNGI</Name>
+			<OrganisationURL/>
+		</Provider>
+		<DateGenerated>2012-03-28T16:14:25.313</DateGenerated>
+	</Metadata>
+	<DataSource id="NZFUNGI">
+		<Usage>
+			<Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+			<Attribution>Fungi Names Database</Attribution>
+		</Usage>
+		<Publications>
+			<Publication id="6F908281-30CA-4BB7-8810-8F36D97044F2" parentPublicationRef="2FBC2CFC-2C72-4D42-AC7F-EBD4EA98C188" type="Article" modifiedDate="2003-07-16T14:40:13">
+				<Citation>Petrak, F. 1929[1928] : Mykologische Beiträge zur Flora der kanarischen Inseln. &lt;I&gt;Beiblatt zu Botanische Jahrbücher für Systematik, Pflanzengeschichte und Pflanzengeographie&lt;/I&gt;&lt;I&gt; 62&lt;/I&gt;&lt;I&gt;(4)&lt;/I&gt;: 125-160</Citation>
+				<Authors>
+					<Simple>Petrak, F.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1929</Date>
+					<Date type="on publication">1928</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Mykologische Beiträge zur Flora der kanarischen Inseln</Title>
+					<Title level="2" type="full">Beiblatt zu Botanische Jahrbücher für Systematik, Pflanzengeschichte und Pflanzengeographie</Title>
+				</Titles>
+				<Volume>62</Volume>
+				<Issue>4</Issue>
+				<Pages>
+					<Page type="start">125-160</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="3B7676A3-6C22-4B26-BF7A-94649D55D2C0" parentPublicationRef="1CB1D6C0-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2003-04-11T11:41:59">
+				<Citation>Montagne, J.P.F.C. 1840: Seconde Centurie de plantes cellulaires exotiques nouvelles, Décades I et II. &lt;I&gt;Annales des Sciences Naturelles, Botanique, 2e Série&lt;/I&gt;&lt;I&gt; 13&lt;/I&gt;: 193-207</Citation>
+				<Authors>
+					<Simple>Montagne, J.P.F.C.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1840</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Seconde Centurie de plantes cellulaires exotiques nouvelles, Décades I et II</Title>
+					<Title level="2" type="full">Annales des Sciences Naturelles, Botanique, 2e Série</Title>
+				</Titles>
+				<Volume>13</Volume>
+				<Pages>
+					<Page type="start">193-207</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="C9A549B4-4AFB-4651-9D95-62C41B3362CA" parentPublicationRef="D0E97AE6-D74F-4A6E-974C-18AD11E98356" type="Conference proceedings" modifiedDate="2002-09-19T11:44:05">
+				<Citation>Grgurinovic, C.A.; Holland, A.A.; Fuhrer, B.A.Notes on Australian species of &lt;i&gt;Mycena&lt;/i&gt;293. XIIIth International Botanical Congress. Abstracts. </Citation>
+				<Authors>
+					<Simple>Grgurinovic, C.A.; Holland, A.A.; Fuhrer, B.A.</Simple>
+				</Authors>
+				<Dates/>
+				<Titles>
+					<Title level="1" type="full">Notes on Australian species of &lt;i&gt;Mycena&lt;/i&gt;</Title>
+					<Title level="2" type="full">XIIIth International Botanical Congress. Abstracts</Title>
+				</Titles>
+				<Pages>
+					<Page type="start">293</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="9A5F3007-E7CD-44ED-8A0C-5D50C627FC59" parentPublicationRef="CF42FF14-3F57-4794-9914-32E68C8C8993" type="Article" modifiedDate="2005-04-14T08:50:57">
+				<Citation>Guzmán, G.; Bandala, V.M.; Montoya, L. 1991[1990] : &lt;I&gt;Revista Mexicana de Micología&lt;/I&gt;&lt;I&gt; 6&lt;/I&gt;: - 112 -</Citation>
+				<Authors>
+					<Simple>Guzmán, G.; Bandala, V.M.; Montoya, L.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1991</Date>
+					<Date type="on publication">1990</Date>
+				</Dates>
+				<Titles>
+					<Title level="2" type="full">Revista Mexicana de Micología</Title>
+				</Titles>
+				<Volume>6</Volume>
+				<Pages>
+					<Page type="start">- 112 -</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="EB8F1BA4-3418-4E68-A3AF-CEFBD344C1C3" parentPublicationRef="1CB1D8DC-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2010-08-11T13:06:48">
+				<Citation>Vesterholt, J. 1989: A revision of Hebeloma sect. Indusiata in the Nordic countries. &lt;I&gt;Nordic Journal of Botany&lt;/I&gt;&lt;I&gt; 9&lt;/I&gt;&lt;I&gt;(3)&lt;/I&gt;: 289-319</Citation>
+				<Authors>
+					<Simple>Vesterholt, J.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1989</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">A revision of Hebeloma sect. Indusiata in the Nordic countries</Title>
+					<Title level="2" type="full">Nordic Journal of Botany</Title>
+				</Titles>
+				<Volume>9</Volume>
+				<Issue>3</Issue>
+				<Pages>
+					<Page type="start">289-319</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="16811C04-7C56-11D6-8AEE-0002A519B2F3" parentPublicationRef="1CB1D686-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2002-06-10T09:44:51">
+				<Citation>Svrček, M. 1993[1992] : New or less known discomycetes XXIII. &lt;I&gt;Česká Mykologie&lt;/I&gt;&lt;I&gt; 46&lt;/I&gt;: 149-162</Citation>
+				<Authors>
+					<Simple>Svrček, M.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1993</Date>
+					<Date type="on publication">1992</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">New or less known discomycetes XXIII</Title>
+					<Title level="2" type="full">Česká Mykologie</Title>
+				</Titles>
+				<Volume>46</Volume>
+				<Pages>
+					<Page type="start">149-162</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="16811C08-7C56-11D6-8AEE-0002A519B2F3" parentPublicationRef="1CB1D8F6-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2003-02-05T08:56:38">
+				<Citation>Baral, H.O.; Márquez, R.G.; Krisai-Greilhuber, I.; Matočec, N.; Palmer, J.T. 1999: &lt;i&gt;Tatraea dumbirensis&lt;/i&gt;, new records of a rare leotialean discomycete in Europe. &lt;I&gt;Österreichische Zeitschrift für Pilzkunde&lt;/I&gt;&lt;I&gt; 8&lt;/I&gt;: 71-82</Citation>
+				<Authors>
+					<Simple>Baral, H.O.; Márquez, R.G.; Krisai-Greilhuber, I.; Matočec, N.; Palmer, J.T.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1999</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">&lt;i&gt;Tatraea dumbirensis&lt;/i&gt;, new records of a rare leotialean discomycete in Europe</Title>
+					<Title level="2" type="full">Österreichische Zeitschrift für Pilzkunde</Title>
+				</Titles>
+				<Volume>8</Volume>
+				<Pages>
+					<Page type="start">71-82</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="1CB0FAD3-36B9-11D5-9548-00D0592D548C" type="Book" modifiedDate="2002-11-01T17:23:32">
+				<Citation>Seaver, F.J. ed. 1928: &lt;I&gt;The North American Cup-fungi (Operculates).&lt;/I&gt;</Citation>
+				<Dates>
+					<Date type="of publication">1928</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">The North American Cup-fungi (Operculates)</Title>
+				</Titles>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="C873F901-C0B7-11D6-8AEE-0002A519B2F3" parentPublicationRef="1CB1D8C5-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2006-06-16T14:41:08">
+				<Citation>Baker, W.A.; Partridge, E.C.; Morgan-Jones, G. 2002: Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;. &lt;I&gt;Mycotaxon&lt;/I&gt;&lt;I&gt; 82&lt;/I&gt;: 95-113</Citation>
+				<Authors>
+					<Simple>Baker, W.A.; Partridge, E.C.; Morgan-Jones, G.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">2002</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;</Title>
+					<Title level="2" type="full">Mycotaxon</Title>
+				</Titles>
+				<Volume>82</Volume>
+				<Pages>
+					<Page type="start">95-113</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="C873F901-C0B7-11D6-8AEE-0002A519B2F3" parentPublicationRef="1CB1D8C5-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2006-06-16T14:41:08">
+				<Citation>Baker, W.A.; Partridge, E.C.; Morgan-Jones, G. 2002: Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;. &lt;I&gt;Mycotaxon&lt;/I&gt;&lt;I&gt; 82&lt;/I&gt;: 95-113</Citation>
+				<Authors>
+					<Simple>Baker, W.A.; Partridge, E.C.; Morgan-Jones, G.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">2002</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;</Title>
+					<Title level="2" type="full">Mycotaxon</Title>
+				</Titles>
+				<Volume>82</Volume>
+				<Pages>
+					<Page type="start">95-113</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="1CB0EB36-36B9-11D5-9548-00D0592D548C" type="Book" modifiedDate="2001-04-24T13:53:00">
+				<Citation>Fries, E.M. ed. 1838: &lt;I&gt;Epicrisis Systematis Mycologici.&lt;/I&gt; Typographia Academica. </Citation>
+				<Dates>
+					<Date type="of publication">1838</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Epicrisis Systematis Mycologici</Title>
+					<Title level="1" type="abbreviation">Epicr. Syst. Mycol.</Title>
+				</Titles>
+				<Pages>
+					<Page type="start">610 p.</Page>
+				</Pages>
+				<Publisher>
+					<Name>Typographia Academica</Name>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="1CB0F0D9-36B9-11D5-9548-00D0592D548C" parentPublicationRef="1CB1D8C5-36B9-11D5-9548-00D0592D548C" type="Article" createdDate="2001-03-18T08:43:05" modifiedDate="2002-06-06T14:17:26">
+				<Citation>Korf, R.P.; Carpenter, S.E. 1974: &lt;i&gt;Bisporella&lt;/i&gt;, a generic name for &lt;i&gt;Helotium citrinum&lt;/i&gt; and its allies, and the generic names &lt;i&gt;Calycella&lt;/i&gt; and &lt;i&gt;Calycina&lt;/i&gt;. &lt;I&gt;Mycotaxon&lt;/I&gt;&lt;I&gt; 1&lt;/I&gt;&lt;I&gt;(1)&lt;/I&gt;: 51-62</Citation>
+				<Authors>
+					<Simple>Korf, R.P.; Carpenter, S.E.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1974</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">&lt;i&gt;Bisporella&lt;/i&gt;, a generic name for &lt;i&gt;Helotium citrinum&lt;/i&gt; and its allies, and the generic names &lt;i&gt;Calycella&lt;/i&gt; and &lt;i&gt;Calycina&lt;/i&gt;</Title>
+					<Title level="2" type="full">Mycotaxon</Title>
+				</Titles>
+				<Volume>1</Volume>
+				<Issue>1</Issue>
+				<Pages>
+					<Page type="start">51-62</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="1CB0E3F4-36B9-11D5-9548-00D0592D548C" parentPublicationRef="1CB1D6F8-36B9-11D5-9548-00D0592D548C" type="Article" createdDate="2001-03-18T08:43:05" modifiedDate="2001-11-20T16:45:42">
+				<Citation>Sydow, P. 1897: Beiträge zur Kenntnis der Pilzflora der Mark Brandenburg. I. &lt;I&gt;Beiblatt zur Hedwigia&lt;/I&gt;&lt;I&gt; 36&lt;/I&gt;&lt;I&gt;(6)&lt;/I&gt;: 157-164</Citation>
+				<Authors>
+					<Simple>Sydow, P.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1897</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Beiträge zur Kenntnis der Pilzflora der Mark Brandenburg. I</Title>
+					<Title level="2" type="full">Beiblatt zur Hedwigia</Title>
+				</Titles>
+				<Volume>36</Volume>
+				<Issue>6</Issue>
+				<Pages>
+					<Page type="start">157-164</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="1CB0E077-36B9-11D5-9548-00D0592D548C" parentPublicationRef="1CB1D83A-36B9-11D5-9548-00D0592D548C" type="Article" createdDate="2001-03-18T08:43:05" modifiedDate="2002-07-24T12:08:39">
+				<Citation>Berkeley, M.J.; Curtis, M.A. 1868[1869] : Fungi Cubenses (Hymenomycetes). &lt;I&gt;Journal of the Linnean Society&lt;/I&gt;&lt;I&gt; 10&lt;/I&gt;: 280-341</Citation>
+				<Authors>
+					<Simple>Berkeley, M.J.; Curtis, M.A.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1868</Date>
+					<Date type="on publication">1869</Date>
+				</Dates>
+				<Titles>
+					<Title level="1" type="full">Fungi Cubenses (Hymenomycetes)</Title>
+					<Title level="2" type="full">Journal of the Linnean Society</Title>
+				</Titles>
+				<Volume>10</Volume>
+				<Pages>
+					<Page type="start">280-341</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="67A72496-F728-4BA6-A4C1-971BDF0D9F8F" parentPublicationRef="1CB1D901-36B9-11D5-9548-00D0592D548C" type="Article" modifiedDate="2008-08-20T14:21:49">
+				<Citation>Huijsman, H.S.C. 1961: &lt;I&gt;Persoonia&lt;/I&gt;&lt;I&gt; 2&lt;/I&gt;&lt;I&gt;(1)&lt;/I&gt;: - 97 -</Citation>
+				<Authors>
+					<Simple>Huijsman, H.S.C.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1961</Date>
+				</Dates>
+				<Titles>
+					<Title level="2" type="full">Persoonia</Title>
+				</Titles>
+				<Volume>2</Volume>
+				<Issue>1</Issue>
+				<Pages>
+					<Page type="start">- 97 -</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+			<Publication id="A6A2B721-D608-465E-9C51-991224463D65" parentPublicationRef="1CB1DC48-36B9-11D5-9548-00D0592D548C" type="Book" createdDate="2011-08-31T16:28:16.120" modifiedDate="2011-08-31T16:33:03.350">
+				<Citation>Fuckel,  K.W.G.L. 1867: &lt;I&gt;Fungi Rhenani Exsiccati, Supplementi&lt;/I&gt; 4. no. 1900 p. </Citation>
+				<Authors>
+					<Simple>Fuckel,  K.W.G.L.</Simple>
+				</Authors>
+				<Dates>
+					<Date type="of publication">1867</Date>
+				</Dates>
+				<Titles>
+					<Title level="2" type="full">Fungi Rhenani Exsiccati, Supplementi</Title>
+				</Titles>
+				<Issue>4</Issue>
+				<Pages>
+					<Page type="start">no. 1801</Page>
+					<Page type="end">no. 1900</Page>
+				</Pages>
+				<Publisher>
+					<Name/>
+					<City/>
+				</Publisher>
+			</Publication>
+		</Publications>
+		<TaxonNames>
+			<TaxonName id="80820CF1-E51C-4000-9A58-0001D56EA2E7" createdDate="2004-07-08T16:33:33" modifiedDate="2004-07-08T16:43:27">
+				<FullName>Xenomeris nicholsonii (Cooke) Petr. 1929 [1928]</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>nicholsonii</CanonicalName>
+				<Authorship>(Cooke) Petr.</Authorship>
+				<BasionymAuthors>Cooke</BasionymAuthors>
+				<CombiningAuthors>Petr.</CombiningAuthors>
+				<PublishedIn ref="6F908281-30CA-4BB7-8810-8F36D97044F2">Petrak, F. 1929[1928] : Mykologische Beiträge zur Flora der kanarischen Inseln. Beiblatt zu Botanische Jahrbücher für Systematik, Pflanzengeschichte und Pflanzengeographie 62(4): 125-160</PublishedIn>
+				<Year>1929</Year>
+				<MicroReference>136</MicroReference>
+				<Orthography>as '&lt;i&gt;nicholsoni&lt;/i&gt;'</Orthography>
+				<Basionym ref="4615092A-6009-4ED5-87A7-DD39020293B2">Stigmatea nicholsonii Cooke 1882</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="9B0F16A7-9613-11D5-8AEB-0002A519B2F3" createdDate="2001-08-21T09:11:10" modifiedDate="2003-04-11T11:42:36">
+				<FullName>Peziza crocata Mont. 1840</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>crocata</CanonicalName>
+				<Authorship>Mont.</Authorship>
+				<BasionymAuthors>Mont.</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="3B7676A3-6C22-4B26-BF7A-94649D55D2C0">Montagne, J.P.F.C. 1840: Seconde Centurie de plantes cellulaires exotiques nouvelles, Décades I et II. Annales des Sciences Naturelles, Botanique, 2e Série 13: 193-207</PublishedIn>
+				<Year>1840</Year>
+				<MicroReference>207</MicroReference>
+				<Basionym ref="9B0F16A7-9613-11D5-8AEB-0002A519B2F3">Peziza crocata Mont. 1840</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="F1C53C65-9E13-11D5-8AEB-0002A519B2F3" createdDate="2001-08-31T13:32:31" modifiedDate="2009-09-15T15:10:03">
+				<FullName>Ascomycetes G. Winter 1881</FullName>
+				<Rank>class</Rank>
+				<CanonicalName>Ascomycetes</CanonicalName>
+				<Authorship>G. Winter</Authorship>
+				<BasionymAuthors>G. Winter</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn/>
+				<Year>1881</Year>
+				<MicroReference/>
+				<Basionym ref="F1C53C65-9E13-11D5-8AEB-0002A519B2F3">Ascomycetes G. Winter 1881</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="DF6C5AA3-843D-11D6-8AEE-0002A519B2F3" createdDate="2002-06-20T12:02:19" modifiedDate="2002-09-19T11:48:07">
+				<FullName>Mycena hispida Grgur., A.A. Holland &amp; Fuhrer 1981</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>hispida</CanonicalName>
+				<Authorship>Grgur., A.A. Holland &amp; Fuhrer</Authorship>
+				<BasionymAuthors>Grgur., A.A. Holland &amp; Fuhrer</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="C9A549B4-4AFB-4651-9D95-62C41B3362CA">Grgurinovic, C.A.; Holland, A.A.; Fuhrer, B.A.Notes on Australian species of &lt;i&gt;Mycena&lt;/i&gt;293. XIIIth International Botanical Congress. Abstracts. </PublishedIn>
+				<Year>1981</Year>
+				<MicroReference>293</MicroReference>
+				<Basionym ref="DF6C5AA3-843D-11D6-8AEE-0002A519B2F3">Mycena hispida Grgur., A.A. Holland &amp; Fuhrer 1981</Basionym>
+				<NomenclaturalStatus> nom. inval.</NomenclaturalStatus>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="DF6C5AA5-843D-11D6-8AEE-0002A519B2F3" createdDate="2002-06-20T12:36:30" modifiedDate="2005-04-14T08:51:43">
+				<FullName>Psathyrella asperospora (Cleland) Guzmán, Band.-Muñoz &amp; Montoya 1991 [1990]</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>asperospora</CanonicalName>
+				<Authorship>(Cleland) Guzmán, Band.-Muñoz &amp; Montoya</Authorship>
+				<BasionymAuthors>Cleland</BasionymAuthors>
+				<CombiningAuthors>Guzmán, Band.-Muñoz &amp; Montoya</CombiningAuthors>
+				<PublishedIn ref="9A5F3007-E7CD-44ED-8A0C-5D50C627FC59">Guzmán, G.; Bandala, V.M.; Montoya, L. 1991[1990] : Revista Mexicana de Micología 6: - 112 -</PublishedIn>
+				<Year>1991</Year>
+				<MicroReference>112</MicroReference>
+				<Basionym ref="512882D4-4C37-4067-AE16-94795F8BFE82">Psilocybe asperospora Cleland 1934</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="DF6C5AA6-843D-11D6-8AEE-0002A519B2F3" createdDate="2002-06-20T12:41:05" modifiedDate="2010-08-11T13:07:59">
+				<FullName>Hebeloma sordescens Vesterh. 1989</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>sordescens</CanonicalName>
+				<Authorship>Vesterh.</Authorship>
+				<BasionymAuthors>Vesterh.</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="EB8F1BA4-3418-4E68-A3AF-CEFBD344C1C3">Vesterholt, J. 1989: A revision of Hebeloma sect. Indusiata in the Nordic countries. Nordic Journal of Botany 9(3): 289-319</PublishedIn>
+				<Year>1989</Year>
+				<MicroReference>307</MicroReference>
+				<Basionym ref="DF6C5AA6-843D-11D6-8AEE-0002A519B2F3">Hebeloma sordescens Vesterh. 1989</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="7BBA54A3-844F-11D6-8AEE-0002A519B2F3" createdDate="2002-06-20T13:14:47" modifiedDate="2010-08-11T13:34:56">
+				<FullName>Polyporus albatrellus</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>albatrellus</CanonicalName>
+				<Authorship/>
+				<BasionymAuthors/>
+				<CombiningAuthors/>
+				<PublishedIn/>
+				<Year/>
+				<MicroReference/>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="16811C03-7C56-11D6-8AEE-0002A519B2F3" createdDate="2002-06-10T09:41:20" modifiedDate="2002-06-10T09:45:53">
+				<FullName>Tatraea Svrček 1993 [1992]</FullName>
+				<Rank>genus</Rank>
+				<CanonicalName>Tatraea</CanonicalName>
+				<Authorship>Svrček</Authorship>
+				<BasionymAuthors>Svrček</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="16811C04-7C56-11D6-8AEE-0002A519B2F3">Svrček, M. 1993[1992] : New or less known discomycetes XXIII. Česká Mykologie 46: 149-162</PublishedIn>
+				<Year>1993</Year>
+				<MicroReference/>
+				<Basionym ref="16811C03-7C56-11D6-8AEE-0002A519B2F3">Tatraea Svrček 1993 [1992]</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="16811C07-7C56-11D6-8AEE-0002A519B2F3" createdDate="2002-06-10T09:46:21" modifiedDate="2003-02-05T08:57:25">
+				<FullName>Tatraea macrospora (Peck) Baral 1999</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>macrospora</CanonicalName>
+				<Authorship>(Peck) Baral</Authorship>
+				<BasionymAuthors>Peck</BasionymAuthors>
+				<CombiningAuthors>Baral</CombiningAuthors>
+				<PublishedIn ref="16811C08-7C56-11D6-8AEE-0002A519B2F3">Baral, H.O.; Márquez, R.G.; Krisai-Greilhuber, I.; Matočec, N.; Palmer, J.T. 1999: &lt;i&gt;Tatraea dumbirensis&lt;/i&gt;, new records of a rare leotialean discomycete in Europe. Österreichische Zeitschrift für Pilzkunde 8: 71-82</PublishedIn>
+				<Year>1999</Year>
+				<MicroReference>80</MicroReference>
+				<Basionym ref="1CB1BDF2-36B9-11D5-9548-00D0592D548C">Helotium macrosporum Peck 1874 [1872]</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="B2D14223-98B1-11D6-8AEE-0002A519B2F3" createdDate="2002-07-16T11:48:14" modifiedDate="2002-12-24T15:36:21">
+				<FullName>Bulgaria melastoma (Sowerby) Seaver 1928</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>melastoma</CanonicalName>
+				<Authorship>(Sowerby) Seaver</Authorship>
+				<BasionymAuthors>Sowerby</BasionymAuthors>
+				<CombiningAuthors>Seaver</CombiningAuthors>
+				<PublishedIn ref="1CB0FAD3-36B9-11D5-9548-00D0592D548C">Seaver, F.J. ed. 1928: The North American Cup-fungi (Operculates).</PublishedIn>
+				<Year>1928</Year>
+				<MicroReference>197</MicroReference>
+				<Basionym ref="1CB1BF5E-36B9-11D5-9548-00D0592D548C">Peziza melastoma Sowerby 1798-99</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="C873F904-C0B7-11D6-8AEE-0002A519B2F3" createdDate="2002-09-05T10:15:33" modifiedDate="2005-10-13T09:15:30">
+				<FullName>Rhexoacrodictys W.A. Baker &amp; Morgan-Jones 2002</FullName>
+				<Rank>genus</Rank>
+				<CanonicalName>Rhexoacrodictys</CanonicalName>
+				<Authorship>W.A. Baker &amp; Morgan-Jones</Authorship>
+				<BasionymAuthors>W.A. Baker &amp; Morgan-Jones</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="C873F901-C0B7-11D6-8AEE-0002A519B2F3">Baker, W.A.; Partridge, E.C.; Morgan-Jones, G. 2002: Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;. Mycotaxon 82: 95-113</PublishedIn>
+				<Year>2002</Year>
+				<MicroReference>99</MicroReference>
+				<Basionym ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3">Rhexoacrodictys W.A. Baker &amp; Morgan-Jones 2002</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="C873F908-C0B7-11D6-8AEE-0002A519B2F3" createdDate="2002-09-05T10:19:36" modifiedDate="2002-09-05T10:21:11">
+				<FullName>Rhexoacrodictys fuliginosa (B. Sutton) W.A. Baker &amp; Morgan-Jones 2002</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>fuliginosa</CanonicalName>
+				<Authorship>(B. Sutton) W.A. Baker &amp; Morgan-Jones</Authorship>
+				<BasionymAuthors>B. Sutton</BasionymAuthors>
+				<CombiningAuthors>W.A. Baker &amp; Morgan-Jones</CombiningAuthors>
+				<PublishedIn ref="C873F901-C0B7-11D6-8AEE-0002A519B2F3">Baker, W.A.; Partridge, E.C.; Morgan-Jones, G. 2002: Notes on hyphomycetes LXXXVII. &lt;i&gt;Rhexoacrodictys&lt;/i&gt;, a new segregate genus to accommodate four species previosuly classified in &lt;i&gt;Acrodictys&lt;/i&gt;. Mycotaxon 82: 95-113</PublishedIn>
+				<Year>2002</Year>
+				<MicroReference>106</MicroReference>
+				<Basionym ref="1CB1BBB9-36B9-11D5-9548-00D0592D548C">Acrodictys fuliginosa B. Sutton 1969</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="B40CCEC3-8CD1-11D6-8AEE-0002A519B2F3" createdDate="2002-07-01T13:41:56" modifiedDate="2007-04-27T14:17:44">
+				<FullName>Coprinus lagopus (Fr.) Fr. 1838</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>lagopus</CanonicalName>
+				<Authorship>(Fr.) Fr.</Authorship>
+				<BasionymAuthors>Fr.</BasionymAuthors>
+				<CombiningAuthors>Fr.</CombiningAuthors>
+				<PublishedIn ref="1CB0EB36-36B9-11D5-9548-00D0592D548C">Fries, E.M. ed. 1838: Epicrisis Systematis Mycologici. Typographia Academica. </PublishedIn>
+				<Year>1838</Year>
+				<MicroReference>250</MicroReference>
+				<Basionym ref="C054239B-2D1F-4501-89BE-0BE45CD430A7">Agaricus lagopus Fr. 1821</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="FEC47FC4-7ED6-11D6-8AEE-0002A519B2F3" createdDate="2002-06-13T14:16:07" modifiedDate="2002-06-13T14:24:05">
+				<FullName>Bisporella sulfurina (Quél.) S.E. Carp.</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>sulfurina</CanonicalName>
+				<Authorship>(Quél.) S.E. Carp.</Authorship>
+				<BasionymAuthors>Quél.</BasionymAuthors>
+				<CombiningAuthors>S.E. Carp.</CombiningAuthors>
+				<PublishedIn ref="1CB0F0D9-36B9-11D5-9548-00D0592D548C">Korf, R.P.; Carpenter, S.E. 1974: &lt;i&gt;Bisporella&lt;/i&gt;, a generic name for &lt;i&gt;Helotium citrinum&lt;/i&gt; and its allies, and the generic names &lt;i&gt;Calycella&lt;/i&gt; and &lt;i&gt;Calycina&lt;/i&gt;. Mycotaxon 1(1): 51-62</PublishedIn>
+				<Year/>
+				<MicroReference/>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="918DFCDC-20DB-48D0-95EA-000BF768AE3E" createdDate="2001-06-10T16:52:23" modifiedDate="2010-07-01T11:43:37">
+				<FullName>Platygloea vestita Bourdot &amp; Galzin</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>vestita</CanonicalName>
+				<Authorship>Bourdot &amp; Galzin</Authorship>
+				<BasionymAuthors>Bourdot &amp; Galzin</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn/>
+				<Year/>
+				<MicroReference/>
+				<Basionym ref="918DFCDC-20DB-48D0-95EA-000BF768AE3E">Platygloea vestita Bourdot &amp; Galzin</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="95B1938C-88BE-44F2-8085-00257A0438BE" createdDate="2010-02-19T09:18:43" modifiedDate="2010-03-26T16:05:38">
+				<FullName>Vermicularia spaethiana Allesch. 1897</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>spaethiana</CanonicalName>
+				<Authorship>Allesch.</Authorship>
+				<BasionymAuthors>Allesch.</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="1CB0E3F4-36B9-11D5-9548-00D0592D548C">Sydow, P. 1897: Beiträge zur Kenntnis der Pilzflora der Mark Brandenburg. I. Beiblatt zur Hedwigia 36(6): 157-164</PublishedIn>
+				<Year>1897</Year>
+				<MicroReference>161</MicroReference>
+				<Basionym ref="95B1938C-88BE-44F2-8085-00257A0438BE">Vermicularia spaethiana Allesch. 1897</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="39C98CC7-314D-4A15-9063-003228A7CB61" createdDate="2011-12-06T08:52:48.227">
+				<FullName>Agaricus subviridis Berk. &amp; M.A. Curtis</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>subviridis</CanonicalName>
+				<Authorship>Berk. &amp; M.A. Curtis</Authorship>
+				<BasionymAuthors>Berk. &amp; M.A. Curtis</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="1CB0E077-36B9-11D5-9548-00D0592D548C">Berkeley, M.J.; Curtis, M.A. 1868[1869] : Fungi Cubenses (Hymenomycetes). Journal of the Linnean Society 10: 280-341</PublishedIn>
+				<Year>1868</Year>
+				<MicroReference>292</MicroReference>
+				<Orthography/>
+				<Basionym ref="39C98CC7-314D-4A15-9063-003228A7CB61">Agaricus subviridis Berk. &amp; M.A. Curtis</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="4F54877B-54B8-437C-90FE-0032796997C3" createdDate="2008-08-20T14:19:51" modifiedDate="2009-09-22T11:04:09">
+				<FullName>Hebeloma cavipes Huijsman 1961</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>cavipes</CanonicalName>
+				<Authorship>Huijsman</Authorship>
+				<BasionymAuthors>Huijsman</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="67A72496-F728-4BA6-A4C1-971BDF0D9F8F">Huijsman, H.S.C. 1961: Persoonia 2(1): - 97 -</PublishedIn>
+				<Year>1961</Year>
+				<MicroReference>97</MicroReference>
+				<Basionym ref="4F54877B-54B8-437C-90FE-0032796997C3">Hebeloma cavipes Huijsman 1961</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="7EA9388B-A5DB-4CE2-B74F-0041D2C11166" createdDate="2011-08-31T16:29:27.603">
+				<FullName>Cryptostictis hysterioides Fuckel 1867</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>hysterioides</CanonicalName>
+				<Authorship>Fuckel</Authorship>
+				<BasionymAuthors>Fuckel</BasionymAuthors>
+				<CombiningAuthors/>
+				<PublishedIn ref="A6A2B721-D608-465E-9C51-991224463D65">Fuckel,  K.W.G.L. 1867: Fungi Rhenani Exsiccati, Supplementi 4. no. 1900 p. </PublishedIn>
+				<Year>1867</Year>
+				<MicroReference>no. 1838</MicroReference>
+				<Orthography/>
+				<Basionym ref="7EA9388B-A5DB-4CE2-B74F-0041D2C11166">Cryptostictis hysterioides Fuckel 1867</Basionym>
+				<NomenclaturalCode>ICBN</NomenclaturalCode>
+			</TaxonName>
+			<TaxonName id="38600AB8-BEC9-4E07-81C0-004412D94592" createdDate="2006-03-17T10:54:59" modifiedDate="2007-06-05T11:07:40">
+				<FullName>Sweet potato feathery mottle virus</FullName>
+				<Rank>species</Rank>
+				<CanonicalName>Sweet potato feathery mottle virus</CanonicalName>
+				<Authorship/>
+				<BasionymAuthors/>
+				<CombiningAuthors/>
+				<PublishedIn/>
+				<Year/>
+				<MicroReference/>
+				<Basionym ref="38600AB8-BEC9-4E07-81C0-004412D94592">Sweet potato feathery mottle virus</Basionym>
+				<NomenclaturalCode>ICVN</NomenclaturalCode>
+			</TaxonName>
+			<VernacularName id="0F18A5AE-8A13-43B9-A823-4949EC971113" createdDate="2011-05-10T12:53:18.850">
+				<FullName>Hare'sfoot Inkcap</FullName>
+				<PublishedIn/>
+				<Language>English</Language>
+			</VernacularName>
+		</TaxonNames>
+		<TaxonConcepts>
+			<TaxonConcept id="0A55750D-746E-445F-9C76-4D4A56C5EBAD" createdDate="2011-05-10T12:55:38.480">
+				<TaxonName ref="F1C53C65-9E13-11D5-8AEB-0002A519B2F3">Ascomycetes G. Winter (1881)</TaxonName>
+				<AccordingTo ref="DE710734-3E34-4556-93A9-773CBD5A9A52">Kirk, P.M.; Cannon, P.F.; Minter, D.W.; Stalpers, J.A. ed. 2008: &lt;I&gt;Ainsworth &amp; Bisby's Dictionary of the Fungi.&lt;/I&gt;10th Edition ed.  CABI Publishing. </AccordingTo>
+				<Relationships>
+					<ParentConcept ref="0F02D23E-53B1-4933-8D29-B1F487F4F4CD" inUse="false"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="2174FEA3-045C-40C3-BFC7-966FB6C129DE" createdDate="2011-05-10T12:55:20.567">
+				<TaxonName ref="F1C53C65-9E13-11D5-8AEB-0002A519B2F3">Ascomycetes G. Winter (1881)</TaxonName>
+				<AccordingTo ref="344EE7E8-8DA4-4ABC-A5BC-8712EA677D97">Kirk, P.M.; Cannon, P.F.; David, J.C.; Stalpers, J.A. ed. 2001: &lt;I&gt;Ainsworth &amp; Bisby's Dictionary of the Fungi.&lt;/I&gt;9th Edition ed.  CAB International. </AccordingTo>
+				<Relationships>
+					<ParentConcept ref="780EDCB4-4604-432F-8ECB-38C0E223D2F9" inUse="true"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="46BAA87D-CF02-44E1-BD5A-5E5F65C33A77" createdDate="2011-05-10T12:55:38.480">
+				<TaxonName ref="16811C03-7C56-11D6-8AEE-0002A519B2F3">Tatraea Svrček (1993) [1992]</TaxonName>
+				<AccordingTo ref="DE710734-3E34-4556-93A9-773CBD5A9A52">Kirk, P.M.; Cannon, P.F.; Minter, D.W.; Stalpers, J.A. ed. 2008: &lt;I&gt;Ainsworth &amp; Bisby's Dictionary of the Fungi.&lt;/I&gt;10th Edition ed.  CABI Publishing. </AccordingTo>
+				<Relationships>
+					<ParentConcept ref="5591F982-2F2E-4BE8-8652-B47146E3F7C3" inUse="false"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="6C879164-B7C5-43D3-B5CE-DFC031E25859" createdDate="2011-10-06T08:48:06.153">
+				<TaxonName ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3">Rhexoacrodictys W.A. Baker &amp; Morgan-Jones</TaxonName>
+				<AccordingTo ref="6EB8E145-59F2-4B10-A1EC-73C08F0DACCC">Kirk, P.M.; Cannon, P.F.; Minter, D.W.; Stalpers, J.A. 2008: &lt;I&gt;Dictionary of the Fungi Classification Database.&lt;/I&gt;http://www.indexfungorum.org/Names/Names.asp</AccordingTo>
+				<Relationships>
+					<ParentConcept ref="B76BD3AA-6D77-4877-9DF9-1C16C675D46E" inUse="false"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="A06B8809-56E6-41F0-BB8C-FDC97EB9B659" createdDate="2011-10-06T08:48:06.153">
+				<TaxonName ref="16811C03-7C56-11D6-8AEE-0002A519B2F3">Tatraea Svrček</TaxonName>
+				<AccordingTo ref="6EB8E145-59F2-4B10-A1EC-73C08F0DACCC">Kirk, P.M.; Cannon, P.F.; Minter, D.W.; Stalpers, J.A. 2008: &lt;I&gt;Dictionary of the Fungi Classification Database.&lt;/I&gt;http://www.indexfungorum.org/Names/Names.asp</AccordingTo>
+				<Relationships>
+					<ParentConcept ref="C57BAD8D-B2DA-4D05-BF4C-C6316C53AD61" inUse="false"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="B9E68586-22D9-4F2E-B5DA-078813BC16C1" createdDate="2011-05-10T12:55:38.480">
+				<TaxonName ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3">Rhexoacrodictys W.A. Baker &amp; Morgan-Jones (2002)</TaxonName>
+				<AccordingTo ref="DE710734-3E34-4556-93A9-773CBD5A9A52">Kirk, P.M.; Cannon, P.F.; Minter, D.W.; Stalpers, J.A. ed. 2008: &lt;I&gt;Ainsworth &amp; Bisby's Dictionary of the Fungi.&lt;/I&gt;10th Edition ed.  CABI Publishing. </AccordingTo>
+				<Relationships>
+					<ParentConcept ref="D5EE65C4-CF64-47CE-B199-E1C79BB8AD7F" inUse="false"/>
+				</Relationships>
+			</TaxonConcept>
+			<TaxonConcept id="C327F6AB-5913-4D6A-A57E-130D0C58A6D9" createdDate="2011-05-10T12:55:02.840">
+				<TaxonName ref="DF6C5AA3-843D-11D6-8AEE-0002A519B2F3">Mycena hispida Grgur., A.A. Holland &amp; Fuhrer (1981)</TaxonName>
+				<AccordingTo ref="1CB0ED35-36B9-11D5-9548-00D0592D548C">Grgurinovic, C.A. 1997: &lt;I&gt;Larger Fungi of South Australia.&lt;/I&gt; Botanic Gardens of Adelaide and State Herbarium &amp; . </AccordingTo>
+				<Relationships>
+					<AcceptedConcept ref="F02A9D8D-CF89-43DA-BF41-FF0C21F93FF9" inUse="true"/>
+				</Relationships>
+			</TaxonConcept>
+			<VernacularConcept id="23310">
+				<VernacularName ref="0F18A5AE-8A13-43B9-A823-4949EC971113">Hare'sfoot Inkcap</VernacularName>
+				<AccordingTo ref="1F52A1DE-2186-4EE7-AFF4-734078D8A183">Holden. E.M. ed. 2003: &lt;I&gt;Recommended English Names for Fungi in the UK.&lt;/I&gt;</AccordingTo>
+				<Applications>
+					<Application ref="B40CCEC3-8CD1-11D6-8AEE-0002A519B2F3" inUse="1" type="is vernacular for">
+						<GeoRegion geographicSchema="World Geographic Scheme for Recording Plant Distributions">Great Britain</GeoRegion>
+					</Application>
+				</Applications>
+			</VernacularConcept>
+			<NameBasedConcept>
+				<TaxonNameUse createdDate="2001-08-21T09:11:10" modifiedDate="2003-04-11T11:42:36">
+					<Name ref="9B0F16A7-9613-11D5-8AEB-0002A519B2F3"/>
+					<AcceptedName ref="1CB19C35-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+					<ParentName ref="1CB1C9D9-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2001-06-10T16:52:23" modifiedDate="2010-07-01T11:43:37">
+					<Name ref="918DFCDC-20DB-48D0-95EA-000BF768AE3E"/>
+					<AcceptedName ref="918DFCDC-20DB-48D0-95EA-000BF768AE3E" inUse="true"/>
+					<ParentName ref="1CB1CA38-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-20T12:41:05" modifiedDate="2010-08-11T13:07:59">
+					<Name ref="DF6C5AA6-843D-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="DF6C5AA6-843D-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB18C6C-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2004-07-08T16:33:33" modifiedDate="2004-07-08T16:43:27">
+					<Name ref="80820CF1-E51C-4000-9A58-0001D56EA2E7"/>
+					<AcceptedName ref="80820CF1-E51C-4000-9A58-0001D56EA2E7" inUse="true"/>
+					<ParentName ref="1CB1CC89-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2010-02-19T09:18:43" modifiedDate="2010-03-26T16:05:38">
+					<Name ref="95B1938C-88BE-44F2-8085-00257A0438BE"/>
+					<AcceptedName ref="41E4A7AD-9F49-4749-9B67-7D4E4B33AC96" inUse="true"/>
+					<ParentName ref="1CB1CC66-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-09-05T10:19:36" modifiedDate="2002-09-05T10:21:11">
+					<Name ref="C873F908-C0B7-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="C873F908-C0B7-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-10T09:41:20" modifiedDate="2002-06-10T09:45:53">
+					<Name ref="16811C03-7C56-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="16811C03-7C56-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB18C9C-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2011-08-31T16:29:27.603">
+					<Name ref="7EA9388B-A5DB-4CE2-B74F-0041D2C11166"/>
+					<AcceptedName ref="7EA9388B-A5DB-4CE2-B74F-0041D2C11166" inUse="true"/>
+					<ParentName ref="1CB1C5B0-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2008-08-20T14:19:51" modifiedDate="2009-09-22T11:04:09">
+					<Name ref="4F54877B-54B8-437C-90FE-0032796997C3"/>
+					<AcceptedName ref="4F54877B-54B8-437C-90FE-0032796997C3" inUse="true"/>
+					<ParentName ref="1CB18C6C-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-09-05T10:15:33" modifiedDate="2005-10-13T09:15:30">
+					<Name ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="C873F904-C0B7-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB1CE06-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-20T13:14:47" modifiedDate="2010-08-11T13:34:56">
+					<Name ref="7BBA54A3-844F-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="7BBA54A3-844F-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB1CA6D-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-07-01T13:41:56" modifiedDate="2007-04-27T14:17:44">
+					<Name ref="B40CCEC3-8CD1-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="4627CBD9-1A92-49DF-945A-D07BF6B3CC86" inUse="true"/>
+					<ParentName ref="1CB184B2-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-20T12:36:30" modifiedDate="2005-04-14T08:51:43">
+					<Name ref="DF6C5AA5-843D-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="DF6C5AA5-843D-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB19D03-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-20T12:02:19" modifiedDate="2002-09-19T11:48:07">
+					<Name ref="DF6C5AA3-843D-11D6-8AEE-0002A519B2F3"/>
+					<ParentName ref="1CB1943F-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2006-03-17T10:54:59" modifiedDate="2007-06-05T11:07:40">
+					<Name ref="38600AB8-BEC9-4E07-81C0-004412D94592"/>
+					<AcceptedName ref="38600AB8-BEC9-4E07-81C0-004412D94592" inUse="true"/>
+					<ParentName ref="44249F2A-8ADC-43EB-A536-BFACF9341715" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-10T09:46:21" modifiedDate="2003-02-05T08:57:25">
+					<Name ref="16811C07-7C56-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="1CB1A270-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+					<ParentName ref="16811C03-7C56-11D6-8AEE-0002A519B2F3" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-07-16T11:48:14" modifiedDate="2002-12-24T15:36:21">
+					<Name ref="B2D14223-98B1-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="1CB19BC5-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+					<ParentName ref="1CB17FFE-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2011-12-06T08:52:48.227">
+					<Name ref="39C98CC7-314D-4A15-9063-003228A7CB61"/>
+					<AcceptedName ref="D551A92B-CDE1-4CC4-9D25-B8BCC54E0E7B" inUse="true"/>
+					<ParentName ref="1CB1C453-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+				<TaxonNameUse createdDate="2002-06-13T14:16:07" modifiedDate="2002-06-13T14:24:05">
+					<Name ref="FEC47FC4-7ED6-11D6-8AEE-0002A519B2F3"/>
+					<AcceptedName ref="FEC47FC4-7ED6-11D6-8AEE-0002A519B2F3" inUse="true"/>
+					<ParentName ref="1CB17F6C-36B9-11D5-9548-00D0592D548C" inUse="true"/>
+				</TaxonNameUse>
+			</NameBasedConcept>
+		</TaxonConcepts>
+		<TaxonProperties>
+			<BiostatusValues>
+				<Biostatus id="576394" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="4F54877B-54B8-437C-90FE-0032796997C3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Unknown</Occurrence>
+				</Biostatus>
+				<Biostatus id="585449" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="F1C53C65-9E13-11D5-8AEB-0002A519B2F3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Present</Occurrence>
+				</Biostatus>
+				<Biostatus id="589445" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="918DFCDC-20DB-48D0-95EA-000BF768AE3E"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Absent</Occurrence>
+				</Biostatus>
+				<Biostatus id="591111" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="80820CF1-E51C-4000-9A58-0001D56EA2E7"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Absent</Occurrence>
+				</Biostatus>
+				<Biostatus id="593071" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="C873F904-C0B7-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Present</Occurrence>
+				</Biostatus>
+				<Biostatus id="593072" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="C873F908-C0B7-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo ref="C39901CB-FBC3-4B7F-A107-E65EDCF81181">The New Zealand Collections of Fungi and Plant Pathogenic Bacteriahttp://NZFUNGI.LandcareResearch.co.nz/</AccordingTo>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Origin>Non-endemic</Origin>
+					<Occurrence>Present</Occurrence>
+				</Biostatus>
+				<Biostatus id="595118" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="DF6C5AA5-843D-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Unknown</Occurrence>
+				</Biostatus>
+				<Biostatus id="595688" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="38600AB8-BEC9-4E07-81C0-004412D94592"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Present</Occurrence>
+				</Biostatus>
+				<Biostatus id="595808" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="FEC47FC4-7ED6-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo ref="C39901CB-FBC3-4B7F-A107-E65EDCF81181">The New Zealand Collections of Fungi and Plant Pathogenic Bacteriahttp://NZFUNGI.LandcareResearch.co.nz/</AccordingTo>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Origin>Unknown</Origin>
+					<Occurrence>Unknown</Occurrence>
+				</Biostatus>
+				<Biostatus id="596574" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="DF6C5AA6-843D-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Absent</Occurrence>
+				</Biostatus>
+				<Biostatus id="596582" createdDate="2011-05-10T12:51:23.993">
+					<Taxon nameRef="7BBA54A3-844F-11D6-8AEE-0002A519B2F3"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Unknown</Occurrence>
+				</Biostatus>
+				<Biostatus id="596908" createdDate="2011-08-31T16:37:25.240">
+					<Taxon nameRef="7EA9388B-A5DB-4CE2-B74F-0041D2C11166"/>
+					<AccordingTo/>
+					<Region geographicSchema="Political Region">New Zealand</Region>
+					<EnvironmentalContext>Wild</EnvironmentalContext>
+					<Occurrence>Absent</Occurrence>
+				</Biostatus>
+			</BiostatusValues>
+		</TaxonProperties>
+	</DataSource>
+</DataSet>

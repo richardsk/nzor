@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using NZOR.Publish.Model.Names;
+using System.IO;
+using System.Xml;
+using System.Xml.Xsl;
+using System.Text;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using Fonet;
+
+namespace NZOR.Web.Service.Formatters
+{
+    public class NamePdfFormatter : BufferedMediaTypeFormatter
+    {
+        private readonly string _pdfTemplatesBaseFolderPathFullName;
+
+        public NamePdfFormatter(string pdfTemplatesBaseFolderPathFullName)
+        {
+            _pdfTemplatesBaseFolderPathFullName = pdfTemplatesBaseFolderPathFullName;
+
+            this.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/pdf"));
+        }
+
+        protected override bool CanWriteType(Type type)
+        {
+            return (type == typeof(Name));
+        }
+
+        protected override bool CanReadType(Type type)
+        {
+            return false;
+        }
+
+        protected override void OnWriteToStream(Type type, object value, System.IO.Stream stream, HttpContentHeaders contentHeaders, FormatterContext formatterContext, System.Net.TransportContext transportContext)
+        {
+            string nameXslt = System.IO.File.ReadAllText(System.IO.Path.Combine(_pdfTemplatesBaseFolderPathFullName, "Name.xslt"));
+
+            Name name = value as Name;
+
+            string nameXml = String.Empty;
+
+            using (var writer = new StringWriter())
+            {
+                var serializer = new XmlSerializer(typeof(Name));
+
+                serializer.Serialize(writer, name);
+                nameXml = writer.ToString();
+            }
+
+            XDocument nameDocument = XDocument.Parse(nameXml);
+            XDocument transformedDocument = Transform(nameDocument, nameXslt);
+
+            FonetDriver driver = FonetDriver.Make();
+            var pdfXmlDocument = new XmlDocument();
+
+            driver.BaseDirectory = new DirectoryInfo(_pdfTemplatesBaseFolderPathFullName);
+
+            pdfXmlDocument.LoadXml(transformedDocument.ToString());
+
+            driver.Render(pdfXmlDocument, stream);
+        }
+
+        private XDocument Transform(XDocument document, string xslt)
+        {
+            using (var reader = new StringReader(xslt))
+            {
+                var xsltReader = XmlReader.Create(reader);
+                var transform = new XslCompiledTransform();
+
+                transform.Load(xsltReader);
+
+                // Apply stylesheet and create a new document.
+                StringBuilder transformedXml = new StringBuilder();
+
+                using (var writer = XmlWriter.Create(transformedXml))
+                {
+                    transform.Transform(document.CreateReader(), writer);
+
+                    writer.Flush();
+                }
+
+                return XDocument.Parse(transformedXml.ToString());
+            }
+        }
+    }
+}

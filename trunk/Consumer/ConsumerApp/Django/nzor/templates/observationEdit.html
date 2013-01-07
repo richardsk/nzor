@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="http://jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery-ui.css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $( "#id_date_observed" ).datepicker();
+        });
+    </script>
+<h1>New Observation</h1>
+<form method='post' action='/consumer/observation/add/'>{% csrf_token %}
+	<table>
+		{{ form }}
+	</table>
+	<br/>
+	<input type='submit' value='Save'/>
+</form>
+{% endblock %}

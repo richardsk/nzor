@@ -1,0 +1,12 @@
+﻿CREATE TABLE 
+	[consensus].[NameProperty]
+	(
+	NamePropertyID UNIQUEIDENTIFIER NOT NULL, 
+
+	NameID UNIQUEIDENTIFIER NOT NULL,  
+	NamePropertyTypeID UNIQUEIDENTIFIER NOT NULL, 
+	RelatedID UNIQUEIDENTIFIER NULL, 
+
+	Sequence INT NULL,
+	Value NVARCHAR(MAX) NULL
+	)

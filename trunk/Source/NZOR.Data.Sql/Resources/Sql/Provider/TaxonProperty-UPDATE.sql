@@ -1,0 +1,19 @@
+﻿UPDATE [provider].[TaxonProperty]
+   SET [TaxonPropertyClassID] = @TaxonPropertyClassID
+      ,[ConsensusTaxonPropertyID] = @ConsensusTaxonPropertyID
+      ,[LinkStatus] = @LinkStatus
+      ,[MatchScore] = @MatchScore
+      ,[ProviderRecordID] = @ProviderRecordID
+      ,[ProviderReferenceID] = @ProviderReferenceID
+      ,[ReferenceID] = @ReferenceID
+      ,[ConceptID] = @ConceptID
+      ,[ProviderNameID] = @ProviderNameID
+      ,[ProviderConceptID] = @ProviderConceptID
+      ,[NameID] = @NameID
+      ,[DataSourceID] = @DataSourceID
+      ,[InUse] = @InUse
+      ,[ProviderCreatedDate] = @ProviderCreatedDate
+      ,[ProviderModifiedDate] = @ProviderModifiedDate
+      ,[AddedDate] = @AddedDate
+	  ,[ModifiedDate] = @ModifiedDate
+ WHERE TaxonPropertyID = @TaxonPropertyID

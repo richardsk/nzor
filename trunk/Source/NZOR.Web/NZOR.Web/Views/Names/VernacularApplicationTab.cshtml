@@ -1,0 +1,57 @@
+﻿@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+else
+{
+    foreach (var concept in Model.Name.Concepts)
+    {
+        foreach (var application in concept.ToApplications)
+        {
+            if (application.Type == "is vernacular for")
+            {
+    <fieldset>
+        <legend >Application - has vernacular</legend>
+        <div class="data-pair">
+            <span class="display-label">Full Name:</span> <span class="display-field">
+                <a href="/names/@application.FromConcept.Name.NameId">@application.FromConcept.Name.FullName</a></span>
+        </div>
+        <div class="data-pair">
+            <span class="display-label">Name Id:</span> <span class="display-field">@application.FromConcept.Name.NameId</span>
+        </div>        
+        @if (application.FromConcept.Publication != null)
+        {
+            <div class="data-pair">
+                <span class="display-label">Accordig To:</span> <span class="display-field">@Html.Raw(application.FromConcept.Publication.Citation)</span>
+            </div>
+        }
+    </fieldset>
+            }
+        }   
+        foreach (var application in concept.FromApplications)
+        {
+            if (application.Type == "has vernacular")
+            {
+    <fieldset>
+        <legend style="padding-left: 20px;">&nbsp;Application - has vernacular</legend>
+        <div class="data-pair">
+            <span class="display-label">Full Name:</span> <span class="display-field">
+                <a href="/names/@application.ToConcept.Name.NameId">@application.ToConcept.Name.FullName</a></span>
+        </div>
+        <div class="data-pair">
+            <span class="display-label">Name Id:</span> <span class="display-field">@application.ToConcept.Name.NameId</span>
+        </div>
+        @if (application.ToConcept.Publication != null)
+        {
+            <div class="data-pair">
+                <span class="display-label">Accordig To:</span> <span class="display-field">@Html.Raw(application.ToConcept.Publication.Citation)</span>
+            </div>
+        }
+    </fieldset>
+            }
+        }
+    }
+}

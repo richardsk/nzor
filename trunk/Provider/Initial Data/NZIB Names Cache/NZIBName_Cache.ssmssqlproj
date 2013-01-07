@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="NZIBName_Cache">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="devserver02\sql2005:LANDCARE\richardsk">
+          <Created>2011-03-23T17:09:38.8397504+13:00</Created>
+          <Type>SQL</Type>
+          <Server>devserver02\sql2005</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName />
+        </ConnectionNode>
+        <ConnectionNode Name="devserver05:LANDCARE\richardsk">
+          <Created>2011-03-23T16:47:25.9164392+13:00</Created>
+          <Type>SQL</Type>
+          <Server>devserver05</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>NZOR_Data</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="proserver01:dbi_user">
+          <Created>2011-03-28T14:10:36.4563647+13:00</Created>
+          <Type>SQL</Type>
+          <Server>proserver01</Server>
+          <UserName>dbi_user</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="testserver05:LANDCARE\richardsk">
+          <Created>2011-03-28T14:43:08.0280476+13:00</Created>
+          <Type>SQL</Type>
+          <Server>testserver05</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="NZIB Cache 0 Create Tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:testserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>testserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>NZIB Cache 0 Create Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 0.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver02\sql2005:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver02\sql2005</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>NZIB Cache 0.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 10.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 10.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 15 Concepts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 15 Concepts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 20 Vernacular.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 20 Vernacular.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 30 Biostatus.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 30 Biostatus.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 40 References.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 40 References.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 5 Metadata.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 5 Metadata.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 50 fill OAI.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 50 fill OAI.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 6.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>NZIB Cache 6.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NZIB Cache 45.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>NZIB Cache 45.sql</FullPath>
+        </FileNode>
+        <FileNode Name="fnGetBiome.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>fnGetBiome.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TransferToNZIBNameCache.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:proserver01:False:dbi_user</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>proserver01</AssociatedConnSrvName>
+          <AssociatedConnUserName>dbi_user</AssociatedConnUserName>
+          <FullPath>TransferToNZIBNameCache.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+  <SccProjectName>$/Provider/Initial Data/NZIB Names Cache</SccProjectName>
+  <SccAuxPath />
+  <SccLocalPath>.</SccLocalPath>
+  <SccProvider>MSSCCI:SourceGear Vault Classic Client</SccProvider>
+</SqlWorkbenchSqlProject>
