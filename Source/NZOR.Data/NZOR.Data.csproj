@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{061130AA-ADE0-453E-A08D-C5FD81F65B58}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NZOR.Data</RootNamespace>
+    <AssemblyName>NZOR.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataSets\DsConsensusData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsConsensusData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsDistinctName.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDistinctName.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsIntegrationConcept.cs">
+      <DependentUpon>DsIntegrationConcept.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\DsIntegrationConcept.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsIntegrationConcept.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsIntegrationName.cs">
+      <DependentUpon>DsIntegrationName.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\DsIntegrationName.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsIntegrationName.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsIntegrationReference.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsIntegrationReference.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsNameMatch.cs">
+      <DependentUpon>DsNameMatch.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\DsNameMatch1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsNameMatch.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DsReferenceMatch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsReferenceMatch.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Common\ConceptApplicationType.cs" />
+    <Compile Include="Entities\Common\ConceptRelationshipType.cs" />
+    <Compile Include="Entities\Common\DistinctName.cs" />
+    <Compile Include="Entities\Common\GeoRegion.cs" />
+    <Compile Include="Entities\Common\NameClass.cs" />
+    <Compile Include="Entities\Common\NameParseResult.cs" />
+    <Compile Include="Entities\Common\NamePropertyType.cs" />
+    <Compile Include="Entities\Common\ReferencePropertyType.cs" />
+    <Compile Include="Entities\Common\ReferenceType.cs" />
+    <Compile Include="Entities\Common\SearchField.cs" />
+    <Compile Include="Entities\Common\TaxonPropertyClass.cs" />
+    <Compile Include="Entities\Common\TaxonPropertyType.cs" />
+    <Compile Include="Entities\Common\TaxonRank.cs" />
+    <Compile Include="Entities\Consensus\Annotation.cs" />
+    <Compile Include="Entities\Consensus\Concept.cs" />
+    <Compile Include="Entities\Consensus\ConceptApplication.cs" />
+    <Compile Include="Entities\Consensus\ConceptRelationship.cs" />
+    <Compile Include="Entities\Consensus\Name.cs" />
+    <Compile Include="Entities\Consensus\NameProfile.cs" />
+    <Compile Include="Entities\Consensus\NameProperty.cs" />
+    <Compile Include="Entities\Consensus\Reference.cs" />
+    <Compile Include="Entities\Consensus\ReferenceProperty.cs" />
+    <Compile Include="Entities\Consensus\StackedName.cs" />
+    <Compile Include="Entities\Consensus\TaxonProperty.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Integration\Integration.cs" />
+    <Compile Include="Entities\Provider\Annotation.cs" />
+    <Compile Include="Entities\Provider\Concept.cs" />
+    <Compile Include="Entities\Provider\ConceptApplication.cs" />
+    <Compile Include="Entities\Provider\ConceptRelationship.cs" />
+    <Compile Include="Entities\Provider\Name.cs" />
+    <Compile Include="Entities\Provider\NameProperty.cs" />
+    <Compile Include="Entities\Provider\Reference.cs" />
+    <Compile Include="Entities\Provider\ReferenceProperty.cs" />
+    <Compile Include="Entities\Provider\TaxonProperty.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Helpers\SerializableDictionary.cs" />
+    <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="LookUps\Common\ConceptApplicationTypeLookUp.cs" />
+    <Compile Include="LookUps\Common\ConceptRelationshipTypeLookUp.cs" />
+    <Compile Include="LookUps\Common\NameClassLookUp.cs" />
+    <Compile Include="LookUps\Common\NamePropertyTypeLookUp.cs" />
+    <Compile Include="LookUps\Common\ReferencePropertyTypeLookUp.cs" />
+    <Compile Include="LookUps\Common\ReferenceTypeLookUp.cs" />
+    <Compile Include="LookUps\Common\TaxonPropertyClassLookup.cs" />
+    <Compile Include="LookUps\Common\TaxonPropertyTypeLookup.cs" />
+    <Compile Include="LookUps\Common\TaxonRankLookUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Common\IDeprecatedRepository.cs" />
+    <Compile Include="Repositories\Common\ILookUpRepository.cs" />
+    <Compile Include="Repositories\Consensus\IAnnotationRepository.cs" />
+    <Compile Include="Repositories\Consensus\IConceptRepository.cs" />
+    <Compile Include="Repositories\Consensus\INameRepository.cs" />
+    <Compile Include="Repositories\Consensus\IReferenceRepository.cs" />
+    <Compile Include="Repositories\Consensus\ITaxonPropertyRepository.cs" />
+    <Compile Include="Repositories\Provider\IAnnotationRepository.cs" />
+    <Compile Include="Repositories\Provider\IConceptRepository.cs" />
+    <Compile Include="Repositories\Provider\INameRepository.cs" />
+    <Compile Include="Repositories\Provider\IReferenceRepository.cs" />
+    <Compile Include="Repositories\Provider\ITaxonPropertyRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Class Diagram.cd" />
+    <None Include="DataSets\DsConsensusData.xsc">
+      <DependentUpon>DsConsensusData.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsConsensusData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsConsensusData.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DsConsensusData.xss">
+      <DependentUpon>DsConsensusData.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsDistinctName.xsc">
+      <DependentUpon>DsDistinctName.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsDistinctName.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDistinctName.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DsDistinctName.xss">
+      <DependentUpon>DsDistinctName.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationConcept.xsc">
+      <DependentUpon>DsIntegrationConcept.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationConcept.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsIntegrationConcept.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DsIntegrationConcept.xss">
+      <DependentUpon>DsIntegrationConcept.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationName.xsc">
+      <DependentUpon>DsIntegrationName.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationName.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsIntegrationName.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\DsIntegrationName.xss">
+      <DependentUpon>DsIntegrationName.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationReference.xsc">
+      <DependentUpon>DsIntegrationReference.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsIntegrationReference.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsIntegrationReference.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DsIntegrationReference.xss">
+      <DependentUpon>DsIntegrationReference.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsNameMatch.xsc">
+      <DependentUpon>DsNameMatch.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsNameMatch.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsNameMatch1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSets\DsNameMatch.xss">
+      <DependentUpon>DsNameMatch.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsReferenceMatch.xsc">
+      <DependentUpon>DsReferenceMatch.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DsReferenceMatch.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsReferenceMatch.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DsReferenceMatch.xss">
+      <DependentUpon>DsReferenceMatch.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NZOR.Admin.Data\NZOR.Admin.Data.csproj">
+      <Project>{F9FB0639-F1A0-4923-A395-0CADA68FB69C}</Project>
+      <Name>NZOR.Admin.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

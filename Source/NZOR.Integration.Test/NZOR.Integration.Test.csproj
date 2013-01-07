@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97E78B15-7DDF-4EE8-AECB-CACAE230366A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NZOR.Integration.Test</RootNamespace>
+    <AssemblyName>NZOR.Integration.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Unit Tests\CSVTest.cs" />
+    <Compile Include="Unit Tests\DataValidTests.cs" />
+    <Compile Include="Unit Tests\IntegrationTest.cs" />
+    <Compile Include="Unit Tests\MatchingTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NZOR.Admin.Data.Sql\NZOR.Admin.Data.Sql.csproj">
+      <Project>{CEEAB84A-707C-4600-B0D1-A592F7D910EE}</Project>
+      <Name>NZOR.Admin.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Admin.Data\NZOR.Admin.Data.csproj">
+      <Project>{F9FB0639-F1A0-4923-A395-0CADA68FB69C}</Project>
+      <Name>NZOR.Admin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Data.Sql\NZOR.Data.Sql.csproj">
+      <Project>{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}</Project>
+      <Name>NZOR.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Data.Test\NZOR.Data.Test.csproj">
+      <Project>{82A931D5-40AD-490E-94FF-F13E558176F2}</Project>
+      <Name>NZOR.Data.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Data\NZOR.Data.csproj">
+      <Project>{061130AA-ADE0-453E-A08D-C5FD81F65B58}</Project>
+      <Name>NZOR.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Harvest\NZOR.Harvest.csproj">
+      <Project>{A29C47D6-6A6B-45E9-B733-C2E2BCD8F2CD}</Project>
+      <Name>NZOR.Harvest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Integration\NZOR.Integration.csproj">
+      <Project>{8877F5F7-631F-49AB-98B6-9D56FD2A5C45}</Project>
+      <Name>NZOR.Integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NZOR.Matching\NZOR.Matching.csproj">
+      <Project>{27839874-827E-43AB-966D-7A13682FE5B8}</Project>
+      <Name>NZOR.Matching</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\PlantNames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\TestMatchingNames.csv" />
+    <None Include="Resources\TestMatchingNames_DwC.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Import Data\Integration-BaseDataSet.xml" />
+    <Content Include="Resources\Sql\InsertTestDataForDocSpecies.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

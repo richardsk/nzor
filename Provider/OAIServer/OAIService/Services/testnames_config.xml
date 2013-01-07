@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Services>
+  <Service name="test_names">
+    <AdminEmail>richardsk@landcareresearch.co.nz</AdminEmail>
+    <ProviderId>NZOR_Test</ProviderId>
+    <ProviderName>NZOR Test</ProviderName>
+    <OrganisationUrl></OrganisationUrl>
+    <MetadataDate></MetadataDate>
+    <Disclaimer></Disclaimer>
+    <Attribution></Attribution>
+    <Licensing></Licensing>
+    <DataSubsetId>NZOR_Test</DataSubsetId>
+
+    <Sets>
+      <Set name="Metadata"/>
+      <Set name="TaxonName"/>
+      <Set name="TaxonProperty"/>
+      <Set name="TaxonConcept"/>
+      <Set name="Publication"/>
+      <Set name="Biostatus"/>
+      <Set name="ManagementStatus"/>
+      <set name="TaxonNameUse"/>
+      <Set name="VernacularUse"/>
+      <Set name="VernacularConcept"/>
+      <Set name="Annotation"/>
+    </Sets>
+
+    <MetadataFormats>
+      <MetadataFormat prefix="nzor" uri="http://data.nzor.org.nz/schema/provider/103/nzor_provider.xsd" mappingFile="nzor_mapping.xml" />
+    </MetadataFormats>
+
+    <DataConnections>
+      <DataConnection set="TaxonName">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.Name" alias="" pk="NameId" indexingElement="">
+          <TableJoin id="2" name="test_name.OAI" alias="" pk="OAI_ID" type="inner" fkFrom="NameId" fkTo="TableId" joinCondition="test_name.OAI.TableName='Name'" indexingElement="">
+            </TableJoin>
+            <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="NameID" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NameQualityCode]" table="1" column="QualityCode" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[FullName]" table="1" column="NameFull" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Rank]" table="1" column="Rank" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Canonical]" table="1" column="CanonicalName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Authorship]" table="1" column="Authorship" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymAuthors]" table="1" column="BasionymAuthors" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[CombiningAuthors]" table="1" column="CombiningAuthors" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublishedIn]" table="1" column="PublishedIn" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Year]" table="1" column="Year" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[MicroReference]" table="1" column="MicroReference" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TypeName]" table="1" column="TypeName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TypeNameId]" table="1" column="TypeNameID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ProtologueOrthography]" table="1" column="ProtologueOrthography" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymName]" table="1" column="Basionym" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BasionymNameId]" table="1" column="BasionymID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[LaterHomonymOf]" table="1" column="LaterHomonymOf" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[LaterHomonymOfId]" table="1" column="LaterHomonymOfId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedName]" table="1" column="BlockedName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BlockedNameId]" table="1" column="BlockedNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RecombinedName]" table="1" column="RecombinedName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RecombinedNameId]" table="1" column="RecombinedNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NomenclaturalStatus]" table="1" column="NomenclaturalStatus" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[NomenclaturalCode]" table="1" column="NomenclaturalCode" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IsRecombination]" table="1" column="IsRecombination" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="VernacularName">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.Vernacular" alias="" pk="VernacularId" indexingElement="">
+          <TableJoin id="2" name="test_name.OAI" alias="" pk="OAI_ID" type="inner" fkFrom="VernacularId" fkTo="TableId" joinCondition="test_name.OAI.TableName='Vernacular'" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameId]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularFullName]" table="1" column="NameFull" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNamePublishedIn]" table="1" column="PublishedIn" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNamePublishedInId]" table="1" column="PublishedInId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameLanguage]" table="1" column="Language" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularNameCountry]" table="1" column="Country" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="TaxonConcept">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.TaxonConcept" alias="" pk="TaxonConceptId" indexingElement="">
+          <TableJoin id="2" name="test_name.ConceptRelationship" alias="" pk="ConceptRelationshipId" type="left" fkFrom="TaxonConceptId" fkTo="FromConceptId" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="TaxonConceptId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="TaxonConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptId]" table="1" column="TaxonConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptNameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptAccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptRank]" table="2" column="rank" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptId]" table="1" column="AcceptedConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AcceptedConceptInUse]" table="1" column="AcceptedConceptInUse" columnAlias="AcceptedConceptInUse" sql="(case when AcceptedConceptId is null then null else isnull(acceptedconceptinuse,0) end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptId]" table="1" column="ParentConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ParentConceptInUse]" table="1" column="ParentConceptInUse" columnAlias="ParentConceptInUse" sql="(case when ParentConceptId is null then null else isnull(parentconceptinuse,0) end)" fixedAttributes="" defaultValue="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptInUse]" table="2" column="InUse" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptId]" table="2" column="ToConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RelatedConceptType]" table="2" column="Type" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonConceptNameQualifier]" table="1" column="NameQualifier" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="VernacularConcept">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.VernacularConcept" alias="" pk="VernacularConceptId" indexingElement="">
+          <TableJoin id="2" name="test_name.ConceptApplication" alias="" pk="ConceptApplicationId" type="left" fkFrom="VernacularConceptId" fkTo="FromConceptId" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularConceptId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernaConceptId]" table="1" column="VernacularConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernConceptCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernConceptModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernConceptNameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernConceptAccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicationGender]" table="2" column="Gender" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicatonPartOf]" table="2" column="PartOfTaxon" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicatonGeoRegion]" table="2" column="GeoRegion" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicatonGeographicSchema]" table="2" column="GeographicSchema" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicatonInUse]" table="2" column="InUse" columnAlias="appInUse" sql="" fixedAttributes="" defaultValue="false" />
+          <Mapping type="DatabaseMapping" field="[ConceptApplicatonToId]" table="2" column="" columnAlias="appToConcept" sql="isnull(ToConceptId,ToNameId)" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="TaxonNameUse">
+        <DBConnectionString>Provider=SQLOLEDB;data source=spidey\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.TaxonNameUse" alias="" pk="TaxonNameUseId" indexingElement="">
+          <TableJoin id="2" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="TaxonNameUseId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="TaxonNameUseId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseId]" table="1" column="TaxonNameUseId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseNameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseAcceptedId]" table="1" column="AcceptedNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseAcceptedInUse]" table="1" column="" columnAlias="AcceptedInUse" sql="(case when AcceptedNameId is null then null else 1 end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseParentId]" table="1" column="ParentNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseParentInUse]" table="1" column="" columnAlias="ParentInUse" sql="(case when ParentNameId is null then null else 1 end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[TaxonNameUseNameQualifier]" table="1" column="NameQualifier" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="VernacularUse">
+        <DBConnectionString>Provider=SQLOLEDB;data source=spidey\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.VernacularUse" alias="" pk="VernacularUseId" indexingElement="">
+          <TableJoin id="2" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="VernacularUseId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="VernacularUseId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseId]" table="1" column="VernacularUseId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseVernacularId]" table="1" column="VernacularId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseTaxonNameId]" table="1" column="TaxonNameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseRank]" table="1" column="Rank" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseGender]" table="1" column="Gender" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUsePartOfTaxon]" table="1" column="PartOfTaxon" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseGeoRegion]" table="1" column="GeoRegion" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseGeographicSchema]" table="1" column="GeographicSchema" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[VernacularUseLifeStage]" table="1" column="LifeStage" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="FixedValueMapping" field="[VernacularUseInUse]" fixedAttributes="" value="true" serviceProperty=""/>
+        </Mappings>
+      </DataConnection>
+
+
+      <DataConnection set="Publication">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.Publication" alias="" pk="PublicationID" indexingElement="">
+          <TableJoin id="2" name="test_name.PublicationTitle" alias="" pk="PublicationId" type="left" fkFrom="PublicationId" fkTo="PublicationId" indexingElement="/DataSet/Publications/Publication/Titles/Title">
+          </TableJoin>
+          <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="PublicationId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="PublicationID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationId]" table="1" column="PublicationID" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationParentId]" table="1" column="ParentPublicationId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationType]" table="1" column="Type" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[Citation]" table="1" column="Citation" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitle]" table="2" column="Title" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleType]" table="2" column="type" columnAlias="titleType" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationTitleLevel]" table="2" column="Level" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationAuthors]" table="1" column="AuthorsSimple" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[DateOfPublication]" table="1" column="DateOfPublication" columnAlias="" sql="" fixedAttributes="type='of publication'" />
+          <Mapping type="DatabaseMapping" field="[DateOnPublication]" table="1" column="DateOnPublication" columnAlias="" sql="" fixedAttributes="type='on publication'" />
+          <Mapping type="DatabaseMapping" field="[PublicationEditor]" table="1" column="EditorsSimple" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationVolume]" table="1" column="Volume" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationEdition]" table="1" column="Edition" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublicationIssue]" table="1" column="Issue" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[StartPage]" table="1" column="PageStart" columnAlias="" sql="" fixedAttributes="type='start'" />
+          <Mapping type="DatabaseMapping" field="[EndPage]" table="1" column="PageEnd" columnAlias="" sql="" fixedAttributes="type='end'" />
+          <Mapping type="DatabaseMapping" field="[PageTotal]" table="1" column="PageTotal" columnAlias="" sql="" fixedAttributes="type='total'" />
+          <Mapping type="DatabaseMapping" field="[PublisherName]" table="1" column="PublisherName" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[PublisherCity]" table="1" column="PublisherCity" columnAlias="" sql="" fixedAttributes="" />
+
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="Biostatus">
+        <DBConnectionString>Provider=SQLOLEDB;data source=202.27.243.4\sql2005;user id=oai_user;password=terrible password!;initial catalog=Name_Cache_Test;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.Biostatus" alias="" pk="BiostatusID" indexingElement="">
+          <TableJoin id="2" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="BiostatusId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="BiostatusId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusId]" table="1" column="BiostatusId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusNameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusAccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusGeoRegion]" table="1" column="Region" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusGeoSchema]" table="1" column="GeographicSchema" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusBiome]" table="1" column="Biome" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusEnvironmentalContext]" table="1" column="EnvironmentalContext" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusOrigin]" table="1" column="Origin" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[BiostatusOccurrence]" table="1" column="Occurrence" columnAlias="" sql="" fixedAttributes="" />
+
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="Annotation">
+        <DBConnectionString>Provider=SQLOLEDB;data source=name_cache.databases.landcareresearch.co.nz;user id=oai_user;password=terrible password!;initial catalog=Name_Cache;persist security info=true</DBConnectionString>
+        <Table id="1" name="test_name.Annotation" alias="" pk="AnnotationId" indexingElement="">
+          <TableJoin id="2" name="test_name.OAI" alias="" pk="OAI_ID" type="inner" fkFrom="AnnotationId" fkTo="TableId" joinCondition="test_name.OAI.TableName='Annotation'" indexingElement="">
+          </TableJoin>
+          <TableJoin id="3" name="test_name.Deprecated" alias="" pk="DeprecatedOldId" type="left" fkFrom="AnnotationId" fkTo="DeprecatedOldId" indexingElement="">
+          </TableJoin>
+        </Table>
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="SQLMinValueMapping" field="[EARLIEST_DATE]" table="1" column="" columnAlias="" sql="isnull(ModifiedDate, CreatedDate)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[IDENTIFIER]" table="1" column="AnnotationId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RESUMPTION_COLUMN]" table="2" column="Counter" columnAlias="" sql="" orderBy="Counter" fixedAttributes=""/>
+          <Mapping type="DatabaseMapping" field="[RECORD_STATUS]" table="" column="" columnAlias="Status" sql="(case when test_name.Deprecated.DeprecatedOldId is not null then 'deleted' else '' end)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[RECORD_DATE]" table="1" column="" columnAlias="" sql="isnull(ModifiedDate, CreatedDate)" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationId]" table="1" column="AnnotationId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationCreatedDate]" table="1" column="CreatedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationModifiedDate]" table="1" column="ModifiedDate" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationType]" table="1" column="Type" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationText]" table="1" column="Annotation" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationTaxonConceptId]" table="1" column="ConceptId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationNameId]" table="1" column="NameId" columnAlias="" sql="" fixedAttributes="" />
+          <Mapping type="DatabaseMapping" field="[AnnotationAccordingToId]" table="1" column="AccordingToId" columnAlias="" sql="" fixedAttributes="" />
+        </Mappings>
+      </DataConnection>
+
+      <DataConnection set="Metadata">
+        <Mappings>
+          <Mapping type="FixedValueMapping" field="[ProviderId]" fixedAttributes="" value="" serviceProperty="[ProviderId]" />
+          <Mapping type="FixedValueMapping" field="[ProviderName]" fixedAttributes="" value="" serviceProperty="[ProviderName]" />
+          <Mapping type="FixedValueMapping" field="[DataSubsetId]" fixedAttributes="" value="" serviceProperty="[DataSubsetId]" />
+          <Mapping type="FixedValueMapping" field="[OrganisationUrl]" fixedAttributes="" value="" serviceProperty="[OrganisationUrl]" />
+          <Mapping type="FixedValueMapping" field="[MetadataDate]" fixedAttributes="" value="" serviceProperty="[MetadataDate]" />
+          <Mapping type="FixedValueMapping" field="[Disclaimer]" fixedAttributes="" value="" serviceProperty="[Disclaimer]" />
+          <Mapping type="FixedValueMapping" field="[Attribution]" fixedAttributes="" value="" serviceProperty="[Attribution]" />
+          <Mapping type="FixedValueMapping" field="[Licensing]" fixedAttributes="" value="" serviceProperty="[Licensing]" />
+        </Mappings>
+      </DataConnection>
+    </DataConnections>
+
+  </Service>
+
+</Services>

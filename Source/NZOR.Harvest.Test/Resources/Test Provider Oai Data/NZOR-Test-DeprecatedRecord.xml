@@ -1,0 +1,14 @@
+﻿<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/          http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd" xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <responseDate>2011-05-06T12:04:16</responseDate>
+  <request verb="ListRecords" from="2011-01-01" until="2011-01-31" metadataPrefix="nzor">http://localhost:4785/OAIPMHService.svc/plant_names</request>
+  <ListRecords>
+    <record>
+      <header status="deleted">
+        <identifier>674B58C2-75F9-407D-AF1C-6F5F822E9AC2</identifier>
+        <datestamp>2011-01-14</datestamp>
+        <setSpec>TaxonName</setSpec>
+      </header>
+    </record>
+  </ListRecords>
+</OAI-PMH>
+  

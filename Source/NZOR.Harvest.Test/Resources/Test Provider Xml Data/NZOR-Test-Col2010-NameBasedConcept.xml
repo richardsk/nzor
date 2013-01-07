@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nzor="http://www.nzor.org.nz/schema/provider/103">
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <Publications>
+      <Publication id="8C497F0A-EF2F-4792-80E4-D67B5C7856BA" type="Generic">
+        <Citation>NZFLORA</Citation>
+        <Dates />
+        <Titles>
+          <Title level="1" type="full">NZFLORA</Title>
+        </Titles>
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>
+    </Publications>
+    <TaxonNames>
+      <TaxonName id="25CBFE9B-4428-4BDF-A3FF-6AA70AE55515">
+        <FullName>Chrysothricaceae</FullName>
+        <Rank>family</Rank>
+        <CanonicalName>Chrysothricaceae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn ref="" />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="445AA224-4417-4445-9C51-C159C7EEFCE0">
+        <FullName>Arthoniales</FullName>
+        <Rank>order</Rank>
+        <CanonicalName>Arthoniales</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn ref="" />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="794EA1E0-8729-4699-BFA7-893EFCC32C62">
+        <FullName>Arthoniales</FullName>
+        <Rank>order</Rank>
+        <CanonicalName>Arthoniales</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn ref="" />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+    </TaxonNames>
+    <TaxonConcepts>
+      <NameBasedConcept>
+        <TaxonNameUse id="484D859A-57D1-4D88-8B54-0003FEB4A527">
+          <Name ref="25CBFE9B-4428-4BDF-A3FF-6AA70AE55515" />
+          <AcceptedName ref="794EA1E0-8729-4699-BFA7-893EFCC32C62" inUse="true" />
+          <ParentName ref="445AA224-4417-4445-9C51-C159C7EEFCE0" rank="Genus" inUse="true"/>
+        </TaxonNameUse>
+      </NameBasedConcept>
+      <NameBasedConcept>
+        <TaxonNameUse>
+          <Name ref="794EA1E0-8729-4699-BFA7-893EFCC32C62" />
+          <AcceptedName ref="794EA1E0-8729-4699-BFA7-893EFCC32C62" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+    </TaxonConcepts>
+  </DataSource>
+</DataSet>

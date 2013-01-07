@@ -1,0 +1,225 @@
+﻿@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+else
+{
+@*Name properties*@
+    if (Model.Name.Class == "Scientific Name")
+    {
+@*Authors*@
+    <div class="data-pair">
+        <span class="display-label">NZOR Name ID:</span> <span class="display-field">@Html.Raw(Model.Name.NameId.ToString())</span>
+    </div>
+        if (!String.IsNullOrWhiteSpace(Model.Name.Authors))
+        {
+    <div class="data-pair">
+        <span class="display-label">Authority:</span> <span class="display-field">@Html.Raw(Model.Name.Authors)</span>
+    </div>
+        }
+@*CultivarNameGroup*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.CultivarNameGroup))
+        {
+    <div class="data-pair">
+        <span class="display-label">Cultivar name group:</span> <span class="display-field">@Html.Raw(Model.Name.CultivarNameGroup)</span>
+    </div>
+        }
+@*Rank*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.Rank))
+        {
+    <div class="data-pair">
+        <span class="display-label">Taxonomic rank:</span> <span class="display-field">@Html.Raw(Model.Name.Rank)</span>
+    </div>
+        }
+@*PublishedIn*@
+        if (Model.Name.PublishedIn != null)
+        {
+    <div class="data-pair">
+        <span class="display-label">Published in:</span> <span class="display-field">@Html.Raw(Model.Name.PublishedIn.Citation)</span>
+    </div>
+        }
+@*MicroReference*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.MicroReference))
+        {
+    <div class="data-pair">
+        <span class="display-label">Micro-reference (page):</span> <span class="display-field">@Html.Raw(Model.Name.MicroReference)</span>
+    </div>
+        }
+@*YearOnPublication*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.YearOnPublication))
+        {
+    <div class="data-pair">
+        <span class="display-label">Year On Publication:</span> <span class="display-field">@Html.Raw(Model.Name.YearOnPublication)</span>
+    </div>
+        }
+@*Year*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.Year))
+        {
+    <div class="data-pair">
+        <span class="display-label">Year:</span> <span class="display-field">@Html.Raw(Model.Name.Year)</span>
+    </div>
+        }
+@*Basionym*@
+        if (Model.Name.BasionymName != null)
+        {
+            if (Model.Name.BasionymName.NameId != Model.Name.NameId)
+            {
+    <div class="data-pair">
+        @if (Model.Name.GoverningCode == "ICBN")
+        {
+            <span class="display-label">Basionym:</span>
+        }
+        else
+        {
+            <span class="display-label">Orignal name:</span>
+        }
+        <span class="display-field">
+            @Html.ActionLink(Model.Name.BasionymName.FullName, "detail", new { id = Model.Name.BasionymName.NameId })
+        </span>
+    </div>
+            }
+        }
+@*NomencalturalComment*@
+        string status = Model.Name.NomenclaturalStatus;
+        foreach (NZOR.Publish.Model.Common.Annotation ann in Model.Name.Annotations)
+        {
+            if (ann.AnnotationType.ToLower() != "nzib species inquirende" && ann.AnnotationType.ToLower() != "nzib doubtful record"
+                && ann.AnnotationType.ToLower() != "taxonomic status" && ann.AnnotationType.ToLower() != "pro parte"
+                     && ann.AnnotationType.ToLower() != "incertae sedis")
+            {
+                if (!status.Contains(ann.AnnotationText))
+                {
+                    if (status.Length > 0)
+                    {
+                        status += ", ";
+                    }
+                    status += ann.AnnotationText;
+                }
+            }
+        }
+        if (!String.IsNullOrWhiteSpace(status))
+        {
+    <div class="data-pair">
+        <span class="display-label">Nomenclatural Comment:</span> <span class="display-field">@Html.Raw(status)</span>
+    </div>
+        } 
+@*TaxonomicStatus*@
+        string taxStatus = "";
+        foreach (NZOR.Publish.Model.Common.Annotation ann in Model.Name.Annotations)
+        {
+            if (ann.AnnotationType.ToLower() == "nzib species inquirende" || ann.AnnotationType.ToLower() == "nzib doubtful record")
+            {
+                if (!taxStatus.Contains(ann.AnnotationType))
+                {
+                    if (taxStatus.Length > 0)
+                    {
+                        taxStatus += ", ";
+                    }
+                    taxStatus += ann.AnnotationType;
+                }
+            }
+            else if (ann.AnnotationType.ToLower() == "taxonomic status" || ann.AnnotationType.ToLower() == "pro parte"
+                 || ann.AnnotationType.ToLower() == "incertae sedis")
+            {
+                if (!taxStatus.Contains(ann.AnnotationText))
+                {
+                    if (taxStatus.Length > 0)
+                    {
+                        taxStatus += ", ";
+                    }
+                    taxStatus += ann.AnnotationText;
+                }
+            }
+        }
+        if (!String.IsNullOrWhiteSpace(taxStatus))
+        {
+    <div class="data-pair">
+        <span class="display-label">Taxonomic Comment:</span>        
+        <span class="display-field">@Html.Raw(taxStatus)</span>        
+    </div>
+        }    
+@*BlockedName*@ 
+        if (Model.Name.BlockedName != null)
+        {
+    <div class="data-pair">
+        <span class="display-label">Earlier homonym:</span> <span class="display-field">
+            @Html.ActionLink(Model.Name.BlockedName.FullName, "detail", new { id = Model.Name.BlockedName.NameId })
+        </span>
+    </div>
+        } 
+@*LaterHomonymOf*@ 
+        if (Model.Name.LaterHomonymOfName != null)
+        {
+    <div class="data-pair">
+        <span class="display-label">Later homonym of:</span> <span class="display-field">
+            @Html.ActionLink(Model.Name.LaterHomonymOfName.FullName, "detail", new { id = Model.Name.LaterHomonymOfName.NameId })
+        </span>
+    </div>
+        } 
+@*Orthography*@    
+        if (!String.IsNullOrWhiteSpace(Model.Name.Orthography))
+        {
+    <div class="data-pair">
+        <span class="display-label">Original orthography:</span> <span class="display-field">@Html.Raw(Model.Name.Orthography)</span>
+    </div>
+        } 
+@*TypeName*@
+        if (Model.Name.TypeName != null)
+        {
+    <div class="data-pair">
+        <span class="display-label">Name of Type of taxon:</span> <span class="display-field">
+            @Html.ActionLink(Model.Name.TypeName.FullName, "detail", new { id = Model.Name.TypeName.NameId })
+        </span>
+    </div>
+        } 
+@*QualityCode*@ 
+        if (!String.IsNullOrWhiteSpace(Model.Name.QualityCode))
+        {
+    <div class="data-pair">
+        <span class="display-label">Quality indicator:</span> <span class="display-field">@Html.Raw(Model.Name.QualityCode)</span>
+    </div>
+        }
+    }
+    else
+    { 
+    <div class="data-pair">
+        <span class="display-label">NZOR Name ID:</span> <span class="display-field">@Html.Raw(Model.Name.NameId.ToString())</span>
+    </div>
+@*Country*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.Country))
+        {
+    <div class="data-pair">
+        <span class="display-label">Country of application:</span> <span class="display-field">@Html.Raw(Model.Name.Country)</span>
+    </div>
+        }
+@*Language*@
+        if (!String.IsNullOrWhiteSpace(Model.Name.Language))
+        {
+    <div class="data-pair">
+        <span class="display-label">Language:</span> <span class="display-field">@Html.Raw(Model.Name.Language)</span>
+    </div>
+        }
+@*PublishedIn*@ 
+        if (Model.Name.PublishedIn != null)
+        {
+    <div class="data-pair">
+        <span class="display-label">Published in:</span> <span class="display-field">@Html.Raw(Model.Name.PublishedIn.Citation)</span>
+    </div>
+        }
+    }
+@*Governing code*@
+    <div class="data-pair">
+        <span class="display-label">Governing Code:</span> <span class="display-field">@Model.Name.GoverningCode</span>
+    </div>
+@*IsRecombination*@ 
+    if (Model.Name.IsRecombination != null)
+    {
+    <div class="data-pair">
+        <span class="display-label">Is Recombination:</span> <span class="display-field">@(Model.Name.IsRecombination ? Html.Raw("Yes") : Html.Raw("No"))</span>
+    </div>
+    }
+
+}

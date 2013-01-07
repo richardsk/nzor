@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NZOR.Publish.Model.Names.Name">
+    <Position X="1.75" Y="3.75" Width="2.75" />
+    <AssociationLine Name="AcceptedName" Type="NZOR.Publish.Model.Names.NameLink" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="9.875" />
+        <Point X="6.25" Y="9.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BlockedName" Type="NZOR.Publish.Model.Names.NameLink" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="10.625" />
+        <Point X="6.25" Y="10.625" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ParentName" Type="NZOR.Publish.Model.Names.NameLink" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="9.563" />
+        <Point X="6.25" Y="9.563" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RecombinedName" Type="NZOR.Publish.Model.Names.NameLink" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="10.25" />
+        <Point X="6.25" Y="10.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ClassificationHierarchy" Type="NZOR.Publish.Model.Names.NameLink" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="7.566" />
+        <Point X="7.312" Y="7.566" />
+        <Point X="7.312" Y="8.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.123" Y="0.495" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Biostatuses" Type="NZOR.Publish.Model.Common.Biostatus" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.688" Y="10.882" />
+        <Point X="3.688" Y="12.758" />
+        <Point X="6.25" Y="12.758" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ProviderNames" Type="NZOR.Publish.Model.Providers.ProviderNameLink" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.812" Y="10.882" />
+        <Point X="2.812" Y="15.47" />
+        <Point X="6.25" Y="15.47" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAABABCMDAAIgI0AwAIAAKlgIwJAABABBUoQAgAAAAA=</HashCode>
+      <FileName>Names\Name.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AcceptedName" />
+      <Property Name="BasionymName" />
+      <Property Name="BlockedName" />
+      <Property Name="ParentName" />
+      <Property Name="TypeName" />
+      <Property Name="RecombinedName" />
+      <Property Name="PublishedIn" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Concepts" />
+      <Property Name="ClassificationHierarchy" />
+      <Property Name="Biostatuses" />
+      <Property Name="ProviderNames" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Concepts.Concept">
+    <Position X="6.25" Y="3.75" Width="2.75" />
+    <AssociationLine Name="FromApplications" Type="NZOR.Publish.Model.Concepts.Application" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.312" Y="6.459" />
+        <Point X="8.312" Y="7.562" />
+        <Point X="10.5" Y="7.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ToApplications" Type="NZOR.Publish.Model.Concepts.Application" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.812" Y="6.459" />
+        <Point X="7.812" Y="8.312" />
+        <Point X="10.5" Y="8.312" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgABAAAAAAAAAAAhAIAAAAQAQgAAACABAAgAAEAAAAA=</HashCode>
+      <FileName>Concepts\Concept.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Publication" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="FromRelationships" />
+      <Property Name="FromApplications" />
+      <Property Name="ToApplications" />
+      <Property Name="ToRelationships" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Concepts.Relationship">
+    <Position X="10.5" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAEAAAAAAAAIAAAACAAQAAAAAAAAA=</HashCode>
+      <FileName>Concepts\Relationship.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="InUseByProviders" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Concepts.Application">
+    <Position X="10.5" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAACAAAAIAAAACAAUAAAAAAAAA=</HashCode>
+      <FileName>Concepts\Application.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Names.NameLink">
+    <Position X="6.25" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgIAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Names\NameLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Publish.Model.References.ReferenceLink">
+    <Position X="6.25" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>References\ReferenceLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Common.Biostatus">
+    <Position X="6.25" Y="11.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAACACAAAAAAAAAAAABEAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Common\Biostatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Providers.ProviderNameLink">
+    <Position X="6.25" Y="14.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Providers\ProviderNameLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Publish.Model.Common.ProviderLink">
+    <Position X="10.5" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ProviderLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

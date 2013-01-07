@@ -1,0 +1,25 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <title></title>
+    <link href="{{ STATIC_URL }}Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="page">
+        <div id="banner">
+            <a href="http://www.nzor.org.nz" target="_blank">
+                <img src="{{ STATIC_URL }}banner.jpg" alt="NZOR Demonstration Consumer App" /></a>
+        </div>
+	<div align="right" style="margin-right:80px">
+		<a href='/consumer/observation/'>Observations</a> &nbsp; &nbsp;
+		<a href='/consumer/name/'>Names</a>
+	</div>
+        <div id="main">
+            {% block content %}
+            {% endblock %}
+            <br />
+            <br />
+        </div>
+    </div>
+</body>
+</html>

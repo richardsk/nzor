@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/
+         http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>[GET_DATE_TIME]</responseDate>
+  <request verb="ListMetadataFormats"
+    identifier="[IDENTIFIER]">
+    [BASE_URL]
+  </request>
+  <ListMetadataFormats>
+    <metadataFormat>
+      <metadataPrefix>nzor</metadataPrefix>
+      <schema>
+        http://data.nzor.org.nz/schema/provider/103/nzor_provider.xsd
+      </schema>
+      <metadataNamespace>
+        http://data.nzor.org.nz/schema/provider/103/
+      </metadataNamespace>
+    </metadataFormat>
+  </ListMetadataFormats>
+</OAI-PMH>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Observations</h1>
+<div class="details">
+	<h3>Last 10 observations:</h3>
+
+	{% if obs_list %}
+	<table width="100%">
+	<tr>
+		<th>Id</th><th>Taxon</th><th>Observer</th><th>Date Observed</th><th>Locality</th>
+	</tr>
+
+
+	{% for obs in obs_list %}
+	<tr>
+		<td><a href='../observation/{{obs.id}}'>{{ obs.id }}</a></td>
+		<td>{{ obs.verbatim_taxon }}</td>
+		<td>{{ obs.observer }}</td>
+		<td>{{ obs.date_observed }}</td>
+		<td>{{ obs.locality }}</td>
+	</tr>
+	{% endfor %}
+	</table>
+
+	{% endif %}
+
+	<br/>
+	<a href='add'>Add Observation</a>
+</div>
+{% endblock %}

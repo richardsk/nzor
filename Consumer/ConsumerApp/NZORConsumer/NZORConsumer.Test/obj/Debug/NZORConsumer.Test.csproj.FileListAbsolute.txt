@@ -1,0 +1,8 @@
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\bin\Debug\NZORConsumer.Test.dll
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\bin\Debug\NZORConsumer.Test.pdb
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\bin\Debug\NZORConsumer.exe
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\bin\Debug\NZORConsumer.pdb
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\obj\Debug\NZORConsumer.Test.dll
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\obj\Debug\NZORConsumer.Test.pdb
+C:\Development\NZOR\Consumer\ConsumerApp\NZORConsumer\NZORConsumer.Test\bin\Debug\NZORConsumer.Test.dll.config

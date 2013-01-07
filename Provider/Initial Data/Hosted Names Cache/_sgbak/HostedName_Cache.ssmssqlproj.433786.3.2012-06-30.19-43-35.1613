@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="HostedName_Cache">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="devserver05:LANDCARE\richardsk">
+          <Created>2011-03-23T16:47:25.9164392+13:00</Created>
+          <Type>SQL</Type>
+          <Server>devserver05</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>NZOR_Data</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="proserver01:dbi_user">
+          <Created>2011-03-28T14:10:36.4563647+13:00</Created>
+          <Type>SQL</Type>
+          <Server>proserver01</Server>
+          <UserName>dbi_user</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="testserver05:LANDCARE\richardsk">
+          <Created>2011-03-28T14:43:08.0280476+13:00</Created>
+          <Type>SQL</Type>
+          <Server>testserver05</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Hosted Cache 0 Create Tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 0 Create Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 0.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 0.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 10.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 10.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 15 Concepts.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 15 Concepts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 20 Vernacular.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 20 Vernacular.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 30 Biostatus.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 30 Biostatus.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 40 References.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 40 References.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 5 Metadata.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 5 Metadata.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 50 fill OAI.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 50 fill OAI.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 6.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 6.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Hosted Cache 45.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Hosted Cache 45.sql</FullPath>
+        </FileNode>
+        <FileNode Name="fnGetBiome.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>fnGetBiome.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TransferToHostedNameCache.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>TransferToHostedNameCache.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+  <SccProjectName>$/Provider/Initial Data/HostedName_Cache</SccProjectName>
+  <SccAuxPath />
+  <SccLocalPath>.</SccLocalPath>
+  <SccProvider>MSSCCI:SourceGear Vault Classic Client</SccProvider>
+</SqlWorkbenchSqlProject>

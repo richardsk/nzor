@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsConsensusData" targetNamespace="http://tempuri.org/DsConsensusName.xsd" xmlns:mstns="http://tempuri.org/DsConsensusName.xsd" xmlns="http://tempuri.org/DsConsensusName.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsConsensusData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsConsensusData" msprop:Generator_UserDSName="DsConsensusData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ConsensusName" msprop:Generator_TableClassName="ConsensusNameDataTable" msprop:Generator_TableVarName="tableConsensusName" msprop:Generator_TablePropName="ConsensusName" msprop:Generator_RowDeletingName="ConsensusNameRowDeleting" msprop:Generator_UserTableName="ConsensusName" msprop:Generator_RowChangingName="ConsensusNameRowChanging" msprop:Generator_RowEvHandlerName="ConsensusNameRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsensusNameRowDeleted" msprop:Generator_RowEvArgName="ConsensusNameRowChangeEvent" msprop:Generator_RowChangedName="ConsensusNameRowChanged" msprop:Generator_RowClassName="ConsensusNameRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnNameID" msprop:Generator_ColumnPropNameInRow="NameID" msprop:Generator_ColumnPropNameInTable="NameIDColumn" msprop:Generator_UserColumnName="NameID" type="xs:string" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="NameClassID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnNameClassID" msprop:Generator_ColumnPropNameInRow="NameClassID" msprop:Generator_ColumnPropNameInTable="NameClassIDColumn" msprop:Generator_UserColumnName="NameClassID" type="xs:string" minOccurs="0" />
+              <xs:element name="NameClass" msprop:Generator_ColumnVarNameInTable="columnNameClass" msprop:Generator_ColumnPropNameInRow="NameClass" msprop:Generator_ColumnPropNameInTable="NameClassColumn" msprop:Generator_UserColumnName="NameClass" type="xs:string" minOccurs="0" />
+              <xs:element name="TaxonRankID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnTaxonRankID" msprop:Generator_ColumnPropNameInRow="TaxonRankID" msprop:Generator_ColumnPropNameInTable="TaxonRankIDColumn" msprop:Generator_UserColumnName="TaxonRankID" type="xs:string" minOccurs="0" />
+              <xs:element name="TaxonRank" msprop:Generator_ColumnVarNameInTable="columnTaxonRank" msprop:Generator_ColumnPropNameInRow="TaxonRank" msprop:Generator_ColumnPropNameInTable="TaxonRankColumn" msprop:Generator_UserColumnName="TaxonRank" type="xs:string" minOccurs="0" />
+              <xs:element name="TaxonRankSort" msprop:Generator_ColumnVarNameInTable="columnTaxonRankSort" msprop:Generator_ColumnPropNameInRow="TaxonRankSort" msprop:Generator_ColumnPropNameInTable="TaxonRankSortColumn" msprop:Generator_UserColumnName="TaxonRankSort" type="xs:int" minOccurs="0" />
+              <xs:element name="Authors" msprop:Generator_ColumnVarNameInTable="columnAuthors" msprop:Generator_ColumnPropNameInRow="Authors" msprop:Generator_ColumnPropNameInTable="AuthorsColumn" msprop:Generator_UserColumnName="Authors" type="xs:string" minOccurs="0" />
+              <xs:element name="GoverningCode" msprop:Generator_ColumnVarNameInTable="columnGoverningCode" msprop:Generator_ColumnPropNameInRow="GoverningCode" msprop:Generator_ColumnPropNameInTable="GoverningCodeColumn" msprop:Generator_UserColumnName="GoverningCode" type="xs:string" minOccurs="0" />
+              <xs:element name="Canonical" msprop:Generator_ColumnVarNameInTable="columnCanonical" msprop:Generator_ColumnPropNameInRow="Canonical" msprop:Generator_ColumnPropNameInTable="CanonicalColumn" msprop:Generator_UserColumnName="Canonical" type="xs:string" minOccurs="0" />
+              <xs:element name="YearOfPublication" msprop:Generator_ColumnVarNameInTable="columnYearOfPublication" msprop:Generator_ColumnPropNameInRow="YearOfPublication" msprop:Generator_ColumnPropNameInTable="YearOfPublicationColumn" msprop:Generator_UserColumnName="YearOfPublication" type="xs:string" minOccurs="0" />
+              <xs:element name="BasionymID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnBasionymID" msprop:Generator_ColumnPropNameInRow="BasionymID" msprop:Generator_ColumnPropNameInTable="BasionymIDColumn" msprop:Generator_UserColumnName="BasionymID" type="xs:string" minOccurs="0" />
+              <xs:element name="Basionym" msprop:Generator_ColumnVarNameInTable="columnBasionym" msprop:Generator_ColumnPropNameInRow="Basionym" msprop:Generator_ColumnPropNameInTable="BasionymColumn" msprop:Generator_UserColumnName="Basionym" type="xs:string" minOccurs="0" />
+              <xs:element name="BasionymAuthors" msprop:Generator_ColumnVarNameInTable="columnBasionymAuthors" msprop:Generator_ColumnPropNameInRow="BasionymAuthors" msprop:Generator_ColumnPropNameInTable="BasionymAuthorsColumn" msprop:Generator_UserColumnName="BasionymAuthors" type="xs:string" minOccurs="0" />
+              <xs:element name="CombinationAuthors" msprop:Generator_ColumnVarNameInTable="columnCombinationAuthors" msprop:Generator_ColumnPropNameInRow="CombinationAuthors" msprop:Generator_ColumnPropNameInTable="CombinationAuthorsColumn" msprop:Generator_UserColumnName="CombinationAuthors" type="xs:string" minOccurs="0" />
+              <xs:element name="MicroReference" msprop:Generator_ColumnVarNameInTable="columnMicroReference" msprop:Generator_ColumnPropNameInRow="MicroReference" msprop:Generator_ColumnPropNameInTable="MicroReferenceColumn" msprop:Generator_UserColumnName="MicroReference" type="xs:string" minOccurs="0" />
+              <xs:element name="PublishedIn" msprop:Generator_ColumnVarNameInTable="columnPublishedIn" msprop:Generator_ColumnPropNameInRow="PublishedIn" msprop:Generator_ColumnPropNameInTable="PublishedInColumn" msprop:Generator_UserColumnName="PublishedIn" type="xs:string" minOccurs="0" />
+              <xs:element name="ParentID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" msprop:Generator_UserColumnName="ParentID" type="xs:string" minOccurs="0" />
+              <xs:element name="ParentIDsToRoot" msprop:Generator_ColumnVarNameInTable="columnParentIDsToRoot" msprop:Generator_ColumnPropNameInRow="ParentIDsToRoot" msprop:Generator_ColumnPropNameInTable="ParentIDsToRootColumn" msprop:Generator_UserColumnName="ParentIDsToRoot" type="xs:string" minOccurs="0" />
+              <xs:element name="Parent" msprop:Generator_ColumnVarNameInTable="columnParent" msprop:Generator_ColumnPropNameInRow="Parent" msprop:Generator_ColumnPropNameInTable="ParentColumn" msprop:Generator_UserColumnName="Parent" type="xs:string" minOccurs="0" />
+              <xs:element name="PreferredNameID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnPreferredNameID" msprop:Generator_ColumnPropNameInRow="PreferredNameID" msprop:Generator_ColumnPropNameInTable="PreferredNameIDColumn" msprop:Generator_UserColumnName="PreferredNameID" type="xs:string" minOccurs="0" />
+              <xs:element name="PreferredName" msprop:Generator_ColumnVarNameInTable="columnPreferredName" msprop:Generator_ColumnPropNameInRow="PreferredName" msprop:Generator_ColumnPropNameInTable="PreferredNameColumn" msprop:Generator_UserColumnName="PreferredName" type="xs:string" minOccurs="0" />
+              <xs:element name="Country" msprop:Generator_ColumnVarNameInTable="columnCountry" msprop:Generator_ColumnPropNameInRow="Country" msprop:Generator_ColumnPropNameInTable="CountryColumn" msprop:Generator_UserColumnName="Country" type="xs:string" minOccurs="0" />
+              <xs:element name="Language" msprop:Generator_ColumnVarNameInTable="columnLanguage" msprop:Generator_ColumnPropNameInRow="Language" msprop:Generator_ColumnPropNameInTable="LanguageColumn" msprop:Generator_UserColumnName="Language" type="xs:string" minOccurs="0" />
+              <xs:element name="Region" msprop:Generator_ColumnVarNameInTable="columnRegion" msprop:Generator_ColumnPropNameInRow="Region" msprop:Generator_ColumnPropNameInTable="RegionColumn" msprop:Generator_UserColumnName="Region" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ConsensusReference" msprop:Generator_TableClassName="ConsensusReferenceDataTable" msprop:Generator_TableVarName="tableConsensusReference" msprop:Generator_TablePropName="ConsensusReference" msprop:Generator_RowDeletingName="ConsensusReferenceRowDeleting" msprop:Generator_UserTableName="ConsensusReference" msprop:Generator_RowChangingName="ConsensusReferenceRowChanging" msprop:Generator_RowEvHandlerName="ConsensusReferenceRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsensusReferenceRowDeleted" msprop:Generator_RowEvArgName="ConsensusReferenceRowChangeEvent" msprop:Generator_RowChangedName="ConsensusReferenceRowChanged" msprop:Generator_RowClassName="ConsensusReferenceRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReferenceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnReferenceID" msprop:Generator_ColumnPropNameInRow="ReferenceID" msprop:Generator_ColumnPropNameInTable="ReferenceIDColumn" msprop:Generator_UserColumnName="ReferenceID" type="xs:string" />
+              <xs:element name="ReferenceTypeID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnReferenceTypeID" msprop:Generator_ColumnPropNameInRow="ReferenceTypeID" msprop:Generator_ColumnPropNameInTable="ReferenceTypeIDColumn" msprop:Generator_UserColumnName="ReferenceTypeID" type="xs:string" minOccurs="0" />
+              <xs:element name="Citation" msprop:Generator_ColumnVarNameInTable="columnCitation" msprop:Generator_ColumnPropNameInRow="Citation" msprop:Generator_ColumnPropNameInTable="CitationColumn" msprop:Generator_UserColumnName="Citation" type="xs:string" minOccurs="0" />
+              <xs:element name="Properties" msprop:Generator_ColumnVarNameInTable="columnProperties" msprop:Generator_ColumnPropNameInRow="Properties" msprop:Generator_ColumnPropNameInTable="PropertiesColumn" msprop:Generator_UserColumnName="Properties" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ConsensusNameKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ConsensusName" />
+      <xs:field xpath="mstns:NameID" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ConsensusReference" />
+      <xs:field xpath="mstns:ReferenceID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,234 @@
+﻿@model NZOR.Web.ViewModels.AboutViewModel
+@{
+    ViewBag.Title = "About NZOR";
+}
+<h2>
+    About
+</h2>
+<p>
+    The primary end-users of NZOR are intended to be agencies and organisation who maintain
+    database systems with content linked to the names of organisms. NZOR will provide
+    them with a single national taxonomic data catalogue which is kept up to date, via
+    a federated network of data providers and consumers. End-users are encouraged to
+    embed the unique identifiers provided by NZOR as a tool for improving data-linkage
+    and discovery. NZOR is therefore focussed on improving data management and dissemination.
+</p>
+<p>
+    This demonstration website is not the primary output from the NZOR project. At a
+    technical level the focus of the NZOR project is on web-service mediated access
+    to NZOR data in the form of data elements which constitute the NZOR Data <a href="/Home/WhatIsNZOR#Schema">
+        Consumer Schema</a>. As such the website may not appear ‘friendly’. The function
+    of the website is to demonstrate those web services, data content, the form of data
+    content, and to provide a platform for engagement of potential providers and consumers
+    of the NZOR web services.
+</p>
+<p>
+    The website provides an environment for testing the developing core NZOR system
+    components:
+    <ul>
+        <li>Data harvesting from NZOR data providers using the NZOR provider schema</li>
+        <li>Production of a unified cache of provider records by the NZOR system</li>
+        <li>Integration of these records to produce NZOR records and linked provider records
+            through NZOR Globally Unique Identifiers (GUIDs)</li>
+        <li>Web Cache of NZOR records & GUIDs optimised for searching and publishing data in
+            the NZOR consumer schema </li>
+        <li>Web services providing end-user interaction with the Web Cache </li>
+        <li>This website is designed to test the web-services, including simple name searching,
+            list and matching, and returning data elements according to the NZOR Provider schema.
+            The website and associated services will:
+            <ul>
+                <li>Stimulate interaction with the NZOR services & data and stimulate user feedback
+                </li>
+                <li>Provide a platform for end-users to:
+                    <ul>
+                        <li>test web services directly</li>
+                        <li>develop a local cache of NZOR data content, to maintain local database systems</li>
+                        <li>give us feedback on the web services (primarily), and the website</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</p>
+<p>
+    More information on the web services may be found at <a href="http://data.nzor.org.nz">
+        data.nzor.org.nz</a>
+</p>
+<p>
+    More information on how NZOR works may be found <a href="/Home/WhatIsNZOR">here</a>.
+</p>
+<p>
+    Please try the website and web services and give us your feedback and contact us,
+    especially if you would like to become an NZOR data provider or consumer.
+</p>
+<h3>
+    Limitations of the demonstration site and the data content</h3>
+<ol>
+    <li>The data content is restricted to a limited number of preliminary data providers.
+        <br />
+        Those are:
+        <ul>
+            <li>Static content from: The New Zealand Inventory of Biodiversity, Volume 1, Edited
+                by D.P. Gordon, 2009, and The New Zealand Inventory of Biodiversity, Volume 2, Edited
+                by D.P. Gordon, 2010 covering preferred names for all organisms in the Kingdom Animalia
+                recorded as present in New Zealand.</li>
+            <li>Dynamic content from <a href="http://www.landcareresearch.co.nz/databases/db_details.asp?Database_Collection_ID=3">
+                Ngā Tipu Aotearoa – New Zealand Plants</a> including the names of plant taxa that
+                are present in the wild in New Zealand. Includes seed plants, ferns, mosses, liverworts, freshwater
+                algae and lichens associated with collections in the Allan Herbarium. </li>
+            <li>Dynamic content from the <a href="http://www.landcareresearch.co.nz/databases/db_details.asp?Database_Collection_ID=8">
+                NZFungi database</a> at Landcare Research, containing all fungal, plant pathogenic
+                bacteria and plant virus names used in a New Zealand context, their synonymy and
+                bibliography, linked to the specimens in the New Zealand Fungal and Plant Disease
+                Herbarium and cultures in International Collection of Microorganisms from Plants,
+                together with descriptions and images of many of the fungi. </li>
+            <li>Dynamic content from the taxonomic management database associated with the New Zealand
+                Arthropod Collection covering the terrestrial invertebrates of New Zealand.
+            </li>
+        </ul>
+    </li>
+    <li>The data content and website/web service functionality is likely to change for periods
+        as we continue to develop NZOR before the official release in Q2 2012. </li>
+    <li>Do not store or use the NZOR GUIDs shown in this demonstration.
+        <ul>
+            <li>Eventually the GUIDs will provide the stable ‘glue’ between end-user data content,
+                NZOR records, and NZOR Provider records (and thus to an expanding range of associated
+                biodiversity data). In this demonstration site they are not stable and will change.
+            </li>
+        </ul>
+    </li>
+</ol>
+<br />
+<br />
+<h3>
+    What’s missing that we intend to add?
+</h3>
+<p>
+    <ul>
+        <li>More vernacular names from the data providers</li>
+        <li>More data providers - as a priority dynamic taxonomic data provided by specialists
+            and taxonomic data management systems at the National Institute of Water and Atmospheric
+            Research (NIWA) and the Museum of New Zealand Te Papa Tongarewa. </li>
+        <li>Increased metadata on NZOR data Providers so end users may:
+            <ul>
+                <li>acknowledge the data provider in any subsequent use of the data.</li>
+                <li>provide a communication feedback path from data consumers to data providers</li>
+            </ul>
+        </li>
+        <li>For each NZOR record the matrix of linked data elements from each data provider</li>
+        <li>Reporting statistics on data content (number of endemic species, number of adventive
+            etc)</li>
+        <li>Reporting statistics on data-use</li>
+        <li>A reference implementation of a consumer cache consisting of a defined ‘slice’ of
+            the NZOR content, dynamically maintained through the NZOR web services.</li>
+        <li>NZOR as both a data provider and data consumer in the emerging global network of
+            taxonomic data providers, including the <a href="http://www.catalogueoflife.org/">Catalogue
+                of Life</a> and the <a href="http://www.globalnames.org/">Global Names Architecture</a>.
+        </li>
+    </ul>
+</p>
+<p>
+    If you have suggestions about what is missing and you would like to see then please
+    use the feedback form at the side of this screen.
+</p>
+<p>
+    If you want to know more about the NZOR project then see below and <a href="http://www.nzor.org.nz"
+        target="_blank">our website</a>.
+</p>
+<p>
+    Do you want to know more about how NZOR works? <a href="/home/whatisnzor">Click here</a>
+</p>
+<h3>
+    About NZOR - The Vision
+</h3>
+<p>
+    All biodiversity information systems use the names of organisms as a fundamental
+    identifier. Names provide the essential vocabulary by which we discover, index,
+    manage, and share information relating to biodiversity. Access to an authoritative
+    list of names and their relationships to species (taxa) is key to supporting information
+    management and sharing across the conservation, biosecurity, and biotechnology sectors.
+    <br />
+    <br />
+    There is currently no single, definitive registry of the over 100,000 organism names
+    relevant to New Zealand. Because of this many agencies currently each maintain their
+    own lists of taxonomic names in isolation from each other, in different formats,
+    and at different levels of depth and quality. The absence of a definitive source
+    of taxonomic names means that resources are wasted through duplication of effort,
+    there is increased expense to end-users in having to access multiple sources, and
+    increased risk of confused decision making.
+    <br />
+    The New Zealand Organisms Register (NZOR) is a project to address this issue. The
+    vision, developed by a multi-agency steering group established in 2006, for the
+    project is:
+</p>
+<br />
+<br />
+<div style="margin-left: 40px">
+    <i>“to create an accurate, authoritative, comprehensive and continuously updated catalogue
+        of taxonomic names of all New Zealand biota and other taxa of importance to New
+        Zealand. This catalogue will be electronically available through one or more portals,
+        and will be directly integrated into biodiversity and biosecurity systems used by
+        central government ministries, departments, and agencies, local government, research
+        institutes, NGOs and the wider community. The catalogue will be based on internationally
+        agreed standards and will include organism names and synonymies, origin and occurrence
+        data (presence/absence) and where possible alternate and historical synonymies.
+        In the future it will link to information from other sources on aspects such as
+        threats, ecology, distribution, use, management status, published material, keys
+        for identification, and all collections, observation and survey data. As such it
+        will form a key part of New Zealand’s bioinformatics infrastructure, supporting
+        scientific research and biodiversity and biosecurity management.” </i>
+</div>
+<br />
+<br />
+Based on this vision NZOR comprises three key elements:
+<br />
+<ul>
+    <li><a href="https://sites.google.com/a/nzor.org.nz/nzor/about-nzor/data-providers">
+        The data providers</a></li>
+    <li>The technical infrastructure </li>
+    <li><a href="https://sites.google.com/a/nzor.org.nz/nzor/about-nzor/end-users">The end
+        users</a> </li>
+</ul>
+However, the core of NZOR will be the technical infrastructure for:
+<br />
+<ul>
+    <li>aggregating appropriate taxonomic data from distributed data providers who actively
+        curate and maintain the quality of that data.</li>
+    <li>integrating that data into a single national repository</li>
+    <li>providing a range of web and technical data services on that repository to facilitate:
+    </li>
+    <ul>
+        <li>easy evaluation of the correct name for a species and the evidence for its presence
+            in New Zealand</li>
+        <li>the integration of that data into local systems</li>
+        <li>maintenance of the currency of that local data</li>
+        <li>easy checking of data quality and accuracy of submitted species lists</li>
+        <li>feedback directly to the experts who maintain that data</li>
+    </ul>
+</ul>
+<p>
+    In addition to New Zealand based data providers NZOR will have the ability to consume
+    taxonomic data from international sources to ensure we have the most complete coverage
+    we can achieve. <a href="http://www.landcareresearch.co.nz">Landcare Research</a>
+    is a partner in an EU Framework 7 program (<a href="http://www.4d4life.eu/">4D4Life</a>),
+    managed by <a href="http://www.sp2000.org/" rel="nofollow">Species2000</a>, and
+    funded to support the completion of the global <a href="http://www.catalogueoflife.org/">
+        Catalogue of Life</a> through an international network of regional data providers.
+    NZOR is the proposed regional provider for New Zealand. Species 2000 aggregates
+    taxonomic data from many global taxonomic databases and already maintains some taxonomic
+    information for 1.3 million organisms, or about two thirds of those so far described.
+    The development of an international network of regional data providers will complete
+    the task.
+    <br />
+    <br />
+    A more detailed description of the original proposal for NZOR may be found in the
+    scoping document: <a href="https://sites.google.com/a/nzor.org.nz/nzor/documents/nzor_scope.pdf?attredirects=0">
+        What’s in a name, Carver et al, 2007</a>
+</p>
+A Glossary of NZOR related terms can be found <a href="https://sites.google.com/a/nzor.org.nz/nzor/about-nzor/glossary">
+    here</a>. </p>
+<div style="font-size: 0.8em; color: Gray;">
+    Current Version: @Model.Version&nbsp;(@Model.Description)
+    <br />
+    Web Service Url: <a style="text-decoration: none;" href="@Model.WebServiceUrl" target="_blank">@Model.WebServiceUrl</a>
+</div>

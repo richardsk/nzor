@@ -1,0 +1,70 @@
+﻿@model NZOR.Web.ViewModels.NameViewModel
+@{
+    ViewBag.Title = "NZOR Name Details";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+
+
+</script>
+<br />
+<br />
+@if (Model == null || Model.Name == null || Model.Name.NameId == Guid.Empty)
+{ 
+    <h2>
+        Name not found
+    </h2>
+    <span>ID @ViewData["id"] does not exist</span>
+}
+else
+{
+    <div class="details">
+        @if (Model.Name.Class == "Scientific Name")
+        {
+            <div class="data-pair">
+                <h3>
+                    Scientific Name: <span style="font-weight: normal">@Html.Raw(Model.Name.FullName)</span>
+                </h3>
+            </div>
+            <div id="tabs">
+                <ul class="tabList">
+                    <li><a href="#summary"><span>Summary</span></a> </li>
+                    <li><a href="#nomenclature"><span>Nomenclature</span></a> </li>
+                    <li><a href="#taxonConcepts"><span>Taxon Concepts</span></a> </li>
+                    <li><a href="#subordinateTaxa"><span>Subordinates</span></a> </li>
+                    <li><a href="#vernaculars"><span>Vernacular Applications</span></a> </li>
+                    <li><a href="#feedback"><span>Feedback</span></a> </li>
+                </ul>
+                <div id="summary">
+                    @RenderPage("SummaryTab.cshtml", Model)
+                </div>
+                <div id="nomenclature">
+                    @RenderPage("NomenclatureTab.cshtml", Model)
+                </div>
+                <div id="taxonConcepts">
+                    @RenderPage("TaxonConceptTab.cshtml", Model)
+                </div>
+                <div id="subordinateTaxa">
+                    @RenderPage("SubordinateTaxaTab.cshtml", Model)
+                </div>
+                <div id="vernaculars">
+                    @RenderPage("VernacularApplicationTab.cshtml", Model)
+                </div>
+                <div id="feedback">
+                    @RenderPage("FeedbackTab.cshtml", Model)
+                </div>
+            </div>
+        }
+        else if (Model.Name.Class == "Vernacular Name")
+        {
+            <div class="data-pair">
+                <h3>
+                    Vernacular Name: <span style="font-weight: normal">@Model.Name.FullName</span>
+                </h3>
+                @RenderPage("VernacularSummaryTab.cshtml", Model)
+            </div>
+        }
+    </div>
+}

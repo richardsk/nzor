@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (x64) (http://www.altova.com) by Kevin Richards (Landcare Research) -->
+<xs:schema xmlns="http://www.nzor.org.nz/schema/provider/103" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nzor.org.nz/schema/provider/103" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DataSet">
+		<xs:annotation>
+			<xs:documentation>NZOR data set from Providers</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Metadata">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Provider">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string" minOccurs="0"/>
+										<xs:element name="OrganisationURL" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="id" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DateGenerated" type="xs:dateTime"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DataSource" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Usage" type="usageType" minOccurs="0"/>
+							<xs:element name="Publications" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Publication" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Citation" type="xs:string"/>
+													<xs:element name="Identifiers" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Identifier" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type" use="required">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="doi"/>
+																							<xs:enumeration value="lsid"/>
+																							<xs:enumeration value="isbn"/>
+																							<xs:enumeration value="sici"/>
+																							<xs:enumeration value="other"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Authors" minOccurs="0">
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="Simple" type="xs:string">
+																	<xs:annotation>
+																		<xs:documentation>Formatted author string or 1 or more authors.  </xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:sequence>
+																	<xs:element name="Author" maxOccurs="unbounded">
+																		<xs:annotation>
+																			<xs:documentation>Parsed representation of authors. Would be possible to parse further into surname, given names etc.  Format should be standardised - at least within a single file.  May be useful to add an element to the root indicating the format for agents (e.g.,. "Surname, A. I." etc)???</xs:documentation>
+																		</xs:annotation>
+																		<xs:complexType>
+																			<xs:simpleContent>
+																				<xs:extension base="xs:string">
+																					<xs:attribute name="type">
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:enumeration value="primary"/>
+																								<xs:enumeration value="secondary"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:attribute>
+																				</xs:extension>
+																			</xs:simpleContent>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Dates" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Date" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>string representation of date - not constrained to date type??
+The type of date can be modified to indicate this is the actual date of publication, written on the publication etc (may need expanding)</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="of publication"/>
+																							<xs:enumeration value="on publication"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Titles">
+														<xs:annotation>
+															<xs:documentation>Contains any titles for a reference eg., chapter title, book title, series title.  The relative level of each title indicated by @level attribute on the title</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Title" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="level" type="xs:int"/>
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="full"/>
+																							<xs:enumeration value="abbreviation"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Editors" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Editors of reference either as a simple string, or as series of agent names.  (Could be combined with Authors.)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="Simple" type="xs:string"/>
+																<xs:sequence>
+																	<xs:element name="Editor" type="xs:string" maxOccurs="unbounded"/>
+																</xs:sequence>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Volume" type="xs:string" minOccurs="0"/>
+													<xs:element name="Issue" type="xs:string" minOccurs="0"/>
+													<xs:element name="Edition" type="xs:string" minOccurs="0"/>
+													<xs:element name="Pages" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Page" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="start"/>
+																							<xs:enumeration value="end"/>
+																							<xs:enumeration value="total"/>
+																							<xs:enumeration value="other"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Publisher" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Name" type="xs:string"/>
+																<xs:element name="City" type="xs:string"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Keywords" minOccurs="0">
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="Simple" type="xs:string"/>
+																<xs:sequence>
+																	<xs:element name="Keyword" type="xs:string" maxOccurs="unbounded"/>
+																</xs:sequence>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Links" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Link" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="type">
+																					<xs:simpleType>
+																						<xs:restriction base="xs:string">
+																							<xs:enumeration value="url"/>
+																						</xs:restriction>
+																					</xs:simpleType>
+																				</xs:attribute>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="parentPublicationRef" type="xs:string"/>
+												<xs:attribute name="type" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Book"/>
+															<xs:enumeration value="Series"/>
+															<xs:enumeration value="Chapter"/>
+															<xs:enumeration value="Journal"/>
+															<xs:enumeration value="Article"/>
+															<xs:enumeration value="Thesis"/>
+															<xs:enumeration value="Magazine"/>
+															<xs:enumeration value="Report"/>
+															<xs:enumeration value="Abstract"/>
+															<xs:enumeration value="Pamphlet"/>
+															<xs:enumeration value="Electronic source"/>
+															<xs:enumeration value="Serial"/>
+															<xs:enumeration value="Generic"/>
+															<xs:enumeration value="Unpublished"/>
+															<xs:enumeration value="Catalog"/>
+															<xs:enumeration value="In press"/>
+															<xs:enumeration value="Conference proceedings"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TaxonNames" minOccurs="0">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="TaxonName">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FullName" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>The full name including appropriate rank and author abbreviations.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Rank" type="xs:string"/>
+													<xs:element name="CanonicalName" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>The epithet part of the name.  E.g. for a species it is just the species component not including the Genus.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Authorship" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>separate elements for basionym and combination authorship - is this needed for data consumers</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="BasionymAuthors" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>The original authors.  This field should be filled when the name is a recombination.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="CombiningAuthors" type="xs:string">
+														<xs:annotation>
+															<xs:documentation>The auhtors that create this combination or recombination.  This field should always be filled.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PublishedIn">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Year" type="xs:string"/>
+													<xs:element name="MicroReference" type="xs:string"/>
+													<xs:element name="TypeName" type="nameRefType" minOccurs="0"/>
+													<xs:element name="Orthography" type="xs:string" minOccurs="0"/>
+													<xs:element name="Basionym" type="nameRefType" minOccurs="0"/>
+													<xs:element name="LaterHomonymOf" type="nameRefType" minOccurs="0"/>
+													<xs:element name="ReplacementFor" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="BlockedName" type="nameRefType"/>
+																<xs:element name="RecombinedName" type="nameRefType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Required for comb.nov. only</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="NomenclaturalStatus" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Is there a business case for this to be more explicit/enumerated?  If so what?</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="NomenclaturalCode" type="xs:string"/>
+													<xs:element name="IsRecombination" type="xs:boolean" minOccurs="0"/>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="qualityCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="Null"/>
+															<xs:enumeration value="Unvalidated"/>
+															<xs:enumeration value="Partially Validated"/>
+															<xs:enumeration value="Validated Mixed Sources"/>
+															<xs:enumeration value="Validated Secondary Source"/>
+															<xs:enumeration value="Validated Primary Source"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="VernacularName">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FullName" type="xs:string"/>
+													<xs:element name="PublishedIn" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Language" type="xs:string" minOccurs="0"/>
+													<xs:element name="Country" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>the country in which this name is thought to have been derived (vernacular) OR the jurisdication for tradenames.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="isTradeName" type="xs:boolean"/>
+												<xs:attribute name="createdDate" type="xs:dateTime"/>
+												<xs:attribute name="modifiedDate" type="xs:dateTime"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TaxonConcepts" minOccurs="0">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="TaxonConcept">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TaxonName">
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="nameRefType"/>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AccordingTo">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Rank" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="NameQualifier" type="xs:string" minOccurs="0"/>
+													<xs:element name="Relationships">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="AcceptedConcept" minOccurs="0">
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required">
+																			<xs:annotation>
+																				<xs:documentation>Refers to either another TaxonConcept or a NameBasedConcept</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="ParentConcept" minOccurs="0">
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required">
+																			<xs:annotation>
+																				<xs:documentation>Refers to either another TaxonConcept or a NameBasedConcept</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="RelatedConcept" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>required for anamorph/teleomorph; hybrids</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:attribute name="ref" type="xs:string" use="required">
+																			<xs:annotation>
+																				<xs:documentation>Refers to either another TaxonConcept or a NameBasedConcept</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																		<xs:attribute name="type" use="required">
+																			<xs:annotation>
+																				<xs:documentation>the concept is the *type* for the related concept</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="is parent of"/>
+																					<xs:enumeration value="is vernacular for"/>
+																					<xs:enumeration value="is child of"/>
+																					<xs:enumeration value="has vernacular of"/>
+																					<xs:enumeration value="is anamorph of"/>
+																					<xs:enumeration value="is teleomorph of"/>
+																					<xs:enumeration value="is hybrid parent for"/>
+																					<xs:enumeration value="is hybrid child of"/>
+																					<xs:enumeration value="is synonym of"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="rank" type="xs:string" use="required"/>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="VernacularConcept">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="VernacularName">
+														<xs:annotation>
+															<xs:documentation>The verbatim text as cited in the source reference (AccordingTo).  The attribute ref refers to a VernacularName</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="nameRefType"/>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AccordingTo">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Rank" type="xs:string" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Applications">
+														<xs:annotation>
+															<xs:documentation>For vernacular useages</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Application" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Gender" type="xs:string" minOccurs="0"/>
+																			<xs:element name="PartOfTaxon" type="xs:string" minOccurs="0"/>
+																			<xs:element name="LifeStage" type="xs:string" minOccurs="0"/>
+																			<xs:element name="GeoRegion" minOccurs="0">
+																				<xs:complexType>
+																					<xs:simpleContent>
+																						<xs:extension base="xs:string">
+																							<xs:attribute name="geographicSchema" type="xs:string"/>
+																						</xs:extension>
+																					</xs:simpleContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="ref" type="xs:string" use="required">
+																			<xs:annotation>
+																				<xs:documentation>Reference to a TaxonConcept or TaxonName</xs:documentation>
+																			</xs:annotation>
+																		</xs:attribute>
+																		<xs:attribute name="type">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="is vernacular for"/>
+																					<xs:enumeration value="is trade name for"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="id" type="xs:string" use="required"/>
+												<xs:attribute name="createdDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record created</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="modifiedDate" type="xs:dateTime">
+													<xs:annotation>
+														<xs:documentation>Date record last modified</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NameBasedConcept">
+											<xs:complexType>
+												<xs:choice maxOccurs="unbounded">
+													<xs:element name="TaxonNameUse">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Name">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="nameRefType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="AcceptedName" minOccurs="0">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="nameRefType">
+																				<xs:attribute name="inUse" use="required"/>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="ParentName" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="nameRefType">
+																				<xs:attribute name="rank" type="xs:string"/>
+																				<xs:attribute name="inUse" use="required"/>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="NameQualifier" type="xs:string" minOccurs="0"/>
+															</xs:sequence>
+															<xs:attribute name="id" type="xs:string" use="optional"/>
+															<xs:attribute name="createdDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record created</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="modifiedDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record last modified</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="VernacularUse">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="VernacularName">
+																	<xs:annotation>
+																		<xs:documentation>The verbatim text as cited in the source reference (AccordingTo).  The attribute ref refers to a VernacularName</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="nameRefType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Rank" type="xs:string" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>May be required when a name is used at a rank that difference to its nomenclatural rank (rare)</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Applications">
+																	<xs:annotation>
+																		<xs:documentation>For vernacular useages</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="Application" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="TaxonName" type="nameRefType"/>
+																						<xs:element name="Gender" type="xs:string" minOccurs="0"/>
+																						<xs:element name="PartOfTaxon" type="xs:string" minOccurs="0"/>
+																						<xs:element name="LifeStage" type="xs:string" minOccurs="0"/>
+																						<xs:element name="GeoRegion" minOccurs="0">
+																							<xs:complexType>
+																								<xs:simpleContent>
+																									<xs:extension base="xs:string">
+																										<xs:attribute name="geographicSchema" type="xs:string"/>
+																									</xs:extension>
+																								</xs:simpleContent>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																					<xs:attribute name="inUse" type="xs:boolean" use="required"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="id"/>
+															<xs:attribute name="createdDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record created</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="modifiedDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record last modified</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TaxonProperties" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BiostatusValues" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Biostatus" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Taxon">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="conceptRef" type="xs:string"/>
+																				<xs:attribute name="nameRef" type="xs:string"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="AccordingTo" minOccurs="0">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="ref" type="xs:string"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Region">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="geographicSchema" type="xs:string" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Biome" type="xs:string" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>
+																			<!-- suggested enumerations -->
+																			<xs:enumeration value="Freshwater"/>
+																			<xs:enumeration value="Brackish"/>
+																			<xs:enumeration value="Marine"/>
+																			<xs:enumeration value="Terrestrial"/>
+																			<xs:enumeration value="Unknown"/>
+																		</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="EnvironmentalContext" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Wild"/>
+																			<xs:enumeration value="Natural Environment"/>
+																			<xs:enumeration value="Rural Environment"/>
+																			<xs:enumeration value="Built Environment"/>
+																			<xs:enumeration value="Cultivation/Captivity"/>
+																			<xs:enumeration value="Containment"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Origin" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Unknown"/>
+																			<xs:enumeration value="Indigenous"/>
+																			<xs:enumeration value="Non-endemic"/>
+																			<xs:enumeration value="Endemic"/>
+																			<xs:enumeration value="Exotic"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Occurrence">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Unknown"/>
+																			<xs:enumeration value="Absent"/>
+																			<xs:enumeration value="Eradicated/Destroyed"/>
+																			<xs:enumeration value="Extinct"/>
+																			<xs:enumeration value="Recorded in error"/>
+																			<xs:enumeration value="Recorded Historically"/>
+																			<xs:enumeration value="Fossil Record"/>
+																			<xs:enumeration value="Recent Extinction"/>
+																			<xs:enumeration value="Border Intercept"/>
+																			<xs:enumeration value="Present"/>
+																			<xs:enumeration value="Sometimes Present"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="id" type="xs:string"/>
+															<xs:attribute name="createdDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record created</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="modifiedDate" type="xs:dateTime">
+																<xs:annotation>
+																	<xs:documentation>Date record last modified</xs:documentation>
+																</xs:annotation>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ManagementStatusValues" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ManagementStatus" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Taxon">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="conceptRef" type="xs:string"/>
+																				<xs:attribute name="nameRef" type="xs:string"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="AccordingTo">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="ref" type="xs:string"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Region">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute name="geographicSchema" type="xs:string" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="Biome" type="xs:string" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>
+																			<!-- suggested enumerations -->
+																			<xs:enumeration value="Freshwater"/>
+																			<xs:enumeration value="Brackish"/>
+																			<xs:enumeration value="Marine"/>
+																			<xs:enumeration value="Terrestrial"/>
+																			<xs:enumeration value="Unknown"/>
+																		</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+																<xs:element name="Action" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Prevention"/>
+																			<xs:enumeration value="Eradication"/>
+																			<xs:enumeration value="Control"/>
+																			<xs:enumeration value="Containment"/>
+																			<xs:enumeration value="Mitigation"/>
+																			<xs:enumeration value="Interception"/>
+																			<xs:enumeration value="Conservation"/>
+																			<xs:enumeration value="None"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Outcome" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Successful"/>
+																			<xs:enumeration value="Failed"/>
+																			<xs:enumeration value="Unconfirmed success"/>
+																			<xs:enumeration value="Unconfirmed failure"/>
+																			<xs:enumeration value="Ongoing"/>
+																			<xs:enumeration value="Unknown"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="ActionStatus" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Proposed"/>
+																			<xs:enumeration value="Executing"/>
+																			<xs:enumeration value="Completed"/>
+																			<xs:enumeration value="Unknown"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Status" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Legal status (not fully enumerated)</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Threatened"/>
+																			<xs:enumeration value="Prohibited"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Annotations" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Annotation">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Taxon">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="conceptRef" type="xs:string"/>
+																	<xs:attribute name="nameRef" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="AnnotationText"/>
+													<xs:element name="AccordingTo" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ref" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Id" use="required"/>
+												<xs:attribute name="Type"/>
+												<xs:attribute name="createdDate" type="xs:dateTime"/>
+												<xs:attribute name="modifiedDate" type="xs:dateTime"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>This is the ID which NZOR uses to determine the dataset within a specific provider that this data is for.  This must be know by NZOR but could be issued by NZOR or the provider.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="nameRefType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ref" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="usageType">
+		<xs:sequence>
+			<xs:element name="Disclaimer" type="xs:string" minOccurs="0"/>
+			<xs:element name="Attribution" type="xs:string" minOccurs="0"/>
+			<xs:element name="Licensing" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="providerLinkType">
+		<xs:attribute name="ref" use="required"/>
+		<xs:attribute name="providersId" use="required"/>
+		<xs:attribute name="LastUpdated" type="xs:dateTime"/>
+	</xs:complexType>
+	<xs:complexType name="dataConsistencyType">
+		<xs:sequence>
+			<xs:element name="Field" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="noProviders"/>
+					<xs:attribute name="noAgree"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

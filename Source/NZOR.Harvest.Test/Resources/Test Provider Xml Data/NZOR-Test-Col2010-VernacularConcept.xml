@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nzor="http://www.nzor.org.nz/schema/provider/103">
+  <Metadata>
+    <Provider id="CoL2010">
+      <Name>CoL2010</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="Col2010">
+    <Publications>
+      <Publication id="C78BBAB8-B605-4459-B6F6-7CE4E63CF42B" parentPublicationRef="00000000-0000-0000-0000-000000000000" type="Book" modifiedDate="2010-11-27T16:36:56.140">
+        <Citation>Webb, C. J.; Sykes, W. R.; Garnock-Jones, P. J. 1988: &lt;I&gt;Flora of New Zealand. Vol. IV.  Naturalised Pteridophytes, Gymnosperms, Dicotyledons.&lt;/I&gt; 4.  Christchurch, New Zealand,  Botany Division, D.S.I.R.. </Citation>
+        <Authors>
+          <Simple>Webb, C. J.; Sykes, W. R.; Garnock-Jones, P. J.</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">1988</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Flora of New Zealand. Vol. IV.  Naturalised Pteridophytes, Gymnosperms, Dicotyledons</Title>
+          <Title level="1" type="abbreviation">Fl. New Zealand</Title>
+        </Titles>
+        <Issue>4</Issue>
+        <Publisher>
+          <Name>Botany Division, D.S.I.R.</Name>
+          <City>Christchurch, New Zealand</City>
+        </Publisher>
+      </Publication>
+      <Publication id="5FF18BDB-9BE4-4D13-ABF4-FE24AFE21DBA" parentPublicationRef="00000000-0000-0000-0000-000000000000" type="Book" modifiedDate="2010-11-27T16:37:45.360">
+        <Citation>Edgar, E.; Connor, H. E. 2000: &lt;I&gt;Flora of New Zealand Vol. V. Gramineae.&lt;/I&gt; Lincoln, New Zealand,  Manaaki Whenua Press. 650 p. </Citation>
+        <Authors>
+          <Simple>Edgar, E.; Connor, H. E.</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">2000</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Flora of New Zealand Vol. V. Gramineae</Title>
+        </Titles>
+        <Pages>
+          <Page type="start">1</Page>
+          <Page type="end">650</Page>
+        </Pages>
+        <Publisher>
+          <Name>Manaaki Whenua Press</Name>
+          <City>Lincoln, New Zealand</City>
+        </Publisher>
+      </Publication>
+    </Publications>
+    <TaxonNames>
+      <VernacularName id="C8FC98AC-E9A1-48D8-B210-35ED0AC53174" createdDate="2001-08-17T09:42:51">
+        <FullName>Veld grass</FullName>
+        <PublishedIn />
+        <Language>English</Language>
+      </VernacularName>
+      <VernacularName id="B609200D-BF1F-4FA7-BE0E-A9E0E5D0925C" createdDate="2001-08-17T09:42:51">
+        <FullName>Cottonwood</FullName>
+        <PublishedIn />
+        <Language>English</Language>
+      </VernacularName>
+      <VernacularName id="4900B036-206C-4A39-8239-240EA49B04DE" createdDate="2001-08-17T09:42:51">
+        <FullName>Tauhinu</FullName>
+        <PublishedIn />
+        <Language>Māori</Language>
+      </VernacularName>
+    </TaxonNames>
+    <TaxonConcepts>
+      <VernacularConcept id="13610" createdDate="2010-10-03T16:36:00.000" modifiedDate="2010-11-03T16:36:00.000">
+        <VernacularName ref="C8FC98AC-E9A1-48D8-B210-35ED0AC53174">Veld grass</VernacularName>
+        <AccordingTo ref="5FF18BDB-9BE4-4D13-ABF4-FE24AFE21DBA">Edgar, E.; Connor, H. E. 2000: &lt;I&gt;Flora of New Zealand Vol. V. Gramineae.&lt;/I&gt; Lincoln, New Zealand,  Manaaki Whenua Press. 650 p. </AccordingTo>
+        <Rank>Test Rank</Rank>
+        <Applications>
+          <Application ref="47172A50-3F87-48F8-9A8D-5F3933BC83C7" inUse="1" type="is vernacular for">
+            <PartOfTaxon />
+            <GeoRegion geographicSchema="Political Region">New Zealand</GeoRegion>
+          </Application>
+        </Applications>
+      </VernacularConcept>
+      <VernacularConcept id="31">
+        <VernacularName ref="B609200D-BF1F-4FA7-BE0E-A9E0E5D0925C">Cottonwood</VernacularName>
+        <AccordingTo ref="C78BBAB8-B605-4459-B6F6-7CE4E63CF42B">Webb, C. J.; Sykes, W. R.; Garnock-Jones, P. J. 1988: &lt;I&gt;Flora of New Zealand. Vol. IV.  Naturalised Pteridophytes, Gymnosperms, Dicotyledons.&lt;/I&gt; 4.  Christchurch, New Zealand,  Botany Division, D.S.I.R.. </AccordingTo>
+        <Applications>
+          <Application ref="E5C2F7D3-C461-4205-A64C-911E33195621" inUse="1">
+            <PartOfTaxon />
+            <GeoRegion geographicSchema="NZ Botanical Region">New Zealand</GeoRegion>
+          </Application>
+        </Applications>
+      </VernacularConcept>
+      <VernacularConcept id="33">
+        <VernacularName ref="4900B036-206C-4A39-8239-240EA49B04DE">Tauhinu</VernacularName>
+        <AccordingTo ref="C78BBAB8-B605-4459-B6F6-7CE4E63CF42B">Webb, C. J.; Sykes, W. R.; Garnock-Jones, P. J. 1988: &lt;I&gt;Flora of New Zealand. Vol. IV.  Naturalised Pteridophytes, Gymnosperms, Dicotyledons.&lt;/I&gt; 4.  Christchurch, New Zealand,  Botany Division, D.S.I.R.. </AccordingTo>
+        <Applications>
+          <Application ref="E5C2F7D3-C461-4205-A64C-911E33195621" inUse="1">
+            <PartOfTaxon />
+            <GeoRegion geographicSchema="NZ Botanical Region">New Zealand</GeoRegion>
+          </Application>
+        </Applications>
+      </VernacularConcept>
+    </TaxonConcepts>
+  </DataSource>
+</DataSet>

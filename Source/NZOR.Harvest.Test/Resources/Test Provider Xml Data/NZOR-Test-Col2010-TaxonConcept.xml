@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nzor="http://www.nzor.org.nz/schema/provider/103">
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR_Test</Name>
+      <OrganisationURL>http://www.catalogueoflife.org/</OrganisationURL>
+    </Provider>
+    <DateGenerated>2010-10-06T10:01:25.347</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Publications>
+      <Publication id="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4" type="Book">
+        <Citation>Catalogue of Life</Citation>
+        <Dates>
+          <Date type="of publication">2010</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Catalogue of Life</Title>
+        </Titles>
+      </Publication>
+    </Publications>
+    <TaxonNames>
+      <TaxonName id="33937EA5-ED2A-4F2F-9881-EE0688C3F901" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Hippidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Hippidae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="339D1418-AA77-480B-9672-EC0345D2B708" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Tenthredinidae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Tenthredinidae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="33A3CD69-7FC8-4C7B-9AA4-CF6DE3C38061" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Mesostigmataceae</FullName>
+        <Rank>Family</Rank>
+        <CanonicalName>Mesostigmataceae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="1E3B77A8-F2B6-454E-AD07-36B170EDC687" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Hippoidea</FullName>
+        <Rank>Superfamily</Rank>
+        <CanonicalName>Hippoidea</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="96935C0A-BA36-4F57-ABB5-FBDC2609CE7F" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Decapoda</FullName>
+        <Rank>Order</Rank>
+        <CanonicalName>Decapoda</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="94583F3D-3B03-4901-8A77-531E3BA39129" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Malacostraca</FullName>
+        <Rank>Class</Rank>
+        <CanonicalName>Malacostraca</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="A4315AB2-A46C-4DFA-B64F-A3B8EB9D08DA" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Arthropoda</FullName>
+        <Rank>Phylum</Rank>
+        <CanonicalName>Arthropoda</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+      <TaxonName id="C0DCA63E-F25B-4494-8919-DBC0235262F8" createdDate="2010-10-06T10:01:25.347">
+        <FullName>Animalia</FullName>
+        <Rank>Kingdom</Rank>
+        <CanonicalName>Animalia</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICZN</NomenclaturalCode>
+      </TaxonName>
+    </TaxonNames>
+    <TaxonConcepts>
+      <TaxonConcept id="Test Taxon Concept Id 1" createdDate="2010-10-06T10:01:00.000">
+        <TaxonName ref="33937EA5-ED2A-4F2F-9881-EE0688C3F901">Hippidae</TaxonName>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+        <Rank>Test Rank</Rank>
+        <Relationships>
+          <AcceptedConcept ref="Test Taxon Concept Id 3" inUse="true" />
+          <ParentConcept ref="Test Taxon Concept Id 2" inUse="true" />
+          <RelatedConcept ref="Test Taxon Concept Id 3" type="is anamorph of" rank="family" inUse="false">
+          </RelatedConcept>
+          <RelatedConcept ref="Test Taxon Concept Id 4" type="is teleomorph of" rank="family" inUse="true">
+          </RelatedConcept>
+        </Relationships>
+      </TaxonConcept>
+      <TaxonConcept id="Test Taxon Concept Id 2" createdDate="2010-10-06T10:01:25.347">
+        <TaxonName ref="1E3B77A8-F2B6-454E-AD07-36B170EDC687">Hippoidea</TaxonName>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="1E3B77A8-F2B6-454E-AD07-36B170EDC687" inUse="true" />
+          <ParentConcept ref="96935C0A-BA36-4F57-ABB5-FBDC2609CE7F" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+      <TaxonConcept id="Test Taxon Concept Id 3" createdDate="2010-10-06T10:01:25.347">
+        <TaxonName ref="96935C0A-BA36-4F57-ABB5-FBDC2609CE7F">Decapoda</TaxonName>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="96935C0A-BA36-4F57-ABB5-FBDC2609CE7F" inUse="true" />
+          <ParentConcept ref="94583F3D-3B03-4901-8A77-531E3BA39129" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+      <TaxonConcept id="Test Taxon Concept Id 4" createdDate="2010-10-06T10:01:25.347">
+        <TaxonName ref="94583F3D-3B03-4901-8A77-531E3BA39129">Malacostraca</TaxonName>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+        <Relationships></Relationships>
+      </TaxonConcept>
+      <TaxonConcept id="Test Taxon Concept Id 5" createdDate="2010-10-06T10:01:25.347">
+        <TaxonName ref="A4315AB2-A46C-4DFA-B64F-A3B8EB9D08DA">Arthropoda</TaxonName>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4">Catalogue of Life 2010</AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="A4315AB2-A46C-4DFA-B64F-A3B8EB9D08DA" inUse="true" />
+          <ParentConcept ref="C0DCA63E-F25B-4494-8919-DBC0235262F8" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+    </TaxonConcepts>
+    <Annotations>
+      <Annotation id="testAnn2" type="nomenclatural status" createdDate="2012-01-02T12:44:22">
+        <Taxon conceptRef="Test Taxon Concept Id 1"/>
+        <AnnotationText>test annotation</AnnotationText>
+        <AccordingTo ref="B51A9FF8-7C6C-4302-BE5A-9033F35CE8E4" />
+      </Annotation>
+    </Annotations>
+  </DataSource>
+</DataSet>

@@ -1,0 +1,66 @@
+﻿@model NZOR.Web.Admin.Models.AttachmentPointModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Data Source Attachment Points</h2>
+
+<table cellspacing="0">
+    <tr>
+        <th>
+            Provider
+        </th>
+        <th>
+            Data Source
+        </th>
+        <th>
+            Full Name
+        </th>        
+        <th>
+            Provider Record Id
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.AttachmentPointDetails.OrderBy(ap => ap.SortOrder)) {
+    <tr class="attPointRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.Provider)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataSource)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProviderRecordId)
+        </td>
+    </tr>
+    <tr>
+    <td style="vertical-align:top; padding-left:100px">Data Source Rankings:</td>
+    <td colspan="2">
+        <table class="apdsTable"> 
+        <tr>
+        <th>Data Source</th>
+        <th>Ranking</th>
+        </tr>
+        @foreach (var apds in item.AttPointDataSources.OrderBy(a => a.Ranking))
+        {        
+            <tr>
+            <td>
+                @Html.DisplayFor(mi => apds.DataSource)
+            </td>
+            <td>
+                @Html.DisplayFor(mi => apds.Ranking)
+            </td>
+            </tr>
+        }
+        </table>
+    </td>
+    <td />
+    </tr>
+}
+
+</table>

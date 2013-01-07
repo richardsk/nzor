@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsIntegrationConcept" targetNamespace="http://tempuri.org/DsIntegrationConcept.xsd" xmlns:mstns="http://tempuri.org/DsIntegrationConcept.xsd" xmlns="http://tempuri.org/DsIntegrationConcept.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsIntegrationConcept" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsIntegrationConcept" msprop:Generator_UserDSName="DsIntegrationConcept">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProviderConcept" msprop:Generator_TableClassName="ProviderConceptDataTable" msprop:Generator_TableVarName="tableProviderConcept" msprop:Generator_TablePropName="ProviderConcept" msprop:Generator_RowDeletingName="ProviderConceptRowDeleting" msprop:Generator_UserTableName="ProviderConcept" msprop:Generator_RowChangingName="ProviderConceptRowChanging" msprop:Generator_RowEvHandlerName="ProviderConceptRowChangeEventHandler" msprop:Generator_RowDeletedName="ProviderConceptRowDeleted" msprop:Generator_RowEvArgName="ProviderConceptRowChangeEvent" msprop:Generator_RowChangedName="ProviderConceptRowChanged" msprop:Generator_RowClassName="ProviderConceptRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ConceptID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnConceptID" msprop:Generator_ColumnPropNameInRow="ConceptID" msprop:Generator_ColumnPropNameInTable="ConceptIDColumn" msprop:Generator_UserColumnName="ConceptID" type="xs:string" />
+              <xs:element name="ProviderRecordID" msprop:Generator_ColumnVarNameInTable="columnProviderRecordID" msprop:Generator_ColumnPropNameInRow="ProviderRecordID" msprop:Generator_ColumnPropNameInTable="ProviderRecordIDColumn" msprop:Generator_UserColumnName="ProviderRecordID" type="xs:string" minOccurs="0" />
+              <xs:element name="NameID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnNameID" msprop:Generator_ColumnPropNameInRow="NameID" msprop:Generator_ColumnPropNameInTable="NameIDColumn" msprop:Generator_UserColumnName="NameID" type="xs:string" minOccurs="0" />
+              <xs:element name="AccordingToReferenceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnAccordingToReferenceID" msprop:Generator_ColumnPropNameInRow="AccordingToReferenceID" msprop:Generator_ColumnPropNameInTable="AccordingToReferenceIDColumn" msprop:Generator_UserColumnName="AccordingToReferenceID" type="xs:string" minOccurs="0" />
+              <xs:element name="ConsensusNameID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnConsensusNameID" msprop:Generator_ColumnPropNameInRow="ConsensusNameID" msprop:Generator_ColumnPropNameInTable="ConsensusNameIDColumn" msprop:Generator_UserColumnName="ConsensusNameID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProviderConcept" />
+      <xs:field xpath="mstns:ConceptID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

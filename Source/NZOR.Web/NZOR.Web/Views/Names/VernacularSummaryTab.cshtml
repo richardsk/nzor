@@ -1,0 +1,83 @@
+﻿@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+else
+{
+    <div class="data-pair">
+        <span class="display-label">Language:</span> <span class="display-field">@Model.Name.Language</span>
+    </div>
+    <div class="data-pair">
+        <span class="display-label">Country:</span> <span class="display-field">@Model.Name.Country</span>
+    </div>
+
+    foreach (var concept in Model.Name.Concepts)
+    {
+        foreach (var application in concept.FromApplications)
+        {
+            if (application.Type == "is vernacular for")
+            {
+    <fieldset>
+        <legend>Application - is vernacular for</legend>
+        <table>
+            <tr>
+                <td style="width: 150px">
+                    Full name:
+                </td>
+                <td>
+                    <a href="/names/@application.ToConcept.Name.NameId">@application.ToConcept.Name.FullName</a>
+                </td>
+            </tr>
+            @if (concept.Publication != null)
+            {
+                <tr>
+                    <td>
+                        Article:
+                    </td>
+                    <td>
+                        @Html.Raw(concept.Publication.Citation)
+                    </td>
+                </tr>                    
+            }
+            @if (application.PartOfTaxon != "")
+            {
+                <tr>
+                    <td>
+                        Part of Taxon:
+                    </td>
+                    <td>
+                        @application.PartOfTaxon
+                    </td>
+                </tr>
+            }
+            @if (application.Gender != "")
+            {
+                <tr>
+                    <td>
+                        Gender:
+                    </td>
+                    <td>
+                        @application.Gender
+                    </td>
+                </tr>
+            }
+            @if (application.LifeStage != "")
+            {
+                <tr>
+                    <td>
+                        Life Stage:
+                    </td>
+                    <td>
+                        @application.LifeStage
+                    </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+            }
+        }
+    }
+}

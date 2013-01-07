@@ -1,0 +1,171 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+
+CREATE SCHEMA IF NOT EXISTS `consumer` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
+USE `consumer` ;
+
+-- -----------------------------------------------------
+-- Table `consumer`.`Harvest`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`Harvest` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`Harvest` (
+  `HarvestId` INT NOT NULL ,
+  `ServiceUrl` VARCHAR(250) NOT NULL ,
+  `IntervalDays` INT NULL ,
+  `LastHarvest` DATETIME NULL ,
+  `HarvestScopeId` INT NULL ,
+  `Status` VARCHAR(100) NULL ,
+  `LastHarvestStopPage` INT NULL ,
+  `LastHarvestNameCount` INT NULL ,
+  PRIMARY KEY (`HarvestId`) ,
+  UNIQUE INDEX `HarvestId_UNIQUE` (`HarvestId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`HarvestScope`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`HarvestScope` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`HarvestScope` (
+  `HarvestScopeId` INT NOT NULL ,
+  `AcceptedNamesOnly` BIT NULL ,
+  PRIMARY KEY (`HarvestScopeId`) ,
+  UNIQUE INDEX `HarvestScopeId_UNIQUE` (`HarvestScopeId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`BiostatusOption`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`BiostatusOption` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`BiostatusOption` (
+  `BiostatusOptionId` INT NOT NULL AUTO_INCREMENT ,
+  `HarvestScopeId` INT NOT NULL ,
+  `Present` BIT NULL ,
+  `Absent` BIT NULL ,
+  `Uncertain` BIT NULL ,
+  PRIMARY KEY (`BiostatusOptionId`) ,
+  UNIQUE INDEX `BiostatusOptionId_UNIQUE` (`BiostatusOptionId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`HarvestScopeBiostatus`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`HarvestScopeBiostatus` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`HarvestScopeBiostatus` (
+  `HarvestScopeId` INT NOT NULL ,
+  `BiostatusOptionId` INT NOT NULL ,
+  PRIMARY KEY (`HarvestScopeId`, `BiostatusOptionId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`Name`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`Name` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`Name` (
+  `NZORId` VARCHAR(250) NOT NULL ,
+  `FullName` VARCHAR(300) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL ,
+  `TaxonRank` VARCHAR(100) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL ,
+  `GoverningCode` VARCHAR(100) NULL ,
+  `Authors` VARCHAR(200) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL ,
+  `Year` VARCHAR(100) NULL ,
+  `AcceptedNameId` VARCHAR(250) NULL ,
+  `ParentNameId` VARCHAR(250) NULL ,
+  PRIMARY KEY (`NZORId`) ,
+  UNIQUE INDEX `NZORId_UNIQUE` (`NZORId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`Provider`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`Provider` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`Provider` (
+  `ProviderId` VARCHAR(250) NOT NULL ,
+  `Name` VARCHAR(250) NOT NULL ,
+  `Url` VARCHAR(250) NULL ,
+  PRIMARY KEY (`ProviderId`) ,
+  UNIQUE INDEX `ProviderId_UNIQUE` (`ProviderId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`NameProvider`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`NameProvider` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`NameProvider` (
+  `NZORId` VARCHAR(250) NOT NULL ,
+  `ProviderId` VARCHAR(250) NOT NULL ,
+  PRIMARY KEY (`NZORId`, `ProviderId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`HarvestScopeName`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`HarvestScopeName` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`HarvestScopeName` (
+  `HarvestScopeNameId` INT NOT NULL AUTO_INCREMENT ,
+  `HarvestScopeId` INT NULL ,
+  `NZORNameId` VARCHAR(250) NULL ,
+  `FullName` VARCHAR(300) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL ,
+  PRIMARY KEY (`HarvestScopeNameId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`Settings`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consumer`.`Settings` ;
+
+CREATE  TABLE IF NOT EXISTS `consumer`.`Settings` (
+  `SettingId` INT NOT NULL AUTO_INCREMENT ,
+  `Name` VARCHAR(100) NULL ,
+  `Value` VARCHAR(500) NULL ,
+  PRIMARY KEY (`SettingId`) ,
+  UNIQUE INDEX `SettingId_UNIQUE` (`SettingId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`BatchMatch`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `consumer`.`BatchMatch` (
+  `MatchId` VARCHAR(250) NOT NULL ,
+  `DateSubmitted` DATETIME NULL ,
+  `Status` VARCHAR(250) NULL ,
+  `Filename` VARCHAR(250) NULL ,
+  `DownloadUrl` VARCHAR(250) NULL ,
+  `ResultsFile` VARCHAR(250) NULL ,
+  PRIMARY KEY (`MatchId`) )
+ENGINE = InnoDB
+
+
+-- -----------------------------------------------------
+-- Table `consumer`.`NameRequest`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `consumer`.`NameRequest` (
+  `NameRequestId` VARCHAR(250) NOT NULL ,
+  `FullName` VARCHAR(250) NULL ,
+  `DateRequested` DATETIME NULL ,
+  `BatchMatchId` VARCHAR(250) NULL ,
+  `Status` VARCHAR(250) NULL ,
+  `ProviderNameResults` LONGTEXT NULL ,
+  PRIMARY KEY (`NameRequestId`) )
+ENGINE = InnoDB
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

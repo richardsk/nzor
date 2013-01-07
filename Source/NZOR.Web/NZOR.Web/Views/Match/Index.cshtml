@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Batch Matching - Step 1 of 2";
+}
+<h2>
+    Batch Matching
+</h2>
+<h4>
+    File upload (Step 1 of 2)
+</h4>
+@using (Html.BeginForm("results", "match", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    @:Select file: <input type="file" id="dwcFile" name="dwcFile" value="Choose a file"onclick="$('#processFileSimpleButton')[0].disabled=false" />
+    <br />
+    <br />
+    <input name="submitButton" id="processFileSimpleButton" type="submit" value="Next Step"
+        disabled="disabled" />
+    <div class="hint">
+        <p>
+            Your file should be a CSV file in Darwin Core (DwC) format. It should contain two
+            columns of data: one with the heading ID, containing your identifier for the record;
+            the other headed ScientificName, containing the name to be matched.
+        </p>
+        <p>
+            Click
+            <a href="/content/sampledata/NZORBatchMatchSample.csv">
+                here</a>
+            to download a sample file.
+        </p>
+        <p>
+        <a href="/match/brokernames">Submit names for brokering</a>
+        </p>
+    </div>
+}

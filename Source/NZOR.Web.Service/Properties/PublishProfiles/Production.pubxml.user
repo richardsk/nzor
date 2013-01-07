@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2012-06-26T09:28:54.0667794+12:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Data/DeprecatedRecords.xml">
+      <publishTime>03/14/2012 16:41:57</publishTime>
+    </File>
+    <File Include="App_Data/GeographicSchemas.xml">
+      <publishTime>03/06/2012 17:02:50</publishTime>
+    </File>
+    <File Include="App_Data/Pdf Templates/Images/nzor-logo.png">
+      <publishTime>03/11/2012 14:44:48</publishTime>
+    </File>
+    <File Include="App_Data/Pdf Templates/Name.xslt">
+      <publishTime>03/11/2012 16:19:30</publishTime>
+    </File>
+    <File Include="App_Data/Providers.xml">
+      <publishTime>03/07/2012 10:09:10</publishTime>
+    </File>
+    <File Include="App_Data/TaxonProperties.xml">
+      <publishTime>05/01/2012 14:41:04</publishTime>
+    </File>
+    <File Include="App_Data/TaxonRanks.xml">
+      <publishTime>03/09/2012 11:29:38</publishTime>
+    </File>
+    <File Include="App_Data/Vocabularies.xml">
+      <publishTime>04/27/2012 15:11:12</publishTime>
+    </File>
+    <File Include="bin/Fonet.dll">
+      <publishTime>04/04/2012 14:08:09</publishTime>
+    </File>
+    <File Include="bin/Fonet.xml">
+      <publishTime>04/04/2012 14:08:09</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.Contrib.Core.dll">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.Contrib.Core.xml">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.Contrib.Queries.dll">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.Contrib.Queries.xml">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.dll">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Lucene.Net.xml">
+      <publishTime>04/04/2012 13:55:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.dll">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.xml">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Configuration.dll">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Configuration.xml">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.dll">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.xml">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/04/2012 14:05:55</publishTime>
+    </File>
+    <File Include="bin/NZOR.Admin.Data.dll">
+      <publishTime>05/01/2012 14:36:11</publishTime>
+    </File>
+    <File Include="bin/NZOR.Admin.Data.Sql.dll">
+      <publishTime>05/01/2012 16:26:35</publishTime>
+    </File>
+    <File Include="bin/NZOR.Data.dll">
+      <publishTime>05/01/2012 16:26:34</publishTime>
+    </File>
+    <File Include="bin/NZOR.Data.Sql.dll">
+      <publishTime>05/01/2012 16:26:36</publishTime>
+    </File>
+    <File Include="bin/NZOR.Matching.Batch.dll">
+      <publishTime>05/01/2012 16:26:37</publishTime>
+    </File>
+    <File Include="bin/NZOR.Matching.Batch.xml">
+      <publishTime>05/01/2012 16:26:37</publishTime>
+    </File>
+    <File Include="bin/NZOR.Matching.dll">
+      <publishTime>05/01/2012 16:26:37</publishTime>
+    </File>
+    <File Include="bin/NZOR.Publish.Data.dll">
+      <publishTime>05/01/2012 16:26:35</publishTime>
+    </File>
+    <File Include="bin/NZOR.Publish.Model.dll">
+      <publishTime>05/01/2012 14:36:12</publishTime>
+    </File>
+    <File Include="bin/NZOR.Web.Service.dll">
+      <publishTime>05/01/2012 16:26:40</publishTime>
+    </File>
+    <File Include="bin/System.Json.dll">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Json.xml">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>04/04/2012 14:08:26</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.xml">
+      <publishTime>04/04/2012 14:08:26</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.xml">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.xml">
+      <publishTime>04/04/2012 14:08:23</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.xml">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Common.dll">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Common.xml">
+      <publishTime>04/04/2012 14:08:28</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>04/04/2012 14:08:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>04/04/2012 14:07:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.xml">
+      <publishTime>04/04/2012 14:07:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.xml">
+      <publishTime>04/04/2012 14:08:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>04/04/2012 14:07:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.xml">
+      <publishTime>04/04/2012 14:07:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>04/04/2012 14:05:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>04/04/2012 14:06:01</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>04/04/2012 14:07:55</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.xml">
+      <publishTime>04/04/2012 14:07:55</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.xml">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.xml">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.xml">
+      <publishTime>04/04/2012 14:08:05</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>03/10/2012 15:31:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/accent.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/aspNetHome.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/bullet.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/facebook.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/findHosting.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/heroAccent.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/NuGetGallery.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/nzor-logo.png">
+      <publishTime>03/10/2012 15:24:00</publishTime>
+    </File>
+    <File Include="Images/orderedListOne.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/orderedListThree.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/orderedListTwo.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/twitter.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Images/windowsLive.png">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="NZOR.Web.Service.Publish.xml">
+      <publishTime>05/01/2012 16:27:01</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/11/2012 13:41:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.6.2-vsdoc.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.6.2.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.6.2.min.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.11.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.11.min.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate-vsdoc.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.0.0.debug.js">
+      <publishTime>03/02/2012 09:26:28</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.0.0.js">
+      <publishTime>03/02/2012 09:26:28</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.0.6-development-only.js">
+      <publishTime>03/02/2012 09:26:26</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/27/2012 08:15:24</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/02/2012 09:26:24</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/01/2012 16:27:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

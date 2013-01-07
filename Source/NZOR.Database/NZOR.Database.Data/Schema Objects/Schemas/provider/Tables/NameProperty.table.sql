@@ -1,0 +1,14 @@
+﻿CREATE TABLE 
+	[provider].[NameProperty]
+	(
+	NamePropertyID UNIQUEIDENTIFIER NOT NULL, 
+	
+	NameID UNIQUEIDENTIFIER NOT NULL, 
+	NamePropertyTypeID UNIQUEIDENTIFIER NOT NULL, 
+	RelatedID UNIQUEIDENTIFIER NULL, 
+	
+	ProviderRelatedID NVARCHAR(1000) NULL, 
+
+	Sequence INT NULL,
+	Value NVARCHAR(MAX) NOT NULL
+	)

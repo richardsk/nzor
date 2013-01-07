@@ -1,0 +1,131 @@
+﻿@using NZOR.Publish.Model.Concepts
+@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+@if (Model.Name.Concepts != null && Model.Name.Concepts.Any())
+{
+    var s = from n in Model.Name.Concepts
+            orderby n.FromRelationships.Count descending
+            select n;
+
+    var sorted = s.ToList();
+
+    //find the isActive one and put it at the top.
+    var activeConcepts = new List<Concept>();
+    foreach (var concept in sorted)
+    {
+        foreach (var rel in concept.FromRelationships)
+        {
+            if (rel.IsActive)
+            {
+                activeConcepts.Add(concept);
+            }
+        }
+    }
+    foreach (var activeConcept in activeConcepts)
+    {
+        sorted.Remove(activeConcept);
+        sorted.Insert(0, activeConcept);
+    }
+
+    foreach (var concept in sorted)
+    {
+    <fieldset>
+        <legend>Taxon Concept</legend>@*According to*@ @*NZOR concept id*@
+        <div class="data-pair">
+            <span class="display-sublabel">NZOR Concept Id:</span> <span class="display-field">@concept.ConceptId</span>
+        </div>
+        @*Acording to*@
+        @if (concept.Publication != null)
+        {
+            <div class="data-pair">
+                <span class="display-sublabel">According to:</span> 
+                <span class="display-field">
+                    @Html.Raw(concept.Publication.Citation)
+                </span>
+            </div>
+        }
+@*Parent*@
+        @foreach (var rel in concept.FromRelationships)
+        {
+            if (rel.Type == "is child of")
+            {
+            <div class="data-pair">
+                <span class="display-sublabel">Has Parent:</span> <span class="display-field">
+                    <a href="@Url.Action("detail", new { id = rel.ToConcept.Name.NameId })">
+                        @Html.Raw(rel.ToConcept.Name.PartialName)
+                    </a>
+                    @(rel.IsActive ? " (In use by NZOR)" : "")
+                    @{string prList = "";
+                      foreach (var pl in rel.InUseByProviders)
+                      {
+                          if (prList.Length > 0)
+                          {
+                              prList += ", ";
+                          }
+                          else
+                          {
+                              prList += "(In use by provider(s): ";
+                          }
+                          prList += pl.Name;
+                      }
+                      if (prList.Length > 0)
+                      {
+                        @Html.Raw(prList + ")");
+                      }
+                    }
+                </span>
+            </div>
+            }
+        }
+        @*Preferred name*@
+        @foreach (var rel in concept.FromRelationships)
+        {
+            if (rel.Type == "is synonym of")
+            {
+            <div class="data-pair">
+                <span class="display-sublabel">Preferred Name:</span> <span class="display-field">
+                    @Html.ActionLink(rel.ToConcept.Name.FullName, "detail", new { id = rel.ToConcept.Name.NameId })
+                    @(rel.IsActive ? " (In use by NZOR)" : "")
+                    @{string prList = "";
+                      foreach (var pl in rel.InUseByProviders)
+                      {
+                          if (prList.Length > 0)
+                          {
+                              prList += ", ";
+                          }
+                          else
+                          {
+                              prList += "(In use by provider(s): ";
+                          }
+                          prList += pl.Name;
+                      }
+                      if (prList.Length > 0)
+                      {
+                        @Html.Raw(prList + ")");
+                      }
+                    }
+                </span>
+            </div>
+            }
+        }
+        @*Orthography*@
+        @if (!String.IsNullOrWhiteSpace(concept.Orthography))
+        {
+            <div class="data-pair">
+                <span class="display-sublabel">Orthography:</span> <span class="display-field">
+                    @concept.Orthography
+                </span>
+            </div>
+        }
+    </fieldset>
+    }
+}
+else
+{ 
+    <span class="display-field">No taxon concepts.</span>
+}

@@ -1,0 +1,539 @@
+<!--
+This dataset should result in the following database records:
+
+provider.Reference
+  - record for Species Plantarum, ProviderRecordId = 7E25C1D4-6AE5-462D-994E-61A8E63AF215, ReferenceType = Book
+  - record for Species Smithium, ProviderRecordId = 1892F9DA-0BB4-4F91-95E2-7EBF3B483267, ReferenceType = Book  
+  - record for NZOR Test Publication, ProviderRecordId = 63196F1C-8000-417C-B5BE-567CE738D4B4, ReferenceType = Generic
+  - record for Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales, ProviderRecordId = 12139D15-401B-4FED-ADD6-02DBA365A530, ReferenceType = Electronic source
+  - record for The Gardeners Dictionary, ProviderRecordId = FEDCA5B7-31B1-47CB-8894-306A5B9526C0, ReferenceType = Book
+
+provider.ReferenceProperty
+  - records for the provider record 7E25C1D4-6AE5-462D-994E-61A8E63AF215 - Author, Date, Citation, Title (x2)
+  - records for the provider record 1892F9DA-0BB4-4F91-95E2-7EBF3B483267 - Author, Date, Citation, Title 
+  - records for the provider record 63196F1C-8000-417C-B5BE-567CE738D4B4 - Citation, Title
+  - records for the provider record 12139D15-401B-4FED-ADD6-02DBA365A530 - Author, Date, Citation, Title, Issue
+  - records for the provider record FEDCA5B7-31B1-47CB-8894-306A5B9526C0 - Author, Date, Citation, Title (x2), Volume, Issue, PlaceOfPublication
+  
+provider.Name
+  - record for Asterales, ProviderRecordId = 39BECB7F-180A-4415-8684-5EAA441795F0, NameClass = ScientificName, Rank = order, GoverningCode = ICBN
+  - record for Asteraceae, ProviderRecordId = 628AA321-ABC1-44D2-ACC1-799705FFF073, NameClass = ScientificName, Rank = family, GoverningCode = ICBN
+  - record for Compositae, ProviderRecordId = 91CD370D-9C0E-482B-9CE5-95AA91F83328, NameClass = ScientificName, Rank = family, GoverningCode = ICBN
+  - record for Bidens L., ProviderRecordId = E35BB4D1-4753-4271-92B7-A75C6D1A3D41, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN
+  - record for Anthemis L., ProviderRecordId = A41923CA-30A3-41E1-9409-CCF7AC702DE0, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN
+  - record for Anthemis Smith, ProviderRecordId = B10B57CF-0E55-48CB-8B03-54DE42A8A6FA, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN  
+  - record for Anthemis Smith, ProviderRecordId = C3C5E3C6-7984-4262-BD6A-FC6214E2B09F, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN  (name with no concepts attached, matches name above)
+  - record for Chamaemelum Mill., ProviderRecordId = 674B58C2-75F9-407D-AF1C-6F5F822E9AC2, NameClass = ScientificName, Rank = genus, GoverningCode = ICBN
+  - record for Anthemis nobilis L., ProviderRecordId = B9E3460B-AFF5-440B-AFE2-37C59F4E2779, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Anthemis cupaniana Tod. ex Nyman, ProviderRecordId = 388B5155-5D02-4A6E-A1EC-8FC3BD438D40, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Anthemis punctata subsp. cupaniana (Tod. ex Nyman) R.Fern., ProviderRecordId = CB1B0F9E-021A-4726-8826-D5B775A89AC3, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Anthemis mixta sensu New Zealand Botanists, ProviderRecordId = 27A5F632-3172-4EF8-BE8B-A01D1CC314A5, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Chamaemelum nobile (L.) All., ProviderRecordId = 856C1CCF-3AF5-4C41-B1D1-9B01B94D7005, NameClass = ScientificName, Rank = species, GoverningCode = ICBN
+  - record for Anthemis nobilis L., ProviderRecordId = FA095308-CFDD-438E-B095-AC0C8F950007, NameClass = ScientificName, Rank = species, GoverningCode = ICBN (name with no parent details)
+  - record for vernacular name Roman Chamomile, NameId = AD5D06EA-CD2F-485D-AE98-CBCBE2FB7C83
+  - record for vernacular name Chamomile, NameId=A59A1F8B-0DF1-4290-8A12-C856737C68CE
+
+provider.NameProperty
+  - records for provider record 39BECB7F-180A-4415-8684-5EAA441795F0 - Rank, Canonical
+  - records for provider record 628AA321-ABC1-44D2-ACC1-799705FFF073 - Rank, Canonical
+  - records for provider record 91CD370D-9C0E-482B-9CE5-95AA91F83328 - Rank, Canonical
+  - records for provider record E35BB4D1-4753-4271-92B7-A75C6D1A3D41 - Rank, Canonical
+  - records for provider record B10B57CF-0E55-48CB-8B03-54DE42A8A6FA - Rank, Canonical, Authors, YearOfPublication
+  - records for provider record C3C5E3C6-7984-4262-BD6A-FC6214E2B09F - Rank, Canonical, Authors
+  - records for provider record E35BB4D1-4753-4271-92B7-A75C6D1A3D41 - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication
+  - records for provider record A41923CA-30A3-41E1-9409-CCF7AC702DE0 - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication, MicroReference
+  - records for provider record 674B58C2-75F9-407D-AF1C-6F5F822E9AC2 - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication
+  - records for provider record B9E3460B-AFF5-440B-AFE2-37C59F4E2779 - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication
+  - records for provider record 388B5155-5D02-4A6E-A1EC-8FC3BD438D40 - Rank, Canonical, Authors, BasionymAuthors, YearOfPublication, Basionym (with RelatedID set to the provider.Name.NameID of itself and RelatedProviderId set to 388B5155-5D02-4A6E-A1EC-8FC3BD438D40)
+  - records for provider record CB1B0F9E-021A-4726-8826-D5B775A89AC3 - Rank, Canonical, Authors, BasionymAuthors, CombinationAuthors, YearOfPublication, Basionym (with RelatedID set to the provider.Name.NameID of the provider name 388B5155-5D02-4A6E-A1EC-8FC3BD438D40 and RelatedProviderId set to 388B5155-5D02-4A6E-A1EC-8FC3BD438D40)
+  - records for provider record 27A5F632-3172-4EF8-BE8B-A01D1CC314A5 - Rank, Canonical, Authors, BasionymAuthors
+  - records for provider record 856C1CCF-3AF5-4C41-B1D1-9B01B94D7005 - Rank, Canonical, Authors, BasionymAuthors, CombinationAuthors, YearOfPublication Basionym (with RelatedID set to the provider.Name.NameID of the provider name B9E3460B-AFF5-440B-AFE2-37C59F4E2779 and RelatedProviderId set to B9E3460B-AFF5-440B-AFE2-37C59F4E2779)
+
+provider.Concept
+  - record with ProviderRecordId = C8F1A295-76E5-4969-ADA6-A2E21B352EA1, ProviderNameId = 39BECB7F-180A-4415-8684-5EAA441795F0, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, ProviderNameId = 628AA321-ABC1-44D2-ACC1-799705FFF073, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 4B67021D-CF9E-4CD0-931A-84ED33312432, ProviderNameId = 91CD370D-9C0E-482B-9CE5-95AA91F83328, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 177C1B23-9145-45C1-9A97-DEDD02455A8B, ProviderNameId = A41923CA-30A3-41E1-9409-CCF7AC702DE0, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = B8C14A58-7112-4BD6-8FF8-74607F667086, ProviderNameId = B10B57CF-0E55-48CB-8B03-54DE42A8A6FA, ProviderReferenceId = 1892F9DA-0BB4-4F91-95E2-7EBF3B483267, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 1B7BCC9E-8EC7-4DBC-A932-A94995E377D2, ProviderNameId = E35BB4D1-4753-4271-92B7-A75C6D1A3D41, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 69385628-AA0F-41EE-93E4-2A35416E9E8B, ProviderNameId = 856C1CCF-3AF5-4C41-B1D1-9B01B94D7005, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = 100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E, ProviderNameId = 674B58C2-75F9-407D-AF1C-6F5F822E9AC2, ProviderReferenceId = 12139D15-401B-4FED-ADD6-02DBA365A530, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = 388B5155-5D02-4A6E-A1EC-8FC3BD438D40, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = 27A5F632-3172-4EF8-BE8B-A01D1CC314A5, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = B9E3460B-AFF5-440B-AFE2-37C59F4E2779, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = CB1B0F9E-021A-4726-8826-D5B775A89AC3, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = A41923CA-30A3-41E1-9409-CCF7AC702DE0, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - record with ProviderRecordId = newid(), ProviderNameId = 856C1CCF-3AF5-4C41-B1D1-9B01B94D7005, ProviderReferenceId = 63196F1C-8000-417C-B5BE-567CE738D4B4, NameID set to provider.Name.NameID of the related Name, AccordingToReferenceID set to provider.Reference.ReferenceID of the related Reference
+  - vernacular concept, ProviderRecordId= '80C33F4B-ADC8-47E5-A18A-1071DA7EB365', ProviderNameId=A59A1F8B-0DF1-4290-8A12-C856737C68CE
+ provider.ConceptRelationship
+   - relationship record from provider.Concept that has ProviderRecordId = C8F1A295-76E5-4969-ADA6-A2E21B352EA1 to provider.Concept that has ProviderRecordId = C8F1A295-76E5-4969-ADA6-A2E21B352EA1, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72 to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72 to provider.Concept that has ProviderRecordId = C8F1A295-76E5-4969-ADA6-A2E21B352EA1, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = 4B67021D-CF9E-4CD0-931A-84ED33312432 to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 4B67021D-CF9E-4CD0-931A-84ED33312432 to provider.Concept that has ProviderRecordId = C8F1A295-76E5-4969-ADA6-A2E21B352EA1, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = 177C1B23-9145-45C1-9A97-DEDD02455A8B to provider.Concept that has ProviderRecordId = 177C1B23-9145-45C1-9A97-DEDD02455A8B, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 177C1B23-9145-45C1-9A97-DEDD02455A8B to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = B8C14A58-7112-4BD6-8FF8-74607F667086 to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = 1B7BCC9E-8EC7-4DBC-A932-A94995E377D2 to provider.Concept that has ProviderRecordId = 1B7BCC9E-8EC7-4DBC-A932-A94995E377D2, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 1B7BCC9E-8EC7-4DBC-A932-A94995E377D2 to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = 69385628-AA0F-41EE-93E4-2A35416E9E8B to provider.Concept that has ProviderRecordId = 69385628-AA0F-41EE-93E4-2A35416E9E8B, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 69385628-AA0F-41EE-93E4-2A35416E9E8B to provider.Concept that has ProviderRecordId = 100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E, Type = is child of
+   - relationship record from provider.Concept that has ProviderRecordId = 100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E to provider.Concept that has ProviderRecordId = 100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E, Type = is synonym of
+   - relationship record from provider.Concept that has ProviderRecordId = 100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E to provider.Concept that has ProviderRecordId = 110F4F41-E19F-47E3-9F53-8A617BF03A72, Type = is child of
+   - relationship record from provider.Concept for the provider name id = 388B5155-5D02-4A6E-A1EC-8FC3BD438D40 to provider.Concept for the provider name id = CB1B0F9E-021A-4726-8826-D5B775A89AC3 and ProviderReferenceId 63196F1C-8000-417C-B5BE-567CE738D4B4, Type = is synonym of
+   - relationship record from provider.Concept for the provider name id = 388B5155-5D02-4A6E-A1EC-8FC3BD438D40 to provider.Concept for the provider name id = A41923CA-30A3-41E1-9409-CCF7AC702DE0 and ProviderReferenceId 63196F1C-8000-417C-B5BE-567CE738D4B4, Type = is child of
+   - relationship record from provider.Concept for the provider name id = 27A5F632-3172-4EF8-BE8B-A01D1CC314A5 to provider.Concept for the provider name id = 856C1CCF-3AF5-4C41-B1D1-9B01B94D7005 and ProviderReferenceId 63196F1C-8000-417C-B5BE-567CE738D4B4, Type = is synonym of
+   - relationship record from provider.Concept for the provider name id = 27A5F632-3172-4EF8-BE8B-A01D1CC314A5 to provider.Concept for the provider name id = A41923CA-30A3-41E1-9409-CCF7AC702DE0 and ProviderReferenceId 63196F1C-8000-417C-B5BE-567CE738D4B4, Type = is child of
+   - relationship record from provider.Concept for the provider name id = B9E3460B-AFF5-440B-AFE2-37C59F4E2779 to provider.Concept for the provider name id = A41923CA-30A3-41E1-9409-CCF7AC702DE0 and ProviderReferenceId 63196F1C-8000-417C-B5BE-567CE738D4B4, Type = is child of
+   - relationship from provider.Concept, ProviderRecordId=, to taxonnameuse with provider name id=388B5155-5D02-4A6E-A1EC-8FC3BD438D40
+  provider.ConceptApplication
+    - record for vernacular application of name, id=AD5D06EA-CD2F-485D-AE98-CBCBE2FB7C83 to name Anthemis nobilis L., name id=B9E3460B-AFF5-440B-AFE2-37C59F4E2779
+    - record for vernacular application of name, id=A59A1F8B-0DF1-4290-8A12-C856737C68CE to name Anthemis cupaniana, name id=388B5155-5D02-4A6E-A1EC-8FC3BD438D40
+  provider.TaxonProperty
+    - record for biostatus of name Anthemis nobilis, provider record id=FC1798CA-43A2-4CC9-9DBD-3D633DBD3EB1, name id=B9E3460B-AFF5-440B-AFE2-37C59F4E2779
+-->
+
+<DataSet>
+  <Metadata>
+    <Provider id="NZOR_Test">
+      <Name>NZOR Test</Name>
+      <OrganisationURL>http://www.lanedcareresearch.co.nz</OrganisationURL>
+    </Provider>
+    <DateGenerated>2011-02-02T11:45:00.920</DateGenerated>
+  </Metadata>
+  <DataSource id="NZOR_Test">
+    <Usage>
+      <Disclaimer>These data are drawn from a dynamic data source that is continually being edited.  They may contain errors or omissions.</Disclaimer>
+      <Attribution>Landcare Research</Attribution>
+    </Usage>
+    
+    <Publications>
+      <Publication id="7E25C1D4-6AE5-462D-994E-61A8E63AF215" type="Book" createdDate="2004-04-15T09:46:34.133" modifiedDate="2008-08-11T14:22:37.387">
+        <Citation>Linnaeus, C. 1753: &lt;I&gt;Species Plantarum.&lt;/I&gt;</Citation>
+        <Authors>
+          <Simple>Linnaeus, C.</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">1753</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Species Plantarum</Title>
+          <Title level="1" type="abbreviation">Sp. Pl.</Title>
+        </Titles>
+        <Volume />
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>
+      <Publication id="1892F9DA-0BB4-4F91-95E2-7EBF3B483267" type="Book" createdDate="2004-04-15T09:46:34.133" modifiedDate="2008-08-11T14:22:37.387">
+        <Citation>Smith 1980: &lt;I&gt;Species Smithium.&lt;/I&gt;</Citation>
+        <Authors>
+          <Simple>Smith</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">1980</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">Species Smithium</Title>
+        </Titles>
+        <Volume />
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>
+      <Publication id="63196F1C-8000-417C-B5BE-567CE738D4B4" type="Generic">
+        <Citation>NZOR Test Publication</Citation>
+        <Dates />
+        <Titles>
+          <Title level="1" type="full">NZOR Test Publication</Title>
+        </Titles>
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>
+      <Publication id="12139D15-401B-4FED-ADD6-02DBA365A530" type="Electronic source" createdDate="2007-08-22T08:30:31.567" modifiedDate="2007-09-17T10:47:49.107">
+        <Citation>Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </Citation>
+        <Authors>
+          <Simple>Allan Herbarium</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">2007</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">New Zealand Plant Names Database Concepts - Asterales</Title>
+        </Titles>
+        <Issue>1</Issue>
+        <Publisher>
+          <Name />
+          <City />
+        </Publisher>
+      </Publication>
+      <Publication id="FEDCA5B7-31B1-47CB-8894-306A5B9526C0" type="Book" createdDate="2008-08-13T11:50:45.853">
+        <Citation>Miller, P. 1754: &lt;I&gt;The Gardeners Dictionary.&lt;/I&gt;4 ed.  3.  London, </Citation>
+        <Authors>
+          <Simple>Miller, P.</Simple>
+        </Authors>
+        <Dates>
+          <Date type="of publication">1754</Date>
+        </Dates>
+        <Titles>
+          <Title level="1" type="full">The Gardeners Dictionary</Title>
+          <Title level="1" type="abbreviation">Gard. Dict. Abr. (ed. 4)</Title>
+        </Titles>
+        <Volume>4</Volume>
+        <Issue>3</Issue>
+        <Publisher>
+          <Name />
+          <City>London</City>
+        </Publisher>
+      </Publication>
+    </Publications>
+
+    <TaxonNames>
+      <TaxonName id="39BECB7F-180A-4415-8684-5EAA441795F0">
+        <FullName>Asterales</FullName>
+        <Rank>order</Rank>
+        <CanonicalName>Asterales</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="628AA321-ABC1-44D2-ACC1-799705FFF073" modifiedDate="2007-05-22T11:12:19.697">
+        <FullName>Asteraceae</FullName>
+        <Rank>family</Rank>
+        <CanonicalName>Asteraceae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="91CD370D-9C0E-482B-9CE5-95AA91F83328" createdDate="2002-03-13T14:49:37" modifiedDate="2006-09-22T13:34:15.090">
+        <FullName>Compositae</FullName>
+        <Rank>family</Rank>
+        <CanonicalName>Compositae</CanonicalName>
+        <Authorship />
+        <BasionymAuthors />
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="E35BB4D1-4753-4271-92B7-A75C6D1A3D41" modifiedDate="2006-04-27T12:07:41.047">
+        <FullName>Bidens L.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Bidens</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="7E25C1D4-6AE5-462D-994E-61A8E63AF215">Linnaeus, C. 1753: Species Plantarum.</PublishedIn>
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="A41923CA-30A3-41E1-9409-CCF7AC702DE0" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis L.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="7E25C1D4-6AE5-462D-994E-61A8E63AF215">Linnaeus, C. 1753: Species Plantarum.</PublishedIn>
+        <Year>1753</Year>
+        <MicroReference>893</MicroReference>
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="B10B57CF-0E55-48CB-8B03-54DE42A8A6FA" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis Smith</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship>Smith</Authorship>
+        <BasionymAuthors/>
+        <CombiningAuthors />
+        <PublishedIn ref="1892F9DA-0BB4-4F91-95E2-7EBF3B483267">Smith 1980: Species Smithium.</PublishedIn>
+        <Year>1980</Year>
+        <MicroReference/>
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="C3C5E3C6-7984-4262-BD6A-FC6214E2B09F" modifiedDate="2008-06-24T07:53:06.817">
+        <FullName>Anthemis Smith</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Anthemis</CanonicalName>
+        <Authorship>Smith</Authorship>
+        <BasionymAuthors/>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference/>
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+     
+
+      <TaxonName id="674B58C2-75F9-407D-AF1C-6F5F822E9AC2" modifiedDate="2008-08-13T11:51:46.603">
+        <FullName>Chamaemelum Mill.</FullName>
+        <Rank>genus</Rank>
+        <CanonicalName>Chamaemelum</CanonicalName>
+        <Authorship>Mill.</Authorship>
+        <BasionymAuthors>Mill.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn ref="FEDCA5B7-31B1-47CB-8894-306A5B9526C0">Miller, P. 1754: The Gardeners Dictionary.4 ed.  3.  London, </PublishedIn>
+        <Year>1754</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="B9E3460B-AFF5-440B-AFE2-37C59F4E2779" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1753</Year>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="388B5155-5D02-4A6E-A1EC-8FC3BD438D40" createdDate="2007-10-16T11:42:32.077" modifiedDate="2008-06-24T08:18:30.510">
+        <FullName>Anthemis cupaniana Tod. ex Nyman</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>cupaniana</CanonicalName>
+        <Authorship>Tod. ex Nyman</Authorship>
+        <BasionymAuthors>Tod. ex Nyman</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year>1879</Year>
+        <MicroReference />
+        <Orthography />
+        <Basionym ref="388B5155-5D02-4A6E-A1EC-8FC3BD438D40">Anthemis cupaniana Tod. ex Nyman</Basionym>
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="CB1B0F9E-021A-4726-8826-D5B775A89AC3" modifiedDate="2008-06-24T08:08:19.267">
+        <FullName>Anthemis punctata subsp. cupaniana (Tod. ex Nyman) R.Fern.</FullName>
+        <Rank>subsp.</Rank>
+        <CanonicalName>cupaniana</CanonicalName>
+        <Authorship>(Tod. ex Nyman) R.Fern.</Authorship>
+        <BasionymAuthors>Tod. ex Nyman</BasionymAuthors>
+        <CombiningAuthors>R.Fern.</CombiningAuthors>
+        <PublishedIn />
+        <Year>1975</Year>
+        <MicroReference />
+        <Orthography />
+        <Basionym ref="388B5155-5D02-4A6E-A1EC-8FC3BD438D40">Anthemis cupaniana Tod. ex Nyman</Basionym>
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="27A5F632-3172-4EF8-BE8B-A01D1CC314A5" createdDate="2009-09-07T12:11:38.473" modifiedDate="2009-09-07T12:12:58.097">
+        <FullName>Anthemis mixta sensu New Zealand Botanists</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>mixta</CanonicalName>
+        <Authorship>New Zealand Botanists</Authorship>
+        <BasionymAuthors>New Zealand Botanists</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year />
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+      
+      <TaxonName id="856C1CCF-3AF5-4C41-B1D1-9B01B94D7005" modifiedDate="2009-09-07T12:14:58.397">
+        <FullName>Chamaemelum nobile (L.) All.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobile</CanonicalName>
+        <Authorship>(L.) All.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors>All.</CombiningAuthors>
+        <PublishedIn />
+        <Year>1785</Year>
+        <MicroReference />
+        <Orthography />
+        <Basionym ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</Basionym>
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <TaxonName id="FA095308-CFDD-438E-B095-AC0C8F950007" createdDate="2009-09-07T12:07:12.720" modifiedDate="2009-09-07T12:08:37.563">
+        <FullName>Anthemis nobilis L.</FullName>
+        <Rank>species</Rank>
+        <CanonicalName>nobilis</CanonicalName>
+        <Authorship>L.</Authorship>
+        <BasionymAuthors>L.</BasionymAuthors>
+        <CombiningAuthors />
+        <PublishedIn />
+        <Year/>
+        <MicroReference />
+        <Orthography />
+        <NomenclaturalCode>ICBN</NomenclaturalCode>
+      </TaxonName>
+
+      <VernacularName id="AD5D06EA-CD2F-485D-AE98-CBCBE2FB7C83" createdDate="2010-11-03T12:04:12">
+        <FullName>Roman Chamomile</FullName>
+        <PublishedIn/>
+        <Language>English</Language>
+        <Country>New Zelaand</Country>
+      </VernacularName>
+
+      <VernacularName id="A59A1F8B-0DF1-4290-8A12-C856737C68CE" createdDate="2010-11-03T12:04:12">
+        <FullName>Chamomile</FullName>
+        <PublishedIn/>
+        <Language>English</Language>
+        <Country>New Zelaand</Country>
+      </VernacularName>
+     
+    </TaxonNames>
+
+    <TaxonConcepts>
+      <TaxonConcept id="C8F1A295-76E5-4969-ADA6-A2E21B352EA1" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="39BECB7F-180A-4415-8684-5EAA441795F0">Asterales</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="C8F1A295-76E5-4969-ADA6-A2E21B352EA1" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="110F4F41-E19F-47E3-9F53-8A617BF03A72" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="628AA321-ABC1-44D2-ACC1-799705FFF073">Asteraceae</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+          <ParentConcept ref="C8F1A295-76E5-4969-ADA6-A2E21B352EA1" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="4B67021D-CF9E-4CD0-931A-84ED33312432" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="91CD370D-9C0E-482B-9CE5-95AA91F83328">Compositae</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+          <ParentConcept ref="C8F1A295-76E5-4969-ADA6-A2E21B352EA1" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="177C1B23-9145-45C1-9A97-DEDD02455A8B" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0">Anthemis L.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="177C1B23-9145-45C1-9A97-DEDD02455A8B" inUse="true" />
+          <ParentConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+      
+      <TaxonConcept id="B8C14A58-7112-4BD6-8FF8-74607F667086" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="B10B57CF-0E55-48CB-8B03-54DE42A8A6FA">Anthemis Smith</TaxonName>
+        <AccordingTo ref="1892F9DA-0BB4-4F91-95E2-7EBF3B483267">Smith, 1980 : Species Smithium</AccordingTo>
+        <Relationships>
+          <ParentConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <TaxonConcept id="1B7BCC9E-8EC7-4DBC-A932-A94995E377D2" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="E35BB4D1-4753-4271-92B7-A75C6D1A3D41">Bidens L.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="1B7BCC9E-8EC7-4DBC-A932-A94995E377D2" inUse="true" />
+          <ParentConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+      
+      <TaxonConcept id="69385628-AA0F-41EE-93E4-2A35416E9E8B" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="856C1CCF-3AF5-4C41-B1D1-9B01B94D7005">Chamaemelum nobile (L.) All.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="69385628-AA0F-41EE-93E4-2A35416E9E8B" inUse="true" />
+          <ParentConcept ref="100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+      
+      <TaxonConcept id="100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E" createdDate="2007-09-17T10:40:06.803">
+        <TaxonName ref="674B58C2-75F9-407D-AF1C-6F5F822E9AC2">Chamaemelum Mill.</TaxonName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Relationships>
+          <AcceptedConcept ref="100D2BDD-8A8A-4BDE-8C44-4C86EFAB318E" inUse="true" />
+          <ParentConcept ref="110F4F41-E19F-47E3-9F53-8A617BF03A72" inUse="true" />
+        </Relationships>
+      </TaxonConcept>
+
+      <NameBasedConcept>
+        <TaxonNameUse createdDate="2011-02-04T16:03:31.907" modifiedDate="2011-02-04T16:03:31.907">
+          <Name ref="388B5155-5D02-4A6E-A1EC-8FC3BD438D40" />
+          <AcceptedName ref="CB1B0F9E-021A-4726-8826-D5B775A89AC3" inUse="true" />
+          <ParentName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+
+      <NameBasedConcept>
+        <TaxonNameUse createdDate="2011-02-04T16:03:31.907" modifiedDate="2011-02-04T16:03:31.907">
+          <Name ref="27A5F632-3172-4EF8-BE8B-A01D1CC314A5" />
+          <AcceptedName ref="856C1CCF-3AF5-4C41-B1D1-9B01B94D7005" inUse="true" />
+          <ParentName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+
+      <NameBasedConcept>
+        <TaxonNameUse createdDate="2011-02-04T16:03:31.907" modifiedDate="2011-02-04T16:03:31.907">
+          <Name ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779" />
+          <ParentName ref="A41923CA-30A3-41E1-9409-CCF7AC702DE0" inUse="true" />
+        </TaxonNameUse>
+      </NameBasedConcept>
+
+      <NameBasedConcept>
+        <VernacularUse>
+          <VernacularName ref="AD5D06EA-CD2F-485D-AE98-CBCBE2FB7C83">Roman Chamomile</VernacularName>
+          <Applications>
+            <Application inUse="true">
+              <TaxonName ref="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</TaxonName>
+              <GeoRegion geographicSchema="ISO Country">New Zealand</GeoRegion>
+            </Application>
+          </Applications>
+        </VernacularUse>
+      </NameBasedConcept>
+
+      <VernacularConcept id="80C33F4B-ADC8-47E5-A18A-1071DA7EB365" createdDate="2007-09-17T10:40:06.803">
+        <VernacularName ref="A59A1F8B-0DF1-4290-8A12-C856737C68CE">Chamomile</VernacularName>
+        <AccordingTo ref="12139D15-401B-4FED-ADD6-02DBA365A530">Allan Herbarium 2007: New Zealand Plant Names Database Concepts - Asterales. </AccordingTo>
+        <Applications>
+          <Application ref="388B5155-5D02-4A6E-A1EC-8FC3BD438D40" inUse="true" type="is vernacular for">
+            <GeoRegion geographicSchema="ISO Country">New Zealand</GeoRegion>
+          </Application>
+        </Applications>
+      </VernacularConcept>
+      
+    </TaxonConcepts>
+
+    <TaxonProperties>
+      <BiostatusValues>
+        <Biostatus id="FC1798CA-43A2-4CC9-9DBD-3D633DBD3EB1" createdDate="2011-02-04T16:03:31.907">
+          <Taxon nameRef="B9E3460B-AFF5-440B-AFE2-37C59F4E2779">Anthemis nobilis L.</Taxon>
+          <Region geographicSchema="ISO Country">New Zealand</Region>
+          <Occurrence>Present</Occurrence>
+        </Biostatus>
+      </BiostatusValues>
+    </TaxonProperties>
+    
+  </DataSource>
+</DataSet>

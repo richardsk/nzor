@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Names</h1>
+<div class="details">
+
+	{% if name_list %}
+	<table width="100%">
+	<tr>
+		<th>Id</th><th>Full name</th><th>Rank</th><th>Accepted name</th><th>NZOR ID</th>
+	</tr>
+
+
+	{% for name in name_list %}
+	<tr>
+		<td><a href='../name/{{name.id}}'>{{ name.id }}</a></td>
+		<td>{{ name.full_name }}</td>
+		<td>{{ nanme.taxon_rank }}</td>
+		<td>{{ name.accepted_name }}</td>
+		<td><a href='http://demo.nzor.org.nz/names/{{ name.nzor_id }}'>{{ name.nzor_id }}</a></td>
+	</tr>
+	{% endfor %}
+	</table>
+
+	{% endif %}
+
+	<br/>
+	<p>Last NZOR harvest: {{ harvest.date }} &nbsp;	<input type='submit' text='Harvest now'/>
+</div>
+{% endblock %}

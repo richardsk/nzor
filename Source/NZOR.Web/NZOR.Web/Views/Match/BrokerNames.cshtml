@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "BrokerNames";
+}
+
+<h2>Broker Names</h2>
+
+@using (Html.BeginForm("brokernames", "match", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    <p>
+    API Key: <input type="text" id="apiKey" name="apiKey" style="width: 20em; height: 1.5em;" maxlength="40"/>
+    </p>
+    <p>
+    Email address: <input type="text" maxlength="40" style="width: 20em; height: 1.5em;" name="emailAddress" id="emailAddress" />
+    </p>
+    @:Select file: <input type="file" id="namesFile" name="namesFile" value="Choose a file"/>
+    <div class="hint">
+    <p>
+        Your file should be a CSV file.  It should contain two columns of data:  <br />
+        one with the heading DataUrl, containing URL to the data for the external name (provided in the batch match results); <br />
+        another headed FullName, containing the name to be brokered.        
+    </p>
+    </div>
+    
+    <input name="submitButton" id="processFileButton" type="submit" value="Submit" />
+
+}

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsIntegrationReference" targetNamespace="http://tempuri.org/DsIntegrationReferences.xsd" xmlns:mstns="http://tempuri.org/DsIntegrationReferences.xsd" xmlns="http://tempuri.org/DsIntegrationReferences.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsIntegrationReference" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsIntegrationReference" msprop:Generator_UserDSName="DsIntegrationReference">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProviderReference" msprop:Generator_TableClassName="ProviderReferenceDataTable" msprop:Generator_TableVarName="tableProviderReference" msprop:Generator_TablePropName="ProviderReference" msprop:Generator_RowDeletingName="ProviderReferenceRowDeleting" msprop:Generator_UserTableName="ProviderReference" msprop:Generator_RowChangingName="ProviderReferenceRowChanging" msprop:Generator_RowEvHandlerName="ProviderReferenceRowChangeEventHandler" msprop:Generator_RowDeletedName="ProviderReferenceRowDeleted" msprop:Generator_RowEvArgName="ProviderReferenceRowChangeEvent" msprop:Generator_RowChangedName="ProviderReferenceRowChanged" msprop:Generator_RowClassName="ProviderReferenceRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReferenceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnReferenceID" msprop:Generator_ColumnPropNameInRow="ReferenceID" msprop:Generator_ColumnPropNameInTable="ReferenceIDColumn" msprop:Generator_UserColumnName="ReferenceID" type="xs:string" />
+              <xs:element name="ReferenceTypeID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnReferenceTypeID" msprop:Generator_ColumnPropNameInRow="ReferenceTypeID" msprop:Generator_ColumnPropNameInTable="ReferenceTypeIDColumn" msprop:Generator_UserColumnName="ReferenceTypeID" type="xs:string" minOccurs="0" />
+              <xs:element name="DataoSourceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDataoSourceID" msprop:Generator_ColumnPropNameInRow="DataoSourceID" msprop:Generator_ColumnPropNameInTable="DataoSourceIDColumn" msprop:Generator_UserColumnName="DataoSourceID" type="xs:string" minOccurs="0" />
+              <xs:element name="ConsensusReferenceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnConsensusReferenceID" msprop:Generator_ColumnPropNameInRow="ConsensusReferenceID" msprop:Generator_ColumnPropNameInTable="ConsensusReferenceIDColumn" msprop:Generator_UserColumnName="ConsensusReferenceID" type="xs:string" minOccurs="0" />
+              <xs:element name="IntegrationBatchID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnIntegrationBatchID" msprop:Generator_ColumnPropNameInRow="IntegrationBatchID" msprop:Generator_ColumnPropNameInTable="IntegrationBatchIDColumn" msprop:Generator_UserColumnName="IntegrationBatchID" type="xs:string" minOccurs="0" />
+              <xs:element name="LinkStatus" msprop:Generator_ColumnVarNameInTable="columnLinkStatus" msprop:Generator_ColumnPropNameInRow="LinkStatus" msprop:Generator_ColumnPropNameInTable="LinkStatusColumn" msprop:Generator_UserColumnName="LinkStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="MatchScore" msprop:Generator_ColumnVarNameInTable="columnMatchScore" msprop:Generator_ColumnPropNameInRow="MatchScore" msprop:Generator_ColumnPropNameInTable="MatchScoreColumn" msprop:Generator_UserColumnName="MatchScore" type="xs:int" minOccurs="0" />
+              <xs:element name="MatchPath" msprop:Generator_ColumnVarNameInTable="columnMatchPath" msprop:Generator_ColumnPropNameInRow="MatchPath" msprop:Generator_ColumnPropNameInTable="MatchPathColumn" msprop:Generator_UserColumnName="MatchPath" type="xs:string" minOccurs="0" />
+              <xs:element name="Citation" msprop:Generator_ColumnVarNameInTable="columnCitation" msprop:Generator_ColumnPropNameInRow="Citation" msprop:Generator_ColumnPropNameInTable="CitationColumn" msprop:Generator_UserColumnName="Citation" type="xs:string" minOccurs="0" />
+              <xs:element name="Properties" msprop:Generator_ColumnVarNameInTable="columnProperties" msprop:Generator_ColumnPropNameInRow="Properties" msprop:Generator_ColumnPropNameInTable="PropertiesColumn" msprop:Generator_UserColumnName="Properties" type="xs:string" minOccurs="0" />
+              <xs:element name="ProviderRecordID" msprop:Generator_ColumnVarNameInTable="columnProviderRecordID" msprop:Generator_ColumnPropNameInRow="ProviderRecordID" msprop:Generator_ColumnPropNameInTable="ProviderRecordIDColumn" msprop:Generator_UserColumnName="ProviderRecordID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProviderReference" />
+      <xs:field xpath="mstns:ReferenceID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

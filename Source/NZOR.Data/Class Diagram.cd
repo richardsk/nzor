@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="NZOR.Data.Entities.Consensus.Concept" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAAAAAAAAgACAAIAAAAAAQgAAAAABABgAAAAAAAg=</HashCode>
+      <FileName>Entities\Consensus\Concept.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.Name">
+    <Position X="14" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAAAAAAACAAAggABgAgBAhAAAAAAAA=</HashCode>
+      <FileName>Entities\Consensus\Name.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.NameProperty" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAACAAAAAiAAAAAABAggAAEAAAA=</HashCode>
+      <FileName>Entities\Consensus\NameProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.Reference" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAgAAAhAAAA=</HashCode>
+      <FileName>Entities\Consensus\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.ReferenceProperty" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACQAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\Consensus\ReferenceProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.TaxonProperty" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAgCAAgIAAACAAEgAEAAAAAAgAACAASAA=</HashCode>
+      <FileName>Entities\Consensus\TaxonProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Entity" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="NZOR.Data.Entities.Entity.EntityState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Entities\Entity.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Provider.Concept" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAIAgAwAAgRAAhIAACAAAUgACAAABBRgAEAAQAEg=</HashCode>
+      <FileName>Entities\Provider\Concept.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Provider.Name" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAgJACBAAAACAAEigCBAAgBAhAEAAQAEA=</HashCode>
+      <FileName>Entities\Provider\Name.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Provider.Reference" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAAAABAAAAEACAAAEgAGAAAABAgAEADAAEA=</HashCode>
+      <FileName>Entities\Provider\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Provider.ReferenceProperty" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAACQAAAAAAAAAAAAAAAAAAIBAAAgAAEAAAA=</HashCode>
+      <FileName>Entities\Provider\ReferenceProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Provider.TaxonProperty" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABIAAAAAAgZAAgIAAACAAEAAGAAgAAAgAESAACEA=</HashCode>
+      <FileName>Entities\Provider\TaxonProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.NameProfile">
+    <Position X="11.75" Y="5.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>ACAACAEACAIAiISAEAAEAOBAAAgCAAAABQAAAAIgAAI=</HashCode>
+      <FileName>Entities\Consensus\NameProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.NameApplication">
+    <Position X="8.75" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Consensus\NameProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.StackedName">
+    <Position X="15.75" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAABAAAAAAAgAgAAAAAAAAAAAgAAAAgAEBAEAAEAAA=</HashCode>
+      <FileName>Entities\Consensus\StackedName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NZOR.Data.Entities.Consensus.ConceptApplication">
+    <Position X="8.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAQAAAACCBAAAACAAAAgAAAAAgAEgAQAAAQAA=</HashCode>
+      <FileName>Entities\Consensus\ConceptApplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

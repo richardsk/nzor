@@ -1,0 +1,16 @@
+﻿@using System.Collections.Specialized
+@using System.Configuration
+@helper GetExternalLookupImage(string name)
+    {   
+        var configSection = (NameValueCollection)ConfigurationManager.GetSection("ExternalLookupImageMapping");
+        var mapping = configSection[name];
+
+        if (mapping != null && mapping.Any())
+        {   
+    <img border='0' src="@mapping" alt='Find matches at @name' /> 
+        }
+        else
+        {
+    @name
+        }
+}

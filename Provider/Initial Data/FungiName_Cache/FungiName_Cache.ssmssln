@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "FungiName_Cache", "FungiName_Cache.ssmssqlproj", "{D090AA61-0AAC-459E-BFA0-44E9BA863A2D}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = $/Provider/Initial\u0020Data/FungiName_Cache
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:SourceGear\u0020Vault\u0020Classic\u0020Client
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = FungiName_Cache.ssmssqlproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00000000-0000-0000-0000-000000000000}.Default|Default.ActiveCfg = Default
+		{D090AA61-0AAC-459E-BFA0-44E9BA863A2D}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Adrienne Phillips (Landcare Research) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Dictionary">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Field" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name"/>
+							<xs:element name="Type"/>
+							<xs:element name="Path" type="xs:string"/>
+							<xs:element name="Annotation"/>
+							<xs:element name="Mapping" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" minOccurs="0"/>
+										<xs:element name="Path" type="xs:string" minOccurs="0"/>
+										<xs:element name="Description" minOccurs="0"/>
+										<xs:element name="Values" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Definition"/>
+													<xs:element name="Value" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="code" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Examples" minOccurs="0"/>
+										<xs:element name="MappingNote" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="schemaName" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="HISPID 4"/>
+												<xs:enumeration value="HISPID 5"/>
+												<xs:enumeration value="ABCD 2.06"/>
+												<xs:enumeration value="TCS"/>
+												<xs:enumeration value="DarwinCore"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="isAvailable" type="xs:boolean" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Note" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="author" type="xs:string"/>
+											<xs:attribute name="date" type="xs:date"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

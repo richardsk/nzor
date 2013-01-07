@@ -1,0 +1,20 @@
+﻿INSERT INTO consensus.[TaxonProperty]
+           ([TaxonPropertyID]
+           ,[TaxonPropertyClassID]
+           ,[ReferenceID]
+		   ,GeoRegionID
+		   ,[ConceptID]
+           ,[NameID]
+           ,[InUse]
+           ,[AddedDate]
+		   ,ModifiedDate)
+     VALUES
+           (@taxonPropertyId,
+		    @taxonPropertyClassId,
+			@referenceId,
+			@GeoRegionID,
+			@conceptId,
+			@nameId,
+			@inUse,
+			@addedDate,
+			@ModifiedDate)

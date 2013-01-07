@@ -1,0 +1,23 @@
+﻿@model NZOR.Web.ViewModels.NameViewModel
+@if (Model == null)
+{ 
+    <br />
+    <br />
+    <span style="color: red">Name with this ID does not exist</span>
+}
+else
+{
+    foreach (var childConcept in Model.Name.Concepts.SelectMany(o => o.ToRelationships).Where(o => o.Type == "is child of").OrderBy(o => o.FromConcept.Name.FullName))
+    {
+    <fieldset>
+        <legend>Subordinate Taxon Concept</legend>
+        <div class="data-pair">
+            <span class="display-label">Full Name:</span> <span class="display-field">
+                <a href="/names/@childConcept.FromConcept.Name.NameId">@childConcept.FromConcept.Name.FullName</a></span>
+        </div>
+        <div class="data-pair">
+            <span class="display-label">According To:</span> <span class="display-field">@(childConcept.ToConcept.Publication != null ? Html.Raw(childConcept.ToConcept.Publication.Citation) : Html.Raw(""))</span>
+        </div>
+    </fieldset>
+    }
+}

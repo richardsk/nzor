@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="TestName_Cache">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="devserver05:LANDCARE\richardsk">
+          <Created>2010-12-20T14:30:56.6404064+13:00</Created>
+          <Type>SQL</Type>
+          <Server>devserver05</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>PlantNames_Dev</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Test Cache 45.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 45.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 0 Create Tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 0 Create Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 0.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 0.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 10.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 10.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 15 Concepts.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 15 Concepts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 20 Vernacular.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 20 Vernacular.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 30 Biostatus.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 30 Biostatus.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 40 References.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 40 References.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 5 Metadata.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 5 Metadata.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 50 fill OAI.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 50 fill OAI.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test Cache 6.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Test Cache 6.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TransferToTestNameCache.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:devserver05:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>devserver05</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>TransferToTestNameCache.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+  <SccProjectName>$/Provider/Initial Data/Test Names Cache</SccProjectName>
+  <SccAuxPath />
+  <SccLocalPath>.</SccLocalPath>
+  <SccProvider>MSSCCI:SourceGear Vault Classic Client</SccProvider>
+</SqlWorkbenchSqlProject>

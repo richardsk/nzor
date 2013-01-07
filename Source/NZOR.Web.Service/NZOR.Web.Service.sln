@@ -1,0 +1,149 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Web.Service", "NZOR.Web.Service\NZOR.Web.Service.csproj", "{1B6F6D5D-7682-4484-9ACB-D70BFBFD07E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{93220133-E21C-4CA9-9D49-14E33AB2AFE6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Publish.Model", "..\NZOR.Publish.Model\NZOR.Publish.Model.csproj", "{A543DDAB-BB73-4953-85B7-307C3038D1A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Publish.Data", "..\NZOR.Publish.Data\NZOR.Publish.Data.csproj", "{F54100D8-C44A-48F6-BA38-67660CB9E709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Admin.Data", "..\NZOR.Admin.Data\NZOR.Admin.Data.csproj", "{F9FB0639-F1A0-4923-A395-0CADA68FB69C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Admin.Data.Sql", "..\NZOR.Admin.Data.Sql\NZOR.Admin.Data.Sql.csproj", "{CEEAB84A-707C-4600-B0D1-A592F7D910EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Matching.Batch", "..\NZOR.Matching.Batch\NZOR.Matching.Batch.csproj", "{5D96521D-12AA-4019-BAA4-DFAC7157A55D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Matching", "..\NZOR.Matching\NZOR.Matching.csproj", "{27839874-827E-43AB-966D-7A13682FE5B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Data.Sql", "..\NZOR.Data.Sql\NZOR.Data.Sql.csproj", "{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Data", "..\NZOR.Data\NZOR.Data.csproj", "{061130AA-ADE0-453E-A08D-C5FD81F65B58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Web.Service.Client", "NZOR.Web.Service.Client\NZOR.Web.Service.Client.csproj", "{F8790FC2-0E37-4176-B2C8-40DE2B1F646B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.Web.Service.Client.Test", "NZOR.Web.Service.Client.Test\NZOR.Web.Service.Client.Test.csproj", "{B3D042D7-F9AA-44FF-A12F-82F9887A1B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZOR.ExternalLookups", "..\NZOR.ExternalLookup\NZOR.ExternalLookups.csproj", "{5F4FE434-E58B-4A99-9A73-809291A83300}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 13
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\NZOR.Publish.Model\\NZOR.Publish.Model.csproj
+		SccProjectName1 = $/Source/NZOR.Publish.Model
+		SccLocalPath1 = ..\\NZOR.Publish.Model
+		CanCheckoutShared = false
+		SccProjectUniqueName2 = ..\\NZOR.Publish.Data\\NZOR.Publish.Data.csproj
+		SccProjectName2 = $/Source/NZOR.Publish.Data
+		SccLocalPath2 = ..\\NZOR.Publish.Data
+		CanCheckoutShared = false
+		SccProjectUniqueName3 = ..\\NZOR.Admin.Data\\NZOR.Admin.Data.csproj
+		SccProjectName3 = $/Source/NZOR.Admin.Data
+		SccLocalPath3 = ..\\NZOR.Admin.Data
+		CanCheckoutShared = false
+		SccProjectUniqueName4 = ..\\NZOR.Admin.Data.Sql\\NZOR.Admin.Data.Sql.csproj
+		SccProjectName4 = $/Source/NZOR.Admin.Data.Sql
+		SccLocalPath4 = ..\\NZOR.Admin.Data.Sql
+		CanCheckoutShared = false
+		SccProjectUniqueName5 = ..\\NZOR.Matching.Batch\\NZOR.Matching.Batch.csproj
+		SccProjectName5 = $/Source/NZOR.Matching.Batch
+		SccLocalPath5 = ..\\NZOR.Matching.Batch
+		CanCheckoutShared = false
+		SccProjectUniqueName6 = ..\\NZOR.Matching\\NZOR.Matching.csproj
+		SccProjectName6 = $/Source/NZOR.Matching
+		SccLocalPath6 = ..\\NZOR.Matching
+		CanCheckoutShared = false
+		SccProjectUniqueName7 = ..\\NZOR.Data.Sql\\NZOR.Data.Sql.csproj
+		SccProjectName7 = $/Source/NZOR.Data.Sql
+		SccLocalPath7 = ..\\NZOR.Data.Sql
+		CanCheckoutShared = false
+		SccProjectUniqueName8 = ..\\NZOR.Data\\NZOR.Data.csproj
+		SccProjectName8 = $/Source/NZOR.Data
+		SccLocalPath8 = ..\\NZOR.Data
+		CanCheckoutShared = false
+		SccProjectUniqueName9 = ..\\NZOR.ExternalLookup\\NZOR.ExternalLookups.csproj
+		SccProjectName9 = $/Source/NZOR.ExternalLookup
+		SccLocalPath9 = ..\\NZOR.ExternalLookup
+		CanCheckoutShared = false
+		SccProjectUniqueName10 = NZOR.Web.Service\\NZOR.Web.Service.csproj
+		SccProjectName10 = $/Source/NZOR.Web.Service/NZOR.Web.Service
+		SccLocalPath10 = NZOR.Web.Service
+		CanCheckoutShared = false
+		SccProjectUniqueName11 = NZOR.Web.Service.Client\\NZOR.Web.Service.Client.csproj
+		SccProjectName11 = $/Source/NZOR.Web.Service/NZOR.Web.Service.Client
+		SccLocalPath11 = NZOR.Web.Service.Client
+		CanCheckoutShared = false
+		SccProjectUniqueName12 = NZOR.Web.Service.Client.Test\\NZOR.Web.Service.Client.Test.csproj
+		SccProjectName12 = $/Source/NZOR.Web.Service/NZOR.Web.Service.Client.Test
+		SccLocalPath12 = NZOR.Web.Service.Client.Test
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B6F6D5D-7682-4484-9ACB-D70BFBFD07E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6F6D5D-7682-4484-9ACB-D70BFBFD07E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6F6D5D-7682-4484-9ACB-D70BFBFD07E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6F6D5D-7682-4484-9ACB-D70BFBFD07E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A543DDAB-BB73-4953-85B7-307C3038D1A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A543DDAB-BB73-4953-85B7-307C3038D1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A543DDAB-BB73-4953-85B7-307C3038D1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A543DDAB-BB73-4953-85B7-307C3038D1A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54100D8-C44A-48F6-BA38-67660CB9E709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54100D8-C44A-48F6-BA38-67660CB9E709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54100D8-C44A-48F6-BA38-67660CB9E709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54100D8-C44A-48F6-BA38-67660CB9E709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9FB0639-F1A0-4923-A395-0CADA68FB69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEAB84A-707C-4600-B0D1-A592F7D910EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D96521D-12AA-4019-BAA4-DFAC7157A55D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D96521D-12AA-4019-BAA4-DFAC7157A55D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D96521D-12AA-4019-BAA4-DFAC7157A55D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D96521D-12AA-4019-BAA4-DFAC7157A55D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27839874-827E-43AB-966D-7A13682FE5B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27839874-827E-43AB-966D-7A13682FE5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27839874-827E-43AB-966D-7A13682FE5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27839874-827E-43AB-966D-7A13682FE5B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEC7F97-C306-4EBE-BE0F-54CB4995FC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{061130AA-ADE0-453E-A08D-C5FD81F65B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8790FC2-0E37-4176-B2C8-40DE2B1F646B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8790FC2-0E37-4176-B2C8-40DE2B1F646B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8790FC2-0E37-4176-B2C8-40DE2B1F646B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8790FC2-0E37-4176-B2C8-40DE2B1F646B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D042D7-F9AA-44FF-A12F-82F9887A1B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D042D7-F9AA-44FF-A12F-82F9887A1B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D042D7-F9AA-44FF-A12F-82F9887A1B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D042D7-F9AA-44FF-A12F-82F9887A1B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4FE434-E58B-4A99-9A73-809291A83300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4FE434-E58B-4A99-9A73-809291A83300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4FE434-E58B-4A99-9A73-809291A83300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4FE434-E58B-4A99-9A73-809291A83300}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

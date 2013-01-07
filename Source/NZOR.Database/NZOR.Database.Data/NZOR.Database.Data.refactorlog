@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="ef35a6bd-e47c-489c-9fe2-c070061425e7" ChangeDateTime="10/20/2010 03:11:40">
+    <Property Name="ElementName" Value="[provider].[NamePropertyName]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[NameProperty]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="frkNamePropertyName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="39bde47c-5253-4b51-9804-d7b50c79396c" ChangeDateTime="10/21/2010 03:39:50">
+    <Property Name="ElementName" Value="[provider].[uqkSubDataSetIDProviderRecordID]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Name]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[uqkNameSubDataSetIDProviderRecordID]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f9f60e40-1663-4eac-bab5-e55cf9a2d4b2" ChangeDateTime="10/21/2010 03:40:46">
+    <Property Name="ElementName" Value="[provider].[uqkSubDataSetIDProviderRecordID]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Reference]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[uqkReferenceSubDataSetIDProviderRecordID]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9211d74c-53e7-4bc2-8905-3be375b3739c" ChangeDateTime="10/28/2010 03:03:30">
+    <Property Name="ElementName" Value="[consensus].[NamePropertyID]" />
+    <Property Name="ElementType" Value="ISql100PrimaryKeyConstraint" />
+    <Property Name="ParentElementName" Value="" />
+    <Property Name="ParentElementType" Value="" />
+    <Property Name="NewName" Value="prkNamePropertyID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1576a4fd-99f5-429b-a3a9-4d984f932812" ChangeDateTime="10/28/2010 22:17:07">
+    <Property Name="ElementName" Value="[dbo].[SubDataSet]" />
+    <Property Name="ElementType" Value="ISql100Table" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="DataSource" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ac70fd84-f739-40b5-93b9-8ffec8187258" ChangeDateTime="10/28/2010 22:19:24">
+    <Property Name="ElementName" Value="[provider].[frkNameSubDataSet]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Name]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="frkNameDataSource" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="47c80f10-36ce-4259-816b-6a7b51c256f8" ChangeDateTime="10/28/2010 22:19:57">
+    <Property Name="ElementName" Value="[provider].[frkReferenceSubDataSet]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Reference]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="frkReferenceDataSource" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4dd52f9a-d669-498a-8aed-4fe1e3c38e19" ChangeDateTime="10/28/2010 22:20:41">
+    <Property Name="ElementName" Value="[provider].[uqkReferenceSubDataSetIDProviderRecordID]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Reference]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="uqkReferenceDataSourceIDProviderRecordID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ed678fce-8c8c-40b7-9e54-d85369a09685" ChangeDateTime="10/28/2010 22:22:20">
+    <Property Name="ElementName" Value="[provider].[uqkNameSubDataSetIDProviderRecordID]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Name]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="uqkNameDataSourceProviderRecordID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9d289b92-b2bd-4fbf-96b4-b47ccc870f70" ChangeDateTime="10/28/2010 22:24:17">
+    <Property Name="ElementName" Value="[dbo].[DataSource].[SubDataSetID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DataSource]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="02f79f25-4822-4194-acd0-30df3a601dfc" ChangeDateTime="10/28/2010 22:24:47">
+    <Property Name="ElementName" Value="[dbo].[prkSubDataSet]" />
+    <Property Name="ElementType" Value="ISql100PrimaryKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[DataSource]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="prkDataSource" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="feb37a79-2279-4068-8dbe-4fbf2176194c" ChangeDateTime="10/28/2010 22:25:04">
+    <Property Name="ElementName" Value="[dbo].[frkSubDataSetProvider]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[DataSource]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="frkDataSourceProvider" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d7df63f2-22b4-4212-b092-7909f13a2a1e" ChangeDateTime="10/28/2010 22:27:32">
+    <Property Name="ElementName" Value="[provider].[Name].[SubDataSetID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[provider].[Name]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0a17e90d-1e9e-4ce4-a18a-19986d11ccec" ChangeDateTime="10/28/2010 22:27:56">
+    <Property Name="ElementName" Value="[provider].[Concept].[SubDataSetID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[provider].[Concept]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9cca151c-cdc1-4775-a6c9-032001719f1d" ChangeDateTime="10/28/2010 22:28:20">
+    <Property Name="ElementName" Value="[provider].[Reference].[SubDataSetID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[provider].[Reference]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="DataSourceID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="204b3c2b-6d37-4a11-84ea-c4690e547ff3" ChangeDateTime="10/28/2010 22:33:21">
+    <Property Name="ElementName" Value="[provider].[uqkNameDataSourceProviderRecordID]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[Name]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="uqkNameDataSourceIDProviderRecordID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="06d770fe-1d54-437e-b457-20384caadd63" ChangeDateTime="11/18/2010 23:59:43">
+    <Property Name="ElementName" Value="[dbo].[NameClassProperty]" />
+    <Property Name="ElementType" Value="ISql100Table" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="NamePropertyType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dadc42f2-00d7-4a8d-9607-3bd07bb643ca" ChangeDateTime="11/19/2010 00:00:27">
+    <Property Name="ElementName" Value="[dbo].[NamePropertyType].[NameClassPropertyID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NamePropertyType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="NamePropertyTypeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a3bb81f-cdfa-4ab9-a521-2a80b719abfb" ChangeDateTime="11/19/2010 00:01:25">
+    <Property Name="ElementName" Value="[dbo].[frkNameClassPropertyNameClass]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[NamePropertyType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[frkNamePropertyTypeNameClass]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3821fb20-b351-4aa3-9a33-f3dea5483552" ChangeDateTime="11/19/2010 00:01:43">
+    <Property Name="ElementName" Value="[dbo].[prkNameClassProperty]" />
+    <Property Name="ElementType" Value="ISql100PrimaryKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[NamePropertyType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[prkNamePropertyType]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="34fca937-7add-4712-a8e9-04ff3c75457b" ChangeDateTime="11/19/2010 00:02:26">
+    <Property Name="ElementName" Value="[dbo].[uqkNameClassPropertyNameClassIDName]" />
+    <Property Name="ElementType" Value="ISql100UniqueConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[NamePropertyType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[uqkNamePropertyTypeNameClassIDName]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="63222ccc-9600-4c13-bba8-15721e1fd60d" ChangeDateTime="11/19/2010 00:07:13">
+    <Property Name="ElementName" Value="[consensus].[NameProperty].[NameClassPropertyID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[consensus].[NameProperty]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="NamePropertyTypeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ef94dc4-83ae-48a8-9e19-dfc662baebb8" ChangeDateTime="11/19/2010 00:07:53">
+    <Property Name="ElementName" Value="[consensus].[frkNamePropertyNameClassProperty]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[consensus].[NameProperty]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[frkNamePropertyNamePropertyType]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="76f1b7cf-72ed-41c6-a0c9-0baa2788fd89" ChangeDateTime="11/19/2010 00:08:28">
+    <Property Name="ElementName" Value="[provider].[NameProperty].[NameClassPropertyID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[provider].[NameProperty]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="NamePropertyTypeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5408073f-8176-4b8a-9532-ba63acd74c59" ChangeDateTime="11/19/2010 00:08:50">
+    <Property Name="ElementName" Value="[provider].[frkNamePropertyNameClassProperty]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[provider].[NameProperty]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="[frkNamePropertyNamePropertyType]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2529c42a-63f2-4ad4-86e6-a8183730d5eb" ChangeDateTime="12/19/2010 20:51:43">
+    <Property Name="ElementName" Value="[provider].[FlatName]" />
+    <Property Name="ElementType" Value="ISql100Table" />
+    <Property Name="ParentElementName" Value="" />
+    <Property Name="ParentElementType" Value="" />
+    <Property Name="NewName" Value="StackedName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="088811da-7588-4dee-9d20-0f7b2ac21b02" ChangeDateTime="12/19/2010 21:56:05">
+    <Property Name="ElementName" Value="[consensus].[FlatName]" />
+    <Property Name="ElementType" Value="ISql100Table" />
+    <Property Name="ParentElementName" Value="[consensus]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="StackedName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="af7c6c04-4fbd-41e3-8b4e-f889f43273fd" ChangeDateTime="12/19/2010 21:56:42">
+    <Property Name="ElementName" Value="[consensus].[StackedName].[FlatNameID]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[consensus].[StackedName]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="StackedNameID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a54fb30c-5368-4689-ad3d-3301333f90e6" ChangeDateTime="12/19/2010 22:09:00">
+    <Property Name="ElementName" Value="[provider].[sprSelect_FlatNameToRoot]" />
+    <Property Name="ElementType" Value="ISql100Procedure" />
+    <Property Name="ParentElementName" Value="[provider]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[sprSelect_StackedNameToRoot]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="95f51250-5106-499e-b25a-8994cb58f9f9" ChangeDateTime="12/19/2010 22:09:12">
+    <Property Name="ElementName" Value="[provider].[sprUpdate_FlatNameData]" />
+    <Property Name="ElementType" Value="ISql100Procedure" />
+    <Property Name="ParentElementName" Value="[provider]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[sprUpdate_StackedNameData]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48fcdfe3-2839-4e06-83be-2682a15c9f11" ChangeDateTime="12/19/2010 22:09:23">
+    <Property Name="ElementName" Value="[provider].[sprUpdate_FlatNameDataOmissions]" />
+    <Property Name="ElementType" Value="ISql100Procedure" />
+    <Property Name="ParentElementName" Value="[provider]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[sprUpdate_StackedNameDataOmissions]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="97cb5cb0-ecde-4788-857b-c9e2727dd8b6" ChangeDateTime="12/19/2010 22:10:15">
+    <Property Name="ElementName" Value="[consensus].[sprSelect_FlatNameToRoot]" />
+    <Property Name="ElementType" Value="ISql100Procedure" />
+    <Property Name="ParentElementName" Value="[consensus]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[sprSelect_StackedNameToRoot]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5be8956f-3afc-4cc2-a148-5f9c21904224" ChangeDateTime="12/19/2010 22:10:26">
+    <Property Name="ElementName" Value="[consensus].[sprUpdate_FlatNameData]" />
+    <Property Name="ElementType" Value="ISql100Procedure" />
+    <Property Name="ParentElementName" Value="[consensus]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[sprUpdate_StackedNameData]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="efb22d67-96db-4ac6-8fdd-bfc03be47eaa" ChangeDateTime="02/02/2011 02:00:11">
+    <Property Name="ElementName" Value="[dbo].[ReferenceType].[Type]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ReferenceType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c4326854-31e9-439e-b45e-4afc01cf083a" ChangeDateTime="02/02/2011 02:00:31">
+    <Property Name="ElementName" Value="[dbo].[ReferencePropertyType].[Type]" />
+    <Property Name="ElementType" Value="ISql100SimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ReferencePropertyType]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+</Operations>

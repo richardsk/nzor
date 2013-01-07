@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>NZOR.Database.Data</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.0</ProjectVersion>
+    <ProjectGuid>{67cbc824-a49e-4e9b-a947-360f3dfe65c3}</ProjectGuid>
+    <DSP>Microsoft.Data.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <ShowWizard>False</ShowWizard>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchema</DefaultFileStructure>
+    <DeployToDatabaseAddToServerExplorer>True</DeployToDatabaseAddToServerExplorer>
+    <DeployToScript>True</DeployToScript>
+    <CatalogPropertiesFile>Properties\Database.sqlsettings</CatalogPropertiesFile>
+    <LoadSqlClrTypes>True</LoadSqlClrTypes>
+    <RootNamespace>NZOR.Database.Data</RootNamespace>
+    <DefaultSchema>dbo</DefaultSchema>
+    <PreviousProjectVersion>4.0</PreviousProjectVersion>
+    <SccProjectName>$/Source/NZOR.Database</SccProjectName>
+    <SccProvider>MSSCCI:SourceGear Vault Classic Client</SccProvider>
+    <SccAuxPath />
+    <SccLocalPath>..</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>.\sql\release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TargetConnectionString>
+    </TargetConnectionString>
+    <TargetDatabase>
+    </TargetDatabase>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <SuppressWarnings>
+    </SuppressWarnings>
+    <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
+    <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
+    <DeployToDatabase>False</DeployToDatabase>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>.\sql\debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TargetConnectionString>Data Source=nzor_dev;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetDatabase>NZOR_dev</TargetDatabase>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <SuppressWarnings>
+    </SuppressWarnings>
+    <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
+    <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
+    <DeployToDatabase>False</DeployToDatabase>
+  </PropertyGroup>
+  <!--Import the settings-->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\TeamData\Microsoft.Data.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Pre-Deployment" />
+    <Folder Include="Scripts\Post-Deployment" />
+    <Folder Include="Data Generation Plans" />
+    <Folder Include="Schema Comparisons" />
+    <Folder Include="Properties\" />
+    <Folder Include="Schema Objects\" />
+    <Folder Include="Schema Objects\Schemas\" />
+    <Folder Include="Schema Objects\Schemas\dbo\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Defaults\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Functions\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Rules\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Data Types\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Types CLR\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\XML Schema Collections\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Service Broker\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Service Broker\Queues\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Synonyms\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\Constraints\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\Keys\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\Statistics\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views\Statistics\" />
+    <Folder Include="Schema Objects\Database Level Objects\" />
+    <Folder Include="Schema Objects\Database Level Objects\Assemblies\" />
+    <Folder Include="Schema Objects\Database Level Objects\Database Triggers\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Schemas\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Users\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Certificates\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Asymmetric Keys\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Master Keys\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Signatures\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Symmetric Keys\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Database Encryption Keys\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Database Audit Specification\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Roles\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Roles\Application Roles\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\Roles\Database Roles\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Broker Priorities\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Contracts\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Event Notifications\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Message Types\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Remote Service Binding\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Routes\" />
+    <Folder Include="Schema Objects\Database Level Objects\Service Broker\Services\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Full Text Stoplists\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Filegroups\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Files\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Full Text Catalogs\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
+    <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
+    <Folder Include="Schema Objects\Schemas\provider\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Defaults\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Functions\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Rules\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Types\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Types\User Defined Data Types\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Types\User Defined Types CLR\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Types\User Defined Table Types\" />
+    <Folder Include="Schema Objects\Schemas\provider\Programmability\Types\XML Schema Collections\" />
+    <Folder Include="Schema Objects\Schemas\provider\Synonyms\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\Constraints\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\Keys\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\provider\Tables\Statistics\" />
+    <Folder Include="Schema Objects\Schemas\provider\Views\" />
+    <Folder Include="Schema Objects\Schemas\provider\Views\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\provider\Views\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\provider\Views\Statistics\" />
+    <Folder Include="Scripts\Post-Deployment\Reference Data" />
+    <Folder Include="Schema Objects\Schemas\consensus\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Defaults\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Functions\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Rules\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Types\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Types\User Defined Data Types\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Types\User Defined Types CLR\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Types\User Defined Table Types\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Programmability\Types\XML Schema Collections\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Synonyms\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\Constraints\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\Keys\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Tables\Statistics\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Views\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Views\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Views\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\consensus\Views\Statistics\" />
+    <Folder Include="Scripts\Test" />
+    <Folder Include="Schema Objects\Schemas\matching" />
+    <Folder Include="Schema Objects\Schemas\matching\Tables" />
+    <Folder Include="Schema Objects\Schemas\matching\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\admin" />
+    <Folder Include="Schema Objects\Schemas\admin\Tables" />
+    <Folder Include="Schema Objects\Schemas\admin\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\darwincore" />
+    <Folder Include="Schema Objects\Schemas\darwincore\Tables" />
+    <Folder Include="Schema Objects\Schemas\darwincore\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\darwincore\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\darwincore\Programmability" />
+    <Folder Include="Schema Objects\Schemas\darwincore\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora\Tables" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzflora\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi\Tables" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac\Tables" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzac\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib\Tables" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\dwc_nzib\Tables\Keys" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted\Programmability\Stored Procedures" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted\Tables" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted\Tables\Indexes" />
+    <Folder Include="Schema Objects\Schemas\dwc_hosted\Tables\Keys" />
+  </ItemGroup>
+  <ItemGroup>
+    <PropertiesFile Include="Properties\Database.sqlsettings">
+    </PropertiesFile>
+    <PropertiesFile Include="Properties\Database.sqldeployment">
+    </PropertiesFile>
+    <PropertiesFile Include="Properties\Database.sqlcmdvars">
+    </PropertiesFile>
+    <Build Include="Properties\Database.sqlpermissions">
+      <ModelBuilderType>Permissions</ModelBuilderType>
+    </Build>
+    <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment.sql">
+      <SubType>Code</SubType>
+    </PreDeploy>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql">
+      <SubType>Code</SubType>
+    </PostDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <BuildContributorArgument Include="OutDir=$(OutDir)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Name.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Name.prkName.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TaxonRank.prkTaxonRank.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Name.frkNameTaxonRank.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TaxonRank.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferenceType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\ReferenceType.prkReferenceType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferencePropertyType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\ReferencePropertyType.prkReferencePropertyType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Reference.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Reference.prkReference.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\ReferenceProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ReferenceProperty.prkReferenceProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ReferenceProperty.frkReferencePropertyReferencePropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ReferenceProperty.frkReferencePropertyReferenceID.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Reference.frkReferenceDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Reference.frkReferenceReferenceType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Name.frkNameDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\NameClass.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\NameClass.prkNameClass.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Name.frkNameNameClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\NamePropertyType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\NamePropertyLookUp.prkNamePropertyLookUp.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\NamePropertyType.frkNamePropertyTypeNameClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\NameProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\NameProperty.prkNameProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\NameProperty.frkNamePropertyName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\NameProperty.frkNamePropertyNamePropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ConceptRelationshipType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\ConceptRelationshipType.prkConceptRelationshipType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Concept.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Concept.prkConcept.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\consensus.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Name.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Name.prkName.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\ConceptRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptRelationship.prkConceptRelationship.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptRelationship.frkConceptRelationshipFromConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptRelationship.frmConceptRelationshipToConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptRelationship.frkConceptRelationshipConceptRelationshipType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Name.uqkNameDataSourceIDProviderRecordID.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Reference.uqkReferenceDataSourceIDProviderRecordID.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Concept.frkConceptName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Concept.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Concept.prkConcept.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Concept.frkConceptName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\ConceptRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptRelationship.prkConceptRelationship.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptRelationship.frkConceptRelationshipToConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptRelationship.frkConceptRelationshipFromConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptRelationship.frkConceptRelationshipConceptRelationshipType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Name.frkNameTaxonRank.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\NameProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\NameProperty.prkNameProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\NameProperty.frkNamePropertyName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\NameProperty.frkNamePropertyNamePropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\ConceptApplication.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ConceptApplicationType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\ConceptApplicationType.prkConceptApplicationType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptApplication.frkConceptApplicationConceptApplicationType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptApplication.prkConceptApplication.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Reference.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Reference.prkReference.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Reference.frkReferenceReferenceType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\ReferenceProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ReferenceProperty.prkReferenceProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ReferenceProperty.frkReferencePropertyReferencePropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\GeoRegion.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\GeoRegionSchema.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\GeoRegionSchema.prkGeoRegionSchema.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\GeoRegion.prkGeoRegion.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\GeoRegion.frkGeoRegionGeoRegionSchema.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TaxonPropertyClass.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TaxonPropertyClass.prkTaxonPropertyClass.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TaxonPropertyType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TaxonPropertyType.prkTaxonPropertyType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TaxonPropertyType.frkTaxonPropertyTypeTaxonPropertyClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Concept.frkConceptDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\NamePropertyType.uqkNamePropertyTypeNameClassIDName.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Name.frkNameNameClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ReferenceProperty.frkReferencePropertyReference.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptApplication.frkConceptApplicationConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Concept.frkConceptReference.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\ConceptApplication.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptApplication.prkConceptApplication.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptApplication.frkConceptApplicationConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptApplication.frkConceptApplicationConceptApplicationType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Concept.frkConceptReference.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\StackedName.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\StackedName.prkStackedName.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\NameProperty.idxNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\NameProperty.idxNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Programmability\Stored Procedures\sprSelect_StackedNameToRoot.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Views\vwConcepts.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Views\vwConcepts.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Programmability\Stored Procedures\sprSelect_StackedNameToRoot.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Programmability\Stored Procedures\sprUpdate_StackedNameData.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\StackedName.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Programmability\Stored Procedures\sprUpdate_StackedNameData.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Programmability\Stored Procedures\sprUpdate_StackedNameDataOmissions.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\NamePropertyLookUp.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\NamePropertyType.prkNamePropertyType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TaxonPropertyLookUp.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TaxonPropertyLookUp.prkTaxonPropertyLookUp.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferencePropertyMap.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\ReferencePropertyMap.prkReferencePropertyMap.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Concept.idxNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\ConceptRelationship.idxFromConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\ConceptRelationship.idxToConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\ReferenceProperty.idxReferenceID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Author.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\ConceptApplication.frkConceptApplicationToConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\ConceptApplication.frkConceptApplicationToConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\Concept.idxNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\ConceptRelationship.idxFromConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\ConceptRelationship.idxToConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\StackedName.idxSeedNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\StackedName.idxSeedNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Concept.idxDataSourceID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Reference.idxDataSourceID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Name.idxDataSourceID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\StackedName.prkStackedName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\StackedName.idxCanonicalRankDepth.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\StackedName.idxNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\TaxonProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\TaxonProperty.prkTaxonProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\TaxonProperty.frkTaxonPropertyTaxonPropertyClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\TaxonPropertyValue.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\TaxonPropertyValue.frkTaxonPropertyValueTaxonProperty.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\TaxonPropertyValue.frkTaxonPropertyValueTaxonPropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\TaxonProperty.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\TaxonPropertyValue.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\TaxonProperty.frkTaxonPropertyDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\TaxonPropertyValue.frkTaxonPropertyValueTaxonPropertyType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\TaxonProperty.frkTaxonPropertyTaxonPropertyClass.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\TaxonProperty.prkTaxonProperty.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\TaxonPropertyValue.frkTaxonPropertyValueTaxonProperty.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\fnLevenshteinDistance.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\MIN3.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\Name.idxFullName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Name.idxFullName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Name.idxNameRankID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Name.idxConsensusNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\ReferenceProperty.idxReferencePropertyTypeID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\ConceptRelationship.idxConceptRelationshipTypeID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Programmability\Stored Procedures\sprUpdate_StackedNameDataOmissions.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Name.idxNameProviderModifiedDate.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Concept.idxConceptProviderModifiedDate.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Reference.idxReferenceProviderModifiedDate.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\NameProperty.idxNamePropertyTypeId.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Concept.idxConsensusConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\TaxonProperty.idxTaxonPropertyNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\TaxonProperty.idxTaxonPropertyNameID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\TaxonProperty.TaxonPropertyConceptID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\TaxonProperty.TaxonPropertyReferenceID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Programmability\Functions\GetFullName.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TaxonRankStyle.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\Concept.ConceptID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\ConceptRelationship.ConceptRelationshipID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\ReferenceProperty.ReferencePropertyID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\NameProperty.NamePropertyID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\TaxonProperty.TaxonPropertyID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\TaxonPropertyValue.TaxonPropertyValueID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\ConceptApplication.ConceptApplicationID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Constraints\StackedName.StackedNameID.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Transformation.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Assemblies\TextUtility.assembly.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\ApplyXSLT.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Deprecated.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Deprecated.prkDeprecated.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\Deprecated.OldID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\fnLevenshteinPercentage.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\TaxonPropertyValue.idxTaxonPropertyValueTaxonPropertyId.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\NameProperty.idxNamePropertyPropertyTypeId.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Annotation.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Annotation.prkAnnotation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Annotation.frkAnnotationName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Annotation.frkAnnotationConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Keys\Annotation.frkAnnotationReference.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Annotation.idxAnnotationName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\provider\Tables\Indexes\Annotation.idxAnnotationConcept.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Annotation.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Annotation.prkAnnotation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Annotation.frkAnnotationName.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Annotation.frkAnnotationConcept.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Keys\Annotation.frkAnnotationReference.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\Annotation.idxAnnotationName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Tables\Indexes\Annotation.idxAnnotationConcept.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\consensus\Programmability\Stored Procedures\sprSelectKingdomStats.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\matching\Tables\Keys\Match.prkMatch.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\matching\Tables\Match.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\AttachmentPoint.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\UserMessageType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\AttachmentPointDataSource.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\DataSource.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\DataSourceEndpoint.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\DataType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\ExternalLookupService.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Feedback.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\HarvestLog.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Message.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\MessageType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Provider.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\ScheduledTask.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Statistic.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\StatisticType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\User.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkAttachmentPointDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkAttachmentPointProvider.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkDataSourceEndpointDataSource.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkDataSourceProvider.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkHarvestLogProviderEndpoint.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkStatisticStatisticType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkAttachmentPoint.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkDataSource.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkDataType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkFeedback.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkHarvestLog.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkProvider.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkProviderEndpoint.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkScheduledTask.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkStatistic.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkStatisticType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\admin.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\matching.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\darwincore\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\darwincore.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Country.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Setting.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\provider.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\dwc_nzflora.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Tables\ResourceRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\NameRequest.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\BrokeredName.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkBrokeredName.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\prkNameRequest.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\admin\Tables\Keys\frkBrokeredNameNameRequest.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\ResourceRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\dwc_nzfungi.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\dwc_nzac.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\ResourceRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\ResourceRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\dwc_nzib.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\dwc_hosted.schema.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Indexes\idxTaxonID.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Indexes\idxTaxonID_1.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Indexes\idxTaxonID_2.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Keys\frkDistributionTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Keys\frkLiteratureTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Keys\frkVernacularTaxon.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Distribution.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Literature.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\ResourceRelationship.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Taxon.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Tables\Vernacular.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Programmability\Stored Procedures\sprTransferNZORToDwCHosted2.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Programmability\Stored Procedures\sprTransferNZORToDwCNZAC.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Programmability\Stored Procedures\sprTransferNZORToDwCNZFungi2.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Programmability\Stored Procedures\sprTransferNZORToDwCNZIB2.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <DeploymentExtensionConfiguration Include="NZOR.Database.Data.refactorlog">
+      <SubType>DeploymentExtensionConfiguration</SubType>
+    </DeploymentExtensionConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\NameClass Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\NamePropertyType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ReferencePropertyType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ReferenceType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\TaxonRank Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ConceptRelationshipType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ConceptApplicationType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\TaxonPropertyClass Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\TaxonPropertyType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\GeographicSchema Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\GeoRegion Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\NamePropertyLookUp Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\TaxonPropertyLookUp Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ReferencePropertyMap Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Test\CSV Dump From Cache.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Test\Insert_Test_Data_1.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ConsensusName Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\Provider Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\DataSource Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ConsensusNameProperty Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\Consensus Concept Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\TaxonRankStyle Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\Transformation Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\AttachmentPoint Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\AttachmentPointDataSource Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\DataSourceEndpoint Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\DataType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ExternalLookupService Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\MessageType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\ScheduledTask Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\StatisticType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\User Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\UserMessageType Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Schema Objects\Schemas\darwincore\Programmability\Stored Procedures\sprTransferNZORToDarwinCore.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\Reference Data\Country Reference Data.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Programmability\Stored Procedures\sprTransferNZORToDwCNZFlora.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzfungi\Programmability\Stored Procedures\sprTransferNZORToDwCNZFungi.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzac\Programmability\Stored Procedures\sprTransferNZORToDwCNZAC.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_nzib\Programmability\Stored Procedures\sprTransferNZORToDwCNZIB.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dwc_hosted\Programmability\Stored Procedures\sprTransferNZORToDwCHosted.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+    <NotInBuild Include="Schema Objects\Schemas\darwincore\Programmability\Stored Procedures\sprTransferNZORToDarwinCore2.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <Build Include="Schema Objects\Schemas\dwc_nzflora\Programmability\Stored Procedures\sprTransferNZORToDwCNZFlora2.sql">
+      <SubType>NotInBuild</SubType>
+    </Build>
+  </ItemGroup>
+</Project>

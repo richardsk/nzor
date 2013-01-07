@@ -1,0 +1,228 @@
+
+<body>
+
+
+  <h1>NZOR – How does it work?</h1>
+
+  <p>
+    This is a semi-technical description of the NZOR system.
+  </p>
+
+<h2>Overview</h2>
+
+<img width=600 height=400 src="/Content/images/image002.gif" >
+
+
+<p>The NZOR system has a number of linked components;</p>
+
+<ol>
+
+    <li>a community of Data Providers who manage taxonomic data in their own database systems</li>	
+    <li>a data harvesting system managed by NZOR for regularly collecting data from data providers</li>	
+    <li>an integration engine which creates a single dataset from all data provider records and reconciles data which may overlap in content</li>	
+    <li>a data publishing system which transforms the single dataset into an optimised form for use by end users, which is exposed over the internet as a set of web-services</li>	
+    <li>an administration module for managing data provider content, data validation processes and a number of other activities</li>	
+    <li>a community of data consumers who use the NZOR web services to support local database systems, generally through the maintenance of a local cache of NZOR data</li>	
+
+</ol>
+
+<br />
+
+<h2>Harvesting</h2>
+
+<b>Overview of Harvesting Module</b>
+<p>
+
+<img width=601 height=245 src="/Content/images/image004.gif">
+
+
+
+<p>
+    NZOR harvests taxonomic data from multiple data providers.
+    Each data provider maintains a taxonomic database which may be in a variety of
+    forms, data structures, and software platforms. Data
+    elements within their system are mapped to a common data standard (the NZOR
+    data provider schema).). The NZOR Provider Schema is based on the <a href="http://www.tdwg.org/">TDWG</a> Taxon Concept Schema Standard (TCS). 
+    The standard data elements are then made available for
+    automatic harvesting over the internet using a generic harvesting protocol
+    called the Open Archives Initiative for Metadata
+    Harvesting (<a href="http://www.openarchives.org/pmh/">OAI-PMH</a>). The
+    combination of the mapping/harvesting <span>interface</span> is
+    called a ‘wrapper’.
+</p>
+
+
+<p>
+    The NZOR system regularly harvests provider data and
+    imports it into a local repository. At the same time the harvester is carrying
+    out a number of data validation and consistency
+    checks and generates reports providing feedback to data providers.
+</p>
+
+<p>
+    The core harvested data elements are the scientific and vernacular names of organisms. 
+    These are recorded as facts in the cited literature (published concepts). 
+    These published concepts are often associated with one or more asserted taxonomic relationships (preferred name, parent name). 
+    Data Providers indicate which of these taxon concepts they endorse (flagged as ‘in use’). 
+    In addition information is mobilised on assertions relating to presence/absence of a taxon in New Zealand. 
+</p>
+
+<h2>Integration</h2>
+
+<p>
+The combined set of harvested data is then integrated into a single NZOR dataset. 
+The integration process employs a decision tree to ensure that data elements from two or more providers which may overlap are dealt with appropriately.
+For example the same scientific name may come from three providers, perhaps a spelling error in one of them. 
+The decision tree allows such differences to be detected and dealt with automatically. 
+The result is a single NZOR dataset of integrated records with linked contributions from one or more data providers. 
+In most cases the data mobilised by individual data providers does not collide during the integration process but the NZOR infrastructure is designed to be scalable 
+to many data providers with large amounts of data and potentially substantial taxonomic overlap. 
+It must also be stated that a number of New Zealand data providers have databases containing extensive records of published taxon concepts. 
+In global terms that is relatively rare.
+</p>
+
+<p>
+The integration process may be summarised:
+<ol>
+<li>Discover reconciliation groups of same names from all providers (equivalent name strings taking into account spelling variations)</li>
+<li>Create/update simple majority consensus nomenclatural records linked to groups and create a persistent NZOR name GUID</li>
+<li>Discover equivalent published concepts delivered by multiple providers</li>
+<li>Create/update an NZOR concept records linked to a persistent NZOR concept GUID</li>
+<li>Create simple majority concept relationship records for the preferred name and the parent name</li>
+<li>Create/update NZOR single consensus taxonomic view from endorsed provider concepts</li>
+<li>Break any deadlocks by following endorsed concepts from preferred provider for a defined taxonomic group</li>
+<li>Track changes to NZOR taxonomy over time</li>
+</ol>
+</p>
+
+<p>
+    <img border=0 width=601 height=747 src="/Content/images/image006.gif">
+</p>
+
+<p class=MsoBodyText><o:p>&nbsp;</o:p></p>
+
+
+<h2>Publication</h2>
+
+<p>
+The single NZOR dataset of integrated records requires transformation into a form that is optimised and indexed (<a href="http://incubator.apache.org/lucene.net/">Lucene</a>) for querying. 
+In addition <a href="http://code.google.com/p/taxon-name-processing/wiki/TaxamatchInfo">Taxa Match</a> is employed to parse and optimise the searching of organism names. 
+End-users may submit queries on the dataset through a set of standard web-services. 
+NZOR is designed to provide web-services in a number of common formats, e.g. REST and SOAP. 
+The result of a query conforms to the NZOR consumer schema and may be represented in a number of forms, e.g. XML, JSON. 
+</p>
+
+<p>
+    <img border=0 width=602 height=255 src="/Content/images/image008.jpg" />
+</p>
+
+<a name="Schema"></a>
+<h3>Draft NZOR Consumer Schema</h3>
+
+<p>
+NZOR provides data which conforms to standard form, the NZOR
+consumer schema. An NZOR dataset contains information on
+</p>
+
+<ol>
+<li>
+    metadata on the data providers
+</li>
+<li>
+    publications relevant to taxonomic names
+</li>
+<li>
+    scientific names and their nomenclatural details, and vernacular (common) names
+</li>
+<li>
+    taxonomic concepts, by which we mean the use of a name in a publication and the relationships asserted within publications about taxa, that one is a parent taxon of another, or is a synonym of another.
+</li>
+<li>
+	properties of a taxon, in particular the biostatus, by which we mean information on the presence/absence in a defined geographical region.
+</li>
+
+</ol>
+
+
+
+<p>
+Below we enumerate the core elements of the XML Consumer Schema.
+</p>
+
+
+<p>Details of &lt;DataSet&gt;</p>
+
+<p>
+    <img border=0 width=421 height=233 src="/Content/images/image010.jpg" />
+</p>
+
+<p class=MsoCaption>Details of &lt;Metadata&gt;</p>
+
+<p>
+    <img border=0 width=581 height=279 src="/Content/images/image012.jpg" />
+</p>
+
+<p>Details of &lt;Publication&gt;</p>
+
+<p>
+    <img border=0 width=263 height=676 src="/Content/images/image014.jpg">
+</p>
+
+
+<p>Details of &lt;Providers&gt;.Used in Publication, Name, Concept</p>
+
+<p>
+    <img border=0 width=339 height=158 src="/Content/images/image016.jpg" />
+</p>
+
+<p>Details of &lt;DataConsistency&gt;.</p>
+
+<p>
+    <img border=0 width=410 height=151 src="/Content/images/image018.jpg"
+</p>
+
+
+<p>Details of &lt;TaxonName&gt;</p>
+
+<p>
+    <img border=0 width=335 height=873 src="/Content/images/image020.jpg" />
+</p>
+
+
+<p>Details of &lt;Representations&gt;(Path: /DataSet/TaxonNames/Representations)</p>
+
+<p>
+    <img border=0 width=343 height=107 src="/Content/images/image021.gif"
+</p>
+
+<p>Details of &lt;VernacularName<&gt;</p>
+
+
+<p>
+    <img border=0 width=271 height=274 src="/Content/images/image023.jpg" />
+</p>
+
+<p>Details of &lt;TaxonConcept&gt;</p>
+
+
+<p>
+    <img border=0 width=327 height=349 src="/Content/images/image025.jpg" />
+</p>
+
+<p>Details of &lt;Relationships&gt;</p>
+
+<p>
+    <img border=0 width=538 height=358 src="/Content/images/image027.jpg" />
+</p>
+
+<p>Details of &lt;Biostatus&gt;</p>
+
+
+<p>
+    <img border=0 width=458 height=402 src="/Content/images/image029.jpg"/>
+</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Observation Details</h1>
+<div class="details">
+	<div class="data-pair">
+		<span class="display-label">Id:</span> <span class="display-field">{{ observation.id }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Verbatim Taxon:</span> <span class="display-field">{{ observation.verbatim_taxon }}</span>
+	</div>
+	{% if observation.name_id %}
+	<div class="data-pair">
+		<span class="display-label">Identified as:</span> <span class="display-field">
+		<a href='../../name/{{ observation.name_id.id }}'>{{ observation.name_id }}</a></span>
+	</div>
+	{% endif %}
+	<div class="data-pair">
+		<span class="display-label">Observer:</span> <span class="display-field">{{ observation.observer }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Date observed:</span> <span class="display-field">{{ observation.date_observed }}</span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Locality:</span> <span class="display-field">{{ observation.locality }}</span>
+	</div>	
+	<div class="data-pair">
+		<span class="display-label">Latitude, Longitude:</span> <span class="display-field">{{ observation.decimal_latitude }}, {{ observation.decimal_longitude }}  <a href='http://maps.google.co.nz/maps?q={{observation.decimal_latitude }},{{ observation.decimal_longitude }}' target='_blank'>map</a></span>
+	</div>
+	<div class="data-pair">
+		<span class="display-label">Count:</span> <span class="display-field">{{ observation.count }}</span>
+	</div>
+</div>
+{% endblock %}
