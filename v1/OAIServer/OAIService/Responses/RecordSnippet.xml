@@ -1,0 +1,10 @@
+﻿<record>
+  <header [RECORD_STATUS]>
+    <identifier>[IDENTIFIER]</identifier>
+    <datestamp>[RECORD_DATE]</datestamp>
+    <setSpec>[SET_SPEC]</setSpec>
+  </header>
+  <metadata>
+    [RECORD_METADATA]
+  </metadata>
+</record>

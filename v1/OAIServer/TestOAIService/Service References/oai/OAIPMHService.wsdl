@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="OAIPMHService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IOAIPMHService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:4785/OAIPMHService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:4785/OAIPMHService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOAIPMHService_Identify_InputMessage">
+    <wsdl:part name="parameters" element="tns:Identify" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_Identify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IdentifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_GetRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecord" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_GetRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListIdentifiers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListIdentifiers" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListIdentifiers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListIdentifiersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListMetadataFormats_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListMetadataFormats" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListMetadataFormats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListMetadataFormatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListRecords" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListSets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListSets" />
+  </wsdl:message>
+  <wsdl:message name="IOAIPMHService_ListSets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListSetsResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IOAIPMHService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Identify">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/Identify" message="tns:IOAIPMHService_Identify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/IdentifyResponse" message="tns:IOAIPMHService_Identify_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/GetRecord" message="tns:IOAIPMHService_GetRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/GetRecordResponse" message="tns:IOAIPMHService_GetRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ListIdentifiers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/ListIdentifiers" message="tns:IOAIPMHService_ListIdentifiers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/ListIdentifiersResponse" message="tns:IOAIPMHService_ListIdentifiers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ListMetadataFormats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/ListMetadataFormats" message="tns:IOAIPMHService_ListMetadataFormats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/ListMetadataFormatsResponse" message="tns:IOAIPMHService_ListMetadataFormats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ListRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/ListRecords" message="tns:IOAIPMHService_ListRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/ListRecordsResponse" message="tns:IOAIPMHService_ListRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ListSets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOAIPMHService/ListSets" message="tns:IOAIPMHService_ListSets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOAIPMHService/ListSetsResponse" message="tns:IOAIPMHService_ListSets_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IOAIPMHService" type="tns:IOAIPMHService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IOAIPMHService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Identify">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/Identify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecord">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/GetRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListIdentifiers">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/ListIdentifiers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListMetadataFormats">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/ListMetadataFormats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListRecords">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/ListRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListSets">
+      <soap12:operation soapAction="http://tempuri.org/IOAIPMHService/ListSets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OAIPMHService">
+    <wsdl:port name="WSHttpBinding_IOAIPMHService" binding="tns:WSHttpBinding_IOAIPMHService">
+      <soap12:address location="http://localhost:4785/OAIPMHService.svc/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:4785/OAIPMHService.svc/Service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

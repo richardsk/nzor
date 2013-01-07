@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsNameMatch" targetNamespace="http://tempuri.org/DsNameMatch.xsd" xmlns:mstns="http://tempuri.org/DsNameMatch.xsd" xmlns="http://tempuri.org/DsNameMatch.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsNameMatch" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsNameMatch" msprop:Generator_DataSetName="DsNameMatch" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Name" msprop:Generator_UserTableName="Name" msprop:Generator_RowDeletedName="NameRowDeleted" msprop:Generator_RowChangedName="NameRowChanged" msprop:Generator_RowClassName="NameRow" msprop:Generator_RowChangingName="NameRowChanging" msprop:Generator_RowEvArgName="NameRowChangeEvent" msprop:Generator_RowEvHandlerName="NameRowChangeEventHandler" msprop:Generator_TableClassName="NameDataTable" msprop:Generator_TableVarName="tableName" msprop:Generator_RowDeletingName="NameRowDeleting" msprop:Generator_TablePropName="Name">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="NameID" msprop:Generator_ColumnPropNameInRow="NameID" msprop:Generator_ColumnVarNameInTable="columnNameID" msprop:Generator_ColumnPropNameInTable="NameIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Canonical" msprop:Generator_UserColumnName="Canonical" msprop:Generator_ColumnPropNameInRow="Canonical" msprop:Generator_ColumnVarNameInTable="columnCanonical" msprop:Generator_ColumnPropNameInTable="CanonicalColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FullName" msprop:Generator_UserColumnName="FullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Rank" msprop:Generator_UserColumnName="Rank" msprop:Generator_ColumnPropNameInRow="Rank" msprop:Generator_ColumnVarNameInTable="columnRank" msprop:Generator_ColumnPropNameInTable="RankColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Authors" msprop:Generator_UserColumnName="Authors" msprop:Generator_ColumnPropNameInRow="Authors" msprop:Generator_ColumnVarNameInTable="columnAuthors" msprop:Generator_ColumnPropNameInTable="AuthorsColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CombinationAuthors" msprop:Generator_UserColumnName="CombinationAuthors" msprop:Generator_ColumnPropNameInRow="CombinationAuthors" msprop:Generator_ColumnVarNameInTable="columnCombinationAuthors" msprop:Generator_ColumnPropNameInTable="CombinationAuthorsColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Year" msprop:Generator_UserColumnName="Year" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_ColumnPropNameInTable="YearColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ParentID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PercentMatch" msprop:Generator_UserColumnName="PercentMatch" msprop:Generator_ColumnPropNameInRow="PercentMatch" msprop:Generator_ColumnVarNameInTable="columnPercentMatch" msprop:Generator_ColumnPropNameInTable="PercentMatchColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
