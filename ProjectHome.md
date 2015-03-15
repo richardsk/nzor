@@ -1,0 +1,1 @@
+A project to collate and maintain all organism names and taxonomic concepts relevant to New Zealand, and whether the organism is currently present in New Zealand - see http://www.nzor.org.nz.  For this reason biostatus is an important component of the NZOR system.
